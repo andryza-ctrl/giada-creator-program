@@ -22,9 +22,11 @@ Do not remove `vercel.json`, `.openai/hosting.json`, `worker/index.js` or `scrip
 
 - Giada is an AI assistant on Telegram; do not position it as a diet, medical service or guaranteed weight-loss solution.
 - Avoid medical, diagnostic, disease, weight-loss guarantee or before/after claims.
-- Compensation, usage rights, paid distribution, eligibility and privacy copy are provisional.
-- The current form is a demo and must not transmit creator data.
-- Preserve the five-stage creator journey: Scopri → Prova → Scegli → Proponi → Inizia.
+- Commercial terms are decided and must stay in sync with `BRIEF-GIADA-CREATOR-PROGRAM-v2.md`: EUR 80 per selected video (absolute cap), 1 video + 3 hooks, paid and organic use with no expiry, 7-day trial, reply within 48 hours. Never write "fino a EUR 50".
+- Never publish reach percentages, follower promises or invented performance data.
+- The current form is a demo and must not transmit creator data. Remove `.form-demo` and wire a real endpoint before sending traffic.
+- The page has one conversion. Keep the four-step process (Provi Giada, Ricevi il brief, Proponi l'idea, Produciamo) as the only journey model.
+- The three-hook delivery must appear in the hero terms and in step 04, never only after the contract.
 - Keep creator-facing copy concise and avoid repeating the same benefit across sections.
 
 ## Visual guardrails

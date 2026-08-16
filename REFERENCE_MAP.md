@@ -1,4 +1,4 @@
-# Knowledge Studio reference map — V3
+# Knowledge Studio reference map — V4
 
 Libreria approvata: `https://knowledge-studio-andrea.vercel.app`
 
@@ -12,20 +12,31 @@ In questo passaggio ogni reference è stata aperta nella relativa scheda di dett
 
 ## Mappa sezione per sezione
 
+Lettura live della libreria del 16 agosto 2026: 109 schede (erano 98 nell'audit, 74 a inizio mese).
+La reference Skyline è stata riaperta come immagine, non citata a memoria, e **replicata** nella
+composizione: si adattano palette e messaggio, non il layout.
+
 | Sezione | Reference aperta | Principio estratto | Traduzione nella landing Giada |
 |---|---|---|---|
-| Navigazione | **Sette hero section moderne come reference UI** — @uiuxmanuel | Header leggero, CTA primaria unica, mobile semplificato | Pill nav compatta; su mobile rimangono brand e candidatura. |
-| Hero | **10 hero section moderne del mese** — @creative_vaani, Skyline | Masthead forte, immagine verticale centrale, valore a sinistra, trust a destra | Headline oversize; arco fotografico centrale; invito alla prova a sinistra; compenso, continuità e distribuzione a destra. |
-| Apertura opportunità | **Sette regole per caroselli leggibili e orientati ai buyer** — @liz.on.the.web | Un’idea per blocco, lettura a Z, titoli grandi, carico cognitivo ridotto | Statement diretto e rail a quattro criteri: follower, voce, metodo, idea. |
-| Prova di 7 giorni | **17 reference visuali per layout, UI e contenuti social** — @Andrea | Persona e prodotto nella stessa storia; UI reale; overlay contestuali | Due schermate reali di Giada, progressione giorni 1–3 / 4–7 e domanda creativa concreta. |
-| Benefici | **Landing landscaping con hero immersiva e servizi modulari** — @webdesign_786 | Beneficio dominante, moduli secondari, outcome prima delle feature | Mosaico asimmetrico: distribuzione dominante, chiarezza economica e continuità come supporti. |
-| Profili creator | **Landing real estate segmentata per intento** — @webdesign_786 | Self-selection esplicita senza trasformare i segmenti in silos | Tre profili orizzontali selezionabili e un solo pannello di approfondimento. |
-| Percorso | **Anatomia di una landing page SaaS ad alta conversione** — @uiux.subash | Rendere visibile il meccanismo e ridurre progressivamente l’incertezza | Quattro righe editoriali; l’impegno cresce da “nessun contenuto” a “collaborazione reale”. |
-| Criteri | **Sette regole per caroselli leggibili e orientati ai buyer** — @liz.on.the.web | Confronto leggibile, gerarchia forte, una decisione per riga | Matrice “Sei in linea se / Non basta” per qualificare senza tono elitista. |
-| Form | **Sette prompt per un sito lead-gen locale e un’offerta commerciale** — @kekoamac | Chiedere solo ciò che serve e spiegare il passo successivo | Quattro campi, consenso, rassicurazioni e stato demo esplicito senza invio dati. |
-| Mobile | **Otto prompt per progettare struttura, copy e mobile di una landing** — @itsaiguide | Mobile come gerarchia autonoma, non semplice riduzione desktop | Masthead ricomposto, CTA iniziale visibile, moduli in colonna, tabelle e form senza overflow. |
-| FAQ e chiusura | **Anatomia di una landing page SaaS ad alta conversione** — @uiux.subash | Risolvere obiezioni prima dell’ultima azione | FAQ numerate, una risposta aperta, CTA finale unica. |
-| Fiducia complessiva | **Real estate website orientato a fiducia e lead** — @webdesign_786 | Trust e CTA devono appartenere alla gerarchia, non essere decorazioni | Condizioni, processo e limiti sono visibili prima della candidatura. |
+| Hero | **10 hero section moderne del mese** — @creative_vaani, Skyline | Card unica su fondo neutro, griglia a filetti, arco fotografico centrale, prova in alto a destra, accento caldo unico sulla CTA | Card blush su canvas; nav come prima riga; H1 e CTA in alto a sinistra; sottotitolo in basso a sinistra; prove (6 video, 3 creator) in alto a destra; condizioni economiche in basso a destra |
+| Prova nella hero | **Sette hero section moderne come reference UI** — @uiuxmanuel | Promessa, prova e prossimo passo con enfasi non uniforme | La cella prove sostituisce la fascia separata: tre fatti verificabili e due numeri reali |
+| Gerarchia mobile | **10 hero section moderne** — nota archiviata su Skyline | La composizione richiede una gerarchia mobile dedicata | Sotto 700px la hero si ricompone: H1, CTA, sottotitolo, prove, immagine, condizioni. Barra CTA sticky |
+| Linguaggio complessivo | **Sette linguaggi UI per evitare prodotti generici** — @avrosh.hq | Scegliere un linguaggio prima dei componenti | Swiss/editoriale: griglia a filetti, tipografia dominante, zero card decorative |
+| Chi cerchiamo | **Perché alcuni hook da carosello fermano lo scroll** — @tinnaloaizaofficial | Specificità e contrasto reggono meglio della descrizione | Matrice binaria «Sei in linea se / Non basta», quattro coppie |
+| Prova di 7 giorni | **17 reference visuali per layout, UI e contenuti social** — @Andrea | UI dentro un contesto narrativo, non mockup isolato | Due schermate reali, note giorni 1–3 / 4–7, una domanda creativa |
+| Profili creator | **Landing real estate segmentata per intento** — @webdesign_786 | Self-selection esplicita senza silos | Tre profili selezionabili, un solo pannello, preselezione da `?angolo=` o `?profilo=` |
+| Architettura | **Anatomia di una landing page SaaS ad alta conversione** — @uiux.subash | Promessa, prova, meccanismo, obiezioni, azione | Hero con prove, chi cerchiamo, prova, profili, processo, form, FAQ, chiusura |
+| Fiducia | **Real estate website orientato a fiducia e lead** — @webdesign_786 | Trust signal e CTA fanno parte della UI | Le prove stanno nella hero, non in una fascia aggiunta dopo |
+| Tipografia e ritmo | **Prompt Claude per togliere genericità a un sito** — @lifeofarjav | Tipografia, whitespace, micro-motion e trust signal sono leve indipendenti | Scala a cinque livelli, padding sezione ridotto a 104px, motion limitata all'ingresso |
+| Colore | **Il bianco non è un solo colore** — @346eur · **17 reference visuali** — @Andrea | L'off-white è una scelta di tono; palette a pochi dominanti con un solo accento | `--paper` al posto del bianco puro; teal solo su superfici, `--teal-text` e `--teal-deep` per testo e CTA |
+
+## Cosa è stato rimosso, e perché
+
+- **Journey strip a cinque tappe**: duplicava il processo a quattro passi e introduceva una terza serie di numeri.
+- **Grafico reach 62% / 92%**: dati inventati davanti a un pubblico che legge dashboard pubblicitarie.
+- **Sezione benefici a tre card**: le tre promesse sono ora nelle condizioni della hero e nelle FAQ.
+- **Numeri nelle label di sezione**: restavano solo per decorazione.
+- **Icone decorative nelle card e nelle righe di processo**: sostituite da numeri e filetti.
 
 ## Regole di movimento applicate
 
