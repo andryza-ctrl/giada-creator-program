@@ -18,3 +18,6 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Use `https://knowledge-studio-andrea.vercel.app` as the approved inspiration library. Translate selected patterns through `REFERENCE_MAP.md`; do not copy third-party brand assets into the landing.
 - For this iteration, prioritize section hierarchy, editorial composition, integrated product evidence, mobile-first qualification, and restrained motion over final copy polish.
 - Use the Skyline reference from Knowledge Studio as the current hero composition: masthead, central vertical arch, left value/CTA and right trust. Keep the broader UI in a Swiss/editorial language and do not ship third-party reference assets.
+- Keep creator-facing copy concise: one promise or decision per section, short paragraphs and no repeated benefit explanation.
+- Preserve the five-stage journey strip — Scopri, Prova, Scegli, Proponi, Inizia — as the current macro-navigation model.
+- Keep the pill header hero-only rather than fixed unless a future sticky alternative is tested across desktop and mobile without covering content.
