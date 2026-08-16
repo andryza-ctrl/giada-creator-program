@@ -68,15 +68,22 @@ Evidenze: `qa-v5-01` … `qa-v5-09`. Registro completo dei finding in `design-qa
 
 ## Stato Git
 
-Working tree **sporco, niente commit**. Il repo è collegato a Vercel: push su `main` = deploy
-Production. Per pubblicare conviene un branch e una PR.
+Tutto committato sul branch **`redesign/v5-backstage`**, commit `cddc6e4`. **Non pushato.**
+`main` resta al commit precedente (`1f4c19d`, la V4 Skyline), quindi la Production su Vercel
+non è stata toccata.
 
+Per pubblicare:
+
+```bash
+git push -u origin redesign/v5-backstage
+gh pr create --fill        # Vercel genera un Preview Deployment
 ```
-Modificati:   CLAUDE.md · DESIGN_SYSTEM.md · REFERENCE_MAP.md · design-qa.md · index.html
-              MONOREPO_HANDOFF.md · SESSION_STATUS.md · src/App.jsx · src/styles.css
-Nuovi:        public/assets/bricolage-latin.woff2 · qa-v5-01…09-*.png
-Non tracciato: ref-veluno.png (coperto da `ref-*.png` nel .gitignore, reference di terzi)
-```
+
+Push diretto su `main` = deploy Production immediato: da evitare finché i debiti qui sotto
+sono aperti.
+
+Non versionato: `ref-veluno.png`, coperto da `ref-*.png` nel `.gitignore` perché è materiale
+di terzi. Per una verifica futura della hero serve di nuovo l'immagine.
 
 ## Debiti aperti prima di mandare traffico
 
