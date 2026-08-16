@@ -5,7 +5,8 @@ Ultimo aggiornamento: **16 agosto 2026**. Questo file è il punto da cui riparti
 ## Dove siamo
 
 Design system **V5 «Backstage»** completo e verificato in locale. Sostituisce la V4 chiara.
-Build e test passano. **Nessun commit fatto: tutto è nel working tree.**
+Build e test passano. Tutto committato sul branch **`redesign/v5-backstage`**, non pushato:
+`main` e la Production su Vercel sono ancora alla V4.
 
 La direzione: il prodotto Giada vive alla luce del giorno, il programma creator è il suo retro,
 lo studio di sera. Un unico tema navy su tutta la pagina, teal come solo accento, carta calda
