@@ -15,3 +15,5 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - The application form is a local demo only and must not transmit creator data.
 - Keep the implementation portable to `apps/landing` in the official monorepo.
 - Preserve the generated hero asset and Giada's navy, teal, blush, and periwinkle palette.
+- Use `https://knowledge-studio-andrea.vercel.app` as the approved inspiration library. Translate selected patterns through `REFERENCE_MAP.md`; do not copy third-party brand assets into the landing.
+- For this iteration, prioritize section hierarchy, editorial composition, integrated product evidence, mobile-first qualification, and restrained motion over final copy polish.
