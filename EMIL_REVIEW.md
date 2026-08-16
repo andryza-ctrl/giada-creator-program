@@ -1,15 +1,20 @@
-# Interaction and motion review
+# Emil design engineering review — V3
 
 | Before | After | Why |
 |---|---|---|
-| Generic section rhythm with similar cards | Editorial section numbering, split headings, and deliberate visual anchors | Hierarchy now communicates where the visitor is and why the next block matters |
-| Giada trial described only in copy | Real Giada screens integrated into a layered product composition | Product evidence makes the seven-day trial concrete without adding decorative UI |
-| Creator profiles presented as compact tabs | Three self-selection paths with immediate descriptions and a detailed active panel | The interaction explains intent before asking for a click |
-| Qualification shown as one dark checklist | Paired “Sei in linea se” and “Non basta” cards | Clear boundaries feel professional without sounding elitist |
-| Application form appeared without journey context | Three-step path, progress cue, short form, and immediate expectation note | Reduces uncertainty while keeping qualification low-friction |
-| CTA could shrink after the final webfont width settled | Navigation CTA now has fixed flex behavior and no wrapping | Prevents late-layout clipping while scrolling |
-| Accordion animated layout height | FAQ content changes immediately; only the chevron uses a transform transition | Avoids layout animation while retaining state feedback |
-| Generic hover behavior | Hover is gated to fine pointers; press uses `scale(0.97)` for 150 ms | Keeps touch behavior clean and buttons responsive |
-| Motion applied as decoration | Only the rare hero entrance uses longer marketing motion; repeated controls stay immediate | Animation has a purpose and does not slow the core journey |
+| Hero convenzionale 50/50 | Masthead editoriale con arco fotografico centrale, offerta a sinistra e trust a destra | Crea una prima impressione più memorabile e rende leggibili promessa, talento e condizioni in un solo sistema. |
+| Più proof element in competizione | Una promessa dominante, un visual anchor e tre metriche ordinate | Riduce il rumore e rende la scansione immediata. |
+| CTA hero spinta al fondo dal layout | CTA ancorata al contenuto con spazio fisso e visibile nel primo viewport desktop e mobile | L’azione primaria non dipende dall’altezza disponibile. |
+| Card benefici equivalenti | Mosaico con una card dominante e due moduli secondari | La distribuzione è il vantaggio principale; compenso e continuità diventano supporto, non concorrenti. |
+| Profili compatti e poco autoesplicativi | Tre percorsi di self-selection con descrizione visibile prima del click | Il creator si riconosce prima di interagire. |
+| Quattro step in card alte e simili | Righe editoriali con label di impegno crescente | Il processo si legge più velocemente e comunica il principio “impegno proporzionato”. |
+| Due checklist separate | Matrice unica “Sei in linea se / Non basta” | Il confronto è più neutrale, professionale e leggibile. |
+| CTA nav soggetta a restringimento | `flex: 0 0 auto`, larghezza minima e testo non spezzabile | Evita clipping quando font e viewport si assestano. |
+| Tab con relazione semantica incompleta | `role="tab"`, `aria-selected`, `aria-controls` e pannello nominato | Lo stato è comprensibile anche senza affidarsi solo al colore. |
+| Form molto alto prima dell’azione | Griglia compatta, quattro campi, consenso e rassicurazioni sotto CTA | Mantiene la qualifica ma anticipa l’azione. |
+| FAQ uniforme | Numerazione, domanda dominante e una risposta aperta | Migliora scansione e orientamento. |
+| Hover e movimento più generici | Ease-out custom, press a 0.97, hover gated, reduced-motion | Le interazioni sono rapide, coerenti e non rallentano il funnel. |
 
-The implementation uses no `transition: all`, `scale(0)` entrances, `ease-in`, CSS gradients, or ungated hover motion. Reduced-motion removes position movement while preserving state clarity.
+## Verdetto
+
+La landing ora possiede una grammatica visiva riconoscibile: masthead forte, griglia editoriale, prodotto reale e progressione dell’impegno. Il sistema è abbastanza espressivo per il test con il team ma resta trasferibile nel monorepo Giada. Il copy economico, i diritti d’uso e il flusso post-form rimangono volutamente provvisori.
