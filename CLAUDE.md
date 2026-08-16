@@ -31,4 +31,14 @@ Do not remove `vercel.json`, `.openai/hosting.json`, `worker/index.js` or `scrip
 
 ## Visual guardrails
 
-Use Geist, Giada navy/teal/blush/periwinkle tokens, editorial spacing, real Giada product screens, restrained motion and accessible focus states. Read `DESIGN_SYSTEM.md`, `REFERENCE_MAP.md`, `design-qa.md` and `MONOREPO_HANDOFF.md` before a substantial visual change.
+The page runs the V5 "Backstage" system: one navy theme for the whole page, teal as the only
+accent, warm paper reserved for objects (form card, product screens). Type is Bricolage Grotesque
+for display and Geist for body, both self-hosted from `public/assets`. Keep editorial spacing,
+real Giada product screens, restrained motion and accessible focus states.
+
+- One CTA label on the whole page: "Ricevi accesso e brief".
+- No section inverts the theme; no second accent colour.
+- Maximum three section eyebrows on the page.
+- No em dash or en dash in visible copy.
+
+Read `DESIGN_SYSTEM.md`, `REFERENCE_MAP.md`, `design-qa.md` and `MONOREPO_HANDOFF.md` before a substantial visual change.
