@@ -22,7 +22,7 @@ const CTA_LABEL = "Ricevi brief e accesso";
 const heroAngles = {
   default: {
     lead: "Diventa una voce di Giada.",
-    accent: "L’idea resta tua.",
+    accent: "Il tuo punto di vista conta.",
     profile: "rassicurante",
   },
 };
@@ -33,17 +33,17 @@ const heroAngles = {
 // Solo la carta centrale ha oggi un'immagine reale: le altre sono slot in attesa
 // dei file. Per riempire uno slot basta aggiungere `src` e `alt` alla sua riga.
 const heroDeck = [
-  { id: "slot-1", rot: -8.5, lift: 6 },
-  { id: "slot-2", rot: -4.5, lift: 2.4 },
+  { id: "slot-1", rot: -8.5, lift: 5.5 },
+  { id: "slot-2", rot: -4.5, lift: 2 },
   {
     id: "hero-shot",
     rot: -1,
-    lift: 0.5,
+    lift: 0,
     src: "/assets/giada-creator-hero.png",
     alt: "Una creator registra un video per Giada nella cucina di casa",
   },
-  { id: "slot-4", rot: 4, lift: 1.6 },
-  { id: "slot-5", rot: 7.5, lift: 0 },
+  { id: "slot-4", rot: 4, lift: 1.8 },
+  { id: "slot-5", rot: 7.5, lift: 4.8 },
 ];
 
 // Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
@@ -140,7 +140,7 @@ const creatorModes = [
 const processSteps = [
   ["01", "Lasci i contatti", "Brief e accesso ti arrivano subito via mail.", "s1"],
   ["02", "Provi Giada", "Hai tre giorni per usarla. Non devi creare nulla.", "s2"],
-  ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore ti diciamo se vogliamo realizzarlo con te.", "s3"],
+  ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore decidiamo se partire insieme.", "s3"],
   ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
 ];
 
@@ -279,8 +279,11 @@ export function App() {
             <a href="#come-funziona">Come funziona</a>
             <a href="#faq">FAQ</a>
           </nav>
-          <a className="button button--primary button--sm" href="#candidatura">
+          <a className="button button--primary button--sm button--nav-cta" href="#candidatura">
             <span>{CTA_LABEL}</span>
+            <span className="button-badge" aria-hidden="true">
+              <ArrowUpRight size={14} strokeWidth={2.2} />
+            </span>
           </a>
         </div>
       </header>
@@ -470,7 +473,7 @@ export function App() {
                   </li>
                 </ul>
                 <a className="inline-cta" href="https://giada.care" target="_blank" rel="noreferrer noopener">
-                  Scopri meglio Giada
+                  Conosci Giada da vicino
                   <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />
                 </a>
               </div>

@@ -5,8 +5,8 @@
    Ogni sezione chiude sul colore da cui parte la successiva: niente dissolvenze
    scure, tagli di luminanza o fasce che interrompono lo scroll.
 
-   TIPOGRAFIA: Bricolage Grotesque per il display, Geist per testo e UI, Switzer
-   Light Italic per la voce editoriale.
+   TIPOGRAFIA: Bricolage Grotesque per il display, Geist per testo e UI, Arapey
+   Italic per la voce editoriale.
    ========================================================================== */
 
 @font-face {
@@ -26,9 +26,9 @@
 }
 
 @font-face {
-  font-family: "Switzer";
-  src: url("/assets/switzer-light-italic.woff2") format("woff2");
-  font-weight: 300;
+  font-family: "Arapey";
+  src: url("/assets/arapey-italic.woff2") format("woff2");
+  font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
@@ -62,7 +62,7 @@
 
   /* ---------- Tipografia ---------- */
   --font-display: "Bricolage Grotesque", "Geist", sans-serif;
-  --font-editorial: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Arapey", Georgia, "Times New Roman", serif;
   --font-body: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --fs-display: clamp(2.7rem, 5.4vw, 4.6rem);
@@ -222,16 +222,15 @@ h3 {
   letter-spacing: -0.02em;
 }
 
-/* Switzer Light Italic porta una voce editoriale chiara senza il contrasto
-   eccessivo del precedente serif display. */
+/* Arapey Italic porta una voce editoriale elegante e leggibile. */
 h1 em,
 h2 em,
 h3 em,
 .editorial {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-weight: 300;
-  font-size: 1.04em;
+  font-weight: 400;
+  font-size: 1em;
   letter-spacing: -0.025em;
 }
 /* Nei titoli a due righe la seconda è l'accento: sans in alto, corsivo sotto.
@@ -451,6 +450,15 @@ h2 em.is-inline { display: inline; color: inherit; }
   background: linear-gradient(135deg, var(--teal-light), var(--teal));
   color: var(--navy);
 }
+.site-nav .button--nav-cta {
+  min-height: 48px;
+  padding: 4px 5px 4px 18px;
+  gap: 12px;
+}
+.site-nav .button--nav-cta .button-badge {
+  width: 38px;
+  height: 38px;
+}
 
 /* ============ HERO ============ */
 
@@ -502,13 +510,13 @@ h2 em.is-inline { display: inline; color: inherit; }
   letter-spacing: -0.045em;
   text-wrap: balance;
 }
-/* La seconda riga mantiene la voce editoriale, con un serif corsivo più
-   leggibile del precedente display ad alto contrasto. */
+/* La seconda riga mantiene la voce editoriale, senza superare la dimensione
+   del display principale. */
 .hero-title em {
   display: block;
   margin-top: 0.08em;
   color: var(--teal-ink);
-  font-size: 1.08em;
+  font-size: 1em;
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
@@ -794,7 +802,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.2rem;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.005em;
   text-wrap: nowrap;
 }
@@ -954,7 +962,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 17px;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.32;
 }
 
@@ -1007,7 +1015,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.05rem;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0;
 }
 .proof-item dt {
@@ -1017,7 +1025,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.12rem;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.3;
 }
 
@@ -1242,7 +1250,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: clamp(1.3rem, 2vw, 1.85rem);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.24;
   letter-spacing: -0.012em;
   text-wrap: pretty;
@@ -1342,7 +1350,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.16rem;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.34;
   text-wrap: balance;
 }
@@ -1427,7 +1435,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.12;
   letter-spacing: -0.018em;
 }
@@ -1565,25 +1573,9 @@ h2 em.is-inline { display: inline; color: inherit; }
 /* ============ FOOTER ============ */
 
 .zone-footer {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(70% 260px at 86% 0%, rgba(16, 184, 192, 0.14), transparent 74%),
-    var(--surface-grad);
-}
-.zone-footer::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  right: -12%;
-  width: min(1000px, 92vw);
-  aspect-ratio: 2.4;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 184, 192, 0.08), transparent 68%);
-  pointer-events: none;
+  background: var(--surface-grad);
 }
 footer { padding-block: 34px; }
-.zone-footer .container { position: relative; z-index: 1; }
 .footer-grid { display: flex; align-items: center; gap: 30px; font-size: 12px; color: var(--on-soft); }
 .footer-grid > strong {
   color: var(--on);
@@ -1692,6 +1684,15 @@ footer { padding-block: 34px; }
     display: inline-flex;
     font-size: 11px;
   }
+  .site-nav .button--nav-cta {
+    min-height: 40px;
+    padding: 4px 4px 4px 12px;
+    gap: 8px;
+  }
+  .site-nav .button--nav-cta .button-badge {
+    width: 32px;
+    height: 32px;
+  }
   .brand span { display: none; }
   .hero::before { top: -8%; right: -30%; width: 130vw; }
   .hero-actions { align-items: stretch; flex-direction: column; gap: 10px; }
@@ -1734,6 +1735,8 @@ footer { padding-block: 34px; }
   .hero-actions { margin-top: 14px; gap: 9px; }
   /* I fatti si impilano in una colonna sola separata da fili. */
   .proof-rail { grid-template-columns: minmax(0, 1fr); gap: clamp(14px, 2vw, 20px); }
+  .process-row--s1 p { max-width: 210px; text-wrap: wrap; }
+  .process-row--s3 p { max-width: 30ch; }
 }
 
 @media (max-width: 560px) {
