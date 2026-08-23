@@ -91,7 +91,7 @@ const termCards = [
 // Chi cerchiamo: due elenchi separati invece di una matrice a due colonne. Il
 // pannello affermativo porta una riga di dettaglio, quello negativo resta secco.
 const fitYes = [
-  ["Crei contenuti tuoi 🔝", "Idea, riprese e voce sono davvero tue."],
+  ["Crei contenuti tuoi 💻", "Idea, riprese e voce sono davvero tue."],
   ["Curi audio e luce 🎞️", "Una finestra e una stanza silenziosa possono bastare."],
   ["Rispetti i tempi ⌚️", "Se dici una data, la rispetti."],
   ["Arrivi con un’idea 💡", "Ci racconti da dove partiresti e perché può funzionare."],
@@ -339,7 +339,7 @@ export function App() {
                     La tua idea, la tua voce
                   </span>
                   <span className="deck-tag deck-tag--right" data-reveal style={{ "--d": "480ms" }}>
-                    Amplificato su campagne paid
+                    Amplificato in tutta Italia
                   </span>
                 </div>
 
@@ -738,7 +738,7 @@ export function App() {
         >
           <div className="container finale-grid">
             <div className="finale-copy" data-reveal>
-              <span className="finale-kicker">Hai già un’idea?</span>
+              <span className="finale-kicker eyebrow">Hai già un’idea?</span>
               <h2 id="apply-title">
                 Prova Giada.
                 <em>Poi raccontacela.</em>

@@ -237,7 +237,19 @@ h3 em,
    Stesso schema della hero su tutta la pagina. */
 h2 em { display: block; color: var(--accent-text); line-height: 1.04; }
 h2 em.is-inline { display: inline; color: inherit; }
+.fit h2 em {
+  font-size: clamp(2rem, 4.225vw, 3.525rem);
+  font-weight: 500;
+}
 .profiles h2 em.is-inline { color: var(--accent-text); }
+.profiles h2 em.is-inline {
+  font-size: clamp(2rem, 4.45vw, 3.7125rem);
+  font-weight: 500;
+}
+.process h2 em {
+  font-size: clamp(2rem, 4.15vw, 3.4625rem);
+  font-weight: 500;
+}
 
 .eyebrow {
   display: block;
@@ -517,6 +529,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   margin-top: 0.08em;
   color: var(--teal-ink);
   font-size: 1em;
+  font-weight: 500;
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
@@ -705,6 +718,10 @@ h2 em.is-inline { display: inline; color: inherit; }
 
 .terms { padding-bottom: clamp(72px, 9vh, 112px); }
 .terms-head .lede { margin-top: 18px; }
+.terms-head h2 em {
+  font-size: clamp(2rem, 4.45vw, 3.7125rem);
+  font-weight: 500;
+}
 
 .terms-grid {
   margin-top: clamp(38px, 4.4vw, 60px);
@@ -859,6 +876,10 @@ h2 em.is-inline { display: inline; color: inherit; }
   gap: clamp(44px, 6vw, 96px);
 }
 .trial-copy .lede { margin-top: 22px; }
+.trial-copy h2 em {
+  font-size: clamp(2rem, 4.09vw, 3.4rem);
+  font-weight: 500;
+}
 .trial-days {
   margin-top: 30px;
   display: grid;
@@ -1408,19 +1429,6 @@ h2 em.is-inline { display: inline; color: inherit; }
    l'oggetto UI navy che concentra l'azione finale. */
 
 .finale { position: relative; overflow: hidden; }
-/* Un alone teal molto leggero chiude il percorso senza creare una fascia. */
-.finale::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  right: -12%;
-  bottom: -34%;
-  width: min(1000px, 92vw);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 184, 192, 0.18), transparent 64%);
-  pointer-events: none;
-}
 .finale > .container { position: relative; z-index: 1; }
 .finale-grid {
   display: grid;
@@ -1430,14 +1438,15 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .finale-kicker {
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   color: var(--teal-ink);
-  font-family: var(--font-editorial);
-  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: -0.018em;
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 .finale-copy h2 { font-size: clamp(2.2rem, 4.2vw, 3.55rem); }
 .finale-copy .lede { max-width: 34ch; margin-top: 22px; }
@@ -1740,14 +1749,14 @@ footer { padding-block: 34px; }
 }
 
 @media (max-width: 560px) {
-  /* Su schermo stretto le due schermate si sovrappongono meno e la domanda
-     trova posto sotto. */
-  .trial-stage { min-height: 530px; }
+  /* Su schermo stretto la card si chiude appena sotto la domanda: le due
+     schermate restano sovrapposte, ma senza lasciare una coda navy vuota. */
+  .trial-stage { min-height: 470px; }
   .stage-screen { border-width: 5px; border-radius: var(--r-sm); }
-  .stage-screen--summary { top: 28px; left: 10px; width: 60%; }
-  .stage-screen--log { top: 124px; right: 10px; width: 50%; height: 296px; }
-  .stage-question { left: 14px; bottom: 16px; width: min(230px, 66%); padding: 14px 15px; }
-  .stage-question p { font-size: 15px; }
+  .stage-screen--summary { top: 22px; left: 10px; width: 67%; }
+  .stage-screen--log { top: 110px; right: 10px; width: 48%; height: 250px; }
+  .stage-question { left: 14px; bottom: 14px; width: min(220px, 64%); padding: 12px 14px; }
+  .stage-question p { font-size: 14px; line-height: 1.26; }
   .field-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .faq-answer p { padding-right: 6px; }
   .footer-grid { flex-wrap: wrap; gap: 16px 22px; }
