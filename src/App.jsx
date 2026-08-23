@@ -4,7 +4,7 @@ import {
   ArrowUpRight,
   Check,
   ChevronDown,
-  Clock,
+  Lightbulb,
   Megaphone,
   Minus,
   Video,
@@ -15,29 +15,15 @@ import {
 const PRIVACY_URL = "https://giada.care/privacy";
 
 // Una sola etichetta per l'unica conversione della pagina.
-const CTA_LABEL = "Ricevi accesso e brief";
+const CTA_LABEL = "Ricevi brief e accesso";
 
-// Un angolo per inserzione Meta: l'H1 e il profilo preselezionato cambiano con ?angolo=
+// Un solo titolo. La lettura di `?angolo=` resta in piedi per un eventuale
+// message match futuro: qualsiasi valore diverso da `default` cade qui.
 const heroAngles = {
   default: {
-    lead: "Cerchiamo 5 creator.",
-    accent: "Conta l’idea, non i follower.",
+    lead: "Diventa una voce di Giada.",
+    accent: "L’idea resta tua.",
     profile: "rassicurante",
-  },
-  competenza: {
-    lead: "Spieghi bene la nutrizione?",
-    accent: "Portiamola più lontano.",
-    profile: "rassicurante",
-  },
-  numeri: {
-    lead: "Non ci servono i tuoi follower.",
-    accent: "Ci serve la tua idea.",
-    profile: "vita-reale",
-  },
-  istinto: {
-    lead: "La tua idea, girata da te,",
-    accent: "dentro le nostre campagne.",
-    profile: "performance",
   },
 };
 
@@ -60,23 +46,21 @@ const heroDeck = [
   { id: "slot-5", rot: 7.5, lift: 0 },
 ];
 
-// Il patto: le tre condizioni che un creator vuole leggere prima di tutto.
-// Il compenso non è una card: sta nella pastiglia della hero e nella nota sotto
-// la griglia, così le tre condizioni restano leggibili in una riga sola.
-// `tone` decide la superficie della scheda: teal, neutra, lilla. Le tre schede
-// non sono più identiche, ma la struttura interna resta la stessa.
+// Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
+// consegna, dove finisce. Nessun termine economico: il compenso vive solo in FAQ.
+// `tone` decide la superficie della scheda: teal, neutra, lilla.
 const termCards = [
   {
-    id: "prova",
+    id: "liberta",
     tone: "teal",
-    icon: Clock,
-    label: "Prova",
-    sublabel: "PRIMA DI TUTTO",
-    metric: "7",
-    suffix: "giorni gratis",
-    subtext: "Nessun video prima del contratto.",
-    copy: "Usi l’assistente come lo userebbe una persona che ti segue. Se non ti convince, finisce lì.",
-    foot: "Nessun contenuto richiesto",
+    icon: Lightbulb,
+    label: "Libertà",
+    sublabel: "COME NASCE",
+    metric: "0",
+    suffix: "copioni da recitare",
+    subtext: "L’idea parte da te.",
+    copy: "Noi ti diamo obiettivi, riferimenti e limiti. Tu scegli come trasformarli in un video: è proprio per questo che cerchiamo creator.",
+    foot: "Linee guida, non copioni",
   },
   {
     id: "consegna",
@@ -85,40 +69,39 @@ const termCards = [
     label: "Consegna",
     sublabel: "COSA PRODUCI",
     metric: "1",
-    suffix: "video + 3 hook",
-    subtext: "Reel o TikTok, 45-60 secondi.",
-    copy: "Un video girato da te. Le tre aperture nascono nella stessa sessione: non ti costano una seconda giornata.",
-    foot: "Compenso alla consegna",
+    suffix: "video finito",
+    subtext: "30–60 secondi, per Reel o TikTok.",
+    copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set e niente troupe.",
+    foot: "Un solo video finito",
   },
   {
-    id: "utilizzo",
+    id: "distribuzione",
     tone: "lilac",
     icon: Megaphone,
-    label: "Utilizzo",
-    sublabel: "DOVE VA",
-    metric: "∞",
-    metricSr: "Senza scadenza",
-    suffix: "senza scadenza",
-    subtext: "Paid e organico.",
-    copy: "Campagne a pagamento e canali di Giada. Per usi diversi se ne parla prima di firmare.",
-    foot: "Definito prima del contratto",
+    label: "Distribuzione",
+    sublabel: "DOVE FINISCE",
+    metric: "2",
+    suffix: "milioni di visualizzazioni",
+    subtext: "Ogni mese, in tutta Italia.",
+    copy: "Il tuo video entra nelle campagne di Giada. E, se ti va, possiamo pubblicarlo anche sul tuo profilo in collaborazione.",
+    foot: "Advertising e organico",
   },
 ];
 
 // Chi cerchiamo: due elenchi separati invece di una matrice a due colonne. Il
 // pannello affermativo porta una riga di dettaglio, quello negativo resta secco.
 const fitYes = [
-  ["Giri contenuti tuoi", "Idea, riprese e voce partono da te."],
-  ["Curi audio e luce", "Basta una finestra e una stanza silenziosa."],
-  ["Rispetti brief e tempi", "Consegni quando hai detto che consegni."],
-  ["Arrivi con un’idea", "Un hook e il motivo per cui funziona."],
+  ["Crei contenuti tuoi", "Idea, riprese e voce sono davvero tue."],
+  ["Curi audio e luce", "Non serve attrezzatura professionale. Una finestra e una stanza silenziosa possono bastare."],
+  ["Rispetti i tempi", "Se dici una data, la rispetti."],
+  ["Arrivi con un’idea", "Ci racconti da dove partiresti e perché, secondo te, può funzionare."],
 ];
 
 const fitNo = [
-  "Follower senza una voce",
-  "Un video riciclato da altri brand",
-  "Interesse solo per il compenso",
-  "Una richiesta al posto di una proposta",
+  "Avere tanti follower",
+  "Riciclare un video fatto per un altro brand",
+  "Voler parlare di Giada senza averla provata",
+  "Aspettare che l’idea te la diamo noi",
 ];
 
 // Ogni profilo porta la sua tinta: teal, lilla, ambra. La tinta viaggia dal tab
@@ -129,8 +112,8 @@ const creatorModes = [
     tone: "teal",
     number: "01",
     label: "La voce che rassicura",
-    title: "Rendi semplice ciò che sembra difficile.",
-    copy: "La camera è una conversazione, non un palco.",
+    title: "Rendi semplice quello che sembra difficile.",
+    copy: "Davanti alla camera parli come parleresti a una persona, non a un pubblico.",
     tags: ["Talking head", "Spiegazioni chiare", "Tono credibile"],
   },
   {
@@ -138,8 +121,8 @@ const creatorModes = [
     tone: "lilac",
     number: "02",
     label: "La vita vera",
-    title: "Trasformi una giornata qualsiasi in una storia.",
-    copy: "Trovi il dettaglio umano, non la pubblicità.",
+    title: "Trovi una storia dentro una giornata qualsiasi.",
+    copy: "Ti viene naturale partire da un dettaglio vero, non da una frase da pubblicità.",
     tags: ["Storytelling", "Scene quotidiane", "Naturalezza"],
   },
   {
@@ -147,8 +130,8 @@ const creatorModes = [
     tone: "amber",
     number: "03",
     label: "L’istinto performance",
-    title: "Pensi ai primi tre secondi.",
-    copy: "Sai aprire forte e capire cosa funziona.",
+    title: "Sai che i primi tre secondi fanno la differenza.",
+    copy: "Parti forte e sai tenere l’attenzione di chi guarda.",
     tags: ["UGC adv", "Hook forti", "Test creativi"],
   },
 ];
@@ -156,43 +139,45 @@ const creatorModes = [
 // Il numero di ogni passo porta una tinta diversa: la scala di colore misura
 // l'avanzamento, dall'ingresso teal alla consegna in ambra.
 const processSteps = [
-  ["01", "Provi Giada", "Sette giorni gratis. Nessun contenuto richiesto.", "s1"],
-  ["02", "Ricevi il brief", "Obiettivi, riferimenti e limiti già scritti.", "s2"],
-  ["03", "Proponi l’idea", "Hook, sviluppo, perché funziona. Non un video.", "s3"],
-  ["04", "Produciamo", "Contratto, tre hook, compenso alla consegna.", "s4"],
+  ["01", "Lasci i contatti", "Brief e accesso ti arrivano subito via mail.", "s1"],
+  ["02", "Provi Giada", "Hai tre giorni per usarla. Non devi creare nulla.", "s2"],
+  ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore ti diciamo se vogliamo realizzarlo con te.", "s3"],
+  ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
 ];
 
 // La prova del programma, sulla stessa superficie scura in cui si guarda il
 // prodotto: la credibilità sta accanto alla dimostrazione, non a fine pagina.
 // Solo fatti già accaduti, nessuna metrica di performance.
 const proofFacts = [
-  { id: "video", value: "6", label: "video prodotti e già in campagna" },
-  { id: "creator", value: "3", label: "creator pagate alla consegna" },
-  { id: "risposta", value: "48", unit: "ore", label: "per la risposta alla candidatura" },
+  { id: "spend", value: "10.000", unit: "€", label: "investiti ogni mese in pubblicità" },
+  { id: "reach", value: "1,2", unit: "mln", label: "di persone raggiunte ogni mese" },
+  { id: "onboarding", value: "50", unit: "%", label: "di chi arriva inizia a usare Giada" },
 ];
 
 const faqs = [
   {
     question: "Devo avere molti follower?",
-    answer: "No. Lavoriamo anche sotto i 10.000. Contano idea, naturalezza e affidabilità.",
+    answer: "No. Lavoriamo anche con profili sotto i 10.000 follower. Ci interessano soprattutto l’idea, la naturalezza e l’affidabilità.",
+  },
+  {
+    question: "Cosa ricevo dopo il form?",
+    answer: "Appena invii il form, ti arrivano via mail il brief in PDF e il link per provare Giada gratis per tre giorni.",
+  },
+  {
+    question: "Mi date uno script da recitare?",
+    answer: "No. Ti diamo obiettivi, riferimenti e limiti. Il resto è tuo: idea, parole e taglio.",
   },
   {
     question: "Quanto pagate?",
-    answer: "€80 per video selezionato, alla consegna. Definito prima che tu giri.",
+    answer: "Si parte da 50€ per ogni video selezionato. Se lavori già con brand e hai risultati da mostrare, possiamo valutare cifre più alte, più video o un accordo legato ai risultati.",
   },
   {
     question: "Come usate il video?",
-    answer:
-      "Nelle campagne pubblicitarie e sui canali di Giada, senza limite di tempo. Per condizioni diverse, se ne parla prima del contratto.",
+    answer: "Lo usiamo nelle campagne pubblicitarie di Giada e sui nostri canali, senza limite di tempo. È importante saperlo prima: è il motivo per cui nasce il programma.",
   },
   {
     question: "Devo pubblicarlo sul mio profilo?",
-    answer: "No, se non vuoi. Si decide prima di produrre.",
-  },
-  {
-    question: "Cosa sono i tre hook?",
-    answer:
-      "Tre aperture per lo stesso video, girate nella stessa sessione. Cinque minuti in più, tre contenuti da testare.",
+    answer: "No, non è obbligatorio. Se ti va, possiamo pubblicarlo in collaborazione, così compare anche sul tuo profilo.",
   },
   {
     question: "Chi siete?",
@@ -400,8 +385,8 @@ export function App() {
               </div>
 
               <p className="hero-sub" data-reveal style={{ "--d": "90ms" }}>
-                Giada è un assistente di nutrizione su Telegram. Provala sette giorni, poi
-                proponici un’idea per un video.
+                Giada è un’assistente di nutrizione su Telegram. Provala gratis e, se ti viene
+                un’idea per raccontarla, proponicela.
               </p>
               <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
                 <a className="button button--primary button--badge" href="#candidatura">
@@ -413,15 +398,15 @@ export function App() {
                 {/* Nella reference la seconda azione è una pastiglia chiara
                     accanto alla principale, non un link di testo. */}
                 <a className="button button--ghost" href="#come-funziona">
-                  <span>Scopri di più</span>
+                  <span>Come funziona</span>
                   <ChevronDown aria-hidden="true" size={15} strokeWidth={2} />
                 </a>
               </div>
               {/* Il compenso non sta più sul sigillo: diventa la pastiglia che
                   apre la riga di prova, quindi resta nella hero a ogni larghezza. */}
               <p className="hero-proof" data-reveal style={{ "--d": "220ms" }}>
-                <span className="hero-fee">€80 a video selezionato</span>
-                <span>Giada è già in campagna: 6 video prodotti, 3 creator pagate.</span>
+                <span className="hero-fee">Oltre 10.000€ al mese in pubblicità</span>
+                <span>È lì che gira il video che realizzi con noi, ogni giorno, in tutta Italia.</span>
               </p>
             </div>
           </div>
@@ -438,12 +423,12 @@ export function App() {
           <div className="container">
             <div className="section-head section-head--center terms-head" data-reveal>
               <h2 id="terms-title">
-                Il patto,
-                <em>prima di ogni domanda.</em>
+                Come lavoriamo
+                <em>insieme.</em>
               </h2>
               <p className="lede">
-                Tre condizioni scritte prima che tu giri. Restano queste, dalla candidatura alla
-                consegna.
+                Tre cose da sapere subito, prima ancora di scriverci. E non cambiano strada
+                facendo.
               </p>
             </div>
 
@@ -481,7 +466,7 @@ export function App() {
             </div>
 
             <p className="terms-note" data-reveal>
-              Compenso: <strong>€80 a video selezionato</strong>, alla consegna.
+              Non ti chiediamo di girare nulla prima. <strong>Prima ci racconti l’idea; se siamo allineati, poi si gira.</strong>
             </p>
           </div>
         </section>
@@ -501,15 +486,15 @@ export function App() {
                   Prima la usi.
                   <em>Poi la racconti.</em>
                 </h2>
-                <p className="lede">Sette giorni per capire cosa vale la pena raccontare.</p>
+                <p className="lede">Hai tre giorni per provarla gratis e capire cosa ti viene davvero voglia di raccontare.</p>
                 <ul className="trial-days">
                   <li>
-                    <b>GIORNI 1-3</b>
-                    Usala davvero, come la useresti se nessuno te lo avesse chiesto.
+                    <b>SENZA COMPITI</b>
+                    Usala come la useresti davvero, senza metterti subito a cercare l’idea giusta.
                   </li>
                   <li>
-                    <b>GIORNI 4-7</b>
-                    Trova l’angolo: il momento che meriterebbe di aprire un video.
+                    <b>SENZA FRETTA</b>
+                    Quando trovi un momento che ti fa pensare “questo lo racconterei”, parti da lì.
                   </li>
                 </ul>
                 <a className="inline-cta" href="#profili">
@@ -539,7 +524,7 @@ export function App() {
                 </div>
                 <div className="stage-question">
                   <span>LA DOMANDA</span>
-                  <p>Quale momento aprirebbe il tuo video?</p>
+                  <p>Da quale momento partirebbe il tuo video?</p>
                 </div>
               </div>
             </div>
@@ -570,11 +555,12 @@ export function App() {
             <div className="section-head" data-reveal>
               <p className="eyebrow">Chi cerchiamo</p>
               <h2 id="fit-title">
-                Puoi essere all’inizio.
-                <em>Devi essere serio.</em>
+                Puoi avere pochi follower.
+                <em>Non poche idee.</em>
               </h2>
               <p className="lede">
-                Un’idea tua, naturalezza, brief rispettati. L’esperienza aiuta, non decide.
+                Ci interessano le idee, la naturalezza e il fatto che tu mantenga quello che
+                prometti. L’esperienza aiuta, ma non è tutto.
               </p>
             </div>
             {/* Due pannelli invece della matrice a due colonne: quello
@@ -625,7 +611,7 @@ export function App() {
         >
           <div className="container">
             <div className="section-head" data-reveal>
-              <p className="eyebrow">Tre modi di essere giusti</p>
+              <p className="eyebrow">Tre modi diversi di raccontare Giada</p>
               <h2 id="profiles-title">
                 Non cerchiamo <em className="is-inline">una faccia sola.</em>
               </h2>
@@ -698,10 +684,10 @@ export function App() {
           <div className="container">
             <div className="section-head" data-reveal>
               <h2 id="process-title">
-                Il tuo impegno cresce
-                <em>insieme al nostro.</em>
+                Tu fai un passo.
+                <em>Noi facciamo il nostro.</em>
               </h2>
-              <p className="lede">Quattro passaggi. Nessuno di corsa.</p>
+              <p className="lede">Funziona così, in quattro passaggi.</p>
             </div>
             <ol className="process-list">
               {processSteps.map(([number, title, copy, tone], i) => (
@@ -730,13 +716,13 @@ export function App() {
           <div className="container faq-grid">
             <div className="faq-rail" data-reveal>
               <h2 id="faq-title">
-                Domande chiare.
-                <em>Risposte brevi.</em>
+                Le cose da sapere.
+                <em>Prima di iniziare.</em>
               </h2>
               {/* La rail non è più titolo e vuoto: porta la scorciatoia al form
                   per chi ha già letto abbastanza. */}
               <div className="faq-aside">
-                <p>Due minuti. Nessun video. Risposta in 48 ore.</p>
+                <p>Ci vogliono due minuti. Poi ricevi subito brief e accesso via mail.</p>
                 <a className="button button--primary button--sm" href="#candidatura">
                   <span>{CTA_LABEL}</span>
                   <ArrowRight aria-hidden="true" size={15} strokeWidth={2} />
@@ -783,12 +769,12 @@ export function App() {
               <span className="finale-kicker">Hai già un’idea?</span>
               <h2 id="apply-title">
                 Prova Giada.
-                <em>Poi proponi.</em>
+                <em>Poi raccontacela.</em>
               </h2>
-              <p className="lede">Lascia i contatti. Accesso e brief entro 48 ore.</p>
+              <p className="lede">Lasciaci i tuoi contatti. Brief e accesso ti arrivano subito via mail.</p>
               <p className="finale-note">
                 <Check aria-hidden="true" size={14} strokeWidth={2.4} />
-                Nessun video prima del contratto.
+                Adesso non devi mandarci nessun video.
               </p>
             </div>
             <div className="form-card" data-reveal style={{ "--d": "100ms" }}>
@@ -797,7 +783,7 @@ export function App() {
                   <div className="form-success-mark">
                     <Check aria-hidden="true" size={26} strokeWidth={2.4} />
                   </div>
-                  <h3>Ottimo inizio.</h3>
+                  <h3>Ci siamo.</h3>
                   <p>Anteprima: nessun dato è stato inviato.</p>
                   <button
                     className="button button--ghost"
@@ -847,6 +833,15 @@ export function App() {
                       required
                     />
                   </label>
+                  <label>
+                    <span>Raccontaci qualcosa di te</span>
+                    <textarea
+                      name="about"
+                      rows={3}
+                      placeholder="Che contenuti fai? Cosa ti incuriosisce di Giada? Se pubblichi anche altrove, lascia pure gli altri profili."
+                      required
+                    />
+                  </label>
                   <label className="consent">
                     <input type="checkbox" name="age" required />
                     <span>Ho almeno 18 anni.</span>
@@ -865,7 +860,7 @@ export function App() {
                     <span>{CTA_LABEL}</span>
                     <ArrowRight aria-hidden="true" size={17} strokeWidth={2} />
                   </button>
-                  <p className="form-note">Due minuti. Nessun video. Risposta in 48 ore.</p>
+                  <p className="form-note">Ci vogliono due minuti. Brief e accesso arrivano subito via mail.</p>
                   <p className="form-demo">Anteprima: il form non invia ancora dati.</p>
                 </form>
               )}
@@ -890,7 +885,7 @@ export function App() {
       </main>
 
       <div className={showStickyCta ? "sticky-cta is-visible" : "sticky-cta"}>
-        <span>€80 a video selezionato</span>
+        <span>Brief e accesso, subito</span>
         <a className="button button--primary button--sm" href="#candidatura">
           <span>{CTA_LABEL}</span>
         </a>
