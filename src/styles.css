@@ -5,8 +5,8 @@
    Ogni sezione chiude sul colore da cui parte la successiva: niente dissolvenze
    scure, tagli di luminanza o fasce che interrompono lo scroll.
 
-   TIPOGRAFIA: Bricolage Grotesque per il display, Geist per testo e UI, un
-   corsivo serif di sistema leggibile per la voce editoriale.
+   TIPOGRAFIA: Bricolage Grotesque per il display, Geist per testo e UI, Switzer
+   Light Italic per la voce editoriale.
    ========================================================================== */
 
 @font-face {
@@ -22,6 +22,14 @@
   src: url("/assets/bricolage-latin.woff2") format("woff2");
   font-weight: 400 800;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("/assets/switzer-light-italic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -54,7 +62,7 @@
 
   /* ---------- Tipografia ---------- */
   --font-display: "Bricolage Grotesque", "Geist", sans-serif;
-  --font-editorial: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-editorial: "Switzer", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --fs-display: clamp(2.7rem, 5.4vw, 4.6rem);
@@ -214,15 +222,15 @@ h3 {
   letter-spacing: -0.02em;
 }
 
-/* Corsivo serif leggibile e familiare: resta editoriale, ma non sacrifica la
-   chiarezza degli accenti italiani né la resa mobile. */
+/* Switzer Light Italic porta una voce editoriale chiara senza il contrasto
+   eccessivo del precedente serif display. */
 h1 em,
 h2 em,
 h3 em,
 .editorial {
   font-family: var(--font-editorial);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   font-size: 1.04em;
   letter-spacing: -0.025em;
 }
@@ -230,6 +238,7 @@ h3 em,
    Stesso schema della hero su tutta la pagina. */
 h2 em { display: block; color: var(--accent-text); line-height: 1.04; }
 h2 em.is-inline { display: inline; color: inherit; }
+.profiles h2 em.is-inline { color: var(--accent-text); }
 
 .eyebrow {
   display: block;
@@ -357,8 +366,7 @@ h2 em.is-inline { display: inline; color: inherit; }
 
 /* ============ NAV FISSA ============ */
 /* Non esiste sopra la hero: entra quando la hero è uscita e torna a uscire
-   risalendo. Resta una pastiglia navy anche sopra le carte chiare, così è
-   sempre leggibile senza cambiare identità a metà scroll. */
+   risalendo. Resta una pastiglia lilla trasparente sopra le carte chiare. */
 
 .site-nav {
   position: fixed;
@@ -389,12 +397,12 @@ h2 em.is-inline { display: inline; color: inherit; }
   align-items: center;
   gap: 28px;
   pointer-events: auto;
-  border: 1px solid rgba(255, 249, 239, 0.16);
+  border: 1px solid rgba(32, 50, 96, 0.14);
   border-radius: var(--r-pill);
-  background: rgba(32, 50, 96, 0.9);
+  background: rgba(233, 220, 255, 0.78);
   backdrop-filter: blur(18px);
-  box-shadow: 0 18px 44px rgba(16, 24, 52, 0.28);
-  color: var(--paper);
+  box-shadow: 0 18px 44px rgba(32, 50, 96, 0.16);
+  color: var(--navy);
 }
 
 .brand {
@@ -408,7 +416,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   white-space: nowrap;
 }
 .brand span {
-  color: var(--on-dark-soft);
+  color: var(--ink-soft);
   font-family: var(--font-body);
   font-size: 8.5px;
   font-weight: 700;
@@ -420,9 +428,9 @@ h2 em.is-inline { display: inline; color: inherit; }
   display: flex;
   align-items: center;
   gap: 2px;
-  border: 1px solid rgba(255, 249, 239, 0.14);
+  border: 1px solid rgba(32, 50, 96, 0.12);
   border-radius: var(--r-pill);
-  background: rgba(255, 249, 239, 0.04);
+  background: rgba(255, 249, 239, 0.28);
 }
 .nav-links a {
   /* 44px di bersaglio anche nella pastiglia: fra 900 e 1024px la nav esiste
@@ -432,7 +440,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   display: inline-flex;
   align-items: center;
   border-radius: var(--r-pill);
-  color: var(--on-dark-soft);
+  color: var(--navy);
   font-size: 13px;
   font-weight: 550;
   transition: color 180ms ease, background-color 180ms ease;
@@ -520,33 +528,6 @@ h2 em.is-inline { display: inline; color: inherit; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px 16px;
-}
-
-.hero-proof {
-  max-width: 90ch;
-  margin-top: clamp(14px, 1.4vw, 18px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  color: var(--on-soft);
-  font-size: 13.5px;
-  line-height: 1.5;
-}
-/* La condizione economica resta una piccola UI chiara, non una fascia. */
-.hero-fee {
-  padding: 7px 15px 8px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: var(--r-pill);
-  background: rgba(255, 249, 239, 0.72);
-  box-shadow: inset 0 0 0 1px rgba(32, 50, 96, 0.16);
-  color: var(--navy);
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: -0.005em;
-  white-space: nowrap;
 }
 
 /* ---- Ventaglio di carte (reference "Pallet Ross") ---- */
@@ -660,13 +641,13 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .deck-tag--right {
   right: calc(50% - var(--fan-w) / 2 - clamp(0px, 0.8vw, 14px));
-  background: var(--navy);
-  color: var(--paper);
+  background: var(--teal);
+  color: var(--navy);
   transform: rotate(4deg);
 }
 .deck-tag--right::after {
   right: 16px;
-  background: var(--navy);
+  background: var(--teal);
   clip-path: polygon(0 0, 100% 0, 92% 100%);
 }
 
@@ -806,14 +787,14 @@ h2 em.is-inline { display: inline; color: inherit; }
   letter-spacing: -0.05em;
   font-variant-numeric: tabular-nums;
 }
-/* Il suffisso della metrica è la terza voce: corsivo serif accanto al numero
+/* Il suffisso della metrica è la terza voce: corsivo leggero accanto al numero
    sans oversize. */
 .term-metric em {
   color: var(--tone);
   font-family: var(--font-editorial);
   font-size: 1.2rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: -0.005em;
   text-wrap: nowrap;
 }
@@ -973,7 +954,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 17px;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.32;
 }
 
@@ -1026,7 +1007,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.05rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 0;
 }
 .proof-item dt {
@@ -1036,7 +1017,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.12rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.3;
 }
 
@@ -1046,6 +1027,13 @@ h2 em.is-inline { display: inline; color: inherit; }
    superficie, non la dimensione del testo. */
 
 .fit { position: relative; }
+
+@media (min-width: 1081px) {
+  .fit .section-head .lede {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
 
 .fit-split {
   display: grid;
@@ -1247,14 +1235,14 @@ h2 em.is-inline { display: inline; color: inherit; }
   letter-spacing: -0.038em;
   text-wrap: balance;
 }
-/* La riga di carattere del profilo è una citazione: corsivo serif in grande,
+/* La riga di carattere del profilo è una citazione: corsivo leggero in grande,
    senza filetti laterali. */
 .profile-quote {
-  color: var(--on);
+  color: var(--accent-text);
   font-family: var(--font-editorial);
   font-size: clamp(1.3rem, 2vw, 1.85rem);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.24;
   letter-spacing: -0.012em;
   text-wrap: pretty;
@@ -1354,7 +1342,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: 1.16rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.34;
   text-wrap: balance;
 }
@@ -1439,7 +1427,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   font-family: var(--font-editorial);
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1.12;
   letter-spacing: -0.018em;
 }
@@ -1546,7 +1534,6 @@ h2 em.is-inline { display: inline; color: inherit; }
 .consent a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
 
 .form-card .button--full { margin-top: 10px; }
-.form-note { margin-top: 15px; color: var(--on-soft); font-size: 11.5px; text-align: center; }
 .form-demo { margin-top: 6px; color: var(--on-soft); font-size: 11px; text-align: center; }
 
 .form-success {
@@ -1577,7 +1564,26 @@ h2 em.is-inline { display: inline; color: inherit; }
 
 /* ============ FOOTER ============ */
 
-footer { padding-block: 34px; border-top: 1px solid rgba(32, 50, 96, 0.12); }
+.zone-footer {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 260px at 86% 0%, rgba(16, 184, 192, 0.14), transparent 74%),
+    var(--surface-grad);
+}
+.zone-footer::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -12%;
+  width: min(1000px, 92vw);
+  aspect-ratio: 2.4;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 184, 192, 0.08), transparent 68%);
+  pointer-events: none;
+}
+footer { padding-block: 34px; }
+.zone-footer .container { position: relative; z-index: 1; }
 .footer-grid { display: flex; align-items: center; gap: 30px; font-size: 12px; color: var(--on-soft); }
 .footer-grid > strong {
   color: var(--on);
@@ -1592,7 +1598,7 @@ footer { padding-block: 34px; border-top: 1px solid rgba(32, 50, 96, 0.12); }
 /* ============ HOVER ============ */
 
 @media (hover: hover) and (pointer: fine) {
-  .nav-links a:hover { background: rgba(255, 249, 239, 0.1); color: var(--paper); }
+  .nav-links a:hover { background: rgba(255, 249, 239, 0.62); color: var(--navy); }
   .button--primary:hover {
     transform: translateY(-1px);
     box-shadow: 0 12px 30px rgba(16, 24, 52, 0.24), 0 1px 0 rgba(255, 249, 239, 0.28) inset;
@@ -1708,12 +1714,7 @@ footer { padding-block: 34px; border-top: 1px solid rgba(32, 50, 96, 0.12); }
   .deck-card:last-child { display: none; }
   .deck-fan { order: 1; max-width: 100%; }
   .deck-tags {
-    order: 2;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 10px;
+    display: none;
   }
   .deck-tag {
     position: static;
@@ -1731,7 +1732,6 @@ footer { padding-block: 34px; border-top: 1px solid rgba(32, 50, 96, 0.12); }
   .hero-center { padding-top: clamp(40px, 9vh, 72px); }
   .hero-sub { margin-top: 16px; }
   .hero-actions { margin-top: 14px; gap: 9px; }
-  .hero-proof { margin-top: 12px; font-size: 13.5px; gap: 8px 12px; }
   /* I fatti si impilano in una colonna sola separata da fili. */
   .proof-rail { grid-template-columns: minmax(0, 1fr); gap: clamp(14px, 2vw, 20px); }
 }

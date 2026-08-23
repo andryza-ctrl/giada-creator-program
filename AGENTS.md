@@ -25,3 +25,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Keep Bricolage Grotesque for display and Geist for body/UI. Editorial italics use a readable system serif stack (`ui-serif`, Georgia, Cambria), not Boska or another high-contrast display serif.
 - The three commercial term cards are solid navy UI objects without diagonal stripe motifs.
 - Hero proof tags should communicate creator value and distribution, not production limitations such as phone shooting or the absence of a set.
+- Browser annotations on 23 Aug 2026 set the editorial italic to Switzer Light Italic across the page, hide hero proof tags on mobile, keep the hero seal as a link to the product trial section, and use a teal B2B-value tag for paid campaign amplification on desktop.
+- The product proof rail is ordered as monthly ad spend, monthly video views, then monthly reach; use `+` prefixes where the value is a lower bound. Keep the external product discovery CTA linked to `https://giada.care`.
+- In the qualification section, keep the playful emoji endings and concise single-line detail copy requested in the browser annotations. Remove the extra form microcopy after the CTA while retaining the local-demo disclosure.
+- The sticky navigation is light lilac and translucent; the finale/footer teal halo must visually continue across the section boundary without a hard rule.

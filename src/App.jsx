@@ -59,7 +59,7 @@ const termCards = [
     metric: "0",
     suffix: "copioni da recitare",
     subtext: "L’idea parte da te.",
-    copy: "Noi mettiamo obiettivi, riferimenti e limiti. Tu ci metti il punto di vista: è proprio quello che cerchiamo.",
+    copy: "Noi mettiamo obiettivi, riferimenti e limiti. Tu ci metti il punto di vista: è proprio quello che cerchiamo 🎯",
     foot: "Linee guida, non copioni",
   },
   {
@@ -71,7 +71,7 @@ const termCards = [
     metric: "1",
     suffix: "video finito",
     subtext: "30–60 secondi, pronti per Reel o TikTok.",
-    copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set: basta una buona idea fatta bene.",
+    copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set: basta una buona idea fatta bene 🚀",
     foot: "Un solo video finito",
   },
   {
@@ -83,7 +83,7 @@ const termCards = [
     metric: "2",
     suffix: "milioni di visualizzazioni",
     subtext: "Ogni mese, in tutta Italia.",
-    copy: "Il tuo video entra nelle campagne di Giada. Se ti va, può vivere anche sul tuo profilo in collaborazione.",
+    copy: "Il tuo video entra nelle campagne di Giada. Se ti va, può vivere anche sul tuo profilo in collaborazione 📊",
     foot: "Advertising e organico",
   },
 ];
@@ -91,10 +91,10 @@ const termCards = [
 // Chi cerchiamo: due elenchi separati invece di una matrice a due colonne. Il
 // pannello affermativo porta una riga di dettaglio, quello negativo resta secco.
 const fitYes = [
-  ["Crei contenuti tuoi", "Idea, riprese e voce sono davvero tue."],
-  ["Curi audio e luce", "Non serve attrezzatura professionale. Una finestra e una stanza silenziosa possono bastare."],
-  ["Rispetti i tempi", "Se dici una data, la rispetti."],
-  ["Arrivi con un’idea", "Ci racconti da dove partiresti e perché, secondo te, può funzionare."],
+  ["Crei contenuti tuoi 🔝", "Idea, riprese e voce sono davvero tue."],
+  ["Curi audio e luce 🎞️", "Una finestra e una stanza silenziosa possono bastare."],
+  ["Rispetti i tempi ⌚️", "Se dici una data, la rispetti."],
+  ["Arrivi con un’idea 💡", "Ci racconti da dove partiresti e perché può funzionare."],
 ];
 
 const fitNo = [
@@ -147,9 +147,9 @@ const processSteps = [
 // La prova del programma sta accanto alla dimostrazione, non a fine pagina.
 // Solo fatti già accaduti, nessuna metrica di performance.
 const proofFacts = [
-  { id: "spend", value: "10.000", unit: "€", label: "investiti ogni mese in pubblicità" },
-  { id: "reach", value: "1,2", unit: "mln", label: "di persone raggiunte ogni mese" },
-  { id: "onboarding", value: "50", unit: "%", label: "di chi arriva inizia a usare Giada" },
+  { id: "spend", value: "+10.000", unit: "€", label: "investiti ogni mese in pubblicità" },
+  { id: "views", value: "+2", unit: "mln", label: "di visualizzazioni ogni mese" },
+  { id: "reach", value: "+1,2", unit: "mln", label: "di persone raggiunte ogni mese" },
 ];
 
 const faqs = [
@@ -336,13 +336,13 @@ export function App() {
                     La tua idea, la tua voce
                   </span>
                   <span className="deck-tag deck-tag--right" data-reveal style={{ "--d": "480ms" }}>
-                    In campagna, ogni giorno
+                    Amplificato su campagne paid
                   </span>
                 </div>
 
                 {/* Il sigillo porta alla spiegazione del programma, non alla
                     conversione: la CTA è già due volte in questo schermo. */}
-                <a className="hero-seal" href="#come-funziona" aria-label="Scopri come funziona">
+                <a className="hero-seal" href="#prova" aria-label="Scopri come funziona">
                   <svg className="hero-seal-ring" viewBox="0 0 120 120" aria-hidden="true">
                     <defs>
                       <path
@@ -364,8 +364,8 @@ export function App() {
               </div>
 
               <p className="hero-sub" data-reveal style={{ "--d": "90ms" }}>
-                Giada è un’assistente di nutrizione su Telegram. Provala gratis: se scatta
-                un’idea per raccontarla, proponicela.
+                Giada è un’assistente di nutrizione su Telegram. Provala gratis e scopri come
+                potresti raccontarla con la tua voce.
               </p>
               <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
                 <a className="button button--primary button--badge" href="#candidatura">
@@ -381,12 +381,6 @@ export function App() {
                   <ChevronDown aria-hidden="true" size={15} strokeWidth={2} />
                 </a>
               </div>
-              {/* Il compenso non sta più sul sigillo: diventa la pastiglia che
-                  apre la riga di prova, quindi resta nella hero a ogni larghezza. */}
-              <p className="hero-proof" data-reveal style={{ "--d": "220ms" }}>
-                <span className="hero-fee">Oltre 10.000€ al mese in pubblicità</span>
-                <span>È lì che gira il video che realizzi con noi, ogni giorno, in tutta Italia.</span>
-              </p>
             </div>
           </div>
         </section>
@@ -475,9 +469,9 @@ export function App() {
                     Quando pensi “questo lo racconterei”, hai trovato il punto di partenza.
                   </li>
                 </ul>
-                <a className="inline-cta" href="#profili">
-                  Scegli il profilo che ti somiglia
-                  <ArrowRight aria-hidden="true" size={16} strokeWidth={2} />
+                <a className="inline-cta" href="https://giada.care" target="_blank" rel="noreferrer noopener">
+                  Scopri meglio Giada
+                  <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />
                 </a>
               </div>
               <div
@@ -502,7 +496,7 @@ export function App() {
                 </div>
                 <div className="stage-question">
                   <span>LA DOMANDA</span>
-                  <p>Da quale momento partirebbe il tuo video?</p>
+                  <p>Quale momento di Giada racconteresti per primo?</p>
                 </div>
               </div>
             </div>
@@ -534,12 +528,9 @@ export function App() {
               <p className="eyebrow">Chi cerchiamo</p>
               <h2 id="fit-title">
                 Puoi avere pochi follower.
-                <em>Non poche idee.</em>
+                <em>Ma non poche idee! 😉</em>
               </h2>
-              <p className="lede">
-                Ci interessano idee vive, naturalezza e parola data. L’esperienza aiuta, ma non
-                decide.
-              </p>
+              <p className="lede">Ci interessano idee vive, naturalezza e parola data. L’esperienza aiuta, ma non decide.</p>
             </div>
             {/* Due pannelli invece della matrice a due colonne: quello
                 affermativo è sollevato e porta una riga di dettaglio, quello
@@ -838,7 +829,6 @@ export function App() {
                     <span>{CTA_LABEL}</span>
                     <ArrowRight aria-hidden="true" size={17} strokeWidth={2} />
                   </button>
-                  <p className="form-note">Due minuti e ci siamo. Brief e accesso arrivano subito via mail.</p>
                   <p className="form-demo">Anteprima: il form non invia ancora dati.</p>
                 </form>
               )}
