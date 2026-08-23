@@ -59,7 +59,7 @@ const termCards = [
     metric: "0",
     suffix: "copioni da recitare",
     subtext: "L’idea parte da te.",
-    copy: "Noi ti diamo obiettivi, riferimenti e limiti. Tu scegli come trasformarli in un video: è proprio per questo che cerchiamo creator.",
+    copy: "Noi mettiamo obiettivi, riferimenti e limiti. Tu ci metti il punto di vista: è proprio quello che cerchiamo.",
     foot: "Linee guida, non copioni",
   },
   {
@@ -70,8 +70,8 @@ const termCards = [
     sublabel: "COSA PRODUCI",
     metric: "1",
     suffix: "video finito",
-    subtext: "30–60 secondi, per Reel o TikTok.",
-    copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set e niente troupe.",
+    subtext: "30–60 secondi, pronti per Reel o TikTok.",
+    copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set: basta una buona idea fatta bene.",
     foot: "Un solo video finito",
   },
   {
@@ -83,7 +83,7 @@ const termCards = [
     metric: "2",
     suffix: "milioni di visualizzazioni",
     subtext: "Ogni mese, in tutta Italia.",
-    copy: "Il tuo video entra nelle campagne di Giada. E, se ti va, possiamo pubblicarlo anche sul tuo profilo in collaborazione.",
+    copy: "Il tuo video entra nelle campagne di Giada. Se ti va, può vivere anche sul tuo profilo in collaborazione.",
     foot: "Advertising e organico",
   },
 ];
@@ -104,8 +104,8 @@ const fitNo = [
   "Aspettare che l’idea te la diamo noi",
 ];
 
-// Ogni profilo porta la sua tinta: teal, lilla, ambra. La tinta viaggia dal tab
-// al pannello, quindi cambiando profilo cambia il colore della sezione.
+// I profili condividono la stessa palette; il tono resta un identificatore
+// semantico per eventuali sviluppi futuri.
 const creatorModes = [
   {
     id: "rassicurante",
@@ -127,7 +127,7 @@ const creatorModes = [
   },
   {
     id: "performance",
-    tone: "amber",
+    tone: "navy",
     number: "03",
     label: "L’istinto performance",
     title: "Sai che i primi tre secondi fanno la differenza.",
@@ -136,8 +136,7 @@ const creatorModes = [
   },
 ];
 
-// Il numero di ogni passo porta una tinta diversa: la scala di colore misura
-// l'avanzamento, dall'ingresso teal alla consegna in ambra.
+// Il numero di ogni passo usa una progressione dal teal al navy.
 const processSteps = [
   ["01", "Lasci i contatti", "Brief e accesso ti arrivano subito via mail.", "s1"],
   ["02", "Provi Giada", "Hai tre giorni per usarla. Non devi creare nulla.", "s2"],
@@ -145,8 +144,7 @@ const processSteps = [
   ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
 ];
 
-// La prova del programma, sulla stessa superficie scura in cui si guarda il
-// prodotto: la credibilità sta accanto alla dimostrazione, non a fine pagina.
+// La prova del programma sta accanto alla dimostrazione, non a fine pagina.
 // Solo fatti già accaduti, nessuna metrica di performance.
 const proofFacts = [
   { id: "spend", value: "10.000", unit: "€", label: "investiti ogni mese in pubblicità" },
@@ -157,7 +155,7 @@ const proofFacts = [
 const faqs = [
   {
     question: "Devo avere molti follower?",
-    answer: "No. Lavoriamo anche con profili sotto i 10.000 follower. Ci interessano soprattutto l’idea, la naturalezza e l’affidabilità.",
+    answer: "No. Lavoriamo anche con profili sotto i 5.000 follower. Ci interessano soprattutto l’idea, la naturalezza e l’affidabilità.",
   },
   {
     question: "Cosa ricevo dopo il form?",
@@ -215,7 +213,6 @@ export function App() {
   const [activeMode, setActiveMode] = useState("rassicurante");
   const [openFaq, setOpenFaq] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [showStickyCta, setShowStickyCta] = useState(false);
   // La nav fissa non esiste sopra la hero: compare solo dalla sezione dopo, e
   // torna a sparire risalendo verso la hero dal basso.
   const [showNav, setShowNav] = useState(false);
@@ -235,36 +232,19 @@ export function App() {
     }
   }, []);
 
-  // Un solo osservatore per i due elementi fissi: la nav in alto segue la hero,
-  // la barra mobile in basso compare dopo la hero e sparisce sul form.
+  // La nav fissa compare quando la hero esce dal viewport e torna a sparire
+  // risalendo. Su mobile porta con sé anche la CTA, senza una seconda barra.
   useEffect(() => {
     const hero = heroRef.current;
-    const form = document.getElementById("candidatura");
     if (!hero || typeof IntersectionObserver === "undefined") return undefined;
-    const state = { pastHero: false, onForm: false };
-    const sync = () => {
-      setShowNav(state.pastHero);
-      setShowStickyCta(state.pastHero && !state.onForm);
-    };
     const heroObserver = new IntersectionObserver(
       ([entry]) => {
-        state.pastHero = !entry.isIntersecting;
-        sync();
+        setShowNav(!entry.isIntersecting);
       },
       { rootMargin: "-72px 0px 0px 0px" },
     );
     heroObserver.observe(hero);
-    const formObserver = form
-      ? new IntersectionObserver(([entry]) => {
-          state.onForm = entry.isIntersecting;
-          sync();
-        })
-      : null;
-    if (form && formObserver) formObserver.observe(form);
-    return () => {
-      heroObserver.disconnect();
-      formObserver?.disconnect();
-    };
+    return () => heroObserver.disconnect();
   }, []);
 
   const angle = heroAngles[angleKey] ?? heroAngles.default;
@@ -350,14 +330,13 @@ export function App() {
                   ))}
                 </div>
 
-                {/* Le due note che prima stavano sull'immagine: rispondono alla
-                    prima obiezione di un creator, l'attrezzatura. */}
+                {/* Due promesse compatte: libertà creativa e distribuzione. */}
                 <div className="deck-tags">
                   <span className="deck-tag deck-tag--left" data-reveal style={{ "--d": "420ms" }}>
-                    Girato col telefono
+                    La tua idea, la tua voce
                   </span>
                   <span className="deck-tag deck-tag--right" data-reveal style={{ "--d": "480ms" }}>
-                    Nessun set
+                    In campagna, ogni giorno
                   </span>
                 </div>
 
@@ -385,7 +364,7 @@ export function App() {
               </div>
 
               <p className="hero-sub" data-reveal style={{ "--d": "90ms" }}>
-                Giada è un’assistente di nutrizione su Telegram. Provala gratis e, se ti viene
+                Giada è un’assistente di nutrizione su Telegram. Provala gratis: se scatta
                 un’idea per raccontarla, proponicela.
               </p>
               <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
@@ -427,8 +406,7 @@ export function App() {
                 <em>insieme.</em>
               </h2>
               <p className="lede">
-                Tre cose da sapere subito, prima ancora di scriverci. E non cambiano strada
-                facendo.
+                Tre cose da sapere subito. Poche regole, zero sorprese.
               </p>
             </div>
 
@@ -466,7 +444,7 @@ export function App() {
             </div>
 
             <p className="terms-note" data-reveal>
-              Non ti chiediamo di girare nulla prima. <strong>Prima ci racconti l’idea; se siamo allineati, poi si gira.</strong>
+              <strong>Prima l’idea, poi il ciak.</strong> Giri solo quando siamo allineati.
             </p>
           </div>
         </section>
@@ -486,15 +464,15 @@ export function App() {
                   Prima la usi.
                   <em>Poi la racconti.</em>
                 </h2>
-                <p className="lede">Hai tre giorni per provarla gratis e capire cosa ti viene davvero voglia di raccontare.</p>
+                <p className="lede">Hai tre giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
                 <ul className="trial-days">
                   <li>
                     <b>SENZA COMPITI</b>
-                    Usala come la useresti davvero, senza metterti subito a cercare l’idea giusta.
+                    Usala come la useresti davvero. L’idea giusta può aspettare.
                   </li>
                   <li>
                     <b>SENZA FRETTA</b>
-                    Quando trovi un momento che ti fa pensare “questo lo racconterei”, parti da lì.
+                    Quando pensi “questo lo racconterei”, hai trovato il punto di partenza.
                   </li>
                 </ul>
                 <a className="inline-cta" href="#profili">
@@ -559,8 +537,8 @@ export function App() {
                 <em>Non poche idee.</em>
               </h2>
               <p className="lede">
-                Ci interessano le idee, la naturalezza e il fatto che tu mantenga quello che
-                prometti. L’esperienza aiuta, ma non è tutto.
+                Ci interessano idee vive, naturalezza e parola data. L’esperienza aiuta, ma non
+                decide.
               </p>
             </div>
             {/* Due pannelli invece della matrice a due colonne: quello
@@ -611,7 +589,7 @@ export function App() {
         >
           <div className="container">
             <div className="section-head" data-reveal>
-              <p className="eyebrow">Tre modi diversi di raccontare Giada</p>
+              <p className="eyebrow">Tre modi diversi, una cosa in comune: sembrare veri</p>
               <h2 id="profiles-title">
                 Non cerchiamo <em className="is-inline">una faccia sola.</em>
               </h2>
@@ -687,7 +665,7 @@ export function App() {
                 Tu fai un passo.
                 <em>Noi facciamo il nostro.</em>
               </h2>
-              <p className="lede">Funziona così, in quattro passaggi.</p>
+              <p className="lede">Quattro passaggi, ognuno con un senso.</p>
             </div>
             <ol className="process-list">
               {processSteps.map(([number, title, copy, tone], i) => (
@@ -722,7 +700,7 @@ export function App() {
               {/* La rail non è più titolo e vuoto: porta la scorciatoia al form
                   per chi ha già letto abbastanza. */}
               <div className="faq-aside">
-                <p>Ci vogliono due minuti. Poi ricevi subito brief e accesso via mail.</p>
+                <p>Due minuti adesso. Brief e accesso subito nella tua mail.</p>
                 <a className="button button--primary button--sm" href="#candidatura">
                   <span>{CTA_LABEL}</span>
                   <ArrowRight aria-hidden="true" size={15} strokeWidth={2} />
@@ -771,10 +749,10 @@ export function App() {
                 Prova Giada.
                 <em>Poi raccontacela.</em>
               </h2>
-              <p className="lede">Lasciaci i tuoi contatti. Brief e accesso ti arrivano subito via mail.</p>
+              <p className="lede">Lasciaci i tuoi contatti: brief e accesso arrivano subito via mail.</p>
               <p className="finale-note">
                 <Check aria-hidden="true" size={14} strokeWidth={2.4} />
-                Adesso non devi mandarci nessun video.
+                Adesso basta la curiosità. Il video viene dopo.
               </p>
             </div>
             <div className="form-card" data-reveal style={{ "--d": "100ms" }}>
@@ -860,7 +838,7 @@ export function App() {
                     <span>{CTA_LABEL}</span>
                     <ArrowRight aria-hidden="true" size={17} strokeWidth={2} />
                   </button>
-                  <p className="form-note">Ci vogliono due minuti. Brief e accesso arrivano subito via mail.</p>
+                  <p className="form-note">Due minuti e ci siamo. Brief e accesso arrivano subito via mail.</p>
                   <p className="form-demo">Anteprima: il form non invia ancora dati.</p>
                 </form>
               )}
@@ -884,12 +862,6 @@ export function App() {
         </footer>
       </main>
 
-      <div className={showStickyCta ? "sticky-cta is-visible" : "sticky-cta"}>
-        <span>Brief e accesso, subito</span>
-        <a className="button button--primary button--sm" href="#candidatura">
-          <span>{CTA_LABEL}</span>
-        </a>
-      </div>
     </>
   );
 }

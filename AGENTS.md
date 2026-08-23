@@ -20,4 +20,8 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - Use the Skyline reference from Knowledge Studio as the hero composition, replicated rather than interpreted: a single bordered card on a light canvas, hairline grid, nav row on top, headline plus CTA top-left, supporting copy bottom-left, central arch image, proof top-right, commercial terms bottom-right. Keep the broader UI in a Swiss/editorial language and do not ship third-party reference assets.
 - Keep creator-facing copy concise: one promise or decision per section, short paragraphs and no repeated benefit explanation.
 - The five-stage journey strip was removed on 16 Aug 2026: it duplicated the four-step process and added a third competing numbering system. Do not reintroduce it.
-- The header lives inside the hero frame as its top row. Below 700 px a sticky bottom bar carries the CTA; it appears after the hero and hides while the form is on screen.
+- The header lives inside the hero frame as its top row. After the hero, the sticky navigation carries the CTA at every viewport; below 700 px it keeps Giada and the CTA side by side. Do not reintroduce a bottom sticky bar.
+- As of 23 Aug 2026, the page is a continuous light canvas built from `#fff9ef` and `#e9dcff` (including their gradients). Use `#203260` for text and contained UI cards and `#10b8c0` for accents; do not use dark full-width section backgrounds or visible luminance fades between sections.
+- Keep Bricolage Grotesque for display and Geist for body/UI. Editorial italics use a readable system serif stack (`ui-serif`, Georgia, Cambria), not Boska or another high-contrast display serif.
+- The three commercial term cards are solid navy UI objects without diagonal stripe motifs.
+- Hero proof tags should communicate creator value and distribution, not production limitations such as phone shooting or the absence of a set.
