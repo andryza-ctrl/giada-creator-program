@@ -877,7 +877,7 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .trial-copy .lede { margin-top: 22px; }
 .trial-copy h2 em {
-  font-size: clamp(2rem, 4.09vw, 3.4rem);
+  font-size: clamp(2rem, 3.925vw, 3.275rem);
   font-weight: 500;
 }
 .trial-days {
@@ -1346,6 +1346,9 @@ h2 em.is-inline { display: inline; color: inherit; }
 /* La rail sinistra non è più il titolo e 400px di vuoto: il titolo resta
    attaccato allo scroll e sotto sta la scorciatoia al form. */
 .faq-rail { align-self: start; position: sticky; top: 116px; }
+.faq-rail h2 em {
+  font-size: clamp(2rem, 3.85vw, 3.2125rem);
+}
 .faq-aside {
   --on: var(--paper);
   --on-soft: var(--on-dark-soft);

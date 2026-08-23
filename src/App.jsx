@@ -459,7 +459,7 @@ export function App() {
               <div className="trial-copy" data-reveal>
                 <h2 id="trial-title">
                   Prima la usi.
-                  <em>Poi la racconti.</em>
+                  <em>Poi la racconti 🎙️</em>
                 </h2>
                 <p className="lede">Hai tre giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
                 <ul className="trial-days">
@@ -656,8 +656,8 @@ export function App() {
           <div className="container">
             <div className="section-head" data-reveal>
               <h2 id="process-title">
-                Tu fai un passo.
-                <em>Noi facciamo il nostro.</em>
+                Tu parti.
+                <em>Noi ti guidiamo.</em>
               </h2>
               <p className="lede">Quattro passaggi, ognuno con un senso.</p>
             </div>
@@ -689,7 +689,7 @@ export function App() {
             <div className="faq-rail" data-reveal>
               <h2 id="faq-title">
                 Le cose da sapere.
-                <em>Prima di iniziare.</em>
+                <em>Prima di iniziare 🏁</em>
               </h2>
               {/* La rail non è più titolo e vuoto: porta la scorciatoia al form
                   per chi ha già letto abbastanza. */}
