@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Clock,
+  Megaphone,
+  Minus,
+  Video,
+} from "lucide-react";
 
 // TODO prima del traffico: sostituire con l'informativa dedicata ai lead creator.
 // Oggi punta all'informativa Vivarium S.r.l. pubblicata per Giada.
@@ -32,24 +41,92 @@ const heroAngles = {
   },
 };
 
-// Il patto: le quattro condizioni che un creator vuole leggere prima di tutto.
-const pactTerms = [
-  ["COMPENSO", "€80", "a video selezionato, alla consegna"],
-  ["CONSEGNA", "1 video + 3 hook", "Reel o TikTok, 45-60 secondi"],
-  ["UTILIZZO", "Paid e organico", "senza scadenza"],
-  ["PROVA", "7 giorni gratis", "nessun video prima del contratto"],
+// Ventaglio della hero, sulla reference "Pallet Ross": cinque carte verticali in
+// arco, sovrapposte, che salgono da sinistra a destra. Sotto i 700px escono le
+// due esterne e restano le tre centrali, con la foto sempre al centro.
+// Solo la carta centrale ha oggi un'immagine reale: le altre sono slot in attesa
+// dei file. Per riempire uno slot basta aggiungere `src` e `alt` alla sua riga.
+const heroDeck = [
+  { id: "slot-1", rot: -8.5, lift: 6 },
+  { id: "slot-2", rot: -4.5, lift: 2.4 },
+  {
+    id: "hero-shot",
+    rot: -1,
+    lift: 0.5,
+    src: "/assets/giada-creator-hero.png",
+    alt: "Una creator registra un video per Giada nella cucina di casa",
+  },
+  { id: "slot-4", rot: 4, lift: 1.6 },
+  { id: "slot-5", rot: 7.5, lift: 0 },
 ];
 
-const fitPairs = [
-  ["Giri contenuti tuoi", "Follower senza una voce"],
-  ["Curi audio e luce", "Un video riciclato da altri brand"],
-  ["Rispetti brief e tempi", "Interesse solo per il compenso"],
-  ["Arrivi con un’idea", "Arrivi con una richiesta"],
+// Il patto: le tre condizioni che un creator vuole leggere prima di tutto.
+// Il compenso non è una card: sta nella pastiglia della hero e nella nota sotto
+// la griglia, così le tre condizioni restano leggibili in una riga sola.
+// `tone` decide la superficie della scheda: teal, neutra, lilla. Le tre schede
+// non sono più identiche, ma la struttura interna resta la stessa.
+const termCards = [
+  {
+    id: "prova",
+    tone: "teal",
+    icon: Clock,
+    label: "Prova",
+    sublabel: "PRIMA DI TUTTO",
+    metric: "7",
+    suffix: "giorni gratis",
+    subtext: "Nessun video prima del contratto.",
+    copy: "Usi l’assistente come lo userebbe una persona che ti segue. Se non ti convince, finisce lì.",
+    foot: "Nessun contenuto richiesto",
+  },
+  {
+    id: "consegna",
+    tone: "plain",
+    icon: Video,
+    label: "Consegna",
+    sublabel: "COSA PRODUCI",
+    metric: "1",
+    suffix: "video + 3 hook",
+    subtext: "Reel o TikTok, 45-60 secondi.",
+    copy: "Un video girato da te. Le tre aperture nascono nella stessa sessione: non ti costano una seconda giornata.",
+    foot: "Compenso alla consegna",
+  },
+  {
+    id: "utilizzo",
+    tone: "lilac",
+    icon: Megaphone,
+    label: "Utilizzo",
+    sublabel: "DOVE VA",
+    metric: "∞",
+    metricSr: "Senza scadenza",
+    suffix: "senza scadenza",
+    subtext: "Paid e organico.",
+    copy: "Campagne a pagamento e canali di Giada. Per usi diversi se ne parla prima di firmare.",
+    foot: "Definito prima del contratto",
+  },
 ];
 
+// Chi cerchiamo: due elenchi separati invece di una matrice a due colonne. Il
+// pannello affermativo porta una riga di dettaglio, quello negativo resta secco.
+const fitYes = [
+  ["Giri contenuti tuoi", "Idea, riprese e voce partono da te."],
+  ["Curi audio e luce", "Basta una finestra e una stanza silenziosa."],
+  ["Rispetti brief e tempi", "Consegni quando hai detto che consegni."],
+  ["Arrivi con un’idea", "Un hook e il motivo per cui funziona."],
+];
+
+const fitNo = [
+  "Follower senza una voce",
+  "Un video riciclato da altri brand",
+  "Interesse solo per il compenso",
+  "Una richiesta al posto di una proposta",
+];
+
+// Ogni profilo porta la sua tinta: teal, lilla, ambra. La tinta viaggia dal tab
+// al pannello, quindi cambiando profilo cambia il colore della sezione.
 const creatorModes = [
   {
     id: "rassicurante",
+    tone: "teal",
     number: "01",
     label: "La voce che rassicura",
     title: "Rendi semplice ciò che sembra difficile.",
@@ -58,6 +135,7 @@ const creatorModes = [
   },
   {
     id: "vita-reale",
+    tone: "lilac",
     number: "02",
     label: "La vita vera",
     title: "Trasformi una giornata qualsiasi in una storia.",
@@ -66,6 +144,7 @@ const creatorModes = [
   },
   {
     id: "performance",
+    tone: "amber",
     number: "03",
     label: "L’istinto performance",
     title: "Pensi ai primi tre secondi.",
@@ -74,11 +153,22 @@ const creatorModes = [
   },
 ];
 
+// Il numero di ogni passo porta una tinta diversa: la scala di colore misura
+// l'avanzamento, dall'ingresso teal alla consegna in ambra.
 const processSteps = [
-  ["01", "Provi Giada", "Sette giorni gratis. Nessun contenuto richiesto."],
-  ["02", "Ricevi il brief", "Obiettivi, riferimenti e limiti già scritti."],
-  ["03", "Proponi l’idea", "Hook, sviluppo, perché funziona. Non un video."],
-  ["04", "Produciamo", "Contratto, tre hook, compenso alla consegna."],
+  ["01", "Provi Giada", "Sette giorni gratis. Nessun contenuto richiesto.", "s1"],
+  ["02", "Ricevi il brief", "Obiettivi, riferimenti e limiti già scritti.", "s2"],
+  ["03", "Proponi l’idea", "Hook, sviluppo, perché funziona. Non un video.", "s3"],
+  ["04", "Produciamo", "Contratto, tre hook, compenso alla consegna.", "s4"],
+];
+
+// La prova del programma, sulla stessa superficie scura in cui si guarda il
+// prodotto: la credibilità sta accanto alla dimostrazione, non a fine pagina.
+// Solo fatti già accaduti, nessuna metrica di performance.
+const proofFacts = [
+  { id: "video", value: "6", label: "video prodotti e già in campagna" },
+  { id: "creator", value: "3", label: "creator pagate alla consegna" },
+  { id: "risposta", value: "48", unit: "ore", label: "per la risposta alla candidatura" },
 ];
 
 const faqs = [
@@ -126,21 +216,13 @@ function useReveal() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 },
+      // Il margine era del 12%: un elemento appoggiato alla piega, come la riga
+      // del compenso nella hero, restava invisibile finché non si scrollava.
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },
     );
     nodes.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-}
-
-function CtaButton({ href, children, variant = "primary", full = false, onClick }) {
-  const classes = ["button", `button--${variant}`, full ? "button--full" : ""].filter(Boolean);
-  return (
-    <a className={classes.join(" ")} href={href} onClick={onClick}>
-      <span>{children}</span>
-      <ArrowRight aria-hidden="true" size={17} strokeWidth={2} />
-    </a>
-  );
 }
 
 export function App() {
@@ -149,6 +231,9 @@ export function App() {
   const [openFaq, setOpenFaq] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [showStickyCta, setShowStickyCta] = useState(false);
+  // La nav fissa non esiste sopra la hero: compare solo dalla sezione dopo, e
+  // torna a sparire risalendo verso la hero dal basso.
+  const [showNav, setShowNav] = useState(false);
   const heroRef = useRef(null);
   useReveal();
 
@@ -165,19 +250,23 @@ export function App() {
     }
   }, []);
 
-  // La barra mobile compare dopo la hero e sparisce quando il form è già a schermo.
+  // Un solo osservatore per i due elementi fissi: la nav in alto segue la hero,
+  // la barra mobile in basso compare dopo la hero e sparisce sul form.
   useEffect(() => {
     const hero = heroRef.current;
     const form = document.getElementById("candidatura");
     if (!hero || typeof IntersectionObserver === "undefined") return undefined;
     const state = { pastHero: false, onForm: false };
-    const sync = () => setShowStickyCta(state.pastHero && !state.onForm);
+    const sync = () => {
+      setShowNav(state.pastHero);
+      setShowStickyCta(state.pastHero && !state.onForm);
+    };
     const heroObserver = new IntersectionObserver(
       ([entry]) => {
         state.pastHero = !entry.isIntersecting;
         sync();
       },
-      { rootMargin: "-120px 0px 0px 0px" },
+      { rootMargin: "-72px 0px 0px 0px" },
     );
     heroObserver.observe(hero);
     const formObserver = form
@@ -208,113 +297,261 @@ export function App() {
     <>
       <div className="grain" aria-hidden="true" />
 
+      {/* Nav fissa a pastiglia. Non esiste sopra la hero: entra quando la hero
+          è uscita e torna a uscire risalendo dal basso. `inert` la toglie anche
+          da tastiera e lettori di schermo finché è nascosta. */}
+      <header
+        className={showNav ? "site-nav is-visible" : "site-nav"}
+        aria-label="Navigazione principale"
+        inert={!showNav}
+      >
+        <div className="site-nav-inner">
+          <a className="brand" href="#top">
+            GIADA<span>CREATOR PROGRAM</span>
+          </a>
+          <nav className="nav-links" aria-label="Sezioni della pagina">
+            <a href="#chi-cerchiamo">Chi cerchiamo</a>
+            <a href="#come-funziona">Come funziona</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <a className="button button--primary button--sm" href="#candidatura">
+            <span>{CTA_LABEL}</span>
+          </a>
+        </div>
+      </header>
+
       <main>
-        <section className="hero" id="top" ref={heroRef}>
+        <section className="hero zone zone--dark zone-hero" id="top" ref={heroRef}>
+          {/* Nella hero non c'è nessuna barra: marchio, link e azione di
+              servizio vivono solo nella nav fissa, che qui è fuori campo. */}
           <div className="container">
-            <header className="hero-nav" aria-label="Navigazione principale">
-              <a className="brand" href="#top">
-                GIADA<span>CREATOR PROGRAM</span>
-              </a>
-              <nav className="nav-links" aria-label="Sezioni della pagina">
-                <a href="#chi-cerchiamo">Chi cerchiamo</a>
-                <a href="#come-funziona">Come funziona</a>
-                <a href="#faq">FAQ</a>
-              </nav>
-              <a className="button button--primary button--sm" href="#candidatura">
-                <span>{CTA_LABEL}</span>
-              </a>
-            </header>
 
-            {/* Composizione da reference "Veluno" (@uiuxmanuel, slide 3): colonna di
-                testo con un secondo livello sotto la CTA, immagine a destra con la
-                tacca nell'angolo in basso a sinistra rivolta al sigillo. */}
-            <div className="hero-grid">
-              <div className="hero-copy">
-                <h1 className="hero-title" data-reveal>
-                  {angle.lead}
-                  <em>{angle.accent}</em>
-                </h1>
-                <p className="hero-sub" data-reveal style={{ "--d": "90ms" }}>
-                  Giada è un assistente di nutrizione su Telegram. Provala sette giorni, poi
-                  proponici un’idea per un video.
-                </p>
-                <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
-                  <a className="button button--primary button--badge" href="#candidatura">
-                    <span>{CTA_LABEL}</span>
-                    <span className="button-badge" aria-hidden="true">
-                      <ArrowUpRight size={16} strokeWidth={2.2} />
-                    </span>
-                  </a>
-                  <a className="text-link" href="#come-funziona">
-                    Come funziona
-                    <ChevronDown aria-hidden="true" size={15} strokeWidth={2} />
-                  </a>
-                </div>
+            {/* Composizione centrata sulla reference "Pallet Ross": titolo su due
+                righe, ventaglio di carte sotto il titolo, poi sottotitolo stretto
+                e coppia di azioni. Due etichette a fumetto ai lati del ventaglio. */}
+            <div className="hero-center">
+              <h1 className="hero-title" data-reveal>
+                {angle.lead}
+                <em>{angle.accent}</em>
+              </h1>
 
-                <div className="hero-tier" data-reveal style={{ "--d": "260ms" }}>
-                  <figure className="hero-mini">
-                    <img
-                      src="/assets/product-bilancio-v2.png"
-                      alt="Riepilogo di calorie e macronutrienti nell’assistente Giada"
-                      loading="lazy"
-                    />
-                    <figcaption>
-                      <strong>Giada è già in campagna</strong>
-                      <span>Utenti paganti su Telegram. 6 video prodotti, 3 creator pagate.</span>
-                    </figcaption>
-                  </figure>
-
-                  <a className="hero-seal" href="#candidatura" aria-label={CTA_LABEL}>
-                    <svg className="hero-seal-ring" viewBox="0 0 120 120" aria-hidden="true">
-                      <defs>
-                        <path
-                          id="sealPath"
-                          fill="none"
-                          d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"
+              <div className="hero-deck" data-reveal style={{ "--d": "90ms" }}>
+                <div className="deck-fan">
+                  {heroDeck.map((card, i) => (
+                    <figure
+                      className={`deck-card${card.src ? "" : " deck-card--slot"}`}
+                      key={card.id}
+                      style={{
+                        "--rot": card.rot,
+                        "--lift": card.lift,
+                        zIndex: i + 1,
+                        "--d": `${140 + i * 60}ms`,
+                      }}
+                    >
+                      {card.src ? (
+                        <img
+                          src={card.src}
+                          alt={card.alt}
+                          width="1536"
+                          height="1024"
+                          fetchPriority="high"
                         />
-                      </defs>
-                      <text>
-                        <textPath href="#sealPath" startOffset="0">
-                          €80 A VIDEO SELEZIONATO · €80 A VIDEO SELEZIONATO ·
-                        </textPath>
-                      </text>
-                    </svg>
-                    <span className="hero-seal-core" aria-hidden="true">
-                      <ArrowUpRight size={19} strokeWidth={2.2} />
-                    </span>
-                  </a>
+                      ) : (
+                        <span className="deck-slot-label" aria-hidden="true">
+                          Foto
+                        </span>
+                      )}
+                    </figure>
+                  ))}
                 </div>
+
+                {/* Le due note che prima stavano sull'immagine: rispondono alla
+                    prima obiezione di un creator, l'attrezzatura. */}
+                <div className="deck-tags">
+                  <span className="deck-tag deck-tag--left" data-reveal style={{ "--d": "420ms" }}>
+                    Girato col telefono
+                  </span>
+                  <span className="deck-tag deck-tag--right" data-reveal style={{ "--d": "480ms" }}>
+                    Nessun set
+                  </span>
+                </div>
+
+                {/* Il sigillo porta alla spiegazione del programma, non alla
+                    conversione: la CTA è già due volte in questo schermo. */}
+                <a className="hero-seal" href="#come-funziona" aria-label="Scopri come funziona">
+                  <svg className="hero-seal-ring" viewBox="0 0 120 120" aria-hidden="true">
+                    <defs>
+                      <path
+                        id="sealPath"
+                        fill="none"
+                        d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"
+                      />
+                    </defs>
+                    <text>
+                      <textPath href="#sealPath" startOffset="0">
+                        SCOPRI COME FUNZIONA · SCOPRI COME FUNZIONA ·
+                      </textPath>
+                    </text>
+                  </svg>
+                  <span className="hero-seal-core" aria-hidden="true">
+                    <ChevronDown size={20} strokeWidth={2.2} />
+                  </span>
+                </a>
               </div>
 
-              {/* Annotazione con linea guida: risponde nella hero alla prima obiezione
-                  di un creator, cioè l'attrezzatura. Reference: scheda "17 reference
-                  visuali per layout, UI e contenuti social" della libreria. */}
-              <figure className="hero-visual" data-reveal style={{ "--d": "240ms" }}>
-                <div className="hero-shot">
-                  <img
-                    src="/assets/giada-creator-hero.png"
-                    alt="Una creator registra un video per Giada nella cucina di casa"
-                    width="1536"
-                    height="1024"
-                    fetchPriority="high"
-                  />
-                  <span className="hero-pin" aria-hidden="true" />
-                </div>
-                <figcaption>Girato col telefono. Nessun set, nessuna troupe.</figcaption>
-              </figure>
+              <p className="hero-sub" data-reveal style={{ "--d": "90ms" }}>
+                Giada è un assistente di nutrizione su Telegram. Provala sette giorni, poi
+                proponici un’idea per un video.
+              </p>
+              <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
+                <a className="button button--primary button--badge" href="#candidatura">
+                  <span>{CTA_LABEL}</span>
+                  <span className="button-badge" aria-hidden="true">
+                    <ArrowUpRight size={16} strokeWidth={2.2} />
+                  </span>
+                </a>
+                {/* Nella reference la seconda azione è una pastiglia chiara
+                    accanto alla principale, non un link di testo. */}
+                <a className="button button--ghost" href="#come-funziona">
+                  <span>Scopri di più</span>
+                  <ChevronDown aria-hidden="true" size={15} strokeWidth={2} />
+                </a>
+              </div>
+              {/* Il compenso non sta più sul sigillo: diventa la pastiglia che
+                  apre la riga di prova, quindi resta nella hero a ogni larghezza. */}
+              <p className="hero-proof" data-reveal style={{ "--d": "220ms" }}>
+                <span className="hero-fee">€80 a video selezionato</span>
+                <span>Giada è già in campagna: 6 video prodotti, 3 creator pagate.</span>
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="pact" aria-label="Condizioni del programma">
+        {/* Le condizioni come tre schede a metrica, sulla reference "stats-1" di
+            watermelon.sh: chip con etichetta, numero grande, riga di dettaglio.
+            La cucitura porta il navy della hero dentro la carta calda. */}
+        <section
+          className="section terms zone zone--light zone-terms"
+          id="il-patto"
+          aria-labelledby="terms-title"
+        >
           <div className="container">
-            <dl className="pact-grid" data-reveal>
-              {pactTerms.map(([label, value, note]) => (
-                <div key={label}>
-                  <dt>{label}</dt>
+            <div className="section-head section-head--center terms-head" data-reveal>
+              <h2 id="terms-title">
+                Il patto,
+                <em>prima di ogni domanda.</em>
+              </h2>
+              <p className="lede">
+                Tre condizioni scritte prima che tu giri. Restano queste, dalla candidatura alla
+                consegna.
+              </p>
+            </div>
+
+            <div className="terms-grid">
+              {termCards.map((card, i) => (
+                <article
+                  className={`term-card term-card--${card.tone}`}
+                  key={card.id}
+                  data-reveal
+                  style={{ "--d": `${i * 80}ms` }}
+                >
+                  <p className="term-chip">
+                    <card.icon aria-hidden="true" size={18} strokeWidth={1.9} />
+                    <span>
+                      <strong>{card.label}</strong>
+                      <em>{card.sublabel}</em>
+                    </span>
+                  </p>
+
+                  <p className="term-metric">
+                    <span aria-hidden={card.metricSr ? "true" : undefined}>{card.metric}</span>
+                    {card.metricSr ? <span className="sr-only">{card.metricSr}</span> : null}
+                    <em>{card.suffix}</em>
+                  </p>
+
+                  <p className="term-lead">{card.subtext}</p>
+                  <p className="term-copy">{card.copy}</p>
+
+                  <p className="term-foot">
+                    <Check aria-hidden="true" size={14} strokeWidth={2.4} />
+                    {card.foot}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <p className="terms-note" data-reveal>
+              Compenso: <strong>€80 a video selezionato</strong>, alla consegna.
+            </p>
+          </div>
+        </section>
+
+        {/* La prova del prodotto sale prima della qualifica: si guarda cosa si
+            racconta, e solo dopo si chiede al creator di misurarsi. In fondo
+            alla stessa superficie sta la rail dei fatti verificabili. */}
+        <section
+          className="section trial zone zone--light zone-trial"
+          id="prova"
+          aria-labelledby="trial-title"
+        >
+          <div className="container">
+            <div className="trial-grid">
+              <div className="trial-copy" data-reveal>
+                <h2 id="trial-title">
+                  Prima la usi.
+                  <em>Poi la racconti.</em>
+                </h2>
+                <p className="lede">Sette giorni per capire cosa vale la pena raccontare.</p>
+                <ul className="trial-days">
+                  <li>
+                    <b>GIORNI 1-3</b>
+                    Usala davvero, come la useresti se nessuno te lo avesse chiesto.
+                  </li>
+                  <li>
+                    <b>GIORNI 4-7</b>
+                    Trova l’angolo: il momento che meriterebbe di aprire un video.
+                  </li>
+                </ul>
+                <a className="inline-cta" href="#profili">
+                  Scegli il profilo che ti somiglia
+                  <ArrowRight aria-hidden="true" size={16} strokeWidth={2} />
+                </a>
+              </div>
+              <div
+                className="trial-stage"
+                aria-label="Anteprima dell’esperienza Giada"
+                data-reveal
+                style={{ "--d": "100ms" }}
+              >
+                <div className="stage-screen stage-screen--summary">
+                  <img
+                    src="/assets/product-bilancio-v2.png"
+                    alt="Riepilogo di calorie e macronutrienti in Giada"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="stage-screen stage-screen--log">
+                  <img
+                    src="/assets/product-food-log-v3.jpg"
+                    alt="Food log di Giada con i pasti della giornata"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="stage-question">
+                  <span>LA DOMANDA</span>
+                  <p>Quale momento aprirebbe il tuo video?</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Tre fatti già accaduti, non tre promesse. */}
+            <dl className="proof-rail">
+              {proofFacts.map((fact, i) => (
+                <div className="proof-item" key={fact.id} data-reveal style={{ "--d": `${i * 70}ms` }}>
+                  <dt>{fact.label}</dt>
                   <dd>
-                    <span className="pact-value">{value}</span>
-                    <span className="pact-note">{note}</span>
+                    {fact.value}
+                    {fact.unit ? <em>{fact.unit}</em> : null}
                   </dd>
                 </div>
               ))}
@@ -322,94 +559,76 @@ export function App() {
           </div>
         </section>
 
-        <section className="section fit" id="chi-cerchiamo" aria-labelledby="fit-title">
+        {/* La qualifica sulla sola carta fredda della pagina: dal ghiacciaio
+            scende alla lavanda, quindi prepara il viola del processo. */}
+        <section
+          className="section fit zone zone--light zone-fit"
+          id="chi-cerchiamo"
+          aria-labelledby="fit-title"
+        >
           <div className="container">
             <div className="section-head" data-reveal>
-              <p className="eyebrow">CHI CERCHIAMO</p>
+              <p className="eyebrow">Chi cerchiamo</p>
               <h2 id="fit-title">
                 Puoi essere all’inizio.
-                <br />
-                Devi essere serio.
+                <em>Devi essere serio.</em>
               </h2>
               <p className="lede">
                 Un’idea tua, naturalezza, brief rispettati. L’esperienza aiuta, non decide.
               </p>
             </div>
-            <div className="fit-matrix" role="list" data-reveal style={{ "--d": "80ms" }}>
-              <div className="fit-head" aria-hidden="true">
-                <span>SEI IN LINEA SE</span>
-                <span>NON BASTA</span>
+            {/* Due pannelli invece della matrice a due colonne: quello
+                affermativo è sollevato e porta una riga di dettaglio, quello
+                negativo resta secco e più silenzioso. */}
+            <div className="fit-split">
+              <div className="fit-panel fit-panel--yes" data-reveal style={{ "--d": "80ms" }}>
+                <p className="fit-panel-head">
+                  <span className="fit-badge fit-badge--yes">
+                    <Check aria-hidden="true" size={14} strokeWidth={2.6} />
+                  </span>
+                  Sei in linea se
+                </p>
+                <ul className="fit-items">
+                  {fitYes.map(([title, note]) => (
+                    <li key={title}>
+                      <strong>{title}</strong>
+                      <span>{note}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              {fitPairs.map(([positive, negative]) => (
-                <div className="fit-row" role="listitem" key={positive}>
-                  <p>
-                    <Check aria-hidden="true" size={17} strokeWidth={2.4} />
-                    {positive}
-                  </p>
-                  <p>{negative}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        <section className="section trial" id="prova" aria-labelledby="trial-title">
-          <div className="container trial-grid">
-            <div className="trial-copy" data-reveal>
-              <h2 id="trial-title">
-                Prima la usi.
-                <br />
-                Poi la racconti.
-              </h2>
-              <p className="lede">Sette giorni per capire cosa vale la pena raccontare.</p>
-              <ul className="trial-days">
-                <li>
-                  <b>GIORNI 1-3</b>
-                  Usala davvero, come la useresti se nessuno te lo avesse chiesto.
-                </li>
-                <li>
-                  <b>GIORNI 4-7</b>
-                  Trova l’angolo: il momento che meriterebbe di aprire un video.
-                </li>
-              </ul>
-              <a className="inline-cta" href="#profili">
-                Scegli il profilo che ti somiglia
-                <ArrowRight aria-hidden="true" size={16} strokeWidth={2} />
-              </a>
-            </div>
-            <div
-              className="trial-stage"
-              aria-label="Anteprima dell’esperienza Giada"
-              data-reveal
-              style={{ "--d": "100ms" }}
-            >
-              <div className="stage-screen stage-screen--summary">
-                <img
-                  src="/assets/product-bilancio-v2.png"
-                  alt="Riepilogo di calorie e macronutrienti in Giada"
-                  loading="lazy"
-                />
-              </div>
-              <div className="stage-screen stage-screen--log">
-                <img
-                  src="/assets/product-food-log-v3.jpg"
-                  alt="Food log di Giada con i pasti della giornata"
-                  loading="lazy"
-                />
-              </div>
-              <div className="stage-question">
-                <span>LA DOMANDA</span>
-                <p>Quale momento aprirebbe il tuo video?</p>
+              <div className="fit-panel fit-panel--no" data-reveal style={{ "--d": "160ms" }}>
+                <p className="fit-panel-head">
+                  <span className="fit-badge fit-badge--no">
+                    <Minus aria-hidden="true" size={14} strokeWidth={2.6} />
+                  </span>
+                  Non basta
+                </p>
+                <ul className="fit-items fit-items--quiet">
+                  {fitNo.map((item) => (
+                    <li key={item}>
+                      <strong>{item}</strong>
+                    </li>
+                  ))}
+                </ul>
+                <p className="fit-panel-foot">Nessuno di questi punti è squalificante da solo.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="section profiles" id="profili" aria-labelledby="profiles-title">
+        <section
+          className="section profiles zone zone--light zone-profiles"
+          id="profili"
+          aria-labelledby="profiles-title"
+        >
           <div className="container">
             <div className="section-head" data-reveal>
-              <p className="eyebrow">TRE MODI DI ESSERE GIUSTI</p>
-              <h2 id="profiles-title">Non cerchiamo una faccia sola.</h2>
+              <p className="eyebrow">Tre modi di essere giusti</p>
+              <h2 id="profiles-title">
+                Non cerchiamo <em className="is-inline">una faccia sola.</em>
+              </h2>
             </div>
             <div
               className="profiles-tabs"
@@ -428,7 +647,7 @@ export function App() {
                     role="tab"
                     aria-selected={active}
                     aria-controls="profile-panel"
-                    className={active ? "profile-tab is-active" : "profile-tab"}
+                    className={`profile-tab${active ? " is-active" : ""}`}
                     onClick={() => setActiveMode(mode.id)}
                   >
                     <small>{mode.number}</small>
@@ -437,6 +656,8 @@ export function App() {
                 );
               })}
             </div>
+            {/* Tre zone: indice e titolo a sinistra, citazione editoriale e tag
+                a destra. Nella V6 metà della colonna destra restava vuota. */}
             <article
               className="profile-panel"
               id="profile-panel"
@@ -445,31 +666,51 @@ export function App() {
               data-reveal
               style={{ "--d": "140ms" }}
             >
-              <div>
-                <span className="profile-index">{selectedMode.number} / 03</span>
-                <h3>{selectedMode.title}</h3>
-              </div>
-              <div>
-                <p>{selectedMode.copy}</p>
-                <ul className="tag-row">
-                  {selectedMode.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
+              {/* La `key` fa ripartire l'animazione del corpo a ogni cambio di
+                  profilo: il colore della superficie cambia dentro il movimento
+                  invece di saltare. */}
+              <div className="profile-panel-body" key={selectedMode.id}>
+                <div>
+                  <span className="profile-index">{selectedMode.number} / 03</span>
+                  <h3>{selectedMode.title}</h3>
+                </div>
+                <div className="profile-side">
+                  <p className="profile-quote">{selectedMode.copy}</p>
+                  <div>
+                    <span className="profile-side-label">{selectedMode.label}</span>
+                    <ul className="tag-row">
+                      {selectedMode.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
         </section>
 
-        <section className="section process" id="come-funziona" aria-labelledby="process-title">
+        <section
+          className="section process zone zone--light zone-process"
+          id="come-funziona"
+          aria-labelledby="process-title"
+        >
           <div className="container">
             <div className="section-head" data-reveal>
-              <h2 id="process-title">Il tuo impegno cresce insieme al nostro.</h2>
+              <h2 id="process-title">
+                Il tuo impegno cresce
+                <em>insieme al nostro.</em>
+              </h2>
               <p className="lede">Quattro passaggi. Nessuno di corsa.</p>
             </div>
-            <ol className="process-list" data-reveal style={{ "--d": "80ms" }}>
-              {processSteps.map(([number, title, copy]) => (
-                <li className="process-row" key={number}>
+            <ol className="process-list">
+              {processSteps.map(([number, title, copy, tone], i) => (
+                <li
+                  className={`process-row process-row--${tone}`}
+                  key={number}
+                  data-reveal
+                  style={{ "--d": `${i * 60}ms` }}
+                >
                   <span className="process-number">{number}</span>
                   <h3>{title}</h3>
                   <p>{copy}</p>
@@ -479,16 +720,76 @@ export function App() {
           </div>
         </section>
 
-        <section className="section apply" id="candidatura" aria-labelledby="apply-title">
-          <div className="container apply-grid">
-            <div className="apply-copy" data-reveal>
-              <p className="eyebrow">PRIMO PASSO</p>
+        {/* Le obiezioni si chiudono prima di chiedere il contatto: nella V6 la
+            FAQ stava dopo il form. */}
+        <section
+          className="section faq zone zone--light zone-faq"
+          id="faq"
+          aria-labelledby="faq-title"
+        >
+          <div className="container faq-grid">
+            <div className="faq-rail" data-reveal>
+              <h2 id="faq-title">
+                Domande chiare.
+                <em>Risposte brevi.</em>
+              </h2>
+              {/* La rail non è più titolo e vuoto: porta la scorciatoia al form
+                  per chi ha già letto abbastanza. */}
+              <div className="faq-aside">
+                <p>Due minuti. Nessun video. Risposta in 48 ore.</p>
+                <a className="button button--primary button--sm" href="#candidatura">
+                  <span>{CTA_LABEL}</span>
+                  <ArrowRight aria-hidden="true" size={15} strokeWidth={2} />
+                </a>
+              </div>
+            </div>
+            <div className="faq-list" data-reveal style={{ "--d": "80ms" }}>
+              {faqs.map((item, index) => {
+                const active = openFaq === index;
+                const answerId = `faq-answer-${index}`;
+                return (
+                  <article className={active ? "faq-item is-open" : "faq-item"} key={item.question}>
+                    <button
+                      type="button"
+                      aria-expanded={active}
+                      aria-controls={answerId}
+                      onClick={() => setOpenFaq(active ? -1 : index)}
+                    >
+                      <span>{item.question}</span>
+                      <ChevronDown aria-hidden="true" size={19} strokeWidth={2} />
+                    </button>
+                    <div className="faq-answer" id={answerId}>
+                      <div>
+                        <p>{item.answer}</p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Finale e candidatura sono la stessa sezione: la V6 metteva il form e
+            poi una fascia teal con la stessa CTA che riportava indietro. Una
+            conversione sola, sull'unica superficie che arriva al teal pieno. */}
+        <section
+          className="section section--wide finale zone zone--dark zone-finale"
+          id="candidatura"
+          aria-labelledby="apply-title"
+        >
+          <div className="container finale-grid">
+            <div className="finale-copy" data-reveal>
+              <span className="finale-kicker">Hai già un’idea?</span>
               <h2 id="apply-title">
                 Prova Giada.
-                <br />
-                Poi proponi.
+                <em>Poi proponi.</em>
               </h2>
               <p className="lede">Lascia i contatti. Accesso e brief entro 48 ore.</p>
+              <p className="finale-note">
+                <Check aria-hidden="true" size={14} strokeWidth={2.4} />
+                Nessun video prima del contratto.
+              </p>
             </div>
             <div className="form-card" data-reveal style={{ "--d": "100ms" }}>
               {submitted ? (
@@ -572,57 +873,7 @@ export function App() {
           </div>
         </section>
 
-        <section className="section faq" id="faq" aria-labelledby="faq-title">
-          <div className="container faq-grid">
-            <div data-reveal>
-              <h2 id="faq-title">
-                Domande chiare.
-                <br />
-                Risposte brevi.
-              </h2>
-            </div>
-            <div className="faq-list" data-reveal style={{ "--d": "80ms" }}>
-              {faqs.map((item, index) => {
-                const active = openFaq === index;
-                const answerId = `faq-answer-${index}`;
-                return (
-                  <article className={active ? "faq-item is-open" : "faq-item"} key={item.question}>
-                    <button
-                      type="button"
-                      aria-expanded={active}
-                      aria-controls={answerId}
-                      onClick={() => setOpenFaq(active ? -1 : index)}
-                    >
-                      <span>{item.question}</span>
-                      <ChevronDown aria-hidden="true" size={19} strokeWidth={2} />
-                    </button>
-                    <div className="faq-answer" id={answerId}>
-                      <div>
-                        <p>{item.answer}</p>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="closing" aria-label="Candidatura finale">
-          <div className="container closing-inner">
-            <div data-reveal>
-              <h2>Hai già un’idea?</h2>
-              <p>Prima prova Giada. Poi proponila.</p>
-            </div>
-            <div data-reveal style={{ "--d": "100ms" }}>
-              <CtaButton href="#candidatura" variant="paper">
-                {CTA_LABEL}
-              </CtaButton>
-            </div>
-          </div>
-        </section>
-
-        <footer>
+        <footer className="zone zone--dark zone-footer">
           <div className="container footer-grid">
             <strong>
               GIADA <span>by Vivarium</span>

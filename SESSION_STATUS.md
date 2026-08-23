@@ -1,104 +1,162 @@
 # Session status — Giada Creator Program
 
-Ultimo aggiornamento: **16 agosto 2026**. Questo file è il punto da cui ripartire.
+Ultimo aggiornamento: **23 agosto 2026**. Questo file è il punto da cui ripartire.
 
 ## Dove siamo
 
-Design system **V5 «Backstage»** completo e verificato in locale. Sostituisce la V4 chiara.
-Build e test passano. Tutto committato sul branch **`redesign/v5-backstage`**, non pushato:
-`main` e la Production su Vercel sono ancora alla V4.
+Design system **V8 «Quattro colori»**, in produzione. Sostituisce la V6 «Daylight» (sei superfici
+alternate, quattro accenti, mai committata) e la V7 «Pastel Editorial» intermedia della stessa
+sessione. Build, `test:sites` (4/4) e la passata di QA automatica passano.
 
-La direzione: il prodotto Giada vive alla luce del giorno, il programma creator è il suo retro,
-lo studio di sera. Un unico tema navy su tutta la pagina, teal come solo accento, carta calda
-riservata agli oggetti che si guardano o si compilano.
+La direzione: una pagina sola invece di nove fasce. Il fondo è una catena di gradienti in cui il
+colore finale di ogni sezione è il colore iniziale della successiva, quindi non esiste nessun taglio
+fra una sezione e l'altra. La pagina cambia luminanza due volte, all'inizio del patto e all'inizio
+del finale, e in entrambi i casi il passaggio cade dentro il padding, dove non c'è testo.
 
-## Cosa è cambiato in questa sessione
+**Palette bloccata a quattro colori**: navy `#203260`, teal `#10b8c0`, carta `#fff9ef`, lilla
+`#e9dcff`. Tutto il resto è una miscela dichiarata di questi quattro. Quota misurata sull'altezza
+reale: Giada (navy, teal, carta) al 67% a 1512px e al 66,6% a 390px, lilla al 33% e al 33,4%.
 
-**Sistema visivo**
-- Tema unico navy (`--ink-900` `#12163A`) su tutta la pagina. Prima le sezioni alternavano chiaro
-  e scuro.
-- Aggiunto **Bricolage Grotesque** variabile (assi `opsz` + `wght`, 77 KB) per display, titoli,
-  numeri e domande FAQ. **Geist** resta per testo, etichette e form. Entrambi self-hosted in
-  `public/assets`, zero richieste di rete.
-- Scala di forma unica: 6 / 14 / 22 px più pill. Unica eccezione documentata: 18 px per le cornici
-  delle schermate prodotto, che imitano la scocca di un telefono.
-- Grana fissa a schermo intero, `pointer-events: none`, per dare superficie al fondo scuro.
+## Cosa è cambiato il 23 agosto 2026
 
-**Hero, ricostruita sulla reference «Veluno»**
-La composizione replica la slide 3 della scheda `KI-20260810-103432` (@uiuxmanuel) della Knowledge
-Studio. Dettaglio in `REFERENCE_MAP.md`.
-- Nav a tre zone: marchio, link al centro, CTA a destra.
-- CTA a pastiglia con pastiglia circolare in coda.
-- Secondo livello sotto la CTA: miniatura con la prova più sigillo circolare rotante con la
-  condizione economica.
-- Foto a destra mascherata con tacca nell'angolo in basso a sinistra, rivolta al sigillo.
-- Una sola annotazione sulla foto: linea guida al telefono sul treppiede, «Girato col telefono.
-  Nessun set, nessuna troupe.» Risponde alla prima obiezione di un creator prima di ogni scroll.
-- **Non replicati** dalla reference: frecce e indicatori di carosello. La pagina ha una sola
-  promessa per la prima schermata, e indicatori senza carosello sarebbero decorazione.
+Sessione in tre passate. Quello che segue è lo stato finale.
 
-**Struttura e copy**
-- Nuova fascia **«il patto»** subito sotto la hero: compenso, consegna, utilizzo, prova. Quattro
-  condizioni su una riga.
-- Una sola etichetta di CTA su tutta la pagina: **«Ricevi accesso e brief»**. Prima ce n'erano due
-  con la stessa intenzione.
-- Eyebrow di sezione ridotte da sette a tre.
-- Rimossi: card hero a sei celle, cerchio-freccia decorativo, due note su tre nello stage prodotto,
-  pillole di impegno nelle righe di processo, riga di prova duplicata sotto il patto.
-- Nessun trattino lungo nei testi visibili.
+### 1. Scan della libreria e audit
 
-**Movimento**
-- Ingresso hero a cascata (0 / 90 / 170 / 240 / 260 ms), una volta sola.
-- Rivelazione in scroll con un solo `IntersectionObserver`, nessun listener di scroll.
-- FAQ animata su `grid-template-rows`, con `visibility` che toglie la risposta chiusa anche
-  dall'albero di accessibilità.
-- Il sigillo ruota 26 s lineari: unica animazione perpetua, fermata esplicitamente sotto
-  `prefers-reduced-motion`.
+Scansione completa della Knowledge Studio (`https://knowledge-studio-andrea.vercel.app`): tutte le
+categorie, References (50), Inspo (69), Carousel (16), Meta Ads (3), AI (78), Marketing (58), con
+apertura delle schede rilevanti per palette, tipografia, hero e struttura di conversione. Le fonti
+con link diretto stanno in `AUDIT-V7-DAYLIGHT-PASTEL.md`, insieme all'audit della V6 e al piano di
+intervento. Le schede che hanno cambiato la pagina:
 
-## Verifiche fatte
+- **Anatomia di una landing SaaS ad alta conversione** (@uiux.subash): nove blocchi in sequenza,
+  ordine di risoluzione comprensione → credibilità → meccanismo → obiezioni → azione.
+- **Due coppie cromatiche** (@dyslove.design): valori verificati per la coppia lilla/viola.
+- **Il bianco non è un solo colore** (@346eur): la carta è una scelta di tono, non un default.
+- **Font pairing editoriali e luxury** (@itsdesignare) e **Cinque font aesthetic** (@robiinluca):
+  ruoli distinti fra display e testo, da cui la terza voce tipografica.
+- **Sette linguaggi UI** (@avrosh.hq): scegliere un linguaggio prima dei componenti. Scelto
+  Editorial.
+- **Hallmark** (@dario.fontanel): usata come checklist anti-slop.
+
+### 2. Struttura e conversione
+
+Riordino delle sezioni sul modello della libreria. La FAQ passa **prima** del form, la prova del
+prodotto sale **prima** della qualifica, la vecchia fascia di chiusura (che duplicava la CTA e
+riportava l'utente indietro) è **fusa nel form** come finale unico.
+
+| Prima (V6) | Ora (V8) |
+| --- | --- |
+| hero | hero |
+| il patto | il patto |
+| chi cerchiamo | prova il prodotto + rail dei fatti |
+| prova il prodotto | chi cerchiamo |
+| profili | profili |
+| come funziona | come funziona |
+| candidatura | FAQ |
+| FAQ | finale con il form |
+| chiusura | — (fusa nel finale) |
+
+Nuovo in pagina: la **rail dei fatti** in fondo alla sezione del prodotto, con i tre fatti già
+accaduti (6 video prodotti, 3 creator pagate, 48 ore di risposta). Nessun dato di performance,
+nessuna promessa di copertura.
+
+Riempiti i tre vuoti della V6: il pannello dei profili ha tre zone invece di due (indice e titolo,
+citazione in corsivo, tag), la rail della FAQ tiene il titolo appiccicato allo scroll più la
+scorciatoia al form, il finale è a due colonne con il form dentro.
+
+### 3. Colore
+
+- Da sei superfici piatte a **una catena di nove gradienti** che si agganciano l'uno all'altro.
+- Da quattro accenti (teal, lilla-viola, ambra, rosa) a **un accento solo**, il teal, in due valori.
+- Il lilla resta come **superficie complementare**, non come colore di testo.
+- Niente nero, niente bianco puro: ogni neutro è una miscela dei quattro colori.
+- `--fade` `clamp(200px, 22vh, 300px)` è la lunghezza dei due passaggi di luminanza; `--pad-extra`
+  spinge il testo sotto la dissolvenza.
+
+### 4. Tipografia
+
+Terza voce: **Boska Italic 700** (Fontshare, 33 KB, self-hosted). Nella V6 il corsivo era finto, un
+peso più basso dello stesso sans. La prima passata l'aveva messo a 400 e si leggeva sbiadito: a 700
+il corsivo ha corpo. Schema ripetuto in tutta la pagina: prima riga in Bricolage 780-800, seconda
+riga in Boska corsivo nell'accento della superficie.
+
+### 5. Movimento
+
+Passata sulle regole di design engineering: rivelazione da 620 a 460ms, pressione dei bottoni a
+150ms, curve senza rimbalzo, stagger fra 60 e 90ms, nessuna transizione su proprietà di layout. Il
+cambio di profilo non finge più di animare un gradiente: il corpo del pannello ha una `key` in
+React e rientra.
+
+### Verifiche
 
 - `npm run build` e `npm run test:sites` (4/4) passano.
-- Hero 738 px a 1440×900: CTA sopra la piega. Controllato anche 1920, 860 e 390 px.
-- 390 px: `clientWidth 390`, `scrollWidth 390`, nessun overflow orizzontale.
-- Un solo `h1`, zero ID duplicati, zero immagini senza alt, zero controlli senza nome accessibile.
-- Rivelazione in scroll: 21 su 21 elementi arrivano a `is-in`.
-- Contrasti WCAG AA calcolati e tabellati in `DESIGN_SYSTEM.md`.
-- Tab profili e accordion FAQ testati con verifica degli attributi ARIA.
+- **Nessun overflow orizzontale a 17 larghezze**: 1920, 1512, 1280, 1080, 1024, 900, 834, 768, 701,
+  700, 620, 560, 480, 420, 390, 360, 320px. Nessun elemento oltre il bordo della viewport.
+- **Passata di contrasto su ogni nodo di testo della pagina**, con il fondo campionato dentro il
+  gradiente alla quota reale dell'elemento: **zero nodi sotto AA**.
+- Hero dentro il primo schermo con la riga del compenso visibile: 913px su 950 a 1512×950, 806px su
+  844 a 390×844.
+- Nav fissa: nascosta e `inert` a 0px, visibile a 2200 e 5600px, di nuovo nascosta tornando a 300 e
+  a 0.
+- Quote di palette: Giada 67% / lilla 33% a 1512px, 66,6% / 33,4% a 390px.
+- Evidenze: `qa-v8-01` … `qa-v8-12`. Registro dei finding in `design-qa.md`.
 
-Evidenze: `qa-v5-01` … `qa-v5-09`. Registro completo dei finding in `design-qa.md`.
+### Difetti trovati e chiusi in questa sessione
+
+| Difetto | Correzione |
+| --- | --- |
+| La cucitura fra sezioni, prima passata: il footer non era posizionato, la sua cucitura assoluta finiva in cima al documento e copriva la hero | Il meccanismo delle cuciture è stato sostituito dalla catena di gradienti, che non usa elementi sovrapposti |
+| Il titolo del patto cadeva dentro la dissolvenza navy → carta e perdeva contrasto: `padding-block` di `.section` sovrascriveva il `padding-top` della zona | Lo scarto passa da `--pad-extra`, una variabile, non da `padding-top` |
+| La carta del form era translucida sul navy: il fondo scuro passava e la carta si leggeva grigia | Gradiente opaco fra carta e lilla, campi del form opachi |
+| Gli slot del ventaglio a 6% di carta erano fantasmi sul navy nuovo | Superficie con più corpo, trama teal e lilla al 20-28% |
+| A 390px la rail dei fatti impilava le voci con un filetto laterale, che diventava una barra colorata | Filetto verticale sopra i 701px, orizzontale sotto |
+| Testo in corsivo Boska a 400: tratti sottili invisibili | Un solo taglio, il 700 |
+| Il pannello dei profili dichiarava una transizione sul background: i gradienti non interpolano, il colore saltava | Animazione del corpo con `key` in React |
+
+### Aperto
+
+Gli slot del ventaglio aspettano ancora le immagini reali delle creator.
+
+## Storia precedente
+
+- **19 agosto 2026, V6 «Daylight»**: sei superfici alternate (navy, abisso, crema, lilla pallido,
+  viola pieno, teal pieno), nove token semantici per superficie, quattro accenti con ruoli fissi,
+  hero senza barra e nav fissa che compare solo dopo la hero. Mai committata: la V8 nasce dal suo
+  working tree. Il patto a tre schede con `subgrid` e la hero a ventaglio vengono da qui.
+- **18 agosto 2026**: la hero passa dall'immagine singola al ventaglio di cinque carte, reference
+  «Pallet Ross». Cinque token di geometria su `.hero-deck`, tre carte sotto i 700px.
+- **17 agosto 2026**: hero centrata e sezione delle condizioni rifatte sulle reference `hero-27` e
+  `stats-1` di watermelon.sh. Il compenso esce dalle schede e resta nella pastiglia della hero.
+- **16 agosto 2026, V5 «Backstage»**: tema unico navy, Bricolage Grotesque, fascia «il patto», una
+  sola etichetta di CTA.
 
 ## Stato Git
 
-Tutto committato sul branch **`redesign/v5-backstage`**, commit `cddc6e4`. **Non pushato.**
-`main` resta al commit precedente (`1f4c19d`, la V4 Skyline), quindi la Production su Vercel
-non è stata toccata.
+Branch **`main`**, con la V8 committata e pushata: **la Production su Vercel è la V8**. Il branch
+`redesign/v5-backstage` resta come traccia del lavoro del 16-17 agosto (ultimo commit `ea28a9f`).
 
-Per pubblicare:
+Push diretto su `main` = deploy Production immediato. Per una revisione prima della pubblicazione
+usare un branch e una PR, che genera un Preview Deployment.
 
-```bash
-git push -u origin redesign/v5-backstage
-gh pr create --fill        # Vercel genera un Preview Deployment
-```
-
-Push diretto su `main` = deploy Production immediato: da evitare finché i debiti qui sotto
-sono aperti.
-
-Non versionato: `ref-veluno.png`, coperto da `ref-*.png` nel `.gitignore` perché è materiale
-di terzi. Per una verifica futura della hero serve di nuovo l'immagine.
+Non versionati: `ref-veluno.png` e gli altri `ref-*.png`, coperti da `.gitignore` perché materiale
+di terzi.
 
 ## Debiti aperti prima di mandare traffico
 
-Invariati rispetto alla revisione precedente, nessuno è stato chiuso in questa sessione:
+Nessuno chiuso in questa sessione: sono tutti fuori dal perimetro visivo.
 
-1. **Il form è una demo e non invia dati.** Va collegato a un endpoint creator dedicato, e va
-   tolta la riga `.form-demo`. Non riusare `/api/onboarding`: alimenta il funnel B2C.
+1. **Il form è una demo e non invia dati.** Va collegato a un endpoint creator dedicato, e va tolta
+   la riga `.form-demo`. Non riusare `/api/onboarding`: alimenta il funnel B2C.
 2. **Il link privacy punta all'informativa B2C** (`giada.care/privacy`). Serve la sezione dedicata
    ai lead creator. Costante `PRIVACY_URL` in cima a `src/App.jsx`.
 3. **Dataset Meta separato** dal funnel B2C, con eventi distinti da `Contact`.
-4. **Il prototipo è pubblico e indicizzabile**: compenso e criteri di selezione sono leggibili da
+4. **La pagina è pubblica e indicizzabile**: compenso e criteri di selezione sono leggibili da
    chiunque.
 5. Compenso, perimetro diritti, privacy e criteri di ammissione restano provvisori e attendono
    approvazione business e legale.
+6. **Il copy è quello della V6**, considerato provvisorio dal committente: la riscrittura è la
+   prossima sessione.
 
 ## Da dove ripartire
 
@@ -106,11 +164,51 @@ Invariati rispetto alla revisione precedente, nessuno è stato chiuso in questa 
 - Leggere prima di un cambio visivo sostanziale: `DESIGN_SYSTEM.md`, `REFERENCE_MAP.md`,
   `design-qa.md`, `MONOREPO_HANDOFF.md`, più i guardrail in `CLAUDE.md`.
 - I termini commerciali vanno tenuti allineati con `BRIEF-GIADA-CREATOR-PROGRAM-v2.md`.
-- La reference «Veluno» non è versionata. Per una verifica futura serve di nuovo l'immagine.
+
+### Dove si tocca cosa
+
+| Cosa | Dove |
+| --- | --- |
+| I quattro colori e le loro miscele | `src/styles.css`, blocco `:root` |
+| La catena dei gradienti di zona | `src/styles.css`, blocco `SUPERFICI`; le classi `zone zone--light\|dark zone-<nome>` stanno sul tag `<section>` in `src/App.jsx` |
+| Lunghezza dei due passaggi di luminanza | `--fade` in `:root`, `--pad-extra` su `.zone-terms` e `.zone-finale` |
+| Le tre voci tipografiche | `@font-face` in cima a `src/styles.css`, token `--font-display`, `--font-editorial`, `--font-body` |
+| Ordine, copy e struttura della hero | `src/App.jsx`, blocco `<div className="hero-center">` |
+| Carte del ventaglio: quante, rotazione, sollevamento, immagini | array `heroDeck` in cima a `src/App.jsx` |
+| Geometria del ventaglio, etichette, sigillo | `src/styles.css`, sezione `HERO` |
+| Toni delle schede del patto | campo `tone` in `termCards`, `src/App.jsx` |
+| I tre fatti della rail di prova | array `proofFacts`, `src/App.jsx` |
+| Scala di colore dei passi del processo | classi `process-row--s1…s4` in `src/styles.css` |
+| Comparsa della nav fissa | `useEffect` con l'osservatore della hero in `src/App.jsx`, più `.site-nav` in `styles.css` |
+| Comportamento a 1080 / 900 / 700 / 560 / 480 / 420px | `src/styles.css`, sezione `RESPONSIVE` |
+
+Riempire uno slot del ventaglio: mettere il file in `public/assets/`, aggiungere `src` e `alt` alla
+riga corrispondente di `heroDeck`. L'ordine dell'array è l'ordine da sinistra a destra; la terza
+riga è la carta centrale, quella che resta visibile anche a tre carte.
+
+Aggiungere una sezione: agganciarla alla catena, con il colore iniziale uguale al colore finale
+della zona che la precede, e scegliere `zone--light` o `zone--dark`. Non scrivere colori dentro i
+componenti e non introdurre un quinto colore. Rimisurare le quote di palette.
+
+### Come si verifica
+
+La verifica è fatta con **playwright-core più il Chrome for Testing** già presente in
+`~/Library/Caches/ms-playwright`, guidato da due script usa e getta (non versionati):
+
+- **overflow**: per ogni larghezza, confronto di `scrollWidth` con `clientWidth` e scansione dei
+  bounding box per trovare gli elementi che superano il bordo (le rotazioni allargano il box, va
+  misurato quello).
+- **contrasto**: scansione di ogni nodo di testo. Il fondo non si legge dal `background-color`, che
+  qui è trasparente: va **campionato dentro il gradiente alla quota dell'elemento**, interpolando
+  fra gli stop. Attenzione, Chrome serializza `linear-gradient(180deg, …)` senza l'angolo.
+- La stessa passata misura la tenuta della hero, il comportamento della nav a quote fisse e la
+  quota di lilla come media pesata sull'altezza delle zone.
 
 ### Candidati per la prossima sessione
 
+- Riscrittura del copy, che il committente considera provvisorio.
+- Sostituire i quattro slot «FOTO» con le immagini reali delle creator e rivedere l'arco con i
+  soggetti veri dentro.
 - Chiudere il debito 1: endpoint reale del form e rimozione dello stato demo.
+- Guardare la V8 su browser reali: finora solo Chromium.
 - Traduzione dei quattro angoli `?angolo=` in varianti di headline già testate su Meta.
-- Verifica su browser reali di maschera SVG e `mask-image` (finora solo Chromium via Playwright).
-- Decidere se la pagina resta autonoma o entra nel monorepo (`MONOREPO_HANDOFF.md`).
