@@ -48,7 +48,7 @@ const heroDeck = [
 
 // Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
 // consegna, dove finisce. Nessun termine economico: il compenso vive solo in FAQ.
-// `tone` decide la superficie della scheda: teal, neutra, lilla.
+// `tone` decide la superficie della scheda: teal, neutra, periwinkle.
 const termCards = [
   {
     id: "liberta",
@@ -76,7 +76,7 @@ const termCards = [
   },
   {
     id: "distribuzione",
-    tone: "lilac",
+    tone: "periwinkle",
     icon: Megaphone,
     label: "Distribuzione",
     sublabel: "DOVE FINISCE",
@@ -118,7 +118,7 @@ const creatorModes = [
   },
   {
     id: "vita-reale",
-    tone: "lilac",
+    tone: "periwinkle",
     number: "02",
     label: "La vita vera",
     title: "Trovi una storia dentro una giornata qualsiasi.",

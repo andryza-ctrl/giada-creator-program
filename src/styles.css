@@ -1,7 +1,7 @@
 /* ==========================================================================
    Giada Creator Program - V10 "Light editorial"
-   Direzione: una superficie chiara continua, costruita soltanto con carta e
-   lilla. Navy dà struttura a testo e oggetti UI; teal è l'accento energico.
+   Direzione: una superficie chiara continua, costruita con carta e periwinkle.
+   Navy dà struttura a testo e oggetti UI; teal è l'accento energico.
    Ogni sezione chiude sul colore da cui parte la successiva: niente dissolvenze
    scure, tagli di luminanza o fasce che interrompono lo scroll.
 
@@ -38,14 +38,14 @@
   --navy: #203260;
   --teal: #10b8c0;
   --paper: #fff9ef;
-  --lilac: #e9dcff;
+  --periwinkle: #c6d0f6;
+  --periwinkle-surface: color-mix(in srgb, var(--paper) 45%, var(--periwinkle));
 
-  /* ---------- Tinte intermedie: solo carta e lilla mescolati ----------
-     La pagina chiara oscilla fra questi quattro valori. Nessuna è un colore
-     nuovo: sono la carta e il lilla in proporzioni diverse. */
-  --tint-1: #faf2f3; /* 25% lilla */
-  --tint-2: #f4eaf7; /* 50% lilla */
-  --tint-3: #eee3fb; /* 75% lilla */
+  /* ---------- Tinte intermedie: solo carta e periwinkle mescolati ----------
+     La pagina chiara oscilla fra questi quattro valori. */
+  --tint-1: color-mix(in srgb, var(--paper) 75%, var(--periwinkle));
+  --tint-2: color-mix(in srgb, var(--paper) 50%, var(--periwinkle));
+  --tint-3: color-mix(in srgb, var(--paper) 25%, var(--periwinkle));
 
   /* ---------- Testo sulle superfici chiare ----------
      Navy pieno e navy diluito nella carta: 11,9:1 e 4,8:1. */
@@ -101,7 +101,13 @@
    ========================================================================== */
 
 .zone {
-  background: var(--surface-grad);
+  background:
+    radial-gradient(
+      86% 62% at var(--periwinkle-x, 100%) var(--periwinkle-y, 0%),
+      var(--periwinkle-wash, rgba(198, 208, 246, 0.48)) 0%,
+      rgba(198, 208, 246, 0) 74%
+    ),
+    var(--surface-grad);
   color: var(--on);
   color-scheme: var(--scheme);
 }
@@ -122,16 +128,63 @@
   --scheme: light;
 }
 
-/* La catena light. Il secondo colore di ogni sezione è il primo della seguente. */
-.zone-hero { --surface-grad: linear-gradient(180deg, var(--paper), var(--lilac)); }
-.zone-terms { --surface-grad: linear-gradient(180deg, var(--lilac), var(--paper)); }
-.zone-trial { --surface-grad: linear-gradient(180deg, var(--paper), var(--tint-2)); }
-.zone-fit { --surface-grad: linear-gradient(180deg, var(--tint-2), var(--lilac)); }
-.zone-profiles { --surface-grad: linear-gradient(180deg, var(--lilac), var(--tint-1)); }
-.zone-process { --surface-grad: linear-gradient(180deg, var(--tint-1), var(--paper)); }
-.zone-faq { --surface-grad: linear-gradient(180deg, var(--paper), var(--tint-2)); }
-.zone-finale { --surface-grad: linear-gradient(180deg, var(--tint-2), var(--lilac)); }
-.zone-footer { --surface-grad: linear-gradient(180deg, var(--lilac), var(--lilac)); }
+/* La catena light. Il secondo colore di ogni sezione è il primo della seguente.
+   Il periwinkle entra come una luce laterale, così la pagina resta chiara e
+   continua senza spezzarsi in bande di colore. */
+.zone-hero {
+  --surface-grad: linear-gradient(180deg, var(--paper), var(--periwinkle-surface));
+  --periwinkle-x: 100%;
+  --periwinkle-y: 0%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.32);
+}
+.zone-terms {
+  --surface-grad: linear-gradient(180deg, var(--periwinkle-surface), var(--paper));
+  --periwinkle-x: 0%;
+  --periwinkle-y: 24%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.24);
+}
+.zone-trial {
+  --surface-grad: linear-gradient(180deg, var(--paper), var(--tint-2));
+  --periwinkle-x: 100%;
+  --periwinkle-y: 68%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.28);
+}
+.zone-fit {
+  --surface-grad: linear-gradient(180deg, var(--tint-2), var(--periwinkle-surface));
+  --periwinkle-x: 8%;
+  --periwinkle-y: 100%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.24);
+}
+.zone-profiles {
+  --surface-grad: linear-gradient(180deg, var(--periwinkle-surface), var(--tint-1));
+  --periwinkle-x: 100%;
+  --periwinkle-y: 18%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.26);
+}
+.zone-process {
+  --surface-grad: linear-gradient(180deg, var(--tint-1), var(--paper));
+  --periwinkle-x: 0%;
+  --periwinkle-y: 78%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.2);
+}
+.zone-faq {
+  --surface-grad: linear-gradient(180deg, var(--paper), var(--tint-2));
+  --periwinkle-x: 100%;
+  --periwinkle-y: 42%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.28);
+}
+.zone-finale {
+  --surface-grad: linear-gradient(180deg, var(--tint-2), var(--periwinkle-surface));
+  --periwinkle-x: 16%;
+  --periwinkle-y: 100%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.24);
+}
+.zone-footer {
+  --surface-grad: linear-gradient(180deg, var(--periwinkle-surface), var(--periwinkle-surface));
+  --periwinkle-x: 100%;
+  --periwinkle-y: 100%;
+  --periwinkle-wash: rgba(198, 208, 246, 0.18);
+}
 
 /* ============ BASE ============ */
 
@@ -141,7 +194,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--paper);
+  background: linear-gradient(135deg, var(--paper) 0%, var(--periwinkle-surface) 100%);
   color: var(--navy);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -377,7 +430,7 @@ h2 em.is-inline { display: inline; color: inherit; }
 
 /* ============ NAV FISSA ============ */
 /* Non esiste sopra la hero: entra quando la hero è uscita e torna a uscire
-   risalendo. Resta una pastiglia lilla trasparente sopra le carte chiare. */
+   risalendo. Resta una pastiglia periwinkle trasparente sopra le carte chiare. */
 
 .site-nav {
   position: fixed;
@@ -410,7 +463,12 @@ h2 em.is-inline { display: inline; color: inherit; }
   pointer-events: auto;
   border: 1px solid rgba(32, 50, 96, 0.14);
   border-radius: var(--r-pill);
-  background: rgba(233, 220, 255, 0.78);
+  background:
+    linear-gradient(
+      112deg,
+      rgba(255, 249, 239, 0.78) 0%,
+      rgba(198, 208, 246, 0.68) 100%
+    );
   backdrop-filter: blur(18px);
   box-shadow: 0 18px 44px rgba(32, 50, 96, 0.16);
   color: var(--navy);
@@ -603,7 +661,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   object-fit: cover;
   object-position: 80% 50%;
 }
-/* Le trame degli slot alternano teal e lilla a bassissima opacità: il ventaglio
+/* Le trame degli slot alternano teal e periwinkle a bassissima opacità: il ventaglio
    non è cinque volte la stessa superficie piatta. */
 .deck-card--slot {
   display: grid;
@@ -614,7 +672,7 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .deck-card--slot:nth-of-type(even) {
   background-image:
-    repeating-linear-gradient(48deg, rgba(233, 220, 255, 0.2) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(48deg, rgba(198, 208, 246, 0.2) 0 1px, transparent 1px 11px),
     linear-gradient(160deg, #294778, var(--navy));
 }
 /* L'etichetta si centra sulla parte visibile della carta, non sulla carta. */
@@ -766,7 +824,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   content: none;
 }
 .term-card--plain,
-.term-card--lilac { --tone: var(--teal); }
+.term-card--periwinkle { --tone: var(--teal); }
 
 .term-chip {
   align-self: start;
@@ -915,7 +973,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   color: var(--on);
   background:
     radial-gradient(86% 70% at 86% 6%, rgba(16, 184, 192, 0.28), transparent 62%),
-    radial-gradient(70% 60% at 8% 100%, rgba(233, 220, 255, 0.18), transparent 64%),
+    radial-gradient(70% 60% at 8% 100%, rgba(198, 208, 246, 0.18), transparent 64%),
     var(--navy);
   box-shadow: var(--shadow-object);
   overflow: hidden;
@@ -1210,7 +1268,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   background-image: linear-gradient(
     150deg,
     rgba(16, 184, 192, 0.14),
-    rgba(233, 220, 255, 0.3)
+    rgba(198, 208, 246, 0.3)
   );
   color: var(--on);
 }
@@ -1232,7 +1290,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   border-radius: var(--r-lg);
   background:
     radial-gradient(90% 150% at 6% 0%, rgba(16, 184, 192, 0.12), transparent 66%),
-    linear-gradient(166deg, var(--paper), rgba(233, 220, 255, 0.42));
+    linear-gradient(166deg, var(--paper), rgba(198, 208, 246, 0.42));
   box-shadow: inset 0 0 0 1px rgba(32, 50, 96, 0.12), var(--shadow-lift);
 }
 /* I gradienti non interpolano: una transizione sul background sarebbe una
@@ -1571,7 +1629,7 @@ h2 em.is-inline { display: inline; color: inherit; }
   display: grid;
   place-items: center;
   border-radius: var(--r-sm);
-  background: linear-gradient(140deg, rgba(16, 184, 192, 0.24), rgba(233, 220, 255, 0.6));
+  background: linear-gradient(140deg, rgba(16, 184, 192, 0.24), rgba(198, 208, 246, 0.6));
   color: var(--navy);
   animation: mark-in 420ms var(--ease-quart) both;
 }
@@ -1628,7 +1686,7 @@ footer { padding-block: 34px; }
     transform: translateY(-3px);
     box-shadow: var(--shadow-object);
   }
-  .process-row:hover { background: rgba(233, 220, 255, 0.4); }
+  .process-row:hover { background: rgba(198, 208, 246, 0.4); }
   .faq-item > button:hover { color: var(--accent-text); }
   .footer-grid > a:hover { color: var(--on); }
   .trial-stage:hover .stage-screen--summary { transform: rotate(-2.5deg) translateY(-5px); }
