@@ -10,9 +10,29 @@ import {
   Video,
 } from "lucide-react";
 
-// TODO prima del traffico: sostituire con l'informativa dedicata ai lead creator.
-// Oggi punta all'informativa Vivarium S.r.l. pubblicata per Giada.
-const PRIVACY_URL = "https://giada.care/privacy";
+// Informativa dedicata ai lead creator, servita da questa stessa origine.
+// Non è quella B2C di giada.care: base giuridica, destinatari e conservazione
+// sono diversi perché diverso è il trattamento.
+const PRIVACY_URL = "/privacy-creator.html";
+
+// Le candidature finiscono in un modulo Google collegato al foglio
+// "Giada Creator Program - Candidature" sul Drive di Andrea, che manda anche la
+// notifica via mail a ogni risposta. Gli `entry.*` sono gli id dei campi di quel
+// modulo: si rileggono dall'HTML del modulo pubblico se qualcuno lo modifica.
+const FORM_ENDPOINT =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/formResponse";
+const FORM_FIELDS = {
+  fullName: "entry.1436352776",
+  email: "entry.2025854185",
+  handle: "entry.1400665650",
+  about: "entry.1341915027",
+  consentAge: "entry.1349877931",
+  consentPrivacy: "entry.1497615666",
+};
+
+// TODO: link diretto al PDF del brief su Drive. Finché è vuoto, il bottone del
+// pop-up resta disattivato e la conferma rimanda alla mail.
+const BRIEF_PDF_URL = "";
 
 // Una sola etichetta per l'unica conversione della pagina.
 const CTA_LABEL = "Ricevi brief e accesso";
@@ -245,7 +265,9 @@ export function App() {
   const [angleKey, setAngleKey] = useState("default");
   const [activeMode, setActiveMode] = useState("rassicurante");
   const [openFaq, setOpenFaq] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
+  // idle | sending | done | error
+  const [formState, setFormState] = useState("idle");
+  const modalRef = useRef(null);
   // La nav fissa non esiste sopra la hero: compare solo dalla sezione dopo, e
   // torna a sparire risalendo verso la hero dal basso.
   const [showNav, setShowNav] = useState(false);
@@ -286,9 +308,47 @@ export function App() {
     [activeMode],
   );
 
-  function handleSubmit(event) {
+  // Il pop-up di conferma: Esc chiude, la pagina sotto non scorre, il focus
+  // entra nel pannello. Senza questo il lettore di schermo resta nel form.
+  useEffect(() => {
+    if (formState !== "done") return undefined;
+    const onKey = (event) => {
+      if (event.key === "Escape") setFormState("idle");
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    modalRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [formState]);
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form).entries());
+
+    const body = new URLSearchParams();
+    body.append(FORM_FIELDS.fullName, String(values.fullName || "").trim());
+    body.append(FORM_FIELDS.email, String(values.email || "").trim());
+    body.append(FORM_FIELDS.handle, String(values.handle || "").trim());
+    body.append(FORM_FIELDS.about, String(values.about || "").trim());
+    body.append(FORM_FIELDS.consentAge, values.age ? "si" : "no");
+    body.append(FORM_FIELDS.consentPrivacy, values.privacy ? "si" : "no");
+
+    setFormState("sending");
+    try {
+      // Moduli Google non manda intestazioni CORS: la risposta è opaca e non si
+      // può leggere lo stato. Un errore di rete però fa comunque throw, quindi
+      // l'utente vede un fallimento vero e non una conferma falsa.
+      await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body });
+      form.reset();
+      setFormState("done");
+    } catch {
+      setFormState("error");
+    }
   }
 
   return (
@@ -785,27 +845,16 @@ export function App() {
               </p>
             </div>
             <div className="form-card" data-reveal style={{ "--d": "100ms" }}>
-              {submitted ? (
-                <div className="form-success" role="status" aria-live="polite">
-                  <div className="form-success-mark">
-                    <Check aria-hidden="true" size={26} strokeWidth={2.4} />
-                  </div>
-                  <h3>Ci siamo.</h3>
-                  <p>Anteprima: nessun dato è stato inviato.</p>
-                  <button
-                    className="button button--ghost"
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    <span>Rivedi il form</span>
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="field-grid">
+              <form onSubmit={handleSubmit}>
+                <div className="field-grid">
                     <label>
-                      <span>Nome</span>
-                      <input name="name" placeholder="Come ti chiami?" autoComplete="name" required />
+                      <span>Nome completo</span>
+                      <input
+                        name="fullName"
+                        placeholder="Nome e cognome"
+                        autoComplete="name"
+                        required
+                      />
                     </label>
                     <label>
                       <span>Email</span>
@@ -819,21 +868,9 @@ export function App() {
                     </label>
                   </div>
                   <label>
-                    <span>Canale principale</span>
-                    <select name="channel" defaultValue="" required>
-                      <option value="" disabled>
-                        Seleziona il canale
-                      </option>
-                      <option>Instagram</option>
-                      <option>TikTok</option>
-                      <option>Entrambi</option>
-                      <option>Sto iniziando ora</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Il tuo profilo</span>
+                    <span>Tag del profilo</span>
                     <input
-                      name="profile"
+                      name="handle"
                       placeholder="@iltuonome"
                       autoCapitalize="none"
                       autoCorrect="off"
@@ -863,13 +900,21 @@ export function App() {
                       .
                     </span>
                   </label>
-                  <button className="button button--primary button--full" type="submit">
-                    <span>{CTA_LABEL}</span>
+                  <button
+                    className="button button--primary button--full"
+                    type="submit"
+                    disabled={formState === "sending"}
+                  >
+                    <span>{formState === "sending" ? "Invio in corso…" : CTA_LABEL}</span>
                     <ArrowRight aria-hidden="true" size={17} strokeWidth={2} />
                   </button>
-                  <p className="form-demo">Anteprima: il form non invia ancora dati.</p>
+                  {formState === "error" ? (
+                    <p className="form-error" role="alert">
+                      L’invio non è riuscito. Riprova, oppure scrivici a{" "}
+                      <a href="mailto:info@vivariumai.co">info@vivariumai.co</a>.
+                    </p>
+                  ) : null}
                 </form>
-              )}
             </div>
           </div>
         </section>
@@ -890,6 +935,82 @@ export function App() {
         </footer>
       </main>
 
+      {formState === "done" ? (
+        <div
+          className="modal-scrim"
+          role="presentation"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setFormState("idle");
+          }}
+        >
+          <div
+            className="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            ref={modalRef}
+            tabIndex={-1}
+          >
+            <p className="modal-mark" aria-hidden="true">
+              <Check size={26} strokeWidth={2.6} />
+            </p>
+            <h2 id="modal-title">
+              Ci siamo.
+              <em>Sei dentro 🎬</em>
+            </h2>
+            <p className="modal-lede">
+              Abbiamo ricevuto la tua candidatura. Il brief e l’accesso a Giada ti arrivano
+              via mail entro pochi minuti: se non li vedi, controlla lo spam.
+            </p>
+            <ul className="modal-steps">
+              <li>
+                <b>01</b>
+                Leggi il brief: dice cosa cerchiamo e quanta libertà hai.
+              </li>
+              <li>
+                <b>02</b>
+                Prova Giada per tre giorni, senza compiti.
+              </li>
+              <li>
+                <b>03</b>
+                Raccontaci la tua idea. Entro 72 ore ti diciamo se si parte.
+              </li>
+            </ul>
+            <div className="modal-actions">
+              {BRIEF_PDF_URL ? (
+                <a
+                  className="button button--primary button--badge"
+                  href={BRIEF_PDF_URL}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span>Apri il brief</span>
+                  <span className="button-badge" aria-hidden="true">
+                    <ArrowUpRight size={16} strokeWidth={2.2} />
+                  </span>
+                </a>
+              ) : (
+                <button className="button button--primary button--badge" type="button" disabled>
+                  <span>Apri il brief</span>
+                  <span className="button-badge" aria-hidden="true">
+                    <ArrowUpRight size={16} strokeWidth={2.2} />
+                  </span>
+                </button>
+              )}
+              <button
+                className="button button--ghost"
+                type="button"
+                onClick={() => setFormState("idle")}
+              >
+                <span>Chiudi</span>
+              </button>
+            </div>
+            {BRIEF_PDF_URL ? null : (
+              <p className="modal-note">Il link al brief si attiva a breve. Intanto lo ricevi via mail.</p>
+            )}
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

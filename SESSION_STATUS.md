@@ -200,6 +200,77 @@ processo appeso senza dire perché. In alternativa si genera dalla chat ChatGPT 
 `playwright-core` è ora una devDependency: le passate di QA descritte più sotto la usano con il
 Chrome installato sul Mac, perché la cache dei browser Playwright non c'è più.
 
+### Il form invia davvero: modulo Google, foglio e notifica
+
+Il form della landing non è più una demo. Il percorso di una candidatura, dal clic alla mail:
+
+1. La landing fa `POST` a un **modulo Google** (`FORM_ENDPOINT` in cima a `src/App.jsx`) con i sei
+   campi mappati in `FORM_FIELDS`.
+2. Il modulo scrive la riga nel foglio **«Giada Creator Program - Candidature»**, scheda
+   *Risposte del modulo 1*, sul Drive di `andrea.zannuto@gmail.com`.
+3. Google manda la notifica alla stessa casella a ogni risposta (impostazione *Ricevi notifiche
+   email per le nuove risposte*, attiva).
+
+| Cosa | Dove |
+| --- | --- |
+| Foglio delle candidature | `13qIw9G_IEPwzWxiqNKWKDm3edcLLYUR7az1NRLFtZBI` |
+| Modulo (editor) | `1CXB0UUcudcSPC8tVpgCvTSWVI51_s6C0UjvN4qqHFeY` |
+| Endpoint di invio | `https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/formResponse` |
+
+**Se qualcuno modifica le domande del modulo, gli `entry.*` cambiano** e il form della landing
+smette di scrivere le colonne giuste. Si rileggono così, senza aprire niente:
+
+```bash
+curl -s "https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/viewform" | grep -o 'FB_PUBLIC_LOAD_DATA_ = .*'
+```
+
+**Il limite da conoscere**: Moduli Google non manda intestazioni CORS, quindi la risposta al `POST`
+è opaca e il browser non può leggerne lo stato. La landing mostra la conferma quando la richiesta
+parte senza errori di rete: un rifiuto lato Google passerebbe per un successo. È il prezzo di non
+avere un backend proprio. Un errore di rete vero invece si vede, e la pagina mostra il messaggio di
+fallimento con l'indirizzo a cui scrivere.
+
+**La strada alternativa, già preparata a metà**: nel Drive c'è un progetto Apps Script legato al
+foglio, con `doPost` che scrive la riga e manda una mail formattata (nome, tag, consensi, testo
+della candidatura, link al foglio). Non è distribuito: la finestra di consenso OAuth si apre fuori
+dalla portata degli strumenti di automazione. Per finirlo servono tre clic a mano —
+*Distribuisci › Nuovo deployment › App web*, accesso «Chiunque» — e poi basta incollare l'URL
+`/exec` in `FORM_ENDPOINT` e rimettere il `POST` in JSON. Serve solo se si vuole la mail formattata
+al posto della notifica standard di Moduli.
+
+### I campi del form
+
+Quattro domande e due caselle, come chiesto il 5 settembre: **nome completo**, **email**,
+**tag del profilo**, **raccontaci qualcosa di te**, più maggiore età e consenso privacy. È sparito
+il menu «Canale principale»: il canale si legge dal tag del profilo.
+
+### Il pop-up di conferma
+
+Alla conferma non si sostituisce più la carta del form: si apre un **pop-up** con la stessa lingua
+della pagina — superficie di carta, filo teal in cima, titolo in due voci — che conferma la
+registrazione, elenca i tre passi successivi e porta il bottone al brief.
+
+`BRIEF_PDF_URL` in cima a `src/App.jsx` è **vuota di proposito**: finché lo è, il bottone resta
+disattivato e dice «Il brief arriva via mail». Appena il PDF è su Drive, si incolla il link diretto
+lì e il bottone diventa attivo, senza toccare altro.
+
+Il pop-up si chiude con Esc, con il clic fuori o con «Chiudi»; la pagina sotto non scorre e il
+focus entra nel pannello.
+
+### L'informativa privacy dei creator
+
+`public/privacy-creator.html` è una pagina a sé, con i token della landing e nessuna dipendenza dal
+bundle. **Non è una copia di quella B2C**, perché il trattamento è diverso: niente dati sulla
+salute, niente art. 9, niente pagamenti. Basi giuridiche dichiarate: misure precontrattuali
+(art. 6(1)(b)) per valutare la candidatura e mandare brief e accesso, legittimo interesse
+(art. 6(1)(f)) per tenere l'elenco, contratto e obblighi fiscali se si arriva al compenso.
+Destinatari: Google Ireland (foglio e notifiche) e Vercel (hosting). Conservazione: 12 mesi per le
+candidature non selezionate, durata del rapporto più 10 anni fiscali per quelle che diventano
+collaborazioni. Dichiarato anche che non c'è nessuna decisione automatizzata.
+
+I dati societari (Vivarium S.r.l., Via Montello 18, Bologna, `privacy@vivariumai.co`) vengono
+dall'informativa pubblicata su `giada.care/privacy`: solo quelli, non il testo.
+
 ## Storia precedente
 
 - **19 agosto 2026, V6 «Daylight»**: sei superfici alternate (navy, abisso, crema, lilla pallido,
@@ -228,10 +299,13 @@ di terzi.
 
 Nessuno chiuso in questa sessione: sono tutti fuori dal perimetro visivo.
 
-1. **Il form è una demo e non invia dati.** Va collegato a un endpoint creator dedicato, e va tolta
-   la riga `.form-demo`. Non riusare `/api/onboarding`: alimenta il funnel B2C.
-2. **Il link privacy punta all'informativa B2C** (`giada.care/privacy`). Serve la sezione dedicata
-   ai lead creator. Costante `PRIVACY_URL` in cima a `src/App.jsx`.
+1. ~~Il form è una demo e non invia dati.~~ **Chiuso il 5 settembre 2026**: le candidature vanno
+   in un modulo Google collegato al foglio sul Drive di Andrea, con notifica via mail. Dettagli
+   sotto.
+2. ~~Il link privacy punta all'informativa B2C.~~ **Chiuso il 5 settembre 2026**: informativa
+   dedicata in `public/privacy-creator.html`, servita da `/privacy-creator.html`. **Va fatta
+   validare da un legale prima di mandare traffico**: è scritta sui trattamenti reali, ma non è
+   stata rivista da un avvocato.
 3. **Dataset Meta separato** dal funnel B2C, con eventi distinti da `Contact`.
 4. **La pagina è pubblica e indicizzabile**: compenso e criteri di selezione sono leggibili da
    chiunque.

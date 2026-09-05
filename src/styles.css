@@ -1614,31 +1614,139 @@ h2 em.is-inline { display: inline; color: inherit; }
 .form-card .button--full { margin-top: 10px; }
 .form-demo { margin-top: 6px; color: var(--on-soft); font-size: 11px; text-align: center; }
 
-.form-success {
-  min-height: 486px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.form-error {
+  margin-top: 12px;
+  color: var(--on-soft);
+  font-size: 12.5px;
   text-align: center;
 }
-.form-success-mark {
-  width: 62px;
-  height: 62px;
-  margin-bottom: 22px;
+.form-error a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ============ POP-UP DI CONFERMA ============
+   Stessa lingua della pagina: superficie di carta, filo teal in cima come sulla
+   carta del form, titolo in due voci (display + corsivo nell'accento). */
+
+.modal-scrim {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgba(32, 50, 96, 0.58);
+  backdrop-filter: blur(6px);
+  animation: scrim-in 220ms var(--ease-out) both;
+}
+@keyframes scrim-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modal-card {
+  --on: var(--ink);
+  --on-soft: var(--ink-soft);
+  --accent-text: var(--teal-ink);
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - var(--gutter) * 2);
+  overflow: auto;
+  padding: clamp(28px, 3.4vw, 44px);
+  border-radius: var(--r-lg);
+  outline: 0;
+  background: linear-gradient(168deg, var(--paper), var(--tint-1));
+  color: var(--ink);
+  box-shadow: 0 30px 80px rgba(32, 50, 96, 0.32);
+  animation: modal-in 320ms var(--ease-quart) both;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.modal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), rgba(16, 184, 192, 0.16));
+}
+.modal-mark {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
   display: grid;
   place-items: center;
   border-radius: var(--r-sm);
-  background: linear-gradient(140deg, rgba(16, 184, 192, 0.24), rgba(198, 208, 246, 0.6));
+  background: linear-gradient(140deg, rgba(16, 184, 192, 0.28), rgba(198, 208, 246, 0.7));
   color: var(--navy);
-  animation: mark-in 420ms var(--ease-quart) both;
 }
-@keyframes mark-in {
-  from { opacity: 0; transform: scale(0.94); }
-  to { opacity: 1; transform: none; }
+.modal-card h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  line-height: 1.02;
 }
-.form-success h3 { color: var(--on); }
-.form-success p { margin: 14px 0 26px; color: var(--on-soft); font-size: 14.5px; }
+.modal-card h2 em {
+  display: block;
+  color: var(--teal-ink);
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 400;
+}
+.modal-lede {
+  margin-top: 16px;
+  max-width: 46ch;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.modal-steps {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid rgba(32, 50, 96, 0.14);
+  padding-top: 20px;
+}
+.modal-steps li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.modal-steps b {
+  color: var(--teal-ink);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 750;
+}
+.modal-actions {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* Il bottone del brief resta in pagina anche senza link: si legge come non
+   ancora attivo, non come rotto. */
+.modal-actions .button[disabled] {
+  cursor: default;
+  background: rgba(32, 50, 96, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(32, 50, 96, 0.14);
+  color: var(--ink-soft);
+}
+.modal-actions .button[disabled] .button-badge {
+  background: rgba(32, 50, 96, 0.1);
+  color: var(--ink-soft);
+}
+.modal-note {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+}
+
+@media (max-width: 700px) {
+  .modal-card { padding: clamp(22px, 6vw, 30px); }
+  .modal-actions { flex-direction: column; align-items: stretch; }
+  .modal-actions .button { width: 100%; justify-content: center; }
+}
 
 /* ============ FOOTER ============ */
 

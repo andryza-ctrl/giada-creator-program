@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Informativa privacy — Giada Creator Program</title>
+    <link rel="icon" href="/favicon.png" />
+    <style>
+      @font-face {
+        font-family: "Geist";
+        src: url("/assets/geist-latin.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Bricolage Grotesque";
+        src: url("/assets/bricolage-latin.woff2") format("woff2");
+        font-weight: 400 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Arapey";
+        src: url("/assets/arapey-italic.woff2") format("woff2");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+
+      :root {
+        --navy: #203260;
+        --teal: #10b8c0;
+        --teal-ink: #087d86;
+        --paper: #fff9ef;
+        --periwinkle: #c6d0f6;
+        --tint-1: color-mix(in srgb, var(--paper) 75%, var(--periwinkle));
+        --tint-2: color-mix(in srgb, var(--paper) 50%, var(--periwinkle));
+        --ink: var(--navy);
+        --ink-soft: #515e7f;
+        --hair: rgba(32, 50, 96, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: linear-gradient(178deg, var(--paper) 0%, var(--tint-1) 55%, var(--tint-2) 100%);
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 760px;
+        margin-inline: auto;
+        padding: clamp(40px, 7vh, 88px) clamp(20px, 5vw, 40px) clamp(60px, 9vh, 120px);
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--teal-ink);
+        font-size: 13px;
+        font-weight: 620;
+        text-decoration: none;
+      }
+      .back:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+      .eyebrow {
+        margin: 34px 0 0;
+        color: var(--ink-soft);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 12px 0 0;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(2.1rem, 5vw, 3.1rem);
+        font-weight: 780;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+      }
+      h1 em {
+        display: block;
+        color: var(--teal-ink);
+        font-family: "Arapey", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      .lede {
+        margin: 20px 0 0;
+        max-width: 58ch;
+        color: var(--ink-soft);
+        font-size: 17px;
+      }
+
+      .meta {
+        margin-top: 26px;
+        padding: 18px 20px;
+        border: 1px solid var(--hair);
+        border-radius: 14px;
+        background: rgba(255, 249, 239, 0.7);
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+      .meta b { color: var(--ink); }
+
+      h2 {
+        margin: 46px 0 0;
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 10px;
+        align-items: baseline;
+        border-top: 1px solid var(--hair);
+        padding-top: 26px;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+        font-weight: 750;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+      h2 span {
+        color: var(--teal-ink);
+        font-size: 15px;
+        font-weight: 750;
+      }
+
+      h2 + p, h2 + ul, h2 + table, h2 + .note { margin-top: 14px; }
+
+      p, li { color: var(--ink-soft); }
+      p { margin: 14px 0 0; max-width: 68ch; }
+
+      ul { margin: 14px 0 0; padding-left: 20px; max-width: 68ch; }
+      li { margin-bottom: 9px; }
+      li b, p b { color: var(--ink); font-weight: 620; }
+
+      a { color: var(--teal-ink); }
+
+      table {
+        margin-top: 16px;
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14.5px;
+      }
+      th, td {
+        border-bottom: 1px solid var(--hair);
+        padding: 11px 12px 11px 0;
+        text-align: left;
+        vertical-align: top;
+        color: var(--ink-soft);
+      }
+      th {
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      td:first-child { color: var(--ink); font-weight: 560; width: 34%; }
+
+      .note {
+        margin-top: 18px;
+        border-left: 2px solid var(--teal);
+        padding: 4px 0 4px 16px;
+        color: var(--ink-soft);
+        font-size: 14.5px;
+      }
+
+      footer {
+        margin-top: 56px;
+        border-top: 1px solid var(--hair);
+        padding-top: 22px;
+        color: var(--ink-soft);
+        font-size: 12.5px;
+      }
+
+      @media (max-width: 620px) {
+        h2 { grid-template-columns: 1fr; gap: 2px; }
+        td:first-child { width: auto; }
+        table, tbody, tr, td { display: block; }
+        th { display: none; }
+        td { border: 0; padding-bottom: 2px; }
+        tr { border-bottom: 1px solid var(--hair); padding-bottom: 12px; display: block; margin-bottom: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <a class="back" href="/">← Torna al Giada Creator Program</a>
+
+      <p class="eyebrow">Informativa privacy · Candidature creator</p>
+      <h1>
+        I tuoi dati,
+        <em>e cosa ne facciamo.</em>
+      </h1>
+      <p class="lede">
+        Questa informativa riguarda solo chi si candida al Giada Creator Program. È distinta
+        dall'informativa di chi usa Giada come assistente di nutrizione: qui non trattiamo dati
+        sulla tua salute, e il rapporto che si apre è professionale, non un servizio al consumatore.
+      </p>
+
+      <div class="meta">
+        <b>Titolare del trattamento:</b> Vivarium S.r.l., Via Montello 18, 40131 Bologna (BO),
+        Italia.<br />
+        <b>Contatti privacy:</b> <a href="mailto:privacy@vivariumai.co">privacy@vivariumai.co</a><br />
+        <b>Ultimo aggiornamento:</b> 5 settembre 2026
+      </div>
+
+      <h2><span>01</span> Quali dati raccogliamo</h2>
+      <p>
+        Solo quello che scrivi nel modulo di candidatura, più i dati tecnici minimi che accompagnano
+        ogni invio.
+      </p>
+      <ul>
+        <li><b>Nome completo</b>, per sapere con chi stiamo parlando.</li>
+        <li><b>Indirizzo email</b>, per mandarti il brief, l'accesso di prova e la nostra risposta.</li>
+        <li><b>Tag del profilo social</b>, che è un dato pubblico e ci serve per vedere che contenuti fai.</li>
+        <li><b>Il testo che scrivi su di te</b>: ne sei tu l'autore, quindi decidi tu cosa ci metti.</li>
+        <li><b>Le due conferme</b> sulla maggiore età e sulla lettura di questa informativa.</li>
+        <li><b>Data e ora dell'invio</b> e la pagina da cui arriva.</li>
+      </ul>
+      <div class="note">
+        Non chiediamo dati sulla salute, né dati di pagamento, né documenti d'identità. Se li scrivi
+        spontaneamente nel campo libero li cancelliamo: non ci servono e non li vogliamo.
+      </div>
+
+      <h2><span>02</span> Perché li trattiamo, e a che titolo</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Finalità</th>
+            <th>Base giuridica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Valutare la candidatura e risponderti</td>
+            <td>Misure precontrattuali prese su tua richiesta — art. 6(1)(b) GDPR</td>
+          </tr>
+          <tr>
+            <td>Mandarti il brief e l'accesso di prova a Giada</td>
+            <td>Misure precontrattuali prese su tua richiesta — art. 6(1)(b) GDPR</td>
+          </tr>
+          <tr>
+            <td>Tenere l'elenco delle candidature e organizzare la selezione</td>
+            <td>Legittimo interesse a gestire il programma e la sicurezza degli invii — art. 6(1)(f) GDPR</td>
+          </tr>
+          <tr>
+            <td>Se lavoriamo insieme: contratto, compenso, fatturazione</td>
+            <td>Contratto — art. 6(1)(b) e obblighi fiscali e contabili — art. 6(1)(c) GDPR</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Non ti mandiamo newsletter o comunicazioni commerciali sulla base di questa candidatura. Se
+        un giorno vorremo farlo, te lo chiederemo prima e separatamente.
+      </p>
+
+      <h2><span>03</span> Nessuna decisione automatica</h2>
+      <p>
+        Le candidature le legge una persona. Non c'è profilazione, non c'è punteggio automatico e
+        nessun sistema decide al posto nostro chi passa e chi no.
+      </p>
+
+      <h2><span>04</span> Chi vede i tuoi dati</h2>
+      <ul>
+        <li>
+          <b>Le persone di Vivarium</b> che seguono il programma, autorizzate al trattamento e tenute
+          alla riservatezza.
+        </li>
+        <li>
+          <b>Google Ireland Ltd.</b> — Google Workspace: il modulo scrive la candidatura in un foglio
+          di calcolo e manda la notifica via posta. Responsabile del trattamento.
+        </li>
+        <li>
+          <b>Vercel Inc.</b> — hosting di questa pagina. Responsabile del trattamento.
+        </li>
+      </ul>
+      <p>
+        Non vendiamo i tuoi dati e non li cediamo a terzi per finalità loro. Alcuni di questi
+        fornitori possono trattare dati fuori dallo Spazio economico europeo: in quel caso il
+        trasferimento avviene sulla base delle clausole contrattuali tipo approvate dalla Commissione
+        europea, o di una decisione di adeguatezza.
+      </p>
+
+      <h2><span>05</span> Per quanto tempo li teniamo</h2>
+      <table>
+        <tbody>
+          <tr>
+            <td>Candidature non selezionate</td>
+            <td>12 mesi dall'invio, poi cancellate. Il tempo che serve a richiamarti per un progetto successivo.</td>
+          </tr>
+          <tr>
+            <td>Candidature che diventano collaborazioni</td>
+            <td>Per tutta la durata del rapporto e, per i soli documenti fiscali e contabili, 10 anni come impone la legge.</td>
+          </tr>
+          <tr>
+            <td>Contenuti che ci mandi dopo la selezione</td>
+            <td>Secondo quanto scritto nell'accordo che firmiamo, che prevale su questa riga.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2><span>06</span> I tuoi diritti</h2>
+      <p>
+        Puoi chiederci in qualsiasi momento di <b>accedere</b> ai tuoi dati, <b>correggerli</b>,
+        <b>cancellarli</b>, <b>limitarne</b> il trattamento o <b>riceverli</b> in un formato leggibile
+        da una macchina (artt. 15-20 GDPR). Puoi anche <b>opporti</b> al trattamento fondato sul
+        legittimo interesse (art. 21 GDPR).
+      </p>
+      <p>
+        Scrivi a <a href="mailto:privacy@vivariumai.co">privacy@vivariumai.co</a>: rispondiamo entro
+        un mese. Cancellare la candidatura è la richiesta più semplice di tutte e la eseguiamo
+        subito.
+      </p>
+      <p>
+        Se pensi che stiamo trattando i tuoi dati in modo scorretto puoi rivolgerti al
+        <b>Garante per la protezione dei dati personali</b> (<a
+          href="https://www.garanteprivacy.it"
+          target="_blank"
+          rel="noreferrer noopener"
+          >garanteprivacy.it</a
+        >) o all'autorità del Paese in cui vivi.
+      </p>
+
+      <h2><span>07</span> Maggiore età</h2>
+      <p>
+        Il programma è riservato a chi ha compiuto 18 anni: te lo chiediamo nel modulo. Se ci
+        accorgiamo che una candidatura arriva da un minore la cancelliamo.
+      </p>
+
+      <h2><span>08</span> Conferimento dei dati</h2>
+      <p>
+        Compilare il modulo è libero, ma i campi che chiediamo sono tutti necessari: senza nome,
+        email e profilo non possiamo valutare la candidatura né mandarti il brief. Non c'è nessuna
+        conseguenza se scegli di non candidarti.
+      </p>
+
+      <h2><span>09</span> Modifiche</h2>
+      <p>
+        Se cambiamo strumenti o finalità aggiorniamo questa pagina e la data in cima. Le candidature
+        già ricevute restano trattate secondo l'informativa in vigore al momento dell'invio, salvo
+        che il cambiamento sia a tuo favore.
+      </p>
+
+      <footer>
+        Vivarium S.r.l. — Via Montello 18, 40131 Bologna (BO), Italia ·
+        <a href="mailto:privacy@vivariumai.co">privacy@vivariumai.co</a> ·
+        <a href="/">Giada Creator Program</a>
+      </footer>
+    </main>
+  </body>
+</html>
