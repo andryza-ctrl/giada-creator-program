@@ -254,38 +254,33 @@ Dentro l'app i percorsi degli asset nascono da `import.meta.env.BASE_URL`, non d
 iniziale. `public/privacy-creator.html` sta fuori dal bundle e usa URL **relative**, quindi non ha
 bisogno di sapere dove è montata.
 
-**Il montaggio su vivariumai.co è aperto, e non per una scelta.** Il sito
-`vivariumai.co` **non è servito dal progetto Vercel `vivarium-ai-clone`**: quel progetto non ha
-domini custom collegati (solo `.vercel.app`), il team possiede solo `xplora.marketing`, e le
-risposte del dominio arrivano da Cloudflare senza intestazioni Vercel. L'origine sta in un account
-fuori dagli accessi di questa postazione, probabilmente quello da cui Orchids pubblicò l'ultima
-volta (deployment di produzione fermo a 178 giorni fa).
+**Il montaggio è live dal 5 settembre 2026**: `https://vivariumai.co/giadacreators/`.
 
-Quello che serve è già scritto e **provato su un preview reale** del progetto Next: un rewrite
-proxy in `next.config.ts`, che sul preview serviva la landing a `/giadacreators` lasciando la home
-identica alla produzione e la route del blog intatta.
+Il sito `vivariumai.co` **non è su Vercel**: è un export statico di Next servito da **Cloudflare
+Pages**, costruito dal repo privato `vivariumai/vivariumai.co` con GitHub Actions a ogni push su
+`main` (e un'anteprima su ogni PR, protetta da Cloudflare Access).
 
-```ts
-async rewrites() {
-  return [
-    { source: "/giadacreators", destination: "https://giada-creator-program.vercel.app/giadacreators" },
-    { source: "/giadacreators/:path*", destination: "https://giada-creator-program.vercel.app/giadacreators/:path*" },
-  ];
-}
-```
+Essendo un export statico **non esiste un server che possa fare da proxy**: la landing non è
+proxata, è *costruita* dentro il sito. Uno step della CI clona questo repo (che è pubblico, quindi
+non servono segreti), lo costruisce e copia `dist/client/giadacreators` dentro `out/giadacreators`.
+Da lì la serve Pages come qualsiasi altro file: stessa CDN, nessun hop in più, niente da riscrivere
+perché i percorsi già combaciano.
 
-Due cose imparate provandolo, che valgono per chiunque ci torni:
+**La conseguenza operativa da ricordare**: una modifica a questa landing **non va online da sola**.
+Serve un deploy del sito — un push su `main` lì, oppure il rilancio manuale del workflow
+(`gh workflow run deploy.yml --repo vivariumai/vivariumai.co`). E se il build di questo repo si
+rompe, si rompe il deploy del sito: è voluto, meglio un errore rumoroso di una pagina pubblicata a
+metà.
 
-- `outputFileTracingRoot: path.resolve(__dirname, "../../")` in quel `next.config.ts` **fa fallire
-  il build su Vercel** (`ENOENT ... /vercel/path0/vercel/path0/.next/routes-manifest.json`). Serve
-  solo alla build locale dentro `orchids-projects`, quindi va condizionato a `process.env.VERCEL`.
-- Ricostruire quel sito dopo 178 giorni **non è identico al byte**: cambia uno spazio dopo
-  «Builders.» nel manifesto, che il build nuovo aggiunge. Visivamente il resto combacia, ma va
-  guardato prima di promuovere, mai dopo.
+Due cose imparate montandolo, che valgono per chiunque ci torni:
 
-La via alternativa, e probabilmente quella giusta visto dove sta il dominio: uno **Snippet o Worker
-Cloudflare** sulla rotta `vivariumai.co/giadacreators*` che fa da proxy allo stesso indirizzo. Non
-tocca il sito e non richiede di ricostruirlo.
+- Cloudflare Pages **normalizza gli indirizzi**: `/giadacreators` fa 308 verso `/giadacreators/`, e
+  `/giadacreators/privacy-creator.html` fa 308 verso `/giadacreators/privacy-creator`. Le pagine
+  rispondono, ma è un salto in più: nelle inserzioni conviene usare direttamente l'URL con la barra
+  finale.
+- Le anteprime delle PR stanno dietro **Cloudflare Access** con codice via email. Per verificarle
+  senza autenticarsi, si riproduce in locale lo stesso build della CI e si serve `out/`: è anche una
+  verifica più forte, perché guarda l'artefatto che verrà pubblicato.
 
 ### I campi del form
 
@@ -331,7 +326,7 @@ passa dal **dataset**, ed è lì che è stata fatta.
 | Dataset dedicato «Giada Creator Program» | **creato**, collegato all'account pubblicitario | `1063455126601347` |
 | Pixel sulla pagina, dietro consenso | **live** | `src/pixel.js` |
 | Evento `Lead` all'invio del modulo | **live**, con `eventID` per la deduplica | `trackLead()` |
-| Dominio `vivariumai.co` nel BM | **aggiunto, non verificato** | `1796239328281347` |
+| Dominio `vivariumai.co` nel BM | **verificato** il 5 settembre 2026, meta-tag nella home | `1796239328281347` |
 | Conversione personalizzata «Candidatura creator» | **da creare** | vedi sotto |
 
 **Perché stesso account pubblicitario e non uno nuovo.** Un secondo account ricomincerebbe da zero
