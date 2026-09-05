@@ -323,32 +323,63 @@ passa dal **dataset**, ed è lì che è stata fatta.
 
 | Pezzo | Stato | Riferimento |
 | --- | --- | --- |
-| Dataset dedicato «Giada Creator Program» | **creato**, collegato all'account pubblicitario | `1063455126601347` |
-| Pixel sulla pagina, dietro consenso | **live** | `src/pixel.js` |
+| Dataset dedicato «Giada Creator Program» | **collegato** all'account pubblicitario il 5 set 2026 | `1063455126601347` |
+| Pixel sulla pagina, dietro consenso | **live**, riceve eventi | `src/pixel.js` |
 | Evento `Lead` all'invio del modulo | **live**, con `eventID` per la deduplica | `trackLead()` |
-| Dominio `vivariumai.co` nel BM | **verificato** il 5 settembre 2026, meta-tag nella home | `1796239328281347` |
-| Conversione personalizzata «Candidatura creator» | **da creare** | vedi sotto |
+| Dominio `vivariumai.co` nel BM | **verificato** il 5 set 2026, meta-tag nella home | `1796239328281347` |
+| Conversione personalizzata «Candidatura creator» | **creata** il 5 set 2026 | `1433539225403667` |
+| Nome della campagna | **`Creators B2B — …`**, prefisso obbligatorio | vedi sotto |
+
+**Il collegamento fra dataset e account pubblicitario non c'era, e non si vedeva.** Il dataset
+risultava creato e la pagina sparava eventi, ma in *Impostazioni business › Origini dei dati ›
+Dataset e pixel › Risorse collegate* leggeva «Nessuna risorsa collegata». Il sintomo si vede solo
+provando a creare la conversione personalizzata, che risponde `L'account pubblicitario
+1324590466380787 non ha accesso al pixel 1063455126601347`. Chi ci ritorna: il collegamento è
+una spunta in quella schermata, e va **verificato**, non dato per fatto perché il dataset esiste.
 
 **Perché stesso account pubblicitario e non uno nuovo.** Un secondo account ricomincerebbe da zero
-l'apprendimento e l'anagrafica di pagamento senza dare niente che il dataset separato non dia già:
-eventi, pubblici e attribuzione sono già separati a livello di dataset. Se un giorno serve separare
-anche la fatturazione, allora sì.
+lo storico di spesa e l'anagrafica di pagamento, con il limite di spesa basso e la revisione stretta
+che Meta riserva agli account nuovi, senza dare niente che il dataset separato non dia già: eventi,
+pubblici e attribuzione sono già separati a livello di dataset, e il dominio a livello di AEM. La
+fatturazione è comunque di Vivarium. Se un giorno il programma creator avrà una contabilità sua,
+allora conviene l'account dedicato — e conviene aprirlo quando la spesa è ancora zero, perché lo
+storico non si sposta.
 
 **Perché anche il dominio conta, e non è un dettaglio burocratico.** L'Aggregated Event Measurement
 di Meta classifica **otto eventi per dominio**. Con `giada.care` e `vivariumai.co` separati, le due
 macchine non si rubano gli slot: gli eventi del programma creator non competono con Contact,
-CompleteRegistration e AdStart di Giada.
+CompleteRegistration e AdStart di Giada. Su `vivariumai.co` gli eventi sono due, `PageView` e
+`Lead`: sotto la soglia degli otto, quindi Meta li classifica da sé e non c'è niente da configurare
+a mano.
 
 **Perché `Lead` standard e non un evento inventato.** Un evento custom è ottimizzabile solo
 attraverso una conversione personalizzata; `Lead` è un evento che i modelli di Meta conoscono già,
 e la conversione personalizzata gli si mette sopra per dargli il nome leggibile nel reporting. Si
 ottiene la separazione **e** il segnale, invece di sceglierne uno.
 
-**La conversione personalizzata va creata quando il dataset ha ricevuto il primo evento**: finché
-è a zero, nella regola Meta offre solo «Traffico di tutti gli URL» e non l'evento `Lead`. Un evento
-di prova è già stato sparato. Poi: *Gestione eventi › Conversioni personalizzate › Crea*, origine
-dati **Giada Creator Program**, evento **Lead**, regola **URL contiene `giadacreators`**, nome
-«Candidatura creator».
+La regola della conversione, verificata sull'oggetto creato:
+
+```
+{"and":[{"event":{"eq":"Lead"}},{"url":{"i_contains":"giadacreators"}}]}
+```
+
+Le due condizioni sono ridondanti di proposito. L'evento da solo basterebbe, visto che il dataset
+serve solo questa pagina; l'URL è la rete di sicurezza per il giorno in cui lo stesso dataset
+finisse su una seconda pagina del sito.
+
+**La campagna si chiama `Creators B2B — …`, e il prefisso è un meccanismo, non un'etichetta.**
+La lettura KPI di Giada (`vivarium/kpi-g3-giada`) gira sullo stesso account pubblicitario e
+sommerebbe questa spesa ai suoi totali. Il collettore ora esclude ogni campagna il cui nome inizia
+per `Creators B2B` da tutti i suoi numeri — totali, giornaliero, mappa dei flow, coda TG Direct,
+catalogo delle inserzioni — e dichiara a parte la spesa esclusa, invece di farla sparire. Il
+filtro è in un punto solo, `fuori_perimetro()` in `raccolta_g3.py`. **Se la campagna viene
+chiamata in un altro modo, l'esclusione non scatta e i CAC di Giada risultano peggiori di quello
+che sono.**
+
+**Quello che resta spento, di proposito.** La *corrispondenza avanzata automatica* sul dataset è
+su **No**. Accesa manderebbe a Meta email e nome degli hashati mentre il creator li digita: alza
+l'EMQ, ma è un trattamento che l'informativa attuale non copre. Accenderla è una scelta da fare
+con l'informativa in mano, non un default.
 
 **La CAPI dedicata è a un passo, e non richiede infrastruttura nuova.** La Web App di Apps Script
 riceve già la candidatura server-side e conosce l'`eventId` che il browser ha usato: le manca solo
@@ -363,29 +394,6 @@ dirlo, non era una scorciatoia accettabile: il pixel ora **non viene iniettato p
 esplicito**, la scelta vive in `localStorage` sotto `giada-creator-consent`, e chi rifiuta usa la
 pagina identica, modulo compreso. L'informativa ha la sezione 04 dedicata: finalità, base
 giuridica (consenso), contitolarità con Meta, come ripensarci.
-
-### Accesso mancante per il montaggio su vivariumai.co
-
-Aggiungo un dettaglio a quanto scritto sopra sul montaggio, perché indirizza chi ci riprova: il
-dominio **esiste** come alias del vecchio deployment di produzione, ma non è governabile da questa
-postazione. `vercel alias set` risponde
-`You don't have access to the domain vivariumai.co under andryza-ctrls-projects`, e `vercel teams
-ls` vede un solo team. Il dominio sta in un altro team Vercel — quello da cui il progetto è stato
-trasferito. Anche Cloudflare, che sta davanti al dominio, non è raggiungibile: la dashboard non è
-loggata e non esiste un token in locale.
-
-Sbloccarlo richiede **una** di queste due cose, entrambe fuori dalla mia portata:
-
-1. invitare questo account Vercel nel team che possiede `vivariumai.co` (oppure spostare lì il
-   dominio), e allora il montaggio si chiude da qui in un deploy;
-2. l'accesso a Cloudflare, e allora si può fare senza toccare il sito Next: un Worker sulla rotta
-   `vivariumai.co/giadacreators*` che inoltra al deployment della landing.
-
-Finché non si sblocca, la pagina è pubblica e funzionante su
-`giada-creator-program.vercel.app/giadacreators`, e **la verifica del dominio in Meta resta in
-attesa**: il meta-tag `facebook-domain-verification` con valore `neu6cqmoei357qfg0stsff6fmqqc0o` è
-già dentro il `layout.tsx` del sito Vivarium ricostruito, e diventerà visibile appena quel build
-servirà il dominio.
 
 ## Storia precedente
 
