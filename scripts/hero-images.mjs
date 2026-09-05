@@ -20,10 +20,22 @@ const WIDTHS = [264, 436, 654];
 const CROPS = {
   "01-nutrizionista": { x: 150, y: 280, w: 675 },
   "02-food-blogger": { x: 60, y: 200, w: 760 },
+  "05-wellness": { x: 0, y: 40, w: 825 },
+  "06-esperto": { x: 0, y: 250, w: 850 },
+  "07-giovane": { x: 30, y: 260, w: 920 },
+  // Fuori pagina dal 5 settembre 2026, master tenuti per un eventuale rientro.
   "03-fitness": { x: 30, y: 170, w: 750 },
   "04-abitudini": { x: 0, y: 200, w: 1000 },
-  "05-wellness": { x: 0, y: 40, w: 825 },
 };
+
+// Le sole carte pubblicate: gli altri master restano in assets-src senza WebP.
+const PUBLISHED = new Set([
+  "01-nutrizionista",
+  "02-food-blogger",
+  "05-wellness",
+  "06-esperto",
+  "07-giovane",
+]);
 
 const py = `
 import sys, os
@@ -42,7 +54,10 @@ for width in widths:
     print(f"  {os.path.basename(p)}  {out.size[0]}x{out.size[1]}  {os.path.getsize(p)//1024}KB")
 `;
 
-const files = fs.readdirSync(srcDir).filter((f) => /\.png$/i.test(f)).sort();
+const files = fs
+  .readdirSync(srcDir)
+  .filter((f) => /\.png$/i.test(f) && PUBLISHED.has(path.basename(f, path.extname(f))))
+  .sort();
 if (!files.length) {
   console.error("Nessun master in assets-src/hero");
   process.exit(1);

@@ -30,29 +30,31 @@ const heroAngles = {
 // Ventaglio della hero, sulla reference "Pallet Ross": cinque carte verticali in
 // arco, sovrapposte, che salgono da sinistra a destra. Sotto i 700px escono le
 // due esterne e restano le tre centrali, con la foto sempre al centro.
-// Solo la carta centrale ha oggi un'immagine reale: le altre sono slot in attesa
-// dei file. Per riempire uno slot basta aggiungere `src` e `alt` alla sua riga.
+// Cinque creator diversi, uno per carta: quattro donne e un uomo, l'80/20 del
+// pubblico creator reale. `src` e il nome base del file in public/assets.
 const heroDeck = [
   {
-    id: "fitness",
+    id: "nutrizione",
     rot: -8.5,
     lift: 5.5,
-    src: "03-fitness",
-    alt: "Un creator fitness riprende un video con il telefono su un treppiede, nell'angolo allenamento di casa",
-  },
-  {
-    id: "nutrizione",
-    rot: -4.5,
-    lift: 2,
     src: "01-nutrizionista",
     alt: "Una nutrizionista parla al telefono montato su un treppiede, con la luce ad anello accesa",
   },
   {
-    id: "abitudini",
+    // Sotto i 700px restano solo le tre carte centrali: la voce con la
+    // credenziale sta qui perché su mobile deve restare visibile.
+    id: "esperto",
+    rot: -4.5,
+    lift: 2,
+    src: "06-esperto",
+    alt: "Un nutrizionista spiega davanti al telefono su treppiede, nel suo studio con la libreria alle spalle",
+  },
+  {
+    id: "giovane",
     rot: -1,
     lift: 0,
-    src: "04-abitudini",
-    alt: "Una creator si riprende con il telefono in mano, seduta al tavolo di cucina",
+    src: "07-giovane",
+    alt: "Una creator si riprende con il telefono in mano, seduta al tavolo di casa",
   },
   {
     id: "food",
