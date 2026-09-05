@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { loadPixel, newEventId, readConsent, trackLead, writeConsent } from "./pixel.js";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -260,6 +261,8 @@ export function App() {
   // idle | sending | done | error
   const [formState, setFormState] = useState("idle");
   const modalRef = useRef(null);
+  // null = non ha ancora scelto, "granted" | "denied" = ha scelto.
+  const [consent, setConsent] = useState(null);
   // La nav fissa non esiste sopra la hero: compare solo dalla sezione dopo, e
   // torna a sparire risalendo verso la hero dal basso.
   const [showNav, setShowNav] = useState(false);
@@ -300,6 +303,20 @@ export function App() {
     [activeMode],
   );
 
+  // Il pixel Meta parte solo dopo un sì esplicito. La scelta si legge dopo il
+  // primo render: durante il render il localStorage non si tocca.
+  useEffect(() => {
+    const saved = readConsent();
+    setConsent(saved);
+    if (saved === "granted") loadPixel();
+  }, []);
+
+  function decideConsent(value) {
+    writeConsent(value);
+    setConsent(value);
+    if (value === "granted") loadPixel();
+  }
+
   // Il pop-up di conferma: Esc chiude, la pagina sotto non scorre, il focus
   // entra nel pannello. Senza questo il lettore di schermo resta nel form.
   useEffect(() => {
@@ -333,6 +350,9 @@ export function App() {
       pageUrl: window.location.href,
     };
 
+    const eventId = newEventId();
+    payload.eventId = eventId;
+
     setFormState("sending");
     try {
       // text/plain evita il preflight: Apps Script non risponde alle OPTIONS.
@@ -346,6 +366,9 @@ export function App() {
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || String(response.status));
       form.reset();
+      // L'evento parte solo a invio riuscito: una candidatura contata è una
+      // candidatura arrivata davvero nel foglio.
+      trackLead(eventId);
       setFormState("done");
     } catch {
       setFormState("error");
@@ -935,6 +958,35 @@ export function App() {
           </div>
         </footer>
       </main>
+
+      {consent === null ? (
+        <div className="cookie-bar" role="region" aria-label="Consenso alla misurazione">
+          <p>
+            Usiamo un cookie di Meta per capire quale annuncio ti ha portato qui. Serve solo a
+            misurare le campagne: nessun profilo, nessuna rivendita.{" "}
+            <a href={PRIVACY_URL} target="_blank" rel="noreferrer noopener">
+              Informativa
+            </a>
+            .
+          </p>
+          <div className="cookie-bar-actions">
+            <button
+              className="button button--ghost"
+              type="button"
+              onClick={() => decideConsent("denied")}
+            >
+              <span>Rifiuta</span>
+            </button>
+            <button
+              className="button button--primary"
+              type="button"
+              onClick={() => decideConsent("granted")}
+            >
+              <span>Accetta</span>
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       {formState === "done" ? (
         <div

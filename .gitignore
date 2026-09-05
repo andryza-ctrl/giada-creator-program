@@ -22,3 +22,11 @@ audit-v4-after-04-profiles.png
 audit-v4-after-05-process.png
 audit-v4-after-06-form.png
 .env*
+
+# Screenshot di QA e materiale di lavoro: restano in locale, non nel repo.
+qa-v5*.png
+qa-v6*.png
+files/
+files.zip
+integrazione_handoff.md
+.claude/
