@@ -320,6 +320,78 @@ collaborazioni. Dichiarato anche che non c'è nessuna decisione automatizzata.
 I dati societari (Vivarium S.r.l., Via Montello 18, Bologna, `privacy@vivariumai.co`) vengono
 dall'informativa pubblicata su `giada.care/privacy`: solo quelli, non il testo.
 
+### Il funnel Meta del programma creator
+
+Tutto sta nel Business Manager **Giada Care** (`1591541148643398`), account pubblicitario
+**Giada Care** (`1324590466380787`). La separazione da Giada B2C non passa da un account nuovo:
+passa dal **dataset**, ed è lì che è stata fatta.
+
+| Pezzo | Stato | Riferimento |
+| --- | --- | --- |
+| Dataset dedicato «Giada Creator Program» | **creato**, collegato all'account pubblicitario | `1063455126601347` |
+| Pixel sulla pagina, dietro consenso | **live** | `src/pixel.js` |
+| Evento `Lead` all'invio del modulo | **live**, con `eventID` per la deduplica | `trackLead()` |
+| Dominio `vivariumai.co` nel BM | **aggiunto, non verificato** | `1796239328281347` |
+| Conversione personalizzata «Candidatura creator» | **da creare** | vedi sotto |
+
+**Perché stesso account pubblicitario e non uno nuovo.** Un secondo account ricomincerebbe da zero
+l'apprendimento e l'anagrafica di pagamento senza dare niente che il dataset separato non dia già:
+eventi, pubblici e attribuzione sono già separati a livello di dataset. Se un giorno serve separare
+anche la fatturazione, allora sì.
+
+**Perché anche il dominio conta, e non è un dettaglio burocratico.** L'Aggregated Event Measurement
+di Meta classifica **otto eventi per dominio**. Con `giada.care` e `vivariumai.co` separati, le due
+macchine non si rubano gli slot: gli eventi del programma creator non competono con Contact,
+CompleteRegistration e AdStart di Giada.
+
+**Perché `Lead` standard e non un evento inventato.** Un evento custom è ottimizzabile solo
+attraverso una conversione personalizzata; `Lead` è un evento che i modelli di Meta conoscono già,
+e la conversione personalizzata gli si mette sopra per dargli il nome leggibile nel reporting. Si
+ottiene la separazione **e** il segnale, invece di sceglierne uno.
+
+**La conversione personalizzata va creata quando il dataset ha ricevuto il primo evento**: finché
+è a zero, nella regola Meta offre solo «Traffico di tutti gli URL» e non l'evento `Lead`. Un evento
+di prova è già stato sparato. Poi: *Gestione eventi › Conversioni personalizzate › Crea*, origine
+dati **Giada Creator Program**, evento **Lead**, regola **URL contiene `giadacreators`**, nome
+«Candidatura creator».
+
+**La CAPI dedicata è a un passo, e non richiede infrastruttura nuova.** La Web App di Apps Script
+riceve già la candidatura server-side e conosce l'`eventId` che il browser ha usato: le manca solo
+un token del dataset per mandare lo stesso evento con la Conversions API. Stesso `event_id` da due
+strade = Meta deduplica invece di contare due volte, e l'EMQ sale.
+
+### Il consenso, e perché adesso c'è
+
+La pagina non aveva un banner e l'informativa non parlava di cookie. Mettere un pixel Meta su una
+pagina che chiede nome, email e profilo social a un pubblico europeo, senza consenso e senza
+dirlo, non era una scorciatoia accettabile: il pixel ora **non viene iniettato prima di un sì
+esplicito**, la scelta vive in `localStorage` sotto `giada-creator-consent`, e chi rifiuta usa la
+pagina identica, modulo compreso. L'informativa ha la sezione 04 dedicata: finalità, base
+giuridica (consenso), contitolarità con Meta, come ripensarci.
+
+### Accesso mancante per il montaggio su vivariumai.co
+
+Aggiungo un dettaglio a quanto scritto sopra sul montaggio, perché indirizza chi ci riprova: il
+dominio **esiste** come alias del vecchio deployment di produzione, ma non è governabile da questa
+postazione. `vercel alias set` risponde
+`You don't have access to the domain vivariumai.co under andryza-ctrls-projects`, e `vercel teams
+ls` vede un solo team. Il dominio sta in un altro team Vercel — quello da cui il progetto è stato
+trasferito. Anche Cloudflare, che sta davanti al dominio, non è raggiungibile: la dashboard non è
+loggata e non esiste un token in locale.
+
+Sbloccarlo richiede **una** di queste due cose, entrambe fuori dalla mia portata:
+
+1. invitare questo account Vercel nel team che possiede `vivariumai.co` (oppure spostare lì il
+   dominio), e allora il montaggio si chiude da qui in un deploy;
+2. l'accesso a Cloudflare, e allora si può fare senza toccare il sito Next: un Worker sulla rotta
+   `vivariumai.co/giadacreators*` che inoltra al deployment della landing.
+
+Finché non si sblocca, la pagina è pubblica e funzionante su
+`giada-creator-program.vercel.app/giadacreators`, e **la verifica del dominio in Meta resta in
+attesa**: il meta-tag `facebook-domain-verification` con valore `neu6cqmoei357qfg0stsff6fmqqc0o` è
+già dentro il `layout.tsx` del sito Vivarium ricostruito, e diventerà visibile appena quel build
+servirà il dominio.
+
 ## Storia precedente
 
 - **19 agosto 2026, V6 «Daylight»**: sei superfici alternate (navy, abisso, crema, lilla pallido,
