@@ -1,6 +1,6 @@
 # Session status — Giada Creator Program
 
-Ultimo aggiornamento: **23 agosto 2026**. Questo file è il punto da cui ripartire.
+Ultimo aggiornamento: **5 settembre 2026**. Questo file è il punto da cui ripartire.
 
 ## Dove siamo
 
@@ -116,7 +116,78 @@ React e rientra.
 
 ### Aperto
 
-Gli slot del ventaglio aspettano ancora le immagini reali delle creator.
+Niente: gli slot del ventaglio sono stati riempiti il 5 settembre 2026.
+
+## Cosa è cambiato il 5 settembre 2026
+
+### Le cinque carte del ventaglio hanno le immagini definitive
+
+Gli slot `FOTO` non esistono più: le cinque carte portano cinque creator diversi, uno per carta.
+La vecchia `giada-creator-hero.png` è stata eliminata, non spostata.
+
+| Posizione | File | Chi | Cosa si vede |
+| --- | --- | --- | --- |
+| 1 (bordo) | `03-fitness` | Creator fitness, uomo ~35 | Angolo allenamento in casa, telefono su treppiede a terra |
+| 2 | `01-nutrizionista` | Nutrizionista, donna ~40 | Home office, telefono su treppiede e luce ad anello |
+| 3 (centro) | `04-abitudini` | Abitudini quotidiane, donna ~52 | Tavolo di cucina, telefono in mano a braccio teso |
+| 4 | `02-food-blogger` | Food creator, donna ~33 | Cucina, mostra una ciotola al telefono sul treppiede |
+| 5 (bordo) | `05-wellness` | Wellness, donna ~30 | Camera al mattino, telefono su treppiede e luce ad anello |
+
+Il rapporto è quattro donne e un uomo, cioè l'80/20 del pubblico creator reale. Sotto i 700px
+restano visibili solo le tre centrali: nutrizionista, abitudini, food.
+
+**Il difetto che le immagini dovevano chiudere.** Nella vecchia foto il telefono era fuori
+inquadratura e non si capiva che la donna stesse girando un video. Adesso in ogni carta il
+telefono è in primo piano, intero, con aria attorno e mai tagliato dal bordo, con il dorso e le
+lenti verso chi guarda e lo schermo verso la persona; il soggetto guarda il telefono, non
+l'obiettivo della foto. Una sola posa su cinque è a telefono in mano, per non ripetere cinque
+volte lo stesso treppiede.
+
+**Vincoli di scena tenuti nei prompt**: nessun camice, bilancia, grafico o prima-dopo, perché la
+pagina non deve leggersi come medicale; nessun testo, logo o marchio dentro l'immagine; palette
+forzata sui quattro colori della pagina; pelle reale senza ritocco.
+
+### Come sono fatte le immagini
+
+Le carte sono **3:4 a ogni breakpoint**: cambia solo la larghezza resa, 218px sul desktop e 190px
+sotto i 700px. Non servono tagli diversi per device: serve un master per persona e più larghezze.
+
+- I master 1024x1536 stanno in **`assets-src/hero/`**, fuori da `public/`: pesano 2MB l'uno e non
+  vanno pubblicati.
+- `scripts/hero-images.mjs` ritaglia ogni master a 3:4 con una finestra **scritta a mano per
+  immagine** (la costante `CROPS`) e scrive tre larghezze WebP in `public/assets`: 264, 436, 654.
+  La finestra è per immagine perché il generatore inquadra largo: senza avvicinare, a 200px di
+  larghezza la persona e il telefono diventano illeggibili.
+- In pagina l'array `heroDeck` porta solo il nome base; `srcSet` e `sizes` si costruiscono da
+  `DECK_WIDTHS`. `sizes` è `(max-width: 700px) min(28vw, 190px), min(19.5vw, 218px)`, cioè la
+  stessa formula del CSS.
+- Peso totale delle quindici WebP: **1,3MB**, contro i 2MB della sola vecchia hero PNG.
+
+Rigenerare una carta: si sostituisce il master in `assets-src/hero/`, si ritocca la sua riga in
+`CROPS` e si rilancia `node scripts/hero-images.mjs`.
+
+La regola `object-position: 80% 50%` su `.deck-card img` è stata tolta: con immagine e carta
+entrambe 3:4, `cover` non ritaglia niente e la composizione la decide il taglio dello script.
+
+### Verifiche
+
+- `npm run build` e `npm run test:sites` (4/4) passano.
+- Sei larghezze controllate (1512, 1440, 834, 768, 390, 360): **nessun overflow orizzontale**, la
+  CTA della hero resta dentro il primo schermo ovunque (766/950 a 1512, 658/844 a 390).
+- `srcset` verificato sul campo: 436 scelta sul desktop a DPR 2 (la carta è 218px), 264 sul
+  telefono. Nessuna richiesta fallita, nessun errore in console.
+- Le cinque carte controllate a zoom 3x una per una: telefono intero e leggibile in tutte.
+
+### Come si generano
+
+Le immagini nascono con la skill `imagegen` di Codex, non con il plugin `/codex-image:generate`:
+con Codex 0.147 il plugin fallisce (`error: unexpected argument '--full-auto'`). Il comando che
+funziona è `codex exec -m gpt-5.6-luna ...`. **Il modello va passato a mano**: il default del
+`config.toml` e `gpt-6-astra`, che risponde `400 requires a newer version of Codex` e lascia il
+processo appeso senza dire perché. In alternativa si genera dalla chat ChatGPT nel browser.
+
+`playwright-core` è ora una devDependency: le passate di QA descritte più sotto la usano con il
+Chrome installato sul Mac, perché la cache dei browser Playwright non c'è più.
 
 ## Storia precedente
 
@@ -207,8 +278,6 @@ La verifica è fatta con **playwright-core più il Chrome for Testing** già pre
 ### Candidati per la prossima sessione
 
 - Riscrittura del copy, che il committente considera provvisorio.
-- Sostituire i quattro slot «FOTO» con le immagini reali delle creator e rivedere l'arco con i
-  soggetti veri dentro.
 - Chiudere il debito 1: endpoint reale del form e rimozione dello stato demo.
 - Guardare la V8 su browser reali: finora solo Chromium.
 - Traduzione dei quattro angoli `?angolo=` in varianti di headline già testate su Meta.

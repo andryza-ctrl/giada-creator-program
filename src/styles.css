@@ -654,12 +654,12 @@ h2 em.is-inline { display: inline; color: inherit; }
   from { opacity: 0; }
   to { opacity: 1; }
 }
-/* Il ritaglio verticale tiene la creator, non il treppiede. */
+/* Le immagini sono gia 3:4, come la carta: `cover` non ritaglia nulla e la
+   composizione la decide il taglio in `scripts/hero-images.mjs`. */
 .deck-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 80% 50%;
 }
 /* Le trame degli slot alternano teal e periwinkle a bassissima opacità: il ventaglio
    non è cinque volte la stessa superficie piatta. */

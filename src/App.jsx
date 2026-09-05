@@ -33,18 +33,49 @@ const heroAngles = {
 // Solo la carta centrale ha oggi un'immagine reale: le altre sono slot in attesa
 // dei file. Per riempire uno slot basta aggiungere `src` e `alt` alla sua riga.
 const heroDeck = [
-  { id: "slot-1", rot: -8.5, lift: 5.5 },
-  { id: "slot-2", rot: -4.5, lift: 2 },
   {
-    id: "hero-shot",
+    id: "fitness",
+    rot: -8.5,
+    lift: 5.5,
+    src: "03-fitness",
+    alt: "Un creator fitness riprende un video con il telefono su un treppiede, nell'angolo allenamento di casa",
+  },
+  {
+    id: "nutrizione",
+    rot: -4.5,
+    lift: 2,
+    src: "01-nutrizionista",
+    alt: "Una nutrizionista parla al telefono montato su un treppiede, con la luce ad anello accesa",
+  },
+  {
+    id: "abitudini",
     rot: -1,
     lift: 0,
-    src: "/assets/giada-creator-hero.png",
-    alt: "Una creator registra un video per Giada nella cucina di casa",
+    src: "04-abitudini",
+    alt: "Una creator si riprende con il telefono in mano, seduta al tavolo di cucina",
   },
-  { id: "slot-4", rot: 4, lift: 1.8 },
-  { id: "slot-5", rot: 7.5, lift: 4.8 },
+  {
+    id: "food",
+    rot: 4,
+    lift: 1.8,
+    src: "02-food-blogger",
+    alt: "Una food creator mostra una ciotola al telefono montato sul treppiede, in cucina",
+  },
+  {
+    id: "wellness",
+    rot: 7.5,
+    lift: 4.8,
+    src: "05-wellness",
+    alt: "Una creator wellness racconta la sua mattina al telefono su treppiede, accanto al tappetino",
+  },
 ];
+
+/* Le carte sono 3:4 a ogni breakpoint: cambia solo la larghezza resa, 218px sul
+   desktop e 190px sotto i 700px. Una sola immagine per carta, tre larghezze. */
+const DECK_WIDTHS = [264, 436, 654];
+const deckSrcSet = (name) =>
+  DECK_WIDTHS.map((w) => `/assets/${name}-${w}.webp ${w}w`).join(", ");
+const DECK_SIZES = "(max-width: 700px) min(28vw, 190px), min(19.5vw, 218px)";
 
 // Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
 // consegna, dove finisce. Nessun termine economico: il compenso vive solo in FAQ.
@@ -318,10 +349,12 @@ export function App() {
                     >
                       {card.src ? (
                         <img
-                          src={card.src}
+                          src={`/assets/${card.src}-436.webp`}
+                          srcSet={deckSrcSet(card.src)}
+                          sizes={DECK_SIZES}
                           alt={card.alt}
-                          width="1536"
-                          height="1024"
+                          width="654"
+                          height="872"
                           fetchPriority="high"
                         />
                       ) : (
