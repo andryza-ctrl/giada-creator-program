@@ -239,6 +239,54 @@ modulo **non accetta più risposte** — *Pubblicazione › Accetta risposte* sp
 un secondo endpoint pubblico che scrive nello stesso file. Per riaprirlo basta riaccendere quella
 levetta.
 
+### La pagina vive sotto /giadacreators
+
+La destinazione è **`vivariumai.co/giadacreators`**: dominio separato da `giada.care`, che è il
+presupposto per pixel, verifica dominio ed eventi dedicati al programma creator.
+
+Il progetto costruisce con `base: "/giadacreators/"` e output in `dist/client/giadacreators`. Le due
+URL servono quindi **percorsi identici** — `giada-creator-program.vercel.app/giadacreators` e
+`vivariumai.co/giadacreators` — e il proxy davanti non deve riscrivere nulla: è lì che questi
+montaggi si rompono di solito. La radice del progetto Vercel reindirizza al nuovo percorso, così i
+vecchi link non muoiono.
+
+Dentro l'app i percorsi degli asset nascono da `import.meta.env.BASE_URL`, non da uno slash
+iniziale. `public/privacy-creator.html` sta fuori dal bundle e usa URL **relative**, quindi non ha
+bisogno di sapere dove è montata.
+
+**Il montaggio su vivariumai.co è aperto, e non per una scelta.** Il sito
+`vivariumai.co` **non è servito dal progetto Vercel `vivarium-ai-clone`**: quel progetto non ha
+domini custom collegati (solo `.vercel.app`), il team possiede solo `xplora.marketing`, e le
+risposte del dominio arrivano da Cloudflare senza intestazioni Vercel. L'origine sta in un account
+fuori dagli accessi di questa postazione, probabilmente quello da cui Orchids pubblicò l'ultima
+volta (deployment di produzione fermo a 178 giorni fa).
+
+Quello che serve è già scritto e **provato su un preview reale** del progetto Next: un rewrite
+proxy in `next.config.ts`, che sul preview serviva la landing a `/giadacreators` lasciando la home
+identica alla produzione e la route del blog intatta.
+
+```ts
+async rewrites() {
+  return [
+    { source: "/giadacreators", destination: "https://giada-creator-program.vercel.app/giadacreators" },
+    { source: "/giadacreators/:path*", destination: "https://giada-creator-program.vercel.app/giadacreators/:path*" },
+  ];
+}
+```
+
+Due cose imparate provandolo, che valgono per chiunque ci torni:
+
+- `outputFileTracingRoot: path.resolve(__dirname, "../../")` in quel `next.config.ts` **fa fallire
+  il build su Vercel** (`ENOENT ... /vercel/path0/vercel/path0/.next/routes-manifest.json`). Serve
+  solo alla build locale dentro `orchids-projects`, quindi va condizionato a `process.env.VERCEL`.
+- Ricostruire quel sito dopo 178 giorni **non è identico al byte**: cambia uno spazio dopo
+  «Builders.» nel manifesto, che il build nuovo aggiunge. Visivamente il resto combacia, ma va
+  guardato prima di promuovere, mai dopo.
+
+La via alternativa, e probabilmente quella giusta visto dove sta il dominio: uno **Snippet o Worker
+Cloudflare** sulla rotta `vivariumai.co/giadacreators*` che fa da proxy allo stesso indirizzo. Non
+tocca il sito e non richiede di ricostruirlo.
+
 ### I campi del form
 
 Quattro domande e due caselle, come chiesto il 5 settembre: **nome completo**, **email**,
