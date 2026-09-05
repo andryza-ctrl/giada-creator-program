@@ -41,13 +41,13 @@ const heroDeck = [
     alt: "Una nutrizionista parla al telefono montato su un treppiede, con la luce ad anello accesa",
   },
   {
-    // Sotto i 700px restano solo le tre carte centrali: la voce con la
-    // credenziale sta qui perché su mobile deve restare visibile.
-    id: "esperto",
+    // Sotto i 700px restano solo le tre carte centrali: l'unico profilo maschile
+    // sta qui perché su mobile deve restare visibile.
+    id: "fitness",
     rot: -4.5,
     lift: 2,
-    src: "06-esperto",
-    alt: "Un nutrizionista spiega davanti al telefono su treppiede, nel suo studio con la libreria alle spalle",
+    src: "03-fitness",
+    alt: "Un creator fitness riprende un video con il telefono su un treppiede, nell'angolo allenamento di casa",
   },
   {
     id: "giovane",

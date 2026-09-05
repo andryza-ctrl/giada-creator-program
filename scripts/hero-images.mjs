@@ -20,20 +20,20 @@ const WIDTHS = [264, 436, 654];
 const CROPS = {
   "01-nutrizionista": { x: 150, y: 280, w: 675 },
   "02-food-blogger": { x: 60, y: 200, w: 760 },
+  "03-fitness": { x: 22, y: 150, w: 675 },
   "05-wellness": { x: 0, y: 40, w: 825 },
-  "06-esperto": { x: 0, y: 250, w: 850 },
   "07-giovane": { x: 30, y: 260, w: 920 },
-  // Fuori pagina dal 5 settembre 2026, master tenuti per un eventuale rientro.
-  "03-fitness": { x: 30, y: 170, w: 750 },
+  // Fuori pagina, master tenuti per un eventuale rientro.
   "04-abitudini": { x: 0, y: 200, w: 1000 },
+  "06-esperto": { x: 0, y: 250, w: 850 },
 };
 
 // Le sole carte pubblicate: gli altri master restano in assets-src senza WebP.
 const PUBLISHED = new Set([
   "01-nutrizionista",
   "02-food-blogger",
+  "03-fitness",
   "05-wellness",
-  "06-esperto",
   "07-giovane",
 ]);
 

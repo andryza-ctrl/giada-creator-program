@@ -128,25 +128,24 @@ La vecchia `giada-creator-hero.png` è stata eliminata, non spostata.
 | Posizione | File | Chi | Cosa si vede |
 | --- | --- | --- | --- |
 | 1 (bordo) | `01-nutrizionista` | Nutrizionista, donna ~40 | Home office, telefono su treppiede e luce ad anello |
-| 2 | `06-esperto` | Nutrizionista, uomo ~45 | Studio con la libreria alle spalle, telefono su treppiede |
+| 2 | `03-fitness` | Fitness creator, uomo ~35 | Angolo allenamento in casa, telefono su treppiede |
 | 3 (centro) | `07-giovane` | Creator, donna ~24 | Tavolo di casa, telefono in mano a braccio teso |
 | 4 | `02-food-blogger` | Food creator, donna ~33 | Cucina, mostra una ciotola al telefono sul treppiede |
 | 5 (bordo) | `05-wellness` | Wellness, donna ~30 | Camera al mattino, telefono su treppiede e luce ad anello |
 
 Il rapporto è quattro donne e un uomo, cioè l'80/20 del pubblico creator reale. Sotto i 700px
-restano visibili solo le tre centrali: **esperto, ragazza, food**. L'uomo sta in seconda posizione
+restano visibili solo le tre centrali: **fitness, ragazza, food**. L'uomo sta in seconda posizione
 apposta, perché è l'unica sistemazione che lo tiene in pagina anche da telefono.
 
-L'uomo porta la funzione che nel funnel B2C è di Elena: la **credenziale**, non il volume. L'autorità
-gli viene dalla stanza e dalla postura — libreria, scrivania, gesto che spiega — e mai dai props:
-niente camice, strumenti, diplomi appesi. Su una pagina che parla di un assistente di nutrizione
-quei props sposterebbero la lettura verso il medicale, che è il confine da non toccare.
+Il profilo maschile è passato per una versione intermedia — un nutrizionista uomo ~45 in studio,
+che portava la credenziale come Elena nel funnel B2C — scartata dal committente: per una pagina
+che recluta creator il fitness creator è più in linea del professionista con la libreria alle
+spalle. Il suo master resta in archivio come `06-esperto`.
 
-**Due master sono fuori pagina ma restano in archivio**: `03-fitness` (uomo in tenuta da
-allenamento) e `04-abitudini` (donna ~52). Il primo è uscito perché due uomini su cinque avrebbero
-portato il set al 40% maschile; la seconda perché il committente la voleva più giovane al centro.
-Le loro finestre in `CROPS` sono conservate: per rimetterne una in pagina basta aggiungerla a
-`PUBLISHED` e rilanciare lo script.
+**Due master sono fuori pagina ma restano in `assets-src/hero`**: `04-abitudini`, la donna ~52,
+uscita perché il committente voleva una under 26 al centro, e `06-esperto`. Le loro finestre in
+`CROPS` sono conservate: per rimetterne una in pagina basta aggiungerla a `PUBLISHED` e rilanciare
+lo script, senza rigenerare niente.
 
 **Il difetto che le immagini dovevano chiudere.** Nella vecchia foto il telefono era fuori
 inquadratura e non si capiva che la donna stesse girando un video. Adesso in ogni carta il
