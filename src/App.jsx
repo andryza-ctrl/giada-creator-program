@@ -15,20 +15,12 @@ import {
 // sono diversi perché diverso è il trattamento.
 const PRIVACY_URL = "/privacy-creator.html";
 
-// Le candidature finiscono in un modulo Google collegato al foglio
-// "Giada Creator Program - Candidature" sul Drive di Andrea, che manda anche la
-// notifica via mail a ogni risposta. Gli `entry.*` sono gli id dei campi di quel
-// modulo: si rileggono dall'HTML del modulo pubblico se qualcuno lo modifica.
+// Le candidature vanno a una Web App di Apps Script legata al foglio
+// "Giada Creator Program - Candidature" sul Drive di Andrea: scrive la riga
+// nella scheda «Candidature» e manda la mail di notifica. Dopo ogni modifica al
+// codice dello script va rifatta la distribuzione, altrimenti gira il vecchio.
 const FORM_ENDPOINT =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/formResponse";
-const FORM_FIELDS = {
-  fullName: "entry.1436352776",
-  email: "entry.2025854185",
-  handle: "entry.1400665650",
-  about: "entry.1341915027",
-  consentAge: "entry.1349877931",
-  consentPrivacy: "entry.1497615666",
-};
+  "https://script.google.com/macros/s/AKfycbzPKz6bAb9YfU5qaIZgPmstuQxci1Zt8uNMPj0I0wrt37PX_XaCHAag81Wcqwm32TQT/exec";
 
 // TODO: link diretto al PDF del brief su Drive. Finché è vuoto, il bottone del
 // pop-up resta disattivato e la conferma rimanda alla mail.
@@ -330,20 +322,29 @@ export function App() {
     const form = event.currentTarget;
     const values = Object.fromEntries(new FormData(form).entries());
 
-    const body = new URLSearchParams();
-    body.append(FORM_FIELDS.fullName, String(values.fullName || "").trim());
-    body.append(FORM_FIELDS.email, String(values.email || "").trim());
-    body.append(FORM_FIELDS.handle, String(values.handle || "").trim());
-    body.append(FORM_FIELDS.about, String(values.about || "").trim());
-    body.append(FORM_FIELDS.consentAge, values.age ? "si" : "no");
-    body.append(FORM_FIELDS.consentPrivacy, values.privacy ? "si" : "no");
+    const payload = {
+      fullName: String(values.fullName || "").trim(),
+      email: String(values.email || "").trim(),
+      handle: String(values.handle || "").trim(),
+      about: String(values.about || "").trim(),
+      consentAge: Boolean(values.age),
+      consentPrivacy: Boolean(values.privacy),
+      submittedAt: new Date().toISOString(),
+      pageUrl: window.location.href,
+    };
 
     setFormState("sending");
     try {
-      // Moduli Google non manda intestazioni CORS: la risposta è opaca e non si
-      // può leggere lo stato. Un errore di rete però fa comunque throw, quindi
-      // l'utente vede un fallimento vero e non una conferma falsa.
-      await fetch(FORM_ENDPOINT, { method: "POST", mode: "no-cors", body });
+      // text/plain evita il preflight: Apps Script non risponde alle OPTIONS.
+      // La redirect su script.googleusercontent.com porta `Access-Control-Allow-Origin: *`,
+      // quindi qui la risposta si legge davvero e una conferma è una conferma.
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || String(response.status));
       form.reset();
       setFormState("done");
     } catch {

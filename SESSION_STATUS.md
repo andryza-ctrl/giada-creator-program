@@ -200,43 +200,44 @@ processo appeso senza dire perché. In alternativa si genera dalla chat ChatGPT 
 `playwright-core` è ora una devDependency: le passate di QA descritte più sotto la usano con il
 Chrome installato sul Mac, perché la cache dei browser Playwright non c'è più.
 
-### Il form invia davvero: modulo Google, foglio e notifica
+### Il form invia davvero: Web App, foglio e mail formattata
 
-Il form della landing non è più una demo. Il percorso di una candidatura, dal clic alla mail:
+Il form della landing non è più una demo. Il percorso di una candidatura:
 
-1. La landing fa `POST` a un **modulo Google** (`FORM_ENDPOINT` in cima a `src/App.jsx`) con i sei
-   campi mappati in `FORM_FIELDS`.
-2. Il modulo scrive la riga nel foglio **«Giada Creator Program - Candidature»**, scheda
-   *Risposte del modulo 1*, sul Drive di `andrea.zannuto@gmail.com`.
-3. Google manda la notifica alla stessa casella a ogni risposta (impostazione *Ricevi notifiche
-   email per le nuove risposte*, attiva).
+1. La landing fa `POST` in JSON alla **Web App di Apps Script** (`FORM_ENDPOINT` in cima a
+   `src/App.jsx`).
+2. `doPost` scrive la riga nella scheda **«Candidature»** del foglio
+   *Giada Creator Program - Candidature*, sul Drive di `andrea.zannuto@gmail.com`, creando la
+   scheda e le intestazioni al primo giro.
+3. Manda a `andrea.zannuto@gmail.com` una **mail formattata** — nome, tag, email, consensi, il
+   testo della candidatura e il link al foglio — con `replyTo` sull'indirizzo del creator, così si
+   risponde direttamente dalla mail.
+4. Risponde `{"ok":true}`. La landing lo legge davvero: il redirect su
+   `script.googleusercontent.com` porta `Access-Control-Allow-Origin: *`, quindi **una conferma in
+   pagina è una conferma vera**, non un'assunzione.
 
 | Cosa | Dove |
 | --- | --- |
-| Foglio delle candidature | `13qIw9G_IEPwzWxiqNKWKDm3edcLLYUR7az1NRLFtZBI` |
-| Modulo (editor) | `1CXB0UUcudcSPC8tVpgCvTSWVI51_s6C0UjvN4qqHFeY` |
-| Endpoint di invio | `https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/formResponse` |
+| Foglio | `13qIw9G_IEPwzWxiqNKWKDm3edcLLYUR7az1NRLFtZBI`, scheda «Candidature» |
+| Progetto Apps Script | `1jLw9Jz6ancGzYE7I7RCalO8vjnIjhuVJkonfOL3piXWzve0V-xSIJSI9` |
+| Endpoint | `https://script.google.com/macros/s/AKfycbzPKz6bAb9YfU5qaIZgPmstuQxci1Zt8uNMPj0I0wrt37PX_XaCHAag81Wcqwm32TQT/exec` |
 
-**Se qualcuno modifica le domande del modulo, gli `entry.*` cambiano** e il form della landing
-smette di scrivere le colonne giuste. Si rileggono così, senza aprire niente:
+**La trappola numero uno**: modificare il codice nell'editor **non** aggiorna la Web App. Dopo ogni
+modifica serve *Distribuisci › Gestisci distribuzioni › matita › Versione: Nuova versione ›
+Distribuisci*, altrimenti l'endpoint continua a eseguire la versione vecchia e sembra che la
+modifica non abbia avuto effetto. L'URL `/exec` invece resta lo stesso.
 
-```bash
-curl -s "https://docs.google.com/forms/d/e/1FAIpQLSeYhxuNQ2GSPWpGF2gy29iVXUUfEmbuqNBiV2qR-hPGRGpFIg/viewform" | grep -o 'FB_PUBLIC_LOAD_DATA_ = .*'
-```
+Un `GET` sull'endpoint risponde `{"ok":true,"service":"giada-creator-program"}`: è il controllo
+più veloce per sapere se la Web App è viva.
 
-**Il limite da conoscere**: Moduli Google non manda intestazioni CORS, quindi la risposta al `POST`
-è opaca e il browser non può leggerne lo stato. La landing mostra la conferma quando la richiesta
-parte senza errori di rete: un rifiuto lato Google passerebbe per un successo. È il prezzo di non
-avere un backend proprio. Un errore di rete vero invece si vede, e la pagina mostra il messaggio di
-fallimento con l'indirizzo a cui scrivere.
+Se `doPost` va in errore, la candidatura non si perde in silenzio: lo script manda comunque una
+mail con l'errore e il corpo ricevuto.
 
-**La strada alternativa, già preparata a metà**: nel Drive c'è un progetto Apps Script legato al
-foglio, con `doPost` che scrive la riga e manda una mail formattata (nome, tag, consensi, testo
-della candidatura, link al foglio). Non è distribuito: la finestra di consenso OAuth si apre fuori
-dalla portata degli strumenti di automazione. Per finirlo servono tre clic a mano —
-*Distribuisci › Nuovo deployment › App web*, accesso «Chiunque» — e poi basta incollare l'URL
-`/exec` in `FORM_ENDPOINT` e rimettere il `POST` in JSON. Serve solo se si vuole la mail formattata
-al posto della notifica standard di Moduli.
+**Il modulo Google resta come traccia, ma è chiuso.** Nel primo tentativo le candidature passavano
+da un modulo Google (scheda *Risposte del modulo 1*, oggi vuota). Da quando c'è la Web App il
+modulo **non accetta più risposte** — *Pubblicazione › Accetta risposte* spento — così non esiste
+un secondo endpoint pubblico che scrive nello stesso file. Per riaprirlo basta riaccendere quella
+levetta.
 
 ### I campi del form
 
@@ -300,8 +301,8 @@ di terzi.
 Nessuno chiuso in questa sessione: sono tutti fuori dal perimetro visivo.
 
 1. ~~Il form è una demo e non invia dati.~~ **Chiuso il 5 settembre 2026**: le candidature vanno
-   in un modulo Google collegato al foglio sul Drive di Andrea, con notifica via mail. Dettagli
-   sotto.
+   a una Web App di Apps Script che scrive nel foglio sul Drive di Andrea e manda la mail
+   formattata. Dettagli sotto.
 2. ~~Il link privacy punta all'informativa B2C.~~ **Chiuso il 5 settembre 2026**: informativa
    dedicata in `public/privacy-creator.html`, servita da `/privacy-creator.html`. **Va fatta
    validare da un legale prima di mandare traffico**: è scritta sui trattamenti reali, ma non è
