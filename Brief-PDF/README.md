@@ -21,7 +21,32 @@ elencato in `DA-FARE.md`. Aggiornato al **6 settembre 2026**.
 | `07-PERCORSO-CONSEGNA-COMPENSO.md` | le sezioni 9 e 10: come si va avanti, specifiche di consegna, compenso |
 | `08-LAYOUT-E-VOCE.md` | come deve essere fatto e come deve suonare: palette, tipografia, formato, registro |
 | `09-ASSET-LINK-DISTRIBUZIONE.md` | i link veri, la cartella Drive, i file dei sei video, cosa va in pagina |
+| `10-APERTURA-E-CHIUSURA.md` | il testo della sezione 1 e della chiusura, già scritto |
 | **`DA-FARE.md`** | cosa manca prima di poter scrivere, in ordine |
+
+## Per chi scrive il PDF
+
+Il documento lo assembla un altro modello. Sette regole, e non sono di stile:
+
+1. **Non inventare numeri.** Ogni cifra che compare nel PDF deve stare in uno di questi
+   file. Se un dato manca, la risposta giusta è togliere la frase, non stimare.
+2. **Le righe di compliance si riportano come sono.** In `06-VINCOLI-E-COMPLIANCE.md` le
+   formulazioni vengono da policy vere: si possono accorciare, non ammorbidire, e nessun
+   divieto si toglie.
+3. **I verbatim si riscrivono.** Le frasi delle personas sono già riscritte; non
+   sostituirle con citazioni «più vere», perché le citazioni vere sono di utenti reali e
+   non escono da qui.
+4. **Il link del trial si copia e incolla**, esatto, da `09-ASSET-LINK-DISTRIBUZIONE.md`.
+   Non ricostruirlo, non abbreviarlo, non togliere parametri: ognuno fa qualcosa.
+5. **Il prezzo di Giada non entra.** Si parla al massimo di prova gratuita.
+6. **Non promettere mail al creator.** La consegna passa dalla cartella Drive: nessuna
+   frase del tipo «ti scriviamo» o «controlla la posta».
+7. **Italiano, prima persona, registro friendly.** Le tre prove di tono stanno in
+   `08-LAYOUT-E-VOCE.md`.
+
+L'ordine di assemblaggio è quello di `01-STRUTTURA.md`. Le immagini dei sei video di
+esempio si estraggono dai file in locale con il comando in
+`09-ASSET-LINK-DISTRIBUZIONE.md`.
 
 ## Cosa NON è una fonte
 

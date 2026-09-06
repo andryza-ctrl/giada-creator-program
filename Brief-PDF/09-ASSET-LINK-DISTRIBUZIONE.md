@@ -2,32 +2,48 @@
 
 Tutto quello che dentro il PDF deve essere un valore vero e non un segnaposto.
 
-## Il link del trial — quello giusto
+## Il link del trial — verificato il 6 settembre, e corretto
 
 ```
-https://giada.care/go/telegram?mode=page&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
+https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
 ```
 
-`/go/telegram` conia il token `g3_…` e apre `t.me/giadacare_bot?start=g3_…`;
-**`creatorsb2b_t7d` è ciò che dà i sette giorni** — `campaignTrialDays`
-(`packages/acquisition/src/click-context.ts:69`) cerca il token `_t<N>d` nella
-`utm_campaign`, e l'interstitial lo passa al click record (`functions/go/telegram.ts:177`).
+Landing viva (HTTP 200, il copy dice «7 giorni» in cinque punti). **Path e token devono
+coincidere**: `/nutrition7` con `_t7d` dentro la `utm_campaign`. `flow=g3` serve, perché è
+il gate che manda il form sul flusso nuovo.
 
-Tre scelte dentro quel link:
+### Perché non la rotta diretta, che avevamo scelto prima
 
-- **niente `flow=g3`**: serve alla landing con form, `/go/telegram` è g3 per costruzione e
-  non lo legge;
-- **niente `pixel=on`**: inerte senza consenso, e non vogliamo eventi del programma nel
-  dataset B2C di Giada;
-- **`mode=page`**: mostra il bottone «Apri Telegram» invece di redirigere di colpo — da un
-  PDF su telefono è più sicuro.
+Avevo indicato `/go/telegram?…&utm_campaign=creatorsb2b_t7d`. **Non funziona, e la prova è
+doppia.**
 
-⚠️ **Da provare con un account Telegram vero prima di stampare il PDF**: il trial va
-verificato che risulti di 7 giorni e non di 30.
+*Nel codice*: la durata del trial viene decisa in un punto solo, all'attivazione —
+`parseCampaignTrialDays(body.startPayload)` in
+`apps/api/src/routes/api/users/handlers/post-activate.ts:176`. Quella funzione **pretende
+un payload che comincia per `ad_`**, e il payload del flusso diretto è un token `g3_…`.
+Il `trialDays` che `/go/telegram` scrive nel click record
+(`functions/go/telegram.ts:177`) **non viene letto da nessuno**.
+
+*Nei dati*, letti da `stats.giada.care` lo stesso giorno: esistono **38 persone con trial
+da 7 o 14 giorni**, e vengono **tutte** dal form (`landing: g3_form`,
+`utm_campaign_raw` = `giada_onb_t7d` / `giada_onb_t14d`). Nello stesso periodo i **67
+arrivi dalla rotta diretta hanno tutti 30 giorni** (o 29 per arrotondamento). Zero
+eccezioni da entrambi i lati.
+
+**Costo della scelta**: il creator compila il form B2C — nome, email, consensi — prima di
+arrivare su Telegram. Un passaggio in più, ma è l'unico modo di dargli davvero sette
+giorni oggi.
+
+*Se un giorno si vuole il deep link diretto*, serve che il riscatto del token g3 legga
+`record.campaign.trialDays` e lo passi ad `activate`. È una modifica di Davide, non una
+configurazione.
 
 Nota igiene KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per utm, quindi
 le iscrizioni dei creator entrano nei conteggi g3. Il token `creatorsb2b_t7d` è
 riconoscibile a vista e togliibile a mano.
+
+Il link «Conosci Giada da vicino» già presente nella landing del programma punta alla
+stessa destinazione: sono coerenti.
 
 ## L'indirizzo per le idee
 

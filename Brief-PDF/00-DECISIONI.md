@@ -180,47 +180,26 @@ Il copy è stato riscritto nei sei punti (commit `0e4c7ce`): `BRIEF_PDF_URL` è 
 `MATERIALS_URL`, il bottone del pop-up dice «Apri la cartella», e il link a giada.care
 porta alla landing del trial di 7 giorni.
 
-## Il link del trial: quello giusto è la rotta `/go/telegram`
+## Il link del trial — la rotta con il form, non quella diretta
 
-Verificato nel codice e in KB il 6 settembre. La durata del trial **non dipende dal
-path** della landing: `/nutrition7` è solo copy statico. Dipende da un token `_t<N>d`
-delimitato (`/_t(\d+)d(?=_|$)/`, valori 1-30, sopra i 30 torna al default), e ci sono
-due funzioni gemelle che lo leggono da posti diversi:
+Verificato il 6 settembre nel codice **e** nei dati. La durata del trial non dipende dal
+path della landing: dipende dal token `_t<N>d`. Ma **l'unico percorso in cui quel token
+arriva davvero fino all'attivazione è quello con il form.**
 
-- `campaignTrialDays` (`packages/acquisition/src/click-context.ts:69`) legge la
-  **`utm_campaign`**, senza pretendere prefissi. La usano sia il form
-  (`api/onboarding.ts:330`) sia **l'interstitial** (`functions/go/telegram.ts:177`);
-- `parseCampaignTrialDays` (`apps/api/src/utils/membership.ts:104`) legge il payload
-  dello `/start` e pretende il prefisso `ad_`.
-
-**Il link del PDF, sul flow nuovo di Davide:**
+Il link è quindi:
 
 ```
-https://giada.care/go/telegram?mode=page&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
+https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
 ```
 
-`/go/telegram` conia il token `g3_…` e apre `t.me/giadacare_bot?start=g3_…`;
-`creatorsb2b_t7d` fa scattare la regex e dà i **sette giorni**. Tre scelte dentro quel
-link, ognuna per un motivo:
+La rotta diretta `/go/telegram`, che avevo scelto prima, **darebbe 30 giorni**: la durata
+si decide in `parseCampaignTrialDays(body.startPayload)`, che pretende un payload
+`ad_…`, e il flusso diretto manda un token `g3_…`. Il `trialDays` scritto nel click record
+non viene letto da nessuno. Nei dati: le 38 persone con trial da 7 o 14 giorni vengono
+tutte dal form; i 67 arrivi diretti dello stesso periodo hanno tutti 30 giorni.
 
-- **niente `flow=g3`**: quel parametro serve alla landing con form (`divertToG3`),
-  mentre `/go/telegram` è g3 per costruzione e non lo legge affatto;
-- **niente `pixel=on`**: sui creator non serve — è comunque inerte senza consenso, e non
-  vogliamo eventi del programma dentro il dataset B2C di Giada;
-- **`mode=page`**: mostra la pagina con il bottone «Apri Telegram» invece di redirigere
-  di colpo, che da un PDF su telefono è più sicuro.
-
-Questa rotta è **esercitata dal vivo** — le quattro ad TG Direct ci girano dal 03/09 —
-mentre l'override via payload `ad_…_t7d` non è mai stato usato da nessuna inserzione:
-per questo il link del PDF passa da qui e non da un deep link diretto al bot.
-
-Nota di igiene sui KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per
-utm, quindi le iscrizioni dei creator entrano nei conteggi g3. Per questo il token è
-`creatorsb2b_t7d`, riconoscibile a vista e togliibile a mano.
-
-Il link «Conosci Giada da vicino» in pagina punta invece alla landing da leggere,
-`\/nutrition7?flow=g3&…&utm_campaign=creatorsb2b_t7d`: path e token coincidono, quindi
-chi si iscrive da lì prende sette giorni e non trenta.
+Il dettaglio completo, con i riferimenti al codice, sta in
+`09-ASSET-LINK-DISTRIBUZIONE.md`.
 
 ## Voce e forma
 

@@ -4,17 +4,22 @@ Aggiornato al 6 settembre 2026. In ordine: le prime due bloccano, le altre no.
 
 ## Blocca
 
-1. **La sezione 1 e la chiusura.** Dieci righe in prima persona più una riga finale: sono
-   voce di Andrea, non si scrivono senza di lui. Il registro e le tre prove di tono stanno
-   in `08-LAYOUT-E-VOCE.md`. È l'unico contenuto che manca.
+**Niente. Il contenuto è completo.**
 
-~~Le cinque personas~~ — **fatte** il 6 settembre, in `03-PERSONAS.md`: scritte da
-`stats.giada.care` (3.544 persone, 121 paganti) e dalle 33 inserzioni attive.
+Chiuse il 6 settembre: le **cinque personas** (`03-PERSONAS.md`, da `stats.giada.care` e
+dalle 33 inserzioni attive) e l'**apertura con la chiusura**
+(`10-APERTURA-E-CHIUSURA.md`, sintetiche, da correggere se Andrea vuole).
+
+Il PDF lo assembla **GPT 6 Astra**: le sette regole per chi scrive stanno nel `README.md`.
 
 ## Non blocca la scrittura, blocca la pubblicazione
 
-3. **Verificare il link del trial** con un account Telegram vero: che dia 7 giorni e non
-   30. Il link e il motivo del dubbio stanno in `09-ASSET-LINK-DISTRIBUZIONE.md`.
+3. ~~Verificare il link del trial~~ — **fatto, e il link è cambiato.** La rotta diretta
+   dava 30 giorni: la durata si decide solo all'attivazione, da un payload `ad_…` che il
+   flusso diretto non ha. Il link buono è quello con il form,
+   `/nutrition7?flow=g3&…&utm_campaign=creatorsb2b_t7d`, verificato nel codice e nei dati
+   (38 trial brevi, tutti dal form; 67 arrivi diretti, tutti a 30 giorni). Dettaglio in
+   `09-ASSET-LINK-DISTRIBUZIONE.md`.
 4. **Creare la cartella Drive** con i due livelli di permessi e caricarci i sei video.
 5. **Incollare il link in `MATERIALS_URL`** e lanciare il deploy del sito.
 
