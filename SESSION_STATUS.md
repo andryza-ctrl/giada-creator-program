@@ -1,6 +1,6 @@
 # Session status — Giada Creator Program
 
-Ultimo aggiornamento: **5 settembre 2026**. Questo file è il punto da cui ripartire.
+Ultimo aggiornamento: **6 settembre 2026**. Questo file è il punto da cui ripartire.
 
 ## Dove siamo
 
@@ -395,6 +395,97 @@ esplicito**, la scelta vive in `localStorage` sotto `giada-creator-consent`, e c
 pagina identica, modulo compreso. L'informativa ha la sezione 04 dedicata: finalità, base
 giuridica (consenso), contitolarità con Meta, come ripensarci.
 
+## Cosa è cambiato il 6 settembre 2026
+
+Sessione di allineamento dei termini commerciali, prima di scrivere il brief in PDF. Nessun
+cambio visivo: la V8 resta com'è. Il confronto fra la pagina live, il `BRIEF-GIADA-CREATOR-PROGRAM-v2.md`
+e la scheda KB `people/andrea/programma-creator-b2b.md` ha fatto emergere quattro termini che
+dicevano tre cose diverse nei tre posti. Il committente li ha decisi uno per uno.
+
+| Termine | Pagina prima | Brief v2 / KB prima | Deciso il 6 settembre |
+| --- | --- | --- | --- |
+| Compenso | «si parte da 50€» | €80, tetto assoluto | **€50 base a video prodotto**, più bonus negoziati caso per caso |
+| Consegna | 1 video finito | 1 video + 3 hook, obbligatori | 1 video finito; **i tre hook sono un bonus**, non un deliverable di base |
+| Uso paid | incluso, senza limite di tempo | incluso negli €80 | **incluso nei €50**, confermato |
+| Trial | tre giorni | sette giorni | **sette giorni** |
+| Risposta alla proposta | entro 72 ore | 48 ore | **72 ore** |
+
+**Il compenso non è più un tetto: è un pavimento.** €50 è il minimo garantito per un video
+prodotto; sopra ci sono leve di aumento che si negoziano nella singola trattativa — hook
+aggiuntivi girati nella stessa sessione, pacchetto di più video, collaborazione mensile
+continuativa. La FAQ in pagina già lo diceva così («possiamo valutare cifre più alte, più video o
+un accordo legato ai risultati») e non è stata toccata.
+
+**L'uso del video nelle campagne resta incluso nel compenso base.** Era l'unico punto che poteva
+rompersi: la FAQ «Come usate il video?» dichiara già l'uso paid e organico senza limite di tempo,
+quindi trasformarlo in un extra a pagamento avrebbe cambiato le condizioni a chi aveva già letto la
+pagina e compilato il form. Confermato incluso.
+
+**Conseguenza da tenere presente sul modello economico.** Con i tre hook come bonus e non come
+consegna obbligatoria, il numero portante del brief v2 — 45 asset al mese a €26,7 l'uno — non
+descrive più il programma: il costo per asset torna verso i €50 ogni volta che il bonus non viene
+negoziato. Il brief v2 va rifatto su questa base, e finché non lo è resta il documento delle
+intenzioni, non quello dei termini.
+
+### Cosa è stato cambiato in pagina
+
+Solo la durata del trial, da tre a sette giorni, in tutti e quattro i punti dove compariva:
+
+| Dove | File |
+| --- | --- |
+| Passo 02 del processo | `processSteps`, `src/App.jsx` |
+| FAQ «Cosa ricevo dopo il form?» | `faqs`, `src/App.jsx` |
+| Lede della sezione «Prima la usi» | sezione `zone-trial`, `src/App.jsx` |
+| Passo 02 del pop-up di conferma | `modal-steps`, `src/App.jsx` |
+
+Le 72 ore erano già coerenti nei due punti in cui compaiono (passo 03 del processo e passo 03 del
+pop-up) e non sono state toccate.
+
+`npm run build` e `npm run test:sites` (4/4) passano.
+
+### Chiuso, per decisione del committente
+
+- **Il copy non è più provvisorio.** Il debito 6 («il copy è quello della V6, la riscrittura è la
+  prossima sessione») è chiuso: il copy attuale è considerato a posto.
+- **L'informativa privacy è confermata.** Il debito 2 non aspetta più una validazione legale.
+
+### La CAPI server-side non si fa, per ora
+
+Decisione presa con il motivo, perché è una scelta che si rivaluta e non un rinvio generico. Il
+pixel con l'evento `Lead` basta a questo stadio:
+
+- **La fonte di verità è il foglio, non Meta.** Ogni candidatura passa dalla Web App server-side:
+  il conteggio completo esiste già, e la CAPI non lo migliorerebbe.
+- **Sotto la soglia di apprendimento l'EMQ non compra niente.** Meta esce dalla fase di
+  apprendimento intorno alle 50 conversioni a settimana; l'obiettivo G1 è ≥10 lead qualificati in
+  due settimane. A quel volume l'algoritmo non ottimizza comunque.
+- **Il recupero in gioco è di due o tre eventi**, cioè quello che ITP e i blocker mangiano su una
+  decina di lead.
+
+Si rivaluta quando la spesa è reale e il volume regge l'ottimizzazione: l'`eventId` è già
+propagato dal browser alla Web App, quindi il lavoro residuo è un token del dataset.
+
+**Da mettere in conto:** i numeri di Meta e quelli del foglio non combaceranno, ed è atteso. Le
+candidature si contano sul foglio.
+
+### Il brief in PDF — non ancora scritto, e cosa manca
+
+Il PDF è il prossimo lavoro. Due cose restano aperte e vanno decise prima di scriverlo:
+
+1. **La struttura del documento**, da approvare prima della prima riga.
+2. **I «cinque hook che oggi funzionano meglio nell'account» non esistono come dato.** Il brief v2
+   li chiede dentro il PDF, ma registra anche il debito: dei sei video prodotti non sono mai stati
+   recuperati CPA, CTR e hook rate per asset. Quello che è misurato sta a livello di video intero,
+   non di hook — Elena 61s è il winner provato (oltre 200.000 di reach UE cumulata, CAC €37),
+   Maria ~2.800 di reach, i due video di Rosa confinati su `/fitness` con 819 e 1.597. Le opzioni
+   sono tre: ricostruire cinque hook dagli script già girati dichiarandoli come struttura e non
+   come performance, recuperare i dati veri da Meta prima di scrivere, oppure togliere gli hook dal
+   PDF.
+
+Materiale già individuato per il resto del documento: `analisi-creator-tipo-ugc-giada-2026-08-05.md`
+per i riferimenti e gli anti-requisiti, `kb-sync/insight-paganti-annuali-2026-08-05.md` per le
+storie utente da anonimizzare e i quattro cluster di paganti.
+
 ## Storia precedente
 
 - **19 agosto 2026, V6 «Daylight»**: sei superfici alternate (navy, abisso, crema, lilla pallido,
@@ -421,29 +512,35 @@ di terzi.
 
 ## Debiti aperti prima di mandare traffico
 
-Nessuno chiuso in questa sessione: sono tutti fuori dal perimetro visivo.
+Quattro dei sei sono stati chiusi: uno il 5 settembre, tre per decisione del committente il 6.
 
 1. ~~Il form è una demo e non invia dati.~~ **Chiuso il 5 settembre 2026**: le candidature vanno
    a una Web App di Apps Script che scrive nel foglio sul Drive di Andrea e manda la mail
    formattata. Dettagli sotto.
 2. ~~Il link privacy punta all'informativa B2C.~~ **Chiuso il 5 settembre 2026**: informativa
-   dedicata in `public/privacy-creator.html`, servita da `/privacy-creator.html`. **Va fatta
-   validare da un legale prima di mandare traffico**: è scritta sui trattamenti reali, ma non è
-   stata rivista da un avvocato.
-3. **Dataset Meta separato** dal funnel B2C, con eventi distinti da `Contact`.
+   dedicata in `public/privacy-creator.html`, servita da `/privacy-creator.html`. **Confermata dal
+   committente il 6 settembre 2026**: non aspetta più una validazione legale.
+3. ~~**Dataset Meta separato** dal funnel B2C, con eventi distinti da `Contact`.~~ **Chiuso il
+   5 settembre 2026**: dataset `1063455126601347` collegato all'account, dominio verificato,
+   conversione «Candidatura creator» creata. Vedi «Il funnel Meta del programma creator».
 4. **La pagina è pubblica e indicizzabile**: compenso e criteri di selezione sono leggibili da
-   chiunque.
-5. Compenso, perimetro diritti, privacy e criteri di ammissione restano provvisori e attendono
-   approvazione business e legale.
-6. **Il copy è quello della V6**, considerato provvisorio dal committente: la riscrittura è la
-   prossima sessione.
+   chiunque. **Resta aperto.**
+5. ~~Compenso, perimetro diritti, privacy e criteri di ammissione restano provvisori.~~ **Chiuso
+   il 6 settembre 2026**: €50 base a video prodotto con bonus negoziati caso per caso, uso paid e
+   organico incluso, trial sette giorni, risposta in 72 ore. Vedi «Cosa è cambiato il 6 settembre
+   2026».
+6. ~~**Il copy è quello della V6**, considerato provvisorio dal committente.~~ **Chiuso il
+   6 settembre 2026**: il copy attuale è considerato a posto, nessuna riscrittura prevista.
 
 ## Da dove ripartire
 
 - Comandi: `npm run dev` · `npm run build` · `npm run test:sites`
 - Leggere prima di un cambio visivo sostanziale: `DESIGN_SYSTEM.md`, `REFERENCE_MAP.md`,
   `design-qa.md`, `MONOREPO_HANDOFF.md`, più i guardrail in `CLAUDE.md`.
-- I termini commerciali vanno tenuti allineati con `BRIEF-GIADA-CREATOR-PROGRAM-v2.md`.
+- I termini commerciali decisi stanno in «Cosa è cambiato il 6 settembre 2026» e nella scheda KB
+  `people/andrea/programma-creator-b2b.md`. **`BRIEF-GIADA-CREATOR-PROGRAM-v2.md` non è più la
+  fonte dei termini**: il suo modello a €80 con i tre hook obbligatori è stato superato, e va
+  rifatto sul compenso a pavimento.
 
 ### Dove si tocca cosa
 
@@ -486,7 +583,11 @@ La verifica è fatta con **playwright-core più il Chrome for Testing** già pre
 
 ### Candidati per la prossima sessione
 
-- Riscrittura del copy, che il committente considera provvisorio.
-- Chiudere il debito 1: endpoint reale del form e rimozione dello stato demo.
+- **Il brief in PDF**: struttura da approvare, e la questione dei cinque hook da risolvere (vedi
+  «Il brief in PDF — non ancora scritto, e cosa manca»).
+- Caricare il PDF su Drive e incollare il link in `BRIEF_PDF_URL`, che attiva il bottone del pop-up.
+- Rifare il modello economico del brief v2 sul compenso a pavimento.
+- Creare la campagna Meta, con il prefisso `Creators B2B` nel nome. **È l'ultimo passo**, dopo il
+  PDF.
 - Guardare la V8 su browser reali: finora solo Chromium.
 - Traduzione dei quattro angoli `?angolo=` in varianti di headline già testate su Meta.

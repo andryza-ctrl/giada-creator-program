@@ -185,7 +185,7 @@ const creatorModes = [
 // Il numero di ogni passo usa una progressione dal teal al navy.
 const processSteps = [
   ["01", "Lasci i contatti", "Brief e accesso ti arrivano subito via mail.", "s1"],
-  ["02", "Provi Giada", "Hai tre giorni per usarla. Non devi creare nulla.", "s2"],
+  ["02", "Provi Giada", "Hai sette giorni per usarla. Non devi creare nulla.", "s2"],
   ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore decidiamo se partire insieme.", "s3"],
   ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
 ];
@@ -205,7 +205,7 @@ const faqs = [
   },
   {
     question: "Cosa ricevo dopo il form?",
-    answer: "Appena invii il form, ti arrivano via mail il brief in PDF e il link per provare Giada gratis per tre giorni.",
+    answer: "Appena invii il form, ti arrivano via mail il brief in PDF e il link per provare Giada gratis per sette giorni.",
   },
   {
     question: "Mi date uno script da recitare?",
@@ -580,7 +580,7 @@ export function App() {
                   Prima la usi.
                   <em>Poi la racconti 🎙️</em>
                 </h2>
-                <p className="lede">Hai tre giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
+                <p className="lede">Hai sette giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
                 <ul className="trial-days">
                   <li>
                     <b>SENZA COMPITI</b>
@@ -1022,7 +1022,7 @@ export function App() {
               </li>
               <li>
                 <b>02</b>
-                Prova Giada per tre giorni, senza compiti.
+                Prova Giada per sette giorni, senza compiti.
               </li>
               <li>
                 <b>03</b>
