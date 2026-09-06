@@ -96,6 +96,12 @@ realistico, ed è così che hanno fatto le tre creator precedenti.
 **Non si gira prima dell'approvazione**, e il PDF lo scrive nero su bianco: senza
 questa riga qualcuno consegna un video mai richiesto e poi rivendica il compenso.
 
+**Il video ha due vite.** Deciso il 6 settembre: quello che il creator consegna serve
+**sia come inserzione sia come reel da feed e TikTok organico**. Non si gira «una
+pubblicità»: si gira il contenuto che il creator pubblicherebbe sul proprio profilo. Per
+questo la parte su cosa rende un video virale non va smorzata con la nota che sul paid la
+viralità non è il traguardo: è vera solo a metà, e quella nota è stata tolta.
+
 **Le personas: cinque**, costruite sui pattern di chi risponde meglio alle ads di
 Giada e su chi sono gli utenti attuali. Richiede una ricerca dedicata su
 `stats.giada.care` e sulla KB Vivarium, da fare prima di scrivere il PDF.
@@ -114,9 +120,9 @@ una chat che non racconta nulla.
 **Musica: solo free.** Un audio trending preso dai social rende il video inutilizzabile
 in ads.
 
-**Sottotitoli obbligatori.** Diamo indicazioni su come ci piacciono — anche mostrando
-come sono fatti nelle ads live che il creator vedrà nella cartella — e poi lasciamo
-libera la creatività. Il dettaglio si definisce alla fine, con il resto.
+**Sottotitoli obbligatori, stile libero.** Deciso il 6 settembre: **nessun vincolo**.
+Si mostra come sono fatti nei nostri video — i due sistemi in uso, con la differenza di
+leggibilità — e la scelta resta al creator.
 
 **Hook alternativi: si chiedono in call, non nel PDF.** Si consegnano solo **video
 finiti**: due hook significa due video. Nessun girato grezzo.
