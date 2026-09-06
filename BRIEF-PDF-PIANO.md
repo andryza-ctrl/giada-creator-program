@@ -64,7 +64,10 @@ ispirare**: si può giocare con gli stili. Da definire alla fine, non ora.
 ## Decisioni prese nel secondo giro (6 settembre 2026)
 
 **I sei video di esempio** sono **due a testa di Elena, Maria e Rosa**. I diritti per
-mostrarli li abbiamo.
+mostrarli li abbiamo. I file stanno in locale sul Mac di Andrea, in
+`~/Desktop/Works/Vivarium/GIADA/Acquisition BETA/1. VIDEO FINITI/`
+(`elena 1-2`, `maria 1-2`, `rosa 1-2`, tutti `1080.mp4`): la cartella è popolabile
+subito.
 
 **Il loro ruolo è l'ispirazione, non il modello.** Il PDF li presenta come «guarda cosa
 abbiamo già fatto, ti può aiutare, ma porta la tua creatività al livello successivo».
@@ -162,8 +165,39 @@ mail **ad Andrea** (`andrea.zannuto@gmail.com`, con `replyTo` sul creator). Al c
 non parte nulla.
 
 **Risolto togliendo la promessa, non aggiungendo la mail**: si consegna dal pop-up
-(sopra). Resta vero che, senza mail, il pop-up è l'unica via d'accesso e non esiste un
-recupero se il creator lo chiude o cambia dispositivo.
+(sopra). Il recupero, deciso il 6 settembre, è **ricompilare il form con la stessa
+mail**: il pop-up ricompare col link. Non serviva codice — `doPost` non rifiuta i
+doppioni — solo dirlo in pagina, e adesso la FAQ lo dice. Costo accettato: righe
+duplicate nel foglio.
+
+Il copy è stato riscritto nei sei punti (commit `0e4c7ce`): `BRIEF_PDF_URL` è diventato
+`MATERIALS_URL`, il bottone del pop-up dice «Apri la cartella», e il link a giada.care
+porta alla landing del trial di 7 giorni.
+
+## Il link del trial: come si ottengono davvero sette giorni
+
+Verificato nel codice il 6 settembre. La durata del trial **non dipende dal path**
+della landing: `/nutrition7` è solo copy statico. Dipende da un token `_t<N>d`, e i
+due percorsi sono diversi:
+
+- **Deep link diretto su Telegram** — `parseCampaignTrialDays`
+  (`apps/api/src/utils/membership.ts:104`) legge il payload dello `/start`, richiede il
+  prefisso `ad_` e cerca `_t<N>d` delimitato (`/_t(\d+)d(?=_|$)/`, valori 1-30; sopra i
+  30 torna al default). Quindi il link per il PDF è
+  **`https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`**: nessuna landing, nessun
+  form, sette giorni.
+- **Via landing** — il form usa `campaignTrialDays(form.utm_campaign)`, che cerca lo
+  stesso token nella `utm_campaign` ma **senza** pretendere il prefisso `ad_`. Serve
+  quindi che il path e il token coincidano: `/nutrition7` con `_t7d`.
+
+⚠️ Il PRD `docs/prd/ad-attribution-flow-direct.md` avverte che l'override del trial sul
+flusso diretto è **un meccanismo supportato ma mai esercitato dal vivo**: nessuna ad in
+account porta un `_t<N>d`. Prima di mettere quel link nel PDF va provato con un account
+Telegram vero, e va verificato che il trial risulti di 7 giorni e non di 30.
+
+Nota di igiene sui KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per
+utm, quindi le iscrizioni dei creator entrano nei conteggi g3. Per questo il token
+scelto è `creatorsb2b_t7d`, riconoscibile a vista e togliibile a mano.
 
 ## Voce e forma
 
