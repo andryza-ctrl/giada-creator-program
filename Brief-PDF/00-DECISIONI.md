@@ -233,12 +233,12 @@ niente istituzionale. Vale per tutto il documento.
 **Il briefing su Giada lo scrivo io**, partendo da KB Vivarium e dalla landing B2C, più
 le domande di prodotto che farò ad Andrea.
 
-**Il contenuto delle sezioni 6 e 6-bis sta in `CONTENUTI-SEZIONI-6-E-6BIS.md`**: struttura,
+**Il contenuto delle sezioni 6 e 6-bis sta in `05-MESTIERE-SEZIONI-6-E-6BIS.md`**: struttura,
 script, hook, ritmo, editing, audio, sottotitoli, cosa fare e cosa non fare, più la parte
 su cosa rende un video potenzialmente virale. Scritto il 6 settembre dalla lettura live
 della libreria di Andrea (170 schede, 94 pertinenti) e da due fonti ufficiali TikTok e Meta.
 
-**L'anatomia dei sei video di esempio sta in `ANATOMIA-SEI-VIDEO.md`**: durate, apertura,
+**L'anatomia dei sei video di esempio sta in `04-ANATOMIA-SEI-VIDEO.md`**: durate, apertura,
 struttura, i due sistemi di sottotitoli in uso e i due errori già presenti nel materiale.
 È la base delle sezioni 5, 6 e 6-bis.
 
@@ -256,7 +256,7 @@ prima di sapere che ci sono dei vincoli.
 | 4 | Cosa deve fare il video | l'obiettivo non è intrattenere, è far venire voglia di provarla: i primi tre secondi, il meccanismo da mostrare, la CTA soft |
 | 5 | Guarda cosa abbiamo già fatto | i sei video, cosa funziona in ognuno, e la riga che impedisce i cloni |
 | 6 | Come si costruisce | struttura, script, pacing, editing, sottotitoli |
-| **6-bis** | **Cosa fare e come farlo** | consigli utili, cose che vogliamo e cosa rende un video potenzialmente virale — **contenuto pronto**, vedi `CONTENUTI-SEZIONI-6-E-6BIS.md` |
+| **6-bis** | **Cosa fare e come farlo** | consigli utili, cose che vogliamo e cosa rende un video potenzialmente virale — **contenuto pronto**, vedi `05-MESTIERE-SEZIONI-6-E-6BIS.md` |
 | 7 | Le regole tecniche | 9:16, 30-90 secondi, qualsiasi strumento ma audio perfetto, musica free, sottotitoli, niente watermark né loghi, italiano, Giada in scena almeno un momento |
 | 8 | Cosa non si può dire | i vincoli col perché in una riga, più minori vietati e lo scarico per gli adulti |
 | 9 | Come si va avanti | manda l'idea a `andrea@vivariumai.co`, 72 ore, correzioni o call, +14 giorni di Giada, giri, consegni in 7-10 giorni, una revisione, **non girare prima dell'ok** |

@@ -202,10 +202,9 @@ e si prende la foto dalla galleria.
 nostra finestra 30-90 secondi, e la conferma dal lato opposto: sopra i due minuti il
 formato non regge.
 
-**Strumenti**, per chi non ne ha già uno: monta nell'app **Edits**, che indica come la più
-semplice per chi comincia e adatta al telefono, poi esporta e passa a **CapCut solo per i
-sottotitoli**, perché ha opzioni migliori. Non è un obbligo — puoi montare con quello che
-vuoi — ma se non sai da dove partire, quella è la strada corta.
+**Gli strumenti sono affar tuo.** Monta con quello che usi già: quale app, e se ne usi una
+o due, non ci riguarda e non lo chiediamo. Quello che conta sono le tre passate e le due
+regole qui sopra, che valgono identiche su qualsiasi software.
 
 ## 6.8 L'audio conta più del video
 

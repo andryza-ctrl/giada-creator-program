@@ -537,8 +537,12 @@ Quattro dei sei sono stati chiusi: uno il 5 settembre, tre per decisione del com
 - Comandi: `npm run dev` · `npm run build` · `npm run test:sites`
 - Leggere prima di un cambio visivo sostanziale: `DESIGN_SYSTEM.md`, `REFERENCE_MAP.md`,
   `design-qa.md`, `MONOREPO_HANDOFF.md`, più i guardrail in `CLAUDE.md`.
-- **Il brief in PDF si pianifica in `BRIEF-PDF-PIANO.md`**, non qui: percorso reale del creator,
-  decisioni prese il 6 settembre, e cosa resta da decidere. Il PDF non va ancora scritto.
+- **Il brief in PDF si prepara nella cartella `Brief-PDF/`**, non qui. Si entra dal suo
+  `README.md`: dentro ci sono le decisioni prese (`00-DECISIONI.md`, la fonte), la struttura
+  del documento, il briefing sul prodotto, l'anatomia dei sei video, tutto il mestiere delle
+  sezioni 6 e 6-bis, i vincoli con le loro fonti, percorso e compenso, layout e voce, link e
+  asset. Cosa manca per scriverlo sta in `Brief-PDF/DA-FARE.md`. **Il PDF non è ancora
+  scritto, ed è voluto.**
 - I termini commerciali decisi stanno in «Cosa è cambiato il 6 settembre 2026» e nella scheda KB
   `people/andrea/programma-creator-b2b.md`. **`BRIEF-GIADA-CREATOR-PROGRAM-v2.md` non è più la
   fonte dei termini**: il suo modello a €80 con i tre hook obbligatori è stato superato, e va
