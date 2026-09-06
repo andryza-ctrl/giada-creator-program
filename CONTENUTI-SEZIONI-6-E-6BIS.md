@@ -23,6 +23,16 @@ Non è ancora impaginato: è il testo e la sostanza.
 4. **Tre fonti ufficiali**: il one-pager *Storytelling Formats to Drive Performance* di
    TikTok for Business, la pagina *Reels ads* di Meta for Business e la policy Meta
    *Health and Wellness* delle Advertising Standards.
+5. **I media della libreria, guardati uno per uno** — le copertine reali delle schede sui
+   contenuti, non i loro riassunti: è da lì che escono i dieci dispositivi del primo
+   fotogramma della §6-bis.5.
+6. **Cal AI su Instagram, scansionato live il 6 settembre** (`@calai.app`, 380K follower):
+   dodici contenuti pubblici, le loro copertine guardate, le didascalie e **i commenti**
+   letti. §6-bis.7.
+7. **La dashboard competitor** `api.competitors.giada.care/api/v1`: 35 inserzioni di 6
+   concorrenti dalla Meta Ad Library, snapshot 28/08/2026, finestra 29/06→28/08, con copy,
+   tema e asset scaricabile. Tre video di Foodvisor scaricati e smontati fotogramma per
+   fotogramma. §6-bis.7.
 
 ⚠️ Parte del materiale della libreria è **claim di creator, non evidenza**. Dove la fonte
 è ufficiale lo diciamo; dove è mestiere di qualcuno, resta mestiere.
@@ -305,7 +315,45 @@ possiamo mettere in pubblicità nemmeno se è bellissimo.
 12. **Non copiare i sei esempi.** Sono lì per capire il gioco: se ci arrivano sei versioni
     dello stesso video, il programma non serve a niente.
 
-## 6-bis.5 Cosa rende un video potenzialmente virale
+## 6-bis.5 Dieci dispositivi per il primo fotogramma
+
+Presi dalle copertine che funzionano — nella libreria, in Cal AI, nelle inserzioni dei
+concorrenti. Sono **forme**, non testi da copiare: dentro ci metti la tua cosa.
+
+| dispositivo | com'è fatto | esempio visto |
+| --- | --- | --- |
+| **la domanda scritta sopra il piatto** | ripresa dall'alto del cibo vero, la domanda in una pillola bianca in alto | «Secondo te quale dei due ha più calorie?» |
+| **l'oggetto fuori posto** | tre cose identiche, una diversa | tre banane, una viola, con «come si rubano 5 secondi di attenzione» |
+| **il confronto numerico** | due numeri affiancati, niente altro | «10 like contro 1.000 like» |
+| **la negazione** | si dice cosa smettere di fare | «Smetti di pesare ogni pasto» |
+| **il morto** | un formato o un'abitudine dichiarata finita | «i video parlati sono morti nel 2026» |
+| **il quiz** | si chiede di indovinare, la risposta arriva dopo | «indovina quale ha più calorie» |
+| **la situazione riconoscibile** | il momento preciso, senza spiegazione | «Sei al ristorante e volevi tracciare?» |
+| **la metafora visiva** | un'immagine che regge il concetto | l'iceberg: la punta che vedi, la base sotto |
+| **la tipografia gigante sopra la foto vera** | una parola enorme, la foto di sotto | usato in metà delle copertine viste |
+| **la persona terza** | il giudizio spostato su qualcun altro | «vediamo quante proteine ha la cena di mia madre» |
+
+Nota di casting: molti di questi esempi vengono da account che parlano a ragazzi di
+vent'anni. **Il dispositivo si prende, il casting no**: le persone che pagano Giada hanno
+fra 42 e 65 anni, e il volto nel video deve essere credibile per loro.
+
+## 6-bis.6 Il tempo: quanto durano i video che girano davvero
+
+Tre misure sullo stesso metro, perché insieme dicono una cosa utile:
+
+| | durata |
+| --- | --- |
+| arco consigliato da TikTok | 16-25 secondi |
+| inserzioni Foodvisor attive in Italia | **10, 17 e 21 secondi** |
+| i nostri sei video di esempio | 35-78 secondi |
+
+Il nostro standard è più lungo di quello del mercato. Non è sbagliato — un video che
+mostra una conversazione ha più cose da far vedere di uno che mostra una scansione — ma
+va speso bene: **i primi tre secondi valgono come tutto il resto**, e nella fascia 30-90
+il rischio non è annoiare all'inizio, è annoiare a metà. Se non hai un secondo motivo per
+restare intorno al decimo secondo, il video giusto è quello corto.
+
+## 6-bis.7 Cosa rende un video potenzialmente virale
 
 Questa parte è ispirazione: prendila come base, non come regola.
 
@@ -330,7 +378,7 @@ Questa parte è ispirazione: prendila come base, non come regola.
   e quei due diventano una serie. Il formato è un'ipotesi di distribuzione, non la tua
   identità.
 
-## 6-bis.6 Come l'algoritmo legge il tuo video (e perché ti conviene saperlo)
+## 6-bis.8 Come l'algoritmo legge il tuo video (e perché ti conviene saperlo)
 
 Utile perché spiega *perché* chiediamo le cose di sopra. Il sistema di Meta lavora in
 cinque passaggi, e i due che riguardano te sono il primo e il secondo:
@@ -348,9 +396,95 @@ Detto in una riga: **un video specifico che tiene i primi secondi non solo funzi
 meglio, costa anche meno.** È la stessa cosa che serve a un reel organico per essere
 spinto. Non ci sono due mestieri.
 
+## 6-bis.9 Cosa fanno gli altri, e cosa lasciano libero
+
+Letto il 6 settembre dalla dashboard competitor (35 inserzioni, 6 concorrenti, snapshot
+28/08, finestra 29/06→28/08) e dallo scan live di Cal AI su Instagram. Serve a due cose:
+non rifare quello che è già occupato, e prendersi quello che nessuno presidia.
+
+**Foodvisor — il concorrente vero in Italia** (13 inserzioni, 9 attive). Ha cambiato
+angolo ad agosto: da «Nessuna dieta miracolosa» a un **reset di rientro con la FOMO
+dentro** — *«Mentre tu ancora esiti, altri hanno già ripreso buone abitudini»*. I tre
+video smontati mostrano una grammatica ripetuta identica:
+
+1. tavolo ripreso dall'alto, **linea tratteggiata verticale** che divide il fotogramma e
+   la scritta **VS**; i piatti entrano uno alla volta con le chip delle calorie
+   («200 kcal VS 135 kcal», «150 kcal / 620 kcal»);
+2. la mano col telefono sopra il piatto: inquadratura, **«In fase di analisi…»**, e la
+   scheda del risultato con nome del piatto, calorie e «Registra questo cibo»;
+3. gli ultimi due secondi sono sempre una **card di chiusura** con l'icona dell'app e
+   «Scaricalo ora!».
+
+Due cose da sapere. La prima: **il confronto di calorie con la linea tratteggiata è loro**,
+lo ripetono su ogni creative da mesi — rifarlo ci fa sembrare la loro copia. La seconda,
+più importante: **promettono chili** («ho già perso 5 chili, e siamo solo a giugno»,
+«Raggiungi il tuo peso forma per sempre») e inquadrano il corpo — busto in jeans, senza
+volto, per dieci secondi fermi. Noi non possiamo e non vogliamo: e questo, invece di essere
+una limitazione, è il posizionamento. **Loro dimostrano una bilancia, noi dimostriamo una
+conversazione.**
+
+**HitMeal** (8 inserzioni attive in Italia, ma copy in inglese: «Don't put it off until
+tomorrow», «Set a goal, track your calories»): tracker generico, nessun angolo. **Noom**
+(6 attive in Italia, anche queste in inglese) presidia una cosa che ci riguarda:
+**«Aging & Metabolism»**, il metabolismo che cambia con l'età — il nostro ICP — ma lo fa
+con un *coursepack*, cioè con lo studio. Presenza contro studio: è una distinzione che un
+video può mostrare in tre secondi.
+
+**Sunn (Norvegia) e Heylou (Belgio)** sono i più vicini a Giada: coach nutrizionale
+**dentro WhatsApp**, nessuna app da installare. Hanno anche il copy più affilato del
+gruppo, e vale la pena leggerlo perché mostra dove si può arrivare:
+
+- *«Non ti è mancata la disciplina. Ti è finita la pazienza.»*
+- *«4 secondi dalla foto ai macro completi più il coaching. Nessuna app da installare.»*
+- *«Tracciare le calorie al ristorante vuol dire nascondere il telefono sotto il tavolo. […]
+  Mangia la cena. Bevi il vino.»*
+
+Quest'ultimo è l'angolo più interessante di tutta la ricerca, perché **nessuno lo presidia
+in Italia** e descrive esattamente il problema del nostro ICP: mangiare ogni giorno in
+situazioni che non si controllano. E Giada lo fa già — le si può dire dove si va, o
+mandarle il link del menù. **Il ristorante, la cena fuori, il pranzo di lavoro: è terra
+libera.**
+
+**Cal AI su Instagram** (`@calai.app`, 380K follower, dodici contenuti pubblici). Due
+letture, e sono entrambe utili:
+
+- **la forma funziona e costa niente.** Piatti ripresi dall'alto su tavoli veri — tovagliette
+  di carta, un vassoio del McDonald's — con la domanda scritta in una pillola bianca in
+  **alto** sopra il cibo. Zero food styling, zero studio. Gli hook sono tutti dello stesso
+  tipo: quiz («indovina quale ha più calorie»), negazione («smetti di pesare ogni pasto»),
+  situazione («al ristorante ma devi tracciare?»), persona terza («quante proteine ha la
+  cucina della mia fidanzata»). E c'è **un post in collaborazione con un creator**: lo
+  stesso meccanismo del nostro programma.
+- **l'organico da solo non basta.** Dodici post, quasi tutti di aprile 2025, e **159-319
+  like su 380.000 follower**: quell'account non vive di contenuti, vive di paid e di volume
+  creator. È un argomento a favore di quello che stiamo facendo, non contro.
+
+E poi c'è la cosa più utile di tutte, che sta **nei commenti** ai loro contenuti — parole
+di persone vere, non nostre:
+
+> «Come fa a sapere se sto usando uno yogurt ad alto contenuto proteico o uno più basso?»
+> · «Come fa a sapere le calorie se non sa che tipo di yogurt hai usato e tutti gli
+> ingredienti?» · «Come fa a misurare la frutta nascosta, i grammi al dettaglio?»
+
+È **l'obiezione numero uno** a tutte le app che fotografano il piatto, e la fanno gli
+utenti stessi sotto i loro post. Giada ha una risposta che loro non hanno: **non indovina,
+te lo chiede.** Le dici cos'hai messo dentro, e se sbagli ti corregge. Un video che parte
+da quell'obiezione — «l'app che fotografa il piatto non sa cosa c'è dentro» — attacca il
+punto debole del leader di mercato con le sue stesse parole.
+
 ---
 
 ## Le fonti
+
+**Scan live e dashboard.**
+
+- **Libreria** `knowledge-studio-andrea.vercel.app` — letta live, media inclusi.
+- **Cal AI** `instagram.com/calai.app` — scan del 6 settembre 2026: dodici contenuti
+  pubblici, copertine, didascalie e commenti.
+- **Dashboard competitor** `competitors.giada.care` / `api.competitors.giada.care/api/v1`
+  — endpoint aperti `/competitors` e `/ads` (filtri per competitor, mercato, stato, tipo di
+  media, lingua; `limit` massimo 100). Snapshot 28/08/2026, fonte Meta Ad Library, con
+  `copy`, `theme`, `copyFamily` e `assetUrl` scaricabile per ogni inserzione.
 
 **Ufficiali.**
 
