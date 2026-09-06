@@ -174,30 +174,47 @@ Il copy è stato riscritto nei sei punti (commit `0e4c7ce`): `BRIEF_PDF_URL` è 
 `MATERIALS_URL`, il bottone del pop-up dice «Apri la cartella», e il link a giada.care
 porta alla landing del trial di 7 giorni.
 
-## Il link del trial: come si ottengono davvero sette giorni
+## Il link del trial: quello giusto è la rotta `/go/telegram`
 
-Verificato nel codice il 6 settembre. La durata del trial **non dipende dal path**
-della landing: `/nutrition7` è solo copy statico. Dipende da un token `_t<N>d`, e i
-due percorsi sono diversi:
+Verificato nel codice e in KB il 6 settembre. La durata del trial **non dipende dal
+path** della landing: `/nutrition7` è solo copy statico. Dipende da un token `_t<N>d`
+delimitato (`/_t(\d+)d(?=_|$)/`, valori 1-30, sopra i 30 torna al default), e ci sono
+due funzioni gemelle che lo leggono da posti diversi:
 
-- **Deep link diretto su Telegram** — `parseCampaignTrialDays`
-  (`apps/api/src/utils/membership.ts:104`) legge il payload dello `/start`, richiede il
-  prefisso `ad_` e cerca `_t<N>d` delimitato (`/_t(\d+)d(?=_|$)/`, valori 1-30; sopra i
-  30 torna al default). Quindi il link per il PDF è
-  **`https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`**: nessuna landing, nessun
-  form, sette giorni.
-- **Via landing** — il form usa `campaignTrialDays(form.utm_campaign)`, che cerca lo
-  stesso token nella `utm_campaign` ma **senza** pretendere il prefisso `ad_`. Serve
-  quindi che il path e il token coincidano: `/nutrition7` con `_t7d`.
+- `campaignTrialDays` (`packages/acquisition/src/click-context.ts:69`) legge la
+  **`utm_campaign`**, senza pretendere prefissi. La usano sia il form
+  (`api/onboarding.ts:330`) sia **l'interstitial** (`functions/go/telegram.ts:177`);
+- `parseCampaignTrialDays` (`apps/api/src/utils/membership.ts:104`) legge il payload
+  dello `/start` e pretende il prefisso `ad_`.
 
-⚠️ Il PRD `docs/prd/ad-attribution-flow-direct.md` avverte che l'override del trial sul
-flusso diretto è **un meccanismo supportato ma mai esercitato dal vivo**: nessuna ad in
-account porta un `_t<N>d`. Prima di mettere quel link nel PDF va provato con un account
-Telegram vero, e va verificato che il trial risulti di 7 giorni e non di 30.
+**Il link del PDF, sul flow nuovo di Davide:**
+
+```
+https://giada.care/go/telegram?mode=page&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
+```
+
+`/go/telegram` conia il token `g3_…` e apre `t.me/giadacare_bot?start=g3_…`;
+`creatorsb2b_t7d` fa scattare la regex e dà i **sette giorni**. Tre scelte dentro quel
+link, ognuna per un motivo:
+
+- **niente `flow=g3`**: quel parametro serve alla landing con form (`divertToG3`),
+  mentre `/go/telegram` è g3 per costruzione e non lo legge affatto;
+- **niente `pixel=on`**: sui creator non serve — è comunque inerte senza consenso, e non
+  vogliamo eventi del programma dentro il dataset B2C di Giada;
+- **`mode=page`**: mostra la pagina con il bottone «Apri Telegram» invece di redirigere
+  di colpo, che da un PDF su telefono è più sicuro.
+
+Questa rotta è **esercitata dal vivo** — le quattro ad TG Direct ci girano dal 03/09 —
+mentre l'override via payload `ad_…_t7d` non è mai stato usato da nessuna inserzione:
+per questo il link del PDF passa da qui e non da un deep link diretto al bot.
 
 Nota di igiene sui KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per
-utm, quindi le iscrizioni dei creator entrano nei conteggi g3. Per questo il token
-scelto è `creatorsb2b_t7d`, riconoscibile a vista e togliibile a mano.
+utm, quindi le iscrizioni dei creator entrano nei conteggi g3. Per questo il token è
+`creatorsb2b_t7d`, riconoscibile a vista e togliibile a mano.
+
+Il link «Conosci Giada da vicino» in pagina punta invece alla landing da leggere,
+`\/nutrition7?flow=g3&…&utm_campaign=creatorsb2b_t7d`: path e token coincidono, quindi
+chi si iscrive da lì prende sette giorni e non trenta.
 
 ## Voce e forma
 
@@ -210,12 +227,60 @@ niente istituzionale. Vale per tutto il documento.
 **Il briefing su Giada lo scrivo io**, partendo da KB Vivarium e dalla landing B2C, più
 le domande di prodotto che farò ad Andrea.
 
+## Struttura del documento — indice approvato il 6 settembre
+
+L'ordine è: prima sedurre, poi istruire, le regole in fondo. Chi legge deve avere voglia
+prima di sapere che ci sono dei vincoli.
+
+| # | Sezione | Cosa fa |
+|---|---|---|
+| 0 | Copertina | nome del file più una riga di promessa. Niente «Brief v1.0» |
+| 1 | Ciao, sono Andrea | dieci righe in prima persona: chi c'è dietro, perché esiste il programma, e cosa **non** è — non un contest, non UGC a cottimo |
+| 2 | Cos'è Giada | il briefing prodotto, breve. Chiude col link del trial e col box «usala davvero in questi sette giorni, la tua chat è il materiale del video» |
+| 3 | A chi stai parlando | le cinque personas |
+| 4 | Cosa deve fare il video | l'obiettivo non è intrattenere, è far venire voglia di provarla: i primi tre secondi, il meccanismo da mostrare, la CTA soft |
+| 5 | Guarda cosa abbiamo già fatto | i sei video, cosa funziona in ognuno, e la riga che impedisce i cloni |
+| 6 | Come si costruisce | struttura, script, pacing, editing, sottotitoli |
+| **6-bis** | **Cosa fare e come farlo** | **consigli utili e cose che vogliamo. Richiede una ricerca dedicata, da fare con Andrea** |
+| 7 | Le regole tecniche | 9:16, 30-90 secondi, qualsiasi strumento ma audio perfetto, musica free, sottotitoli, niente watermark né loghi, italiano, Giada in scena almeno un momento |
+| 8 | Cosa non si può dire | i vincoli col perché in una riga, più minori vietati e lo scarico per gli adulti |
+| 9 | Come si va avanti | manda l'idea a `andrea@vivariumai.co`, 72 ore, correzioni o call, +14 giorni di Giada, giri, consegni in 7-10 giorni, una revisione, **non girare prima dell'ok** |
+| 10 | I soldi | il floor di 50€, i dettagli in call, e cosa fa salire la cifra |
+| 11 | Chiusura | una riga sola e la mail ripetuta |
+
+**Nessun tetto di pagine**: si scrive per intero, si guarda come esce, e si accorcia dopo.
+
+**Nome del file: `GiadaCreators_ManualeDiVolo`.**
+
+## Il briefing su Giada — materiale raccolto il 6 settembre
+
+**Cosa le si può mandare:** testo, foto del piatto, vocale. Tutti e tre. E oltre al cibo:
+acqua, movimento, sonno, peso.
+
+**Cosa restituisce**, parole di Andrea: calorie, macro, commento del pasto, attinenza al
+proprio piano e agli obiettivi fissati in onboarding, feedback di lungo termine, ricette
+su misura anche partendo dagli ingredienti che si hanno in casa, kitchen audit con
+consigli pratici, coaching sulle abitudini, coaching fitness, conteggio delle calorie
+attive nel workout, restare in linea senza sentirsi a dieta, trovare il lato positivo
+per rientrare dopo uno sgarro, e consigli su cosa prendere al ristorante — le si può
+dire dove si va e cerca il menù, o le si manda direttamente il link.
+
+**Il momento in cui brilla:** il fatto che **parla come un'amica e ci si conversa**, sui
+temi delle feature ma non solo. Non è una funzione: è la relazione. È questo che va
+mostrato.
+
+**I limiti:** non è un medico. Gli altri limiti si prendono da KB Vivarium e dalla
+landing B2C, non si inventano.
+
+**Il prezzo dopo il trial è 9,90€, ma non entra nei video**: si parla al massimo di prova
+gratuita.
+
 ## Ancora da decidere
 
-- struttura e indice del documento;
 - le cinque personas: la ricerca su `stats.giada.care` e KB, poi la scrittura;
 - come si accede alla cartella Drive (link unico per tutti o per persona);
-- indicazioni di struttura, script, pacing, editing, riferimenti, strategie (per ultimo);
+- le indicazioni di mestiere delle sezioni 6 e 6-bis: struttura, script, pacing,
+  editing, sottotitoli, riferimenti, strategie, «cosa fare e come farlo»;
 - impaginazione e tetto di pagine (per ultimo).
 
 ## Fuori perimetro per decisione
