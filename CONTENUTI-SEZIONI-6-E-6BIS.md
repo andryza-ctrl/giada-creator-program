@@ -161,6 +161,52 @@ Quattro trattamenti che aggiungono umanità senza aggiungere produzione:
 Il resto è igiene tecnica: 9:16 pieno, niente watermark di app di editing, niente loghi,
 **nessun marchio di terzi in campo**.
 
+## 6.7-bis Il montaggio, in tre passate
+
+Questa è la parte tecnica che mancava, e viene dal metodo di una social media manager che
+monta i video parlati di una creator con milioni di visualizzazioni — 214.500 like e
+**38.400 salvataggi** sul contenuto in cui lo spiega. Non è una fonte ufficiale: è
+mestiere di qualcuno che lo fa di lavoro, ed è il mestiere che serve a noi.
+
+La premessa, detta da lei: **non servono mille animazioni ed effetti sonori perché un
+video vada bene.** Serve una cosa sola, che chiama *montaggio che tiene*. E si ottiene
+passando sul materiale tre volte, non una.
+
+**Prima passata — il taglio grezzo.** Si importa tutto e si scorre il girato tagliando
+ciò che non è utilizzabile: le pause in silenzio, le conversazioni fuori campo, gli
+inizi sbagliati. Niente scelte di senso, solo pulizia.
+
+**Seconda passata — quella che conta, e dove serve il tuo giudizio.** Si torna
+all'inizio e si tiene **solo ciò che è pertinente all'argomento**. Le clip in più si
+tengono soltanto se sono davvero divertenti e **aggiungono** qualcosa. Poi si guarda
+quanto dura ogni argomento e si accorcia **quanto basta a far arrivare il punto senza
+perdere chi guarda**.
+
+Dentro questa passata ci sono le due regole più utili di tutta la ricerca:
+
+- **zero spazio morto fra una frase e l'altra.** Le battute devono quasi sovrapporsi:
+  *«è questo che tiene su la retention»*. L'unica eccezione è la pausa comica, che è una
+  scelta, non un buco;
+- **il test del ritaglio**, per chi non sa cosa tagliare: **riguarda il tuo video come se
+  fossi uno spettatore, e nel momento esatto in cui senti che ti stai annoiando, quello è
+  il pezzo da accorciare o togliere.** Non c'è bisogno di altri criteri.
+
+**Terza passata — lo zoom per enfasi.** È definito «il trucco di montaggio più semplice ed
+efficace»: si divide la clip nel punto in cui dici una cosa forte, ridi, fai una faccia o
+porti a casa il punto, **e si zooma dentro**. Si può fare anche con i keyframe: taglia la
+clip, keyframe all'inizio, vai alla fine e zooma, secondo keyframe. Per far comparire
+un'immagine — uno screenshot della chat, per esempio — si usa la funzione di sovrapposizione
+e si prende la foto dalla galleria.
+
+**Il tetto di durata**: lei tiene i video parlati **sotto i due minuti**. Coincide con la
+nostra finestra 30-90 secondi, e la conferma dal lato opposto: sopra i due minuti il
+formato non regge.
+
+**Strumenti**, per chi non ne ha già uno: monta nell'app **Edits**, che indica come la più
+semplice per chi comincia e adatta al telefono, poi esporta e passa a **CapCut solo per i
+sottotitoli**, perché ha opzioni migliori. Non è un obbligo — puoi montare con quello che
+vuoi — ma se non sai da dove partire, quella è la strada corta.
+
 ## 6.8 L'audio conta più del video
 
 Meta lo mette per iscritto: nei Reels **l'audio è attivo per impostazione predefinita**, e
@@ -501,6 +547,12 @@ punto debole del leader di mercato con le sue stesse parole.
   divieto di linguaggio sensazionalistico e promesse di risultati in un tempo dato, divieto
   del primo piano che pizzica il grasso, divieto delle affermazioni di inferiorità
   sull'aspetto, targeting 18+ per i prodotti dimagranti.
+
+**Da TikTok, aperto da Andrea e trascritto dai sottotitoli automatici.** *Cracking
+Content, episodio 2: il montaggio* — @jadyncsmithh, `tiktok.com/@jadyncsmithh/video/7681450441820966157`,
+214.500 like, 38.400 salvataggi, 4.829 condivisioni. È la fonte della §6.7-bis: le tre
+passate, lo spazio morto zero, il test del ritaglio, lo zoom per enfasi, il tetto dei due
+minuti e la coppia Edits + CapCut.
 
 **Dalla libreria — trascrizioni integrali usate.** *Playbook in 5 passaggi per storytelling
 video che trattiene* (@Mino, l'arco in cinque passaggi della §6.3) · *Sistema Andromeda*
