@@ -1,144 +1,205 @@
 # Sezioni 6 e 6-bis di `GiadaCreators_ManualeDiVolo` — materiale e stesura
 
 Contenuto pronto per le due sezioni di mestiere del PDF: **6 «Come si costruisce»** e
-**6-bis «Cosa fare e come farlo»**, con l'aggiunta chiesta il 6 settembre — *cosa rende
-un video potenzialmente virale*, da usare come ispirazione e non come regola.
+**6-bis «Cosa fare e come farlo»**, con la parte chiesta il 6 settembre — *cosa rende un
+video potenzialmente virale* — da usare come ispirazione e non come prescrizione.
 
-Non è ancora impaginato: è il testo e la sostanza, da rifinire quando si scrive il PDF.
+Non è ancora impaginato: è il testo e la sostanza.
 
 ## Da dove viene
 
-Tre fonti, tenute distinte perché hanno peso diverso.
+1. **La libreria di Andrea, letta live due volte il 6 settembre 2026** (payload 16:47 e
+   17:05): **170 schede**, 66 pronte, **22 con trascrizione**, copertura 39%, 18 batch di
+   media in lavorazione. Categorie: Carousel 106, Inspo 98, References 55, AI 86,
+   Marketing 68, Meta Ads 11. Fra le due letture nessuna scheda nuova, ma **33 schede
+   aggiornate** — sono le acquisizioni recenti a cui si stanno agganciando i media.
+   **94 schede** parlano di contenuti social, reel, hook, formati, script, editing o
+   creatività pubblicitaria.
+2. **Le trascrizioni integrali** delle sei schede video più pertinenti, che è dove sta la
+   sostanza vera: il testo delle schede è un riassunto, il parlato no.
+3. **Le sedici schede senza titolo**, i cui media sono stati scaricati e guardati uno per
+   uno: sono quasi tutte di design e sviluppo, e **una sola** riguarda i contenuti — quella
+   sui caroselli interattivi (§6-bis.5).
+4. **Tre fonti ufficiali**: il one-pager *Storytelling Formats to Drive Performance* di
+   TikTok for Business, la pagina *Reels ads* di Meta for Business e la policy Meta
+   *Health and Wellness* delle Advertising Standards.
 
-1. **La libreria di Andrea, letta live il 6 settembre 2026** —
-   `knowledge-studio-andrea.vercel.app`, payload generato alle 16:47 dello stesso giorno:
-   **170 schede**, 66 pronte, 22 con trascrizione, copertura 39%. Categorie: Carousel 106,
-   Inspo 98, References 55, AI 86, Marketing 68, Meta Ads 11. Delle 170, **94 parlano di
-   contenuti social, reel, hook, formati, script, editing o creatività pubblicitaria**;
-   quelle usate qui sono citate a fondo pagina. Sedici schede sono ancora senza titolo
-   (media da acquisire) e due sono bloccate: quello che dicono non è recuperabile oggi.
-2. **Due fonti ufficiali**, aperte dai link delle schede: il one-pager *Storytelling
-   Formats to Drive Performance* di TikTok for Business e la pagina *Reels ads* di Meta
-   for Business.
-3. **I nostri dati**, che quando contraddicono le prime due vincono loro.
-
-⚠️ Una parte del materiale della libreria è **claim di creator, non evidenza**: i numeri
-di viralità che quei contenuti promettono non sono verificati. Nel PDF si scrive quello
-che è utile a chi gira, senza spacciare per legge quello che è mestiere.
+⚠️ Parte del materiale della libreria è **claim di creator, non evidenza**. Dove la fonte
+è ufficiale lo diciamo; dove è mestiere di qualcuno, resta mestiere.
 
 ---
 
 # Sezione 6 — Come si costruisce
 
-## 6.1 La struttura in tre battute
+## 6.1 Il video ha due vite: inserzione e contenuto
 
-TikTok la pubblica ufficialmente, con le durate, e vale per qualsiasi verticale:
+Va detto subito, perché cambia il modo di girare. Quello che consegni **vive in due
+posti**: nelle inserzioni di Giada, e come **reel o TikTok organico** nel feed. È lo stesso
+video, e non va pensato come «una pubblicità».
+
+Le differenze pratiche sono poche ma reali:
+
+| | come contenuto organico | come inserzione |
+| --- | --- | --- |
+| cosa lo fa funzionare | hook rate, completamento, salvataggi, condivisioni | le stesse cose, più la qualità di chi arriva dopo il click |
+| il marchio | può restare quasi invisibile, si parla del problema | uguale in apertura, un po' più esplicito verso la fine |
+| la chiusura | anche solo un pensiero, o «te lo lascio qui sotto» | una CTA soft, una sola |
+
+La regola che ne esce: **gira il contenuto che pubblicheresti sul tuo profilo**, non
+l'annuncio che immagini che un'azienda voglia. Il nativo funziona in entrambi i posti; la
+pubblicità travestita in nessuno dei due.
+
+## 6.2 La struttura in tre battute, con le durate ufficiali
+
+TikTok la pubblica, con i numeri, e vale per qualsiasi verticale:
 
 | battuta | durata suggerita | cosa fa |
 | --- | --- | --- |
 | **inizio** | 3-5 secondi | costruisce interesse o sospetto: una domanda, un'affermazione che ferma, un'immagine d'apertura forte |
 | **centro** | 10-15 secondi | mostra e racconta i **3-5 benefici** principali. Raccomandazione visiva ufficiale: prodotto in uso, oppure **l'interfaccia dell'app con voice-over** |
-| **fine** | 3-5 secondi | una riga che chiude e una **call to action specifica su come si fa** la cosa che chiedi, con il testo a schermo |
+| **fine** | 3-5 secondi | una riga che chiude e una CTA **specifica su come si fa** la cosa che chiedi, con il testo a schermo |
 
-Fanno 16-25 secondi. I nostri sei video stanno fra **35 e 78 secondi**: la differenza non
-è un errore, è quanto materiale c'è dentro. **Le battute restano tre anche a 70 secondi**
-— quello che si allunga è il centro, e si allunga solo se ha qualcosa da dire.
+Fanno 16-25 secondi. I nostri sei video di esempio stanno fra **35 e 78 secondi**: la
+differenza non è un errore, è quanta sostanza c'è nel centro. **Le battute restano tre
+anche a settanta secondi** — si allunga solo il centro, e solo se ha qualcosa da dire.
 
-## 6.2 Lo script si stress-testa prima di girare
+TikTok aggiunge una frase che vale come autorizzazione: *non servono grandi budget o
+produzione rifinita; il contenuto lo-fi e autentico può essere molto efficiente da
+produrre.*
 
-Si scrive in quattro blocchi separati — hook, costruzione, payoff, CTA — e prima delle
-riprese si risponde a due domande: **in che punto preciso la curiosità si chiude troppo
-presto?** e **il payoff arriva preparato o cade dal cielo?** Scrivere tre aperture
-diverse per la stessa idea e scegliere prima di accendere la camera costa dieci minuti;
-scoprirlo dopo costa una giornata di riprese.
+## 6.3 L'arco in cinque passaggi — la struttura che tiene i video lunghi
 
-## 6.3 L'hook: il collo di bottiglia di tutto il resto
+Questa viene da un creator che l'ha presa dalla struttura narrativa hollywoodiana. È il
+modo di riempire il «centro» quando il video dura più di venti secondi:
 
-Il primo fotogramma non è l'introduzione del contenuto, è il contenuto che decide se
-esiste. Due cose ricorrono in tutte le schede sul tema:
+1. **Hook con obiettivo e conflitto.** Non «guarda cosa ho scoperto», ma *cosa voglio
+   ottenere* e *cosa me lo rende difficile*. La promessa contiene già la ragione per
+   restare.
+2. **La conferma.** Subito dopo l'hook, chi guarda deve sentire che sta andando verso una
+   risposta: si mostra il protagonista che *agisce* verso l'obiettivo. È qui che serve il
+   b-roll — sovrapporre immagini che raccontano la fatica o il contesto. E qui si vende
+   **quanto è difficile** la cosa: se l'hook dice «mangio fuori casa cinque giorni su
+   sette», si fa vedere il pranzo di corsa, non la cucina in ordine.
+3. **Il secondo conflitto, a metà.** Le storie migliori non vanno in linea retta. A metà
+   video serve un momento di caduta: un'obiezione nominata, una cosa che non funziona, un
+   cambio di scena. È il punto esatto in cui la gente smette di guardare.
+4. **Il culmine.** Il punto in cui la cosa si risolve. Nel video originale è sincronizzato
+   con un accento della musica — noi la musica trending non la possiamo usare, ma un
+   accento sonoro o un cambio visivo netto fa lo stesso lavoro.
+5. **La risoluzione, negli ultimi 5-10 secondi.** Breve, specifica, coerente col conflitto
+   iniziale, e **guadagnata**: se salti il passaggio che la rende credibile, non funziona.
 
-- **l'hook contiene già il payoff.** «Ti dico una cosa che ti cambia la vita» non è un
-  hook, è un rinvio. «Il coach ti ha detto di mangiare 50 g di proteine» lo è, perché
-  nomina la cosa;
+## 6.4 Lo script si stress-testa prima di girare
+
+Si scrive in quattro blocchi separati — **hook, costruzione, payoff, CTA** — e prima delle
+riprese si risponde a due domande: **in che secondo preciso la curiosità si chiude troppo
+presto?** e **il payoff arriva preparato o cade dal cielo?**
+
+Scrivere **tre aperture diverse** per la stessa idea e scegliere prima di accendere la
+camera costa dieci minuti. Scoprirlo dopo costa una giornata di riprese.
+
+## 6.5 L'hook: il collo di bottiglia di tutto il resto
+
+Il primo fotogramma non introduce il contenuto: decide se il contenuto esiste. Due cose
+ricorrono in ogni fonte:
+
+- **l'hook contiene già il payoff.** «Ti dico una cosa che ti cambia la vita» è un rinvio.
+  «Il coach ti ha detto di mangiare 50 g di proteine» è un hook, perché nomina la cosa;
 - **specifico batte intrigante.** Numeri, esperienza propria e trasformazione sono
-  verificabili; la provocazione generica no.
+  verificabili; la provocazione generica non lo è più da un paio d'anni.
 
-Le cinque tensioni che funzionano, da scegliere una sola per video: **il framework che
-ti manca** · **brutto contro buono** · **un'opinione forte con le sue ragioni** ·
-**esperto contro principiante** · **anni di esperienza compressi in pochi secondi**. Si
-aggiungono la domanda diretta, il contro-consiglio («non fare X») e l'*open loop*, cioè
-la frase che apre una parentesi che il video deve chiudere.
+Le tensioni che funzionano — **una sola per video**:
 
-Regola nostra, non presa in prestito: **niente promessa di chili, mai**. La tensione si
-prende dal gesto quotidiano, non dal risultato corporeo.
+| tensione | come suona |
+| --- | --- |
+| il framework che ti manca | «nessuno mi aveva spiegato che…» |
+| brutto contro buono | due versioni della stessa cosa, affiancate |
+| opinione forte con le sue ragioni | «secondo me X è sbagliato, e ti dico perché» |
+| esperto contro principiante | come lo fa chi ha esperienza e come lo fa chi comincia |
+| esperienza compressa | «tre anni di tentativi in quaranta secondi» |
+| contro-consiglio | «non fare X» |
+| open loop | una parentesi che il video deve chiudere |
 
-## 6.4 Il ritmo: una ragione per restare in ogni unità
+Regola nostra, non presa in prestito: **niente promessa di chili** (§6-bis.4 spiega che
+non è prudenza, è policy). La tensione si prende dal gesto quotidiano, non dal risultato
+sul corpo.
+
+## 6.6 Il ritmo: una ragione per restare, in ogni unità
 
 Il ritmo non lo fanno i tagli. Lo fa il fatto che ogni pezzo introduce un motivo per
-vedere il pezzo dopo: una domanda, un contrasto, un esempio, una conseguenza. Elena 2
-tiene **78 secondi con un'unica inquadratura ferma** perché ha tre numeri che scandiscono
-l'elenco — il ritmo è nella struttura, non nel montaggio.
+vedere il pezzo dopo: una domanda, un contrasto, un esempio, una conseguenza concreta.
+Elena 2, fra i nostri esempi, tiene **78 secondi con un'unica inquadratura ferma** perché
+tre numeri scandiscono l'elenco: il ritmo è nella struttura, non nel montaggio.
 
-Il playbook narrativo più utile fra quelli in libreria aggiunge due cose:
+Le due cose che si sbagliano più spesso: **il payoff arriva troppo presto** — la curiosità
+si chiude e non c'è più motivo di restare — oppure **arriva senza preparazione**, e non
+viene creduto.
 
-- **b-roll e prove che confermano la promessa** prima del punto più alto, così chi guarda
-  sente che sta andando verso una risposta;
-- **un secondo ostacolo a metà**, che è il punto in cui la gente smette di guardare. Un
-  cambio di scena, un'obiezione nominata, una variazione di suono.
-
-E la chiusura sta negli ultimi 5-10 secondi, **senza saltare il passaggio che la rende
-credibile**: la risoluzione va guadagnata, non annunciata.
-
-## 6.5 L'editing: nativo, non levigato
+## 6.7 L'editing: nativo, non levigato
 
 Il vantaggio di un contenuto girato da una persona è che sembra girato da una persona.
-TikTok lo scrive ufficialmente: *non servono grandi budget o produzione rifinita, il
-contenuto lo-fi e autentico può essere molto efficiente da produrre*. E dalla libreria:
-**un'estetica troppo levigata sembra pubblicità** — che è esattamente ciò che il feed
-salta.
+Un'estetica troppo levigata **sembra pubblicità**, che è esattamente ciò che il feed salta.
 
-Quattro trattamenti che aggiungono umanità senza aggiungere produzione: **greenscreen
-collage** (tu davanti a ciò di cui parli), **splitscreen explainer**, **ripresa
-dall'alto** di mani e oggetti, **lavagna o foglio** scritto a mano. Nei nostri sei video
-la ripresa dall'alto c'è già ed è la parte che funziona meglio nel centro.
+Quattro trattamenti che aggiungono umanità senza aggiungere produzione:
 
-Il resto è igiene: niente watermark di app di editing, niente loghi, 9:16 pieno, e
+- **greenscreen collage** — tu davanti a ciò di cui parli (screenshot, chat, foto);
+- **splitscreen** — due cose confrontate nello stesso fotogramma;
+- **ripresa dall'alto** di mani e oggetti: nei nostri sei video è la parte che funziona
+  meglio nel centro;
+- **carta o lavagna** scritta a mano.
+
+Il resto è igiene tecnica: 9:16 pieno, niente watermark di app di editing, niente loghi,
 **nessun marchio di terzi in campo**.
 
-## 6.6 L'audio è più importante del video
+## 6.8 L'audio conta più del video
 
-Meta lo mette per iscritto: nei Reels **l'audio è attivo per impostazione predefinita** e
-le inserzioni 9:16 **con audio** e con gli elementi principali dentro la safe zone
-rendono molto meglio. Da qui le due regole del programma:
+Meta lo mette per iscritto: nei Reels **l'audio è attivo per impostazione predefinita**, e
+le inserzioni verticali 9:16 **con audio** e con gli elementi principali dentro l'area
+sicura rendono significativamente meglio. Da qui le due regole del programma:
 
-- si può girare con qualsiasi strumento, ma **l'audio deve essere perfetto**: microfono a
-  clip, o telefono vicino, o stanza silenziosa. Un video bello con l'audio in una stanza
-  che rimbomba non si può usare;
+- si gira con qualsiasi strumento, ma **l'audio deve essere perfetto**: microfono a clip,
+  telefono vicino, stanza che non rimbomba. Un video bello con l'audio cattivo non si può
+  usare, e non c'è montaggio che lo salvi;
 - **solo musica libera da diritti.** Un audio trending preso dai social rende il video
-  inutilizzabile in pubblicità, e questa è l'unica cosa che manda a monte una consegna
-  già girata. Nel dubbio: nessuna musica.
+  inutilizzabile in pubblicità: è la cosa che manda a monte più consegne già girate. Meta
+  suggerisce la propria libreria audio gratuita. Nel dubbio: nessuna musica, o un accento
+  sonoro tuo.
 
-## 6.7 I sottotitoli, e come ci piacciono
+## 6.9 I sottotitoli
 
-Sono **obbligatori**: metà del pubblico guarda in muto, e le nostre inserzioni girano nel
-feed. Nei sei video di esempio ci sono due sistemi diversi, e si vede la differenza:
+**Servono** — metà del pubblico guarda in muto — ma **lo stile è tuo**: non ti diamo
+vincoli, ti facciamo vedere come sono fatti nei nostri video, che sono anche quelli che
+girano nelle inserzioni live.
 
-| sistema | com'è fatto | dove sta | resa |
+Nei sei esempi ci sono **due sistemi diversi**, e la differenza si vede:
+
+| sistema | com'è fatto | dove sta | come rende |
 | --- | --- | --- | --- |
-| **maiuscolo con box** (elena 1, elena 2, rosa 2) | tutto maiuscolo, condensato, grassetto; una riga di due o tre parole; la parola chiave dentro un rettangolo pieno di colore | terzo basso, staccato dal fondo | il più leggibile, anche in muto e al sole |
-| **minuscolo con parola accentata** (maria 1, maria 2, rosa 1) | frase in tondo, peso leggero, bianca, una sola parola colorata | metà bassa | più elegante, meno leggibile in pieno sole |
+| **maiuscolo con box** (elena 1, elena 2, rosa 2) | tutto maiuscolo, condensato, grassetto; una riga di due o tre parole; la parola chiave dentro un rettangolo pieno di colore; su elena 2 i numeri dell'elenco in un chip a parte | terzo basso, staccato dal fondo | il più leggibile in muto e in pieno sole |
+| **minuscolo con parola accentata** (maria 1, maria 2, rosa 1) | frase in tondo, peso leggero, bianca, una sola parola colorata | metà bassa | più elegante, meno leggibile al sole |
 
-**Il primo è quello che chiediamo**, e con due accorgimenti: una parola evidenziata per
-riga, non tre — evidenziare tutto significa non evidenziare niente; e i numeri di un
-elenco in un chip a parte, come su elena 2. Sotto: testo dentro l'area sicura, mai
-schiacciato al bordo inferiore, dove l'interfaccia di Instagram lo copre.
+Due osservazioni, non due regole: **evidenziare una parola per riga** funziona meglio che
+evidenziarne tre — se è colorato tutto non è colorato niente; e il testo va tenuto dentro
+l'area sicura, perché sul fondo l'interfaccia di Instagram lo copre.
 
-## 6.8 La chiusura
+## 6.10 La chiusura, e quanto chiedere
 
-Ultimi 3-5 secondi, una sola azione, **CTA soft**: «inizia gratuitamente», «provala
+Ultimi 3-5 secondi, **una sola richiesta**, CTA soft: «inizia gratuitamente», «provala
 subito», «traccia facilmente». TikTok aggiunge la cosa che si dimentica sempre: **sii
-specifico su come si fa**. Non «provala», ma dove e come. E una sola richiesta: l'ultima
-inquadratura chiede una cosa, non tre.
+specifico su come si fa**.
+
+Perché soft, e non «iscriviti ora»: i tuoi video stanno in **cima al funnel**, dove chi
+guarda non ci conosce ancora. La gradazione, presa da una scheda della libreria e coerente
+con come costruiamo le campagne, è questa:
+
+| fase | di cosa si parla | quanto si vede il prodotto | che CTA |
+| --- | --- | --- | --- |
+| **alta** (i tuoi video) | il problema e il beneficio, il marchio quasi non si nomina | poco | nessuna o molto soft, «scopri come funziona» |
+| media | il prodotto nel contesto d'uso, benefici specifici | in contesto | un piccolo impegno, «prova» |
+| bassa | offerta e marchio espliciti | in primo piano | conversione |
+
+Chiedere una conversione a chi ti ha appena incontrato è il modo più rapido di sprecare un
+buon video.
 
 ---
 
@@ -149,148 +210,182 @@ nostro numero lo diciamo.
 
 ## 6-bis.1 Le cose che vogliamo
 
-1. **Fai vedere la chat, e fa' che si legga.** È la cosa più importante di tutte. Sulle
-   nostre creative statiche il passaggio dal cibo in primo piano alla chat ingrandita ha
-   portato il rapporto click→contatto **dal 2,7% al 14%**. Nei sei video la stessa cosa si
-   vede a occhio: Maria mostra la chat a schermo pieno e leggibile, Rosa la mostra piccola
-   e riflettente. **Il cibo ferma lo scroll, il meccanismo qualifica.**
-2. **Registra lo schermo, non filmare lo schermo.** Un telefono ripreso al sole restituisce
-   riflessi e testo illeggibile. Lo screen recording della conversazione, ingrandito, si
-   legge.
+1. **Fai vedere la chat, e fa' che si legga.** È la più importante di tutte. Sulle nostre
+   creative statiche il passaggio dal cibo in primo piano alla chat ingrandita ha portato
+   il rapporto click→contatto **dal 2,7% al 14%**. Nei sei video la stessa cosa si vede a
+   occhio: dove la conversazione riempie lo schermo si capisce cosa fa Giada; dove il
+   telefono è piccolo e riflette, no. **Il cibo ferma lo scroll, il meccanismo qualifica.**
+2. **Registra lo schermo, non filmare lo schermo.** Un telefono ripreso al sole dà riflessi
+   e testo illeggibile. Lo screen recording della conversazione, ingrandito, si legge.
 3. **Usa Giada per davvero nei tuoi sette giorni.** La tua chat è il materiale del video:
    se la provi tiepidamente, alle riprese hai tre messaggi e uno screenshot che non dice
-   niente. Mandale una foto, un vocale, un testo; chiedile cosa prendere al ristorante;
-   fatti dire come rientrare dopo uno sgarro.
+   niente. Mandale una foto, un vocale, un testo. Chiedile cosa prendere al ristorante —
+   puoi dirle dove vai o mandarle il link del menù. Fatti dire come rientrare dopo uno
+   sgarro. Chiedile una ricetta con quello che hai in casa.
 4. **Parla a una persona sola.** Non a un pubblico: a una persona, con un problema, in un
-   momento della giornata. Un contenuto scritto per «le donne dai 42 ai 65 anni» non lo
-   riconosce nessuna donna fra i 42 e i 65 anni. Le cinque personas della sezione 3
-   servono a questo: scegline una e parlale.
+   momento preciso della giornata. Un contenuto scritto per «le donne dai 42 ai 65 anni»
+   non lo riconosce nessuna donna fra i 42 e i 65 anni. Le personas della sezione 3 servono
+   a questo: scegline una e parla a lei.
 5. **Usa le parole vere.** Le frasi che funzionano nelle nostre inserzioni sono quelle che
    le persone dicono di sé: «non ho voglia di pensarci, dimmi tu», «il problema non è
-   sapere cosa mangiare, è farlo». Il linguaggio preso dalle recensioni e dalle
-   conversazioni è più credibile di qualsiasi claim scritto a tavolino.
+   sapere cosa mangiare, è farlo». Il linguaggio preso dalle conversazioni reali è più
+   credibile di qualunque claim scritto a tavolino.
 6. **Metti la tua posizione, non solo l'informazione.** L'informazione generica vale poco;
    la stessa informazione con una presa di posizione vale molto. Il formato che regge di
    più oggi è **l'esperienza personale**: cosa hai provato tu, cosa ti ha sorpreso, cosa
-   avevi capito male.
-7. **Scrivi tre aperture prima di girare.** Poi scegline una. È il singolo gesto con il
-   miglior rapporto tra costo e resa in tutto il processo.
-8. **Chiudi il cerchio che apri.** Se l'hook fa una domanda, il video la risponde. Se
-   promette tre cose, ne dà tre.
+   avevi capito male. È anche la cosa più difficile da imitare.
+7. **Mostra il momento in cui succede.** Non la spiegazione del momento: il momento. Il
+   pranzo fuori, la sera sul divano, la spesa, la colazione di corsa.
+8. **Scrivi tre aperture prima di girare**, poi scegline una.
+9. **Chiudi il cerchio che apri.** Se l'hook fa una domanda, il video risponde. Se promette
+   tre cose, ne dà tre.
 
-## 6-bis.2 Le cose che non vogliamo
+## 6-bis.2 I formati che funzionano, e perché
 
-1. **Niente promesse di chili, di taglie o di percentuali di grasso.** Non è prudenza
-   nostra: è la policy pubblicitaria sulla salute. Il numero che si può mostrare è quello
-   di processo — giorni consecutivi, momenti registrati.
-2. **Non dire «sei sola».** L'angolo è «c'è qualcuno che risponde». La differenza non è
+Dalla libreria, e da quello che abbiamo già misurato noi: **i formati più credibili
+assomigliano a contenuti e interfacce che chi guarda sa già leggere**. Non c'è niente di
+più nativo di una conversazione.
+
+| formato | com'è fatto | nota |
+| --- | --- | --- |
+| **la chat** | la conversazione mostrata come tale, ingrandita | è il nostro formato migliore, con i numeri sopra |
+| **problema-soluzione** | prima la frizione, poi come si scioglie | il più semplice per costruire rilevanza |
+| **titolo da notiziario** | l'apertura scritta come una notizia | crea curiosità perché somiglia a un post, non a un'ad |
+| **risposta a un commento** | tu che rispondi a una domanda vera | linguaggio del cliente, formato nativo |
+| **recensione / testimonianza** | la tua esperienza raccontata come tale | serve che sia vera |
+| **giornata / dietro le quinte** | la cosa dentro la tua vita | funziona se il momento è riconoscibile |
+
+## 6-bis.3 Da un video se ne ricavano tre
+
+Serve a te e serve a noi: se un video funziona, ne vogliamo altri **diversi**, non
+ritoccati. La differenza è precisa — si cambia una leva alla volta fra **hook**, **centro**
+e **formato**, e si cambia anche il visivo, perché due video identici con l'apertura
+diversa non contano come due video.
+
+- **nuovo hook**: stessa cosa detta partendo da un'altra tensione, e con un'inquadratura
+  d'apertura diversa;
+- **nuovo centro**: la stessa promessa mantenuta con un'altra dimostrazione, un altro
+  esempio, un altro pezzo di conversazione;
+- **nuovo formato**: la stessa storia in giornata filmata invece che in confessione.
+
+È esattamente il tipo di lavoro che fa salire il compenso oltre il minimo: hook
+aggiuntivi, pacchetto, collaborazione continuativa.
+
+## 6-bis.4 Le cose che non vogliamo
+
+Le prime tre non sono prudenza nostra: sono regole scritte, e un video che le viola non lo
+possiamo mettere in pubblicità nemmeno se è bellissimo.
+
+1. **Niente promesse di chili, taglie o percentuali.** La policy Meta sulla salute e il
+   benessere vieta *«linguaggio sensazionalistico con affermazioni esagerate o estreme, o
+   promesse di risultati specifici in un tempo definito»*. Il numero che si può mostrare è
+   quello di processo: giorni consecutivi, momenti registrati, «2.500 persone».
+2. **Niente primi piani su una parte del corpo.** La stessa policy vieta esplicitamente il
+   *«primo piano su un'area specifica del corpo pizzicando il grasso»*. Non è una zona
+   grigia: è un esempio citato nel testo della regola.
+3. **Niente frasi che attaccano l'aspetto.** Vietate le *«affermazioni di inferiorità
+   sull'aspetto fisico»* — anche sul proprio. «Ero uno schifo» non si può dire.
+4. **Non dire «sei sola».** L'angolo è «c'è qualcuno che risponde». La differenza non è una
    sfumatura: sfruttare la solitudine di qualcuno è vietato dal regolamento europeo
-   sull'AI.
-3. **Di' che è un'assistente AI su Telegram.** Va detto, in una riga, in ogni contenuto:
-   è un obbligo di trasparenza. E funziona meglio del contrario — ammettere un limite
-   aumenta la fiducia.
-4. **Non fare la nutrizionista.** Giada non è un medico e non fa diagnosi. Se hai una
+   sull'intelligenza artificiale.
+5. **Di' che è un'assistente AI su Telegram.** Una riga, in ogni contenuto: è un obbligo di
+   trasparenza. E funziona meglio del contrario — ammettere un limite aumenta la fiducia.
+6. **Non fare la nutrizionista.** Giada non è un medico e non fa diagnosi. Se hai una
    condizione clinica, la tua non entra nel video.
-5. **Non inquadrare la lista chat di Telegram.** In uno dei nostri video si leggono i nomi
+7. **Non inquadrare la lista chat di Telegram.** In uno dei nostri video si leggono i nomi
    di altre persone in rubrica: sono dati di terzi. Si riprende **solo** la conversazione
    con Giada.
-6. **Nessun altro marchio in campo.** In un altro dei sei c'è un barattolo di proteine di
-   un'altra marca bene in vista. Toglilo dal tavolo.
-7. **Niente minori.** Se compare un altro adulto, serve il suo consenso e te ne assumi la
+8. **Nessun altro marchio in campo.** In un altro dei sei c'è un barattolo di proteine di
+   un'altra marca bene in vista.
+9. **Niente minori.** Se compare un altro adulto serve il suo consenso, e te ne assumi la
    responsabilità.
-8. **Niente audio trending, niente watermark, niente loghi di app di editing.**
-9. **Non girare prima dell'approvazione.** Prima l'idea, poi il sì, poi la call, poi le
-   riprese. Un video mai richiesto non entra nel compenso.
-10. **Non copiare i sei esempi.** Sono lì per capire il gioco. Se ci arrivano sei versioni
+10. **Niente audio trending, niente watermark, niente loghi di app di editing.**
+11. **Non girare prima dell'approvazione.** Prima l'idea, poi il sì, poi la call, poi le
+    riprese. Un video mai richiesto non entra nel compenso.
+12. **Non copiare i sei esempi.** Sono lì per capire il gioco: se ci arrivano sei versioni
     dello stesso video, il programma non serve a niente.
 
-## 6-bis.3 Cosa rende un video potenzialmente virale — e cosa invece lo rende utile
+## 6-bis.5 Cosa rende un video potenzialmente virale
 
-Questa parte è ispirazione, non prescrizione: interpretala.
-
-**Quello su cui tutte le fonti concordano:**
+Questa parte è ispirazione: prendila come base, non come regola.
 
 - **il primo fotogramma è il collo di bottiglia.** Non il migliore: il decisivo. Un buon
   contenuto fallisce se l'apertura non rende visibile il payoff;
-- **la specificità gira più della furbizia.** «10 like contro 1.000 like» funziona perché
-  è una coppia concreta; «il segreto che nessuno ti dice» non funziona più;
-- **la tensione va guadagnata e sciolta.** Promessa, conferma, ostacolo, payoff. Salta un
-  passaggio e la gente esce;
-- **si condivide e si salva ciò che serve di nuovo domani.** Prima di girare, chiediti in
+- **la specificità gira più della furbizia.** «10 like contro 1.000 like» funziona perché è
+  una coppia concreta; «il segreto che nessuno ti dice» non funziona più;
+- **la tensione va guadagnata e sciolta.** Promessa, conferma, ostacolo, culmine, chiusura.
+  Salta un passaggio e la gente esce;
+- **si condivide e si salva ciò che servirà di nuovo domani.** Prima di girare, chiediti in
   che momento futuro questo video servirà a chi lo guarda: è quello il motivo per cui lo
-  manda a qualcuno;
+  manda a un'amica;
+- **il tempo passato sul contenuto conta.** Una scheda recente della libreria lo dice per i
+  caroselli interattivi — quelli in cui devi trascinare, tenere premuto, scoprire: *più le
+  persone interagiscono, più Instagram lo spinge.* La versione video di questo principio è
+  il contenuto che si guarda due volte, o che va guardato fino in fondo per capirlo;
 - **il nativo batte il levigato.** Sembrare contenuto e non pubblicità è un vantaggio di
   formato, non pigrizia;
 - **l'identità batte l'informazione.** Un punto di vista riconoscibile non è sostituibile
-  con un elenco di consigli, e oggi è la cosa più difficile da imitare;
-- **si testano molti formati e si tengono i pochi che vincono.** Otto prove, due
-  vincitori, e quei due diventano una serie. Il formato è un'ipotesi di distribuzione, non
-  la tua identità.
+  con un elenco di consigli;
+- **si testano molti formati e si tengono i pochi che vincono.** Otto prove, due vincitori,
+  e quei due diventano una serie. Il formato è un'ipotesi di distribuzione, non la tua
+  identità.
 
-**E la cosa onesta da dire subito**, perché è la nostra e non sta nei manuali: **su un
-contenuto a pagamento la viralità non è il traguardo.** Nel nostro account il CTR non
-predice nulla di quello che conta — abbiamo inserzioni con click a basso costo e qualità
-peggiore di tutte, e inserzioni «lente» che portano le persone che restano. Chi diventa
-cliente è chi prende l'abitudine di registrare i pasti nei primi dieci giorni: la
-probabilità passa da quasi zero a **13-27%** oltre una certa soglia di costanza. Quindi il
-video che vale non è quello che fa fermare più pollici: **è quello che fa capire che si
-tratta di un gesto quotidiano semplice, e che qualcuno all'altro capo risponde.**
+## 6-bis.6 Come l'algoritmo legge il tuo video (e perché ti conviene saperlo)
 
-Se devi scegliere fra un'apertura che farebbe più visualizzazioni e una che fa capire
-meglio il meccanismo, **scegli la seconda**. È letteralmente il criterio con cui
-giudichiamo le idee.
+Utile perché spiega *perché* chiediamo le cose di sopra. Il sistema di Meta lavora in
+cinque passaggi, e i due che riguardano te sono il primo e il secondo:
+
+1. **bilanciamento.** La piattaforma pesa l'esperienza di chi guarda contro il risultato di
+   chi paga. Un contenuto percepito come fastidioso o troppo venduto **viene mostrato meno,
+   o costa di più**;
+2. **filtro e classifica.** Qui la piattaforma guarda la **specificità della creatività** e
+   i **segnali di interazione dei primi istanti** per decidere quali contenuti mostrare e a
+   quale prezzo;
+3. poi decide quale contenuto mostrare dopo, cosa raccomandare, e che percorso costruire
+   per ciascuna persona.
+
+Detto in una riga: **un video specifico che tiene i primi secondi non solo funziona
+meglio, costa anche meno.** È la stessa cosa che serve a un reel organico per essere
+spinto. Non ci sono due mestieri.
 
 ---
 
-## Le schede della libreria usate
+## Le fonti
 
-Storytelling e struttura: *Playbook in 5 passaggi per storytelling video che trattiene*
-(@Mino) · *Script Reels come blueprint: hook, retention, payoff e CTA* (@sociyell) ·
-*Progettare un carosello attorno al momento che merita un salvataggio* (@sociyell) ·
-*Architettura di un carosello che porta dall'attenzione all'azione* (@academy_of_wealth).
+**Ufficiali.**
 
-Hook: *25 hook brevi per fermare lo scroll* (@dnityasingh) · *Cinque formule di hook con
-esempi visuali* (@marketingharry) · *Otto curiosity hook da adattare al proprio
-contenuto* (@creatorzone.io) · *Perché alcuni hook da carosello fermano lo scroll e altri
-no* (@tinnaloaizaofficial).
-
-Formati ed editing: *Quattro format più umani per contrastare l'AI slop*
-(@thestevenmellor) · *Cinque formati Instagram da sostituire con contenuti più nativi e
-personali* (@marketingharry) · *Un sistema di formati ripetibili per testare contenuti
-oltre il talking head* (@tanishaabhansali) · *6 formati di Facebook Ads che parlano la
-lingua del cliente* (@lgnelmes) · *Sistema Andromeda per non rimanere senza idee
-pubblicitarie* (@Dante Brunelli).
-
-Leggibilità e tipografia: *Sette regole per caroselli leggibili e orientati ai buyer*
-(@liz.on.the.web) · *Anatomia di un carosello Instagram virale* (@m1ervin) · *17
-reference visuali per layout, UI e contenuti social* (Andrea).
-
-Messaggio e persona: *Identity-based content: creare connessione prima del valore*
-(@artofinfluenceco) · *Targeting psicologico: actual, ideal, ought self e trigger event*
-(@psychologyofads) · *Usare recensioni e placement nativi per scrivere creatività più
-credibili* (@bazouzii) · *Cinque personas × cinque angoli creativi* (@carloskicksads) ·
-*Allineare creatività e CTA alle fasi TOFU, MOFU e BOFU* (@adswithsimon).
-
-Voce: *no-ai-slop: editing assistito senza cancellare la voce* (@guglielmo.builds).
-
-Contesto paid, non per il PDF ma utile a noi: *Il 97% delle Meta Ads* e *Meta Ads a $100
-vs $100.000* (@Ben Heath) · *Creative Enhancements e Personalized Destinations* (@Ben
-Heath) · *Come funziona l'algoritmo Facebook Ads in cinque passaggi* (@carloskicksads).
-
-## Le due fonti ufficiali
-
-- **TikTok for Business — Storytelling Formats to Drive Performance**
-  (`ads.tiktok.com/business/library/Storytelling_Formats_One_Pager_SMB.pdf`): l'arco in
-  tre battute con le durate 3-5 / 10-15 / 3-5 secondi, i tre temi (presentare l'attività,
+- *TikTok for Business — Storytelling Formats to Drive Performance*
+  (`ads.tiktok.com/business/library/Storytelling_Formats_One_Pager_SMB.pdf`): l'arco in tre
+  battute con le durate 3-5 / 10-15 / 3-5 secondi, i tre temi (presentare l'attività,
   testimonianza, mostrare un prodotto), la raccomandazione di mostrare **l'interfaccia
   dell'app con voice-over**, e la frase sul lo-fi che rende.
-- **Meta for Business — Reels ads**
+- *Meta for Business — Reels ads*
   (`facebook.com/business/ads/facebook-instagram-reels-ads`): 9:16, **audio attivo per
-  default**, elementi principali dentro la safe zone, musica dalla libreria audio gratuita.
+  default**, elementi principali nell'area sicura, libreria audio gratuita.
+- *Meta Advertising Standards — Health and Wellness*
+  (`transparency.meta.com/policies/ad-standards/restricted-goods-services/health-wellness/`):
+  divieto di linguaggio sensazionalistico e promesse di risultati in un tempo dato, divieto
+  del primo piano che pizzica il grasso, divieto delle affermazioni di inferiorità
+  sull'aspetto, targeting 18+ per i prodotti dimagranti.
 
-## Cosa resta da recuperare, se un giorno serve
+**Dalla libreria — trascrizioni integrali usate.** *Playbook in 5 passaggi per storytelling
+video che trattiene* (@Mino, l'arco in cinque passaggi della §6.3) · *Sistema Andromeda*
+(@Dante Brunelli, la diversità creativa della §6-bis.3) · *Come funziona l'algoritmo
+Facebook Ads in cinque passaggi* (@carloskicksads, la §6-bis.6) · *Allineare creatività e
+CTA alle fasi TOFU, MOFU e BOFU* (@adswithsimon, la tabella della §6.10) · *6 formati di
+Facebook Ads che parlano la lingua del cliente* (@lgnelmes, la §6-bis.2) · *Cinque personas
+× cinque angoli creativi* (@carloskicksads).
 
-Sedici schede della libreria non hanno ancora il media e due sono bloccate: fra quelle,
-*42 formati pubblicitari che convertono* (@_tomlewis), *10 performance formats*
-(@rapvilleuk) e le 25 formule complete di @dnityasingh promettono cataloghi che dal DOM
-pubblico non si leggono. Non sono necessari al PDF.
+**Dalla libreria — schede.** Hook: @dnityasingh, @marketingharry, @creatorzone.io,
+@tinnaloaizaofficial. Formati ed editing: @thestevenmellor, @marketingharry,
+@tanishaabhansali. Struttura: @sociyell (due schede), @academy_of_wealth, @expert.pitch.
+Messaggio: @artofinfluenceco, @psychologyofads, @bazouzii. Leggibilità: @liz.on.the.web,
+@m1ervin, più *17 reference visuali* di Andrea. Voce: @guglielmo.builds. Distribuzione:
+la scheda sui caroselli interattivi di @yoursocialteam (senza titolo, media guardato).
+
+## Cosa resta non recuperabile
+
+Sedici schede non hanno ancora i media agganciati e due sono bloccate. Fra queste, *42
+formati pubblicitari che convertono* (@_tomlewis), *10 performance formats* (@rapvilleuk) e
+il catalogo completo delle 25 formule di @dnityasingh promettono elenchi che dal DOM
+pubblico non si leggono. Non servono al PDF: le strutture che contano sono già coperte.
