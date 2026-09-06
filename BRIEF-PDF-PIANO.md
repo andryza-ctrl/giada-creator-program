@@ -130,7 +130,30 @@ responsabilità a carico del creator.
 **Nessuna esclusiva**, non ci interessa. Prima collaborazione: **un video solo**, con la
 possibilità di renderla duratura già subito dopo.
 
-## Un debito operativo trovato il 6 settembre: la mail al creator non esiste
+## La consegna cambia: niente mail, si passa dalla cartella Drive
+
+Deciso il 6 settembre, in risposta al debito qui sotto: **al creator non si manda
+nessuna mail**. L'accesso a tutto il materiale arriva **dal pop-up di conferma**, che
+porta a una cartella Drive dove trova il PDF e i video.
+
+Struttura della cartella:
+
+- cartella padre, link unico, **sola visualizzazione ma con download attivo**, che
+  contiene il PDF: deve poterlo scaricare e tenerlo nel telefono;
+- **sottocartella con i sei video, senza download**, in sola visione, perché sono i
+  volti di Elena, Maria e Rosa. Il permesso più restrittivo sul figlio è ammesso da
+  Drive. Da sapere: la sola visione scoraggia, non impedisce — una registrazione di
+  schermo resta sempre possibile.
+
+Dentro il PDF va il **link diretto per iniziare il trial di 7 giorni su Telegram**.
+
+**Conseguenza sulla pagina:** il copy che promette la mail va riscritto in sei punti
+(step 01, FAQ «Cosa ricevo dopo il form?», riga sopra il form, lede del form in hero,
+lede del pop-up, nota sotto il bottone), e `BRIEF_PDF_URL` diventa il link alla
+cartella Drive — cioè il bottone del pop-up passa da disattivato a **via d'accesso
+principale**.
+
+## Il debito che ha portato a quella decisione: la mail al creator non esiste
 
 La pagina promette quattro volte che «brief e accesso arrivano subito via mail», e il
 pop-up di conferma dice «entro pochi minuti». **Quella mail non viene mandata da
@@ -138,11 +161,20 @@ nessuno.** La Web App di Apps Script, dopo aver scritto la riga nel foglio, mand
 mail **ad Andrea** (`andrea.zannuto@gmail.com`, con `replyTo` sul creator). Al creator
 non parte nulla.
 
-Finché non si chiude, il PDF non raggiunge nessuno anche se è perfetto. Due strade:
-aggiungere in `doPost` un secondo `MailApp.sendEmail` verso il candidato, con il
-template che contiene link al PDF, link alla cartella Drive e istruzioni per il trial —
-ricordando che serve **ridistribuire** la Web App, non basta salvare l'editor; oppure
-rispondere a mano, che però non regge la promessa dei «pochi minuti».
+**Risolto togliendo la promessa, non aggiungendo la mail**: si consegna dal pop-up
+(sopra). Resta vero che, senza mail, il pop-up è l'unica via d'accesso e non esiste un
+recupero se il creator lo chiude o cambia dispositivo.
+
+## Voce e forma
+
+**Prima persona** — è Andrea che scrive e che legge ogni idea — ma facendo **percepire
+il team Vivarium** dietro, non un uomo solo.
+
+**Registro friendly e un po' giocoso**, anche nel nome del file: niente burocrazia,
+niente istituzionale. Vale per tutto il documento.
+
+**Il briefing su Giada lo scrivo io**, partendo da KB Vivarium e dalla landing B2C, più
+le domande di prodotto che farò ad Andrea.
 
 ## Ancora da decidere
 
