@@ -23,9 +23,11 @@ const PRIVACY_URL = `${import.meta.env.BASE_URL}privacy-creator.html`;
 const FORM_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbzPKz6bAb9YfU5qaIZgPmstuQxci1Zt8uNMPj0I0wrt37PX_XaCHAag81Wcqwm32TQT/exec";
 
-// TODO: link diretto al PDF del brief su Drive. Finché è vuoto, il bottone del
-// pop-up resta disattivato e la conferma rimanda alla mail.
-const BRIEF_PDF_URL = "";
+// TODO: link alla cartella Drive dei materiali. Dentro: il brief in PDF, che il
+// creator deve poter scaricare, e una sottocartella con i sei video di esempio in
+// sola visione. È l'unica via di consegna — al creator non parte nessuna mail —
+// quindi finché è vuoto il bottone del pop-up resta disattivato.
+const MATERIALS_URL = "";
 
 // Una sola etichetta per l'unica conversione della pagina.
 const CTA_LABEL = "Ricevi brief e accesso";
@@ -184,7 +186,7 @@ const creatorModes = [
 
 // Il numero di ogni passo usa una progressione dal teal al navy.
 const processSteps = [
-  ["01", "Lasci i contatti", "Brief e accesso ti arrivano subito via mail.", "s1"],
+  ["01", "Lasci i contatti", "Brief e video di esempio si aprono subito dopo l’invio.", "s1"],
   ["02", "Provi Giada", "Hai sette giorni per usarla. Non devi creare nulla.", "s2"],
   ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore decidiamo se partire insieme.", "s3"],
   ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
@@ -205,7 +207,7 @@ const faqs = [
   },
   {
     question: "Cosa ricevo dopo il form?",
-    answer: "Appena invii il form, ti arrivano via mail il brief in PDF e il link per provare Giada gratis per sette giorni.",
+    answer: "Appena invii, si apre la cartella: dentro c’è il brief in PDF da scaricare, sei nostri video di esempio e il link per provare Giada gratis per sette giorni. Se perdi il link, ricompila il form con la stessa mail e te lo rimostriamo.",
   },
   {
     question: "Mi date uno script da recitare?",
@@ -591,7 +593,7 @@ export function App() {
                     Quando pensi “questo lo racconterei”, hai trovato il punto di partenza.
                   </li>
                 </ul>
-                <a className="inline-cta" href="https://giada.care" target="_blank" rel="noreferrer noopener">
+                <a className="inline-cta" href="https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_landing&utm_campaign=creatorsb2b_t7d" target="_blank" rel="noreferrer noopener">
                   Conosci Giada da vicino
                   <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />
                 </a>
@@ -813,7 +815,7 @@ export function App() {
               {/* La rail non è più titolo e vuoto: porta la scorciatoia al form
                   per chi ha già letto abbastanza. */}
               <div className="faq-aside">
-                <p>Due minuti adesso. Brief e accesso subito nella tua mail.</p>
+                <p>Due minuti adesso. Brief e video di esempio subito dopo l’invio.</p>
                 <a className="button button--primary button--sm" href="#candidatura">
                   <span>{CTA_LABEL}</span>
                   <ArrowRight aria-hidden="true" size={15} strokeWidth={2} />
@@ -862,7 +864,7 @@ export function App() {
                 Prova Giada.
                 <em>Poi raccontacela.</em>
               </h2>
-              <p className="lede">Lasciaci i tuoi contatti: brief e accesso arrivano subito via mail.</p>
+              <p className="lede">Lasciaci i tuoi contatti: brief e video di esempio si aprono subito.</p>
               <p className="finale-note">
                 <Check aria-hidden="true" size={14} strokeWidth={2.4} />
                 Adesso basta la curiosità. Il video viene dopo.
@@ -1012,8 +1014,8 @@ export function App() {
               <em>Sei dentro 🎬</em>
             </h2>
             <p className="modal-lede">
-              Abbiamo ricevuto la tua candidatura. Il brief e l’accesso a Giada ti arrivano
-              via mail entro pochi minuti: se non li vedi, controlla lo spam.
+              Abbiamo ricevuto la tua candidatura. Apri la cartella qui sotto: dentro trovi il
+              brief da scaricare, sei nostri video di esempio e il link per provare Giada.
             </p>
             <ul className="modal-steps">
               <li>
@@ -1030,21 +1032,21 @@ export function App() {
               </li>
             </ul>
             <div className="modal-actions">
-              {BRIEF_PDF_URL ? (
+              {MATERIALS_URL ? (
                 <a
                   className="button button--primary button--badge"
-                  href={BRIEF_PDF_URL}
+                  href={MATERIALS_URL}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  <span>Apri il brief</span>
+                  <span>Apri la cartella</span>
                   <span className="button-badge" aria-hidden="true">
                     <ArrowUpRight size={16} strokeWidth={2.2} />
                   </span>
                 </a>
               ) : (
                 <button className="button button--primary button--badge" type="button" disabled>
-                  <span>Apri il brief</span>
+                  <span>Apri la cartella</span>
                   <span className="button-badge" aria-hidden="true">
                     <ArrowUpRight size={16} strokeWidth={2.2} />
                   </span>
@@ -1058,8 +1060,8 @@ export function App() {
                 <span>Chiudi</span>
               </button>
             </div>
-            {BRIEF_PDF_URL ? null : (
-              <p className="modal-note">Il link al brief si attiva a breve. Intanto lo ricevi via mail.</p>
+            {MATERIALS_URL ? null : (
+              <p className="modal-note">La cartella si attiva a breve: ti scriviamo appena è pronta.</p>
             )}
           </div>
         </div>
