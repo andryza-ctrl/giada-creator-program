@@ -1,0 +1,16 @@
+Use case: identity-preserve.
+Asset type: transparent character cutout for a bold, playful creator-program PDF cover.
+Input image 1 is the EDIT TARGET and identity source. Edit this exact existing Giada avatar, preserving the original polished stylized 3D rendering.
+Change ONLY her body pose: waist-up, facing the reader, cheerful natural friendly smile, one free hand raised in a friendly wave with open palm, while the other hand holds the same charcoal tablet against her torso.
+Identity invariants: EXACT same adult stylized 3D face and facial proportions, warm brown eyes, auburn chin-length side-part bob and individual hair styling, eyebrows, skin tone, smile character, navy crew-neck short sleeve T-shirt and charcoal tablet. Keep her original adult appearance, not childlike. Keep original soft polished 3D lighting and material finish.
+Composition: portrait cutout with whole head, both arms and both hands fully framed, clear five-finger anatomy on the waving hand, framed down to waist with comfortable transparent space around all outer edges. Waving hand must be legible and separate from face.
+Background: genuinely transparent PNG with true alpha. No scene, no background color, no checkerboard drawn into pixels, no shadow panel.
+No text, no logo, no watermark, no extra objects, no accessories, no wardrobe change, no airplane. Do not flatten into 2D or pop-art treatment: visual pop treatment will be added in the document layout.
+
+Transparency correction:
+Use case: background-extraction. The provided generated Giada character image is the edit target. Keep the character COMPLETELY unchanged: same face, exact auburn bob, smile, navy shirt, tablet, waving hand and other hand, same pose, same detailed 3D render. Change only the background. The grey and white checkerboard in the current file is an unwanted painted background. REMOVE every grey and white checkerboard pixel outside the character and inside the empty space between arms and torso. Export a real transparent PNG with an actual alpha channel, not a painted checkerboard, not white, not any opaque color. All pixels outside the character must be alpha 0. Preserve clean anti-aliased hair and arm edges. No text, no extra objects.
+
+Final production correction (opaque cream because tool did not produce alpha):
+Edit target: the supplied image. Keep the Giada character completely unchanged: same EXACT adult stylized 3D facial identity, hairstyle, smile, shirt, tablet, waving pose, arms, hands, anatomy, clothing, lighting and framing. Change ONLY the background. Replace the entire checkerboard outside the character and between the arms and torso with a perfectly flat, uniform warm cream background of sRGB hex #fff9ef (RGB 255,249,239). No checkerboard anywhere. No gradient. No texture. No cast shadows on the background. No text, no logos, no props. The cream area must reach every image edge.
+
+Generation mode: built-in image_gen only. Final output: opaque warm cream scene, 1024 x 1536 RGB PNG. True-alpha requests returned RGB checkerboard drafts; those drafts excluded from final assets directory. Final background correction removed checkerboard. Exact source identity preserved as closely as generator permits; visually verified adult stylized face, auburn bob, navy shirt, charcoal tablet, waving five-finger hand and intact arms.

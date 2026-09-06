@@ -1,0 +1,16 @@
+STATUS: Generated pose approved for identity and hands; NOT usable in final PDF as-is. PNG is RGB with baked checkerboard, despite alpha request. No third attempt per coordinator instruction.
+MODE: built-in image_gen, identity-preserve edit.
+
+FIRST PROMPT
+Use case: identity-preserve
+Asset type: isolated Giada avatar cutout for a creator briefing PDF.
+Input image 1: edit target, the definitive Giada character. Preserve this exact identity.
+Primary request: change only Giada's pose. Waist-up, slightly three-quarter, looking toward the reader. Hold the original charcoal tablet low against the body with one arm. Extend the other hand toward the upper left of the image and point the index finger diagonally upper-left as if calling out an idea. Natural playful confident expression with the same subtle smile.
+Invariants: identical adult stylized 3D face, large brown eyes, eyebrows, auburn chin-length side-part bob haircut with the same sweep and details, nose, ears, subtle smile, natural skin, proportions, navy crew-neck short sleeve T-shirt, same charcoal tablet. Preserve original high quality 3D rendered style, soft original lighting and material realism; do not turn into 2D.
+Composition: full head, shoulders, both hands and pointing finger fully inside a square image frame, generous clear padding around every edge. Waist crop at the bottom only.
+Background: genuinely transparent alpha background with clean edges, no matte, no checkerboard.
+No additional clothes, accessories, props, letters, logos, watermark or background elements. Anatomically coherent hands with five fingers each, pointing hand relaxed and clear.
+
+SECOND ATTEMPT (also failed true alpha)
+Use case: background-extraction. Edit target is the attached image. Remove the entire gray-and-white checkerboard background and make it ACTUALLY transparent with a genuine alpha channel. This is an isolated character cutout asset for compositing. Do not draw or render a transparency checkerboard. Do not put white, grey, or any colored pixels behind the character. Return PNG with true alpha transparency. Keep the character exactly unchanged, including face, hair, skin, navy shirt, charcoal tablet, both hands and pointing gesture, lighting, size and position. Do not add anything.
+

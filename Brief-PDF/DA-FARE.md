@@ -14,12 +14,11 @@ Il PDF lo assembla **GPT 6 Astra**: le sette regole per chi scrive stanno nel `R
 
 ## Non blocca la scrittura, blocca la pubblicazione
 
-3. ~~Verificare il link del trial~~ — **fatto, e il link è cambiato.** La rotta diretta
-   dava 30 giorni: la durata si decide solo all'attivazione, da un payload `ad_…` che il
-   flusso diretto non ha. Il link buono è quello con il form,
-   `/nutrition7?flow=g3&…&utm_campaign=creatorsb2b_t7d`, verificato nel codice e nei dati
-   (38 trial brevi, tutti dal form; 67 arrivi diretti, tutti a 30 giorni). Dettaglio in
-   `09-ASSET-LINK-DISTRIBUZIONE.md`.
+3. **Provare il deep link del trial** — un minuto, da un account Telegram che non ha mai
+   fatto `/start` con Giada: aprire `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`,
+   completare l'onboarding, controllare che il trial sia di **7 giorni**. È l'unico anello
+   della catena mai esercitato dal vivo. Se esce 30, si passa al link con il form: entrambi
+   e il perché stanno in `09-ASSET-LINK-DISTRIBUZIONE.md`.
 4. **Creare la cartella Drive** con i due livelli di permessi e caricarci i sei video.
 5. **Incollare il link in `MATERIALS_URL`** e lanciare il deploy del sito.
 

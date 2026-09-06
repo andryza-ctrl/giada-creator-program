@@ -180,26 +180,25 @@ Il copy è stato riscritto nei sei punti (commit `0e4c7ce`): `BRIEF_PDF_URL` è 
 `MATERIALS_URL`, il bottone del pop-up dice «Apri la cartella», e il link a giada.care
 porta alla landing del trial di 7 giorni.
 
-## Il link del trial — la rotta con il form, non quella diretta
+## Il link del trial — deep link diretto, con un piano B
 
-Verificato il 6 settembre nel codice **e** nei dati. La durata del trial non dipende dal
-path della landing: dipende dal token `_t<N>d`. Ma **l'unico percorso in cui quel token
-arriva davvero fino all'attivazione è quello con il form.**
-
-Il link è quindi:
+Verificato il 6 settembre nel codice e nei dati. Nel PDF va:
 
 ```
-https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
+https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d
 ```
 
-La rotta diretta `/go/telegram`, che avevo scelto prima, **darebbe 30 giorni**: la durata
-si decide in `parseCampaignTrialDays(body.startPayload)`, che pretende un payload
-`ad_…`, e il flusso diretto manda un token `g3_…`. Il `trialDays` scritto nel click record
-non viene letto da nessuno. Nei dati: le 38 persone con trial da 7 o 14 giorni vengono
-tutte dal form; i 67 arrivi diretti dello stesso periodo hanno tutti 30 giorni.
+La durata si decide solo all'attivazione, e vuole **prefisso `ad_` più token `_t<N>d`**:
+quel payload passa entrambi i controlli e vale 7. La catena esiste — 66 utenti reali sono
+arrivati con payload `ad_…`, l'ultimo il 31 agosto — ma **nessuna inserzione ha mai portato
+un `_t<N>d`**, quindi quell'ultimo anello non è mai stato esercitato. Si prova in un minuto
+da un account Telegram mai usato con Giada.
 
-Il dettaglio completo, con i riferimenti al codice, sta in
-`09-ASSET-LINK-DISTRIBUZIONE.md`.
+**Piano B se il test dà 30 giorni**: il percorso con il form,
+`/nutrition7?flow=g3&…&utm_campaign=creatorsb2b_t7d`, che è provato da 38 utenti veri.
+
+**Da non usare**: `/go/telegram`, che conia un token `g3_…` e quindi non attiva mai
+l'override. Dettaglio in `09-ASSET-LINK-DISTRIBUZIONE.md`.
 
 ## Voce e forma
 

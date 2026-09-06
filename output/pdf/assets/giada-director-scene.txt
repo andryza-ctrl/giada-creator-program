@@ -1,0 +1,11 @@
+STATUS: FINAL SCENE. Opaque 4:3 landscape. Identity and hands visually verified. Cream background with navy rounded portal. Use entire rectangular scene.
+MODE: built-in image_gen; one attempt for new scene variant. Earlier failed alpha drafts retained separately.
+
+Use case: identity-preserve
+Asset type: designed opaque 4:3 landscape rectangular 3D scene for a Giada creator briefing PDF.
+Input image 1: the edit target, definitive original Giada identity. Keep exact face, character and outfit.
+Primary request: waist-up Giada, slightly three-quarter, looking at the reader, holding the original charcoal tablet low with one arm, raising the other arm and pointing index finger toward the upper-left. Playful confident friendly expression with same subtle smile. Entire hair, head, both hands and pointing finger inside frame.
+Scene: perfectly solid flat warm paper cream background #fff9ef. Behind Giada is one simple solid navy #203260 tall rounded-rectangle comic portal panel with broad rounded corners, no stroke. Portal behind the main head and torso, pointing hand extends to its left. Giada and portal occupy center-right, modest breathing room on left; waist crop at lower image edge.
+Render in original soft high-quality stylized 3D style, not 2D. Same adult face, large brown eyes, auburn chin-length side-part bob, eyebrows, skin, nose, proportions, navy crew-neck short-sleeve T-shirt and charcoal tablet as original. Soft original studio lighting. Anatomically coherent relaxed hands with five fingers each.
+OPAQUE image, no transparency requested. No checkerboard, no grid, no halftone, no text, no logos, no letters, no new accessories or props, no floor, no shadow on cream background. Minimal clean graphic scene: cream canvas, navy rounded portal and original Giada character only.
+

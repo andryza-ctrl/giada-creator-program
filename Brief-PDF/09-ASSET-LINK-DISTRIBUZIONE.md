@@ -2,48 +2,65 @@
 
 Tutto quello che dentro il PDF deve essere un valore vero e non un segnaposto.
 
-## Il link del trial — verificato il 6 settembre, e corretto
+## Il link del trial
+
+**Quello da mettere nel PDF — deep link diretto al bot:**
+
+```
+https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d
+```
+
+Nessuna landing, nessun form: si apre Telegram e si parte. Il bot risponde
+(`t.me/giadacare_bot` → «Giada.care», verificato il 6 settembre), il payload sta nei limiti
+di Telegram (18 caratteri su 64, charset ammesso).
+
+### Perché dà sette giorni
+
+La durata si decide in un punto solo, all'attivazione:
+`parseCampaignTrialDays(body.startPayload)` —
+`apps/api/src/routes/api/users/handlers/post-activate.ts:176`. Vuole due cose insieme: il
+prefisso **`ad_`** e un token **`_t<N>d`** delimitato, con N fra 1 e 30. Passando
+`ad_creatorsb2b_t7d` alla stessa regex del codice il risultato è **7**.
+
+E la catena a monte esiste davvero: `/start ad_*` arriva al router, che lo inoltra a Make,
+che chiama `activate` con `{startPayload: "ad_…"}`. **Nei dati ci sono 66 utenti reali
+arrivati così**, l'ultimo il 31 agosto — `ad_jul26_elena1`, `ad_lp_nutrition` e simili.
+Hanno tutti 30 giorni, ma è corretto: **nessuno di quei payload contiene un `_t<N>d`**.
+
+### L'unico anello mai esercitato, e come si prova in un minuto
+
+Nessuna inserzione ha mai portato un `_t<N>d` dentro un payload `ad_`, quindi quel token
+non è mai stato letto dal vivo su questa rotta (la stessa sintassi è invece provata
+sull'altro ramo, quello del form, da 38 utenti veri).
+
+**Il test**: aprire `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d` da un account
+Telegram che **non ha mai fatto `/start`** con Giada, completare l'onboarding, e controllare
+che il trial risulti di 7 giorni. Un minuto. Se esce 30, si passa al piano B qui sotto.
+
+### Piano B, se il test dà 30 giorni
 
 ```
 https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_pdf&utm_campaign=creatorsb2b_t7d&utm_content=manuale_di_volo
 ```
 
-Landing viva (HTTP 200, il copy dice «7 giorni» in cinque punti). **Path e token devono
-coincidere**: `/nutrition7` con `_t7d` dentro la `utm_campaign`. `flow=g3` serve, perché è
-il gate che manda il form sul flusso nuovo.
+È il percorso **con il form**, ed è provato: le uniche 38 persone con trial da 7 o 14
+giorni presenti nei dati vengono tutte da lì (`landing: g3_form`, `utm_campaign_raw`
+`giada_onb_t7d` / `_t14d`). Path e token devono coincidere — `/nutrition7` con `_t7d` — e
+`flow=g3` è il gate che manda il form sul flusso nuovo. Landing viva, il copy dice «7
+giorni» in cinque punti. Costo: il creator compila nome, email e consensi prima di arrivare
+su Telegram.
 
-### Perché non la rotta diretta, che avevamo scelto prima
+⚠️ **Da non usare in nessuno dei due casi: `/go/telegram`.** L'interstitial conia un token
+`g3_…`, che non ha il prefisso `ad_`, quindi l'override non scatta mai: il `trialDays` che
+quella rotta scrive nel click record (`functions/go/telegram.ts:177`) **non viene letto da
+nessuno**. Nei dati, i 67 arrivi diretti recenti hanno tutti 30 giorni.
 
-Avevo indicato `/go/telegram?…&utm_campaign=creatorsb2b_t7d`. **Non funziona, e la prova è
-doppia.**
+Nota igiene KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per utm né per
+payload, quindi le iscrizioni dei creator entrano nei conteggi g3. Sia `ad_creatorsb2b_t7d`
+sia `creatorsb2b_t7d` sono riconoscibili a vista e togliibili a mano.
 
-*Nel codice*: la durata del trial viene decisa in un punto solo, all'attivazione —
-`parseCampaignTrialDays(body.startPayload)` in
-`apps/api/src/routes/api/users/handlers/post-activate.ts:176`. Quella funzione **pretende
-un payload che comincia per `ad_`**, e il payload del flusso diretto è un token `g3_…`.
-Il `trialDays` che `/go/telegram` scrive nel click record
-(`functions/go/telegram.ts:177`) **non viene letto da nessuno**.
-
-*Nei dati*, letti da `stats.giada.care` lo stesso giorno: esistono **38 persone con trial
-da 7 o 14 giorni**, e vengono **tutte** dal form (`landing: g3_form`,
-`utm_campaign_raw` = `giada_onb_t7d` / `giada_onb_t14d`). Nello stesso periodo i **67
-arrivi dalla rotta diretta hanno tutti 30 giorni** (o 29 per arrotondamento). Zero
-eccezioni da entrambi i lati.
-
-**Costo della scelta**: il creator compila il form B2C — nome, email, consensi — prima di
-arrivare su Telegram. Un passaggio in più, ma è l'unico modo di dargli davvero sette
-giorni oggi.
-
-*Se un giorno si vuole il deep link diretto*, serve che il riscatto del token g3 legga
-`record.campaign.trialDays` e lo passi ad `activate`. È una modifica di Davide, non una
-configurazione.
-
-Nota igiene KPI: `fuori_perimetro()` filtra per **nome campagna Meta**, non per utm, quindi
-le iscrizioni dei creator entrano nei conteggi g3. Il token `creatorsb2b_t7d` è
-riconoscibile a vista e togliibile a mano.
-
-Il link «Conosci Giada da vicino» già presente nella landing del programma punta alla
-stessa destinazione: sono coerenti.
+Il link «Conosci Giada da vicino» nella landing del programma punta a `/nutrition7` con lo
+stesso token: resta valido in entrambi gli scenari.
 
 ## L'indirizzo per le idee
 
