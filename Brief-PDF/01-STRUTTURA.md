@@ -12,7 +12,7 @@ dei vincoli.
 | 0 | **Copertina** | il nome più una riga di promessa. Niente logo gigante, niente «Brief v1.0» | `08-LAYOUT-E-VOCE.md` |
 | 1 | **Ciao, sono Andrea** | dieci righe in prima persona: chi c'è dietro, perché esiste il programma, e cosa **non** è — non un contest, non UGC a cottimo | da scrivere, vedi `DA-FARE` |
 | 2 | **Cos'è Giada** | briefing breve sul prodotto. Chiude con il link del trial e con il box «usala davvero in questi sette giorni: la tua chat è il materiale del video» | `02-BRIEFING-GIADA.md` |
-| 3 | **A chi stai parlando** | le cinque personas | `03-PERSONAS.md` — **da costruire** |
+| 3 | **A chi stai parlando** | le cinque personas | `03-PERSONAS.md` |
 | 4 | **Cosa deve fare il video** | l'obiettivo non è intrattenere, è far venire voglia di provarla: i primi tre secondi, il meccanismo da mostrare, la CTA soft | `05-…` §6.1, §6.2, §6.10 |
 | 5 | **Guarda cosa abbiamo già fatto** | i sei video, cosa funziona in ognuno, e la riga che impedisce i cloni | `04-ANATOMIA-SEI-VIDEO.md` |
 | 6 | **Come si costruisce** | struttura in tre battute, arco in cinque passaggi, script, hook, ritmo, montaggio in tre passate, audio, sottotitoli, chiusura | `05-…` §6.1-6.10 |

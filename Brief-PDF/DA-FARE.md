@@ -4,11 +4,12 @@ Aggiornato al 6 settembre 2026. In ordine: le prime due bloccano, le altre no.
 
 ## Blocca
 
-1. **Le cinque personas.** È l'unico contenuto ancora da costruire. Metodo, fonti e
-   materiale già verificato stanno in `03-PERSONAS.md`; serve la passata su
-   `stats.giada.care` e sulla KB che Andrea ha chiesto di fare insieme.
-2. **La sezione 1 e la chiusura.** Dieci righe in prima persona più una riga finale: sono
-   voce di Andrea, non si scrivono senza di lui. Il registro è in `08-LAYOUT-E-VOCE.md`.
+1. **La sezione 1 e la chiusura.** Dieci righe in prima persona più una riga finale: sono
+   voce di Andrea, non si scrivono senza di lui. Il registro e le tre prove di tono stanno
+   in `08-LAYOUT-E-VOCE.md`. È l'unico contenuto che manca.
+
+~~Le cinque personas~~ — **fatte** il 6 settembre, in `03-PERSONAS.md`: scritte da
+`stats.giada.care` (3.544 persone, 121 paganti) e dalle 33 inserzioni attive.
 
 ## Non blocca la scrittura, blocca la pubblicazione
 

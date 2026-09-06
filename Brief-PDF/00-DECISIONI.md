@@ -290,11 +290,21 @@ landing B2C, non si inventano.
 **Il prezzo dopo il trial è 9,90€, ma non entra nei video**: si parla al massimo di prova
 gratuita.
 
+**Gli strumenti di montaggio sono liberi.** Deciso il 6 settembre: quale app usa il creator
+per montare, e se ne usa una o due, non ci riguarda e non lo chiediamo. Contano le tre
+passate e le due regole di §6.7-bis, che valgono su qualsiasi software.
+
+**Le cinque personas sono state scritte** il 6 settembre da `stats.giada.care` (estratto
+`invited_leads`, 3.544 persone, 121 paganti) e dalle 33 inserzioni attive lette dalla Graph
+API. Stanno in `03-PERSONAS.md` con i numeri da cui derivano.
+
 ## Ancora da decidere
 
-- le cinque personas: la ricerca su `stats.giada.care` e KB, poi la scrittura;
-- come si accede alla cartella Drive (link unico per tutti o per persona);
+- la sezione 1 («Ciao, sono Andrea») e la chiusura: sono voce di Andrea;
 - impaginazione e tetto di pagine (per ultimo).
+
+Il resto di quello che manca, compresi i passi operativi fuori dal documento, sta in
+`DA-FARE.md`.
 
 ## Fuori perimetro per decisione
 

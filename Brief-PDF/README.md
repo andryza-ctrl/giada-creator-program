@@ -14,7 +14,7 @@ elencato in `DA-FARE.md`. Aggiornato al **6 settembre 2026**.
 | **`00-DECISIONI.md`** | tutte le decisioni prese con Andrea e le risposte alle domande, in ordine cronologico. **È la fonte: se un altro file contraddice questo, vince questo** |
 | `01-STRUTTURA.md` | l'indice del PDF sezione per sezione, cosa fa ognuna, in che ordine e perché |
 | `02-BRIEFING-GIADA.md` | il testo della sezione 2: cos'è Giada, cosa sa fare, dove si ferma |
-| `03-PERSONAS.md` | la sezione 3. **Da costruire**: metodo, fonti e quello che già sappiamo |
+| `03-PERSONAS.md` | la sezione 3: **cinque personas**, scritte dai dati di `stats.giada.care` e dalle 33 inserzioni attive, con i numeri da cui derivano |
 | `04-ANATOMIA-SEI-VIDEO.md` | i sei video di esempio smontati fotogramma per fotogramma: base delle sezioni 5 e 6 |
 | `05-MESTIERE-SEZIONI-6-E-6BIS.md` | il pezzo più grosso: struttura, hook, ritmo, montaggio, audio, sottotitoli, cosa fare e cosa no, viralità, concorrenti |
 | `06-VINCOLI-E-COMPLIANCE.md` | la sezione 8: cosa non si può dire, con le formulazioni esatte e la fonte di ciascun divieto |
