@@ -227,6 +227,10 @@ niente istituzionale. Vale per tutto il documento.
 **Il briefing su Giada lo scrivo io**, partendo da KB Vivarium e dalla landing B2C, più
 le domande di prodotto che farò ad Andrea.
 
+**L'anatomia dei sei video di esempio sta in `ANATOMIA-SEI-VIDEO.md`**: durate, apertura,
+struttura, i due sistemi di sottotitoli in uso e i due errori già presenti nel materiale.
+È la base delle sezioni 5, 6 e 6-bis.
+
 ## Struttura del documento — indice approvato il 6 settembre
 
 L'ordine è: prima sedurre, poi istruire, le regole in fondo. Chi legge deve avere voglia
