@@ -288,3 +288,56 @@ Il resto di quello che manca, compresi i passi operativi fuori dal documento, st
 
 - **Rifare il modello economico** del brief v2: Andrea non lo vuole.
 - **I «cinque hook migliori»**: non esistono come dato, e non si vanno a cercare.
+
+---
+
+## Revisione v2 — 6 settembre 2026 (dopo il primo PDF impaginato)
+
+Richiesta di Andrea: copy più snello e diretto, via le parti inutili per il creator,
+presentazione corretta, e un formato consultabile nell'app per selezionare i pezzi da
+cambiare.
+
+**Da 26 a 18 pagine, da ~3.300 a ~2.370 parole di copy.**
+
+### Correzione di fatto
+
+**Andrea non è fondatore di Vivarium.** In KB (`team-and-relationships.md`) il suo ruolo è
+*Marketing, Sito Web & Visuals*; i co-fondatori sono altri. La v1 diceva «Con un piccolo
+team ho costruito Giada», che lo lasciava intendere. La v2 dice: «In Vivarium mi occupo di
+marketing e contenuti. Giada è la nostra assistente AI su Telegram». Il team resta presente
+nel possessivo, e le idee continua a leggerle lui.
+
+### Tolto, con la ragione
+
+| Cosa | Perché |
+| --- | --- |
+| Pagina «Porta il tuo taglio» (varianti di una storia che ha funzionato) | riguarda il secondo video, non il primo: al creator che deve ancora mandare un'idea non serve |
+| Riquadro «E l'algoritmo?» | non dice niente di azionabile |
+| Bottone «Conosci Giada da vicino» → `giada.care` | la landing B2C **espone il prezzo**, che per regola non entra |
+| Link «TikTok for Business» | risorsa per inserzionisti, non per chi gira |
+| Due hook su dieci («Abitudine archiviata», «Persona terza») | il primo vale solo se è vero, il secondo apre un tema di consensi |
+| Elenco a cinque battute dell'arco narrativo | ridondante con lo script: sopravvive come tre chip sopra i blocchi |
+
+### Unito
+
+Personas 2 pagine → 1 · esempi 3 → 2 · arco e script 2 → 1 · hook 2 → 1 · formato e
+montaggio 2 → 1 · checklist e chiusura 2 → 1.
+
+**Nessun vincolo di compliance è stato tolto.** I sei divieti e i quattro punti su cosa non
+si mostra restano interi; «Ispirazione, mai copia» si è spostato sulla pagina degli esempi,
+dove serve davvero. Il controllo automatico (22 asserzioni) gira in coda alla build.
+
+### Immagini
+
+Nessuna immagine nuova generata. L'avatar di Giada esiste in tre scene coerenti fra loro e
+generarne una quarta rischia di rompere l'identità (volto, occhi, bob, T-shirt navy,
+tablet) proprio dove il documento chiede di non romperla. La v2 recupera invece
+`giada-director.png`, che era già in cartella e non era mai stato usato, per la chiusura.
+
+### Formato di revisione
+
+`revisione/revisione-manuale.html` — le 18 pagine spezzate in **117 blocchi**, ognuno con
+tre marcature (Accorcia · Riscrivi · Togli) e una nota. Pubblicato come Artifact: quello che
+Andrea segna lì viene riletto da Claude direttamente, senza copiare niente. I blocchi che
+vengono da policy portano l'etichetta VINCOLO e ricordano che si accorciano, non si
+ammorbidiscono. Il generatore è `revisione/build.py` (i testi stanno in `revisione/data.py`).

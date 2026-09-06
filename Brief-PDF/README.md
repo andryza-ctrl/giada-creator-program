@@ -4,8 +4,29 @@ Cartella di lavoro del brief in PDF per i creator del Giada Creator Program.
 **Contiene tutto quello che serve per scriverlo**: decisioni prese, struttura, contenuti
 di ogni sezione, materiale di ricerca, vincoli, layout e link.
 
-⚠️ **Il PDF non è ancora scritto, ed è voluto.** Prima si chiude quello che manca —
-elencato in `DA-FARE.md`. Aggiornato al **6 settembre 2026**.
+✅ Il PDF è alla **v2: 18 pagine**, impaginato in `../output/pdf/`. Aggiornato al
+**6 settembre 2026**. La v1 da 26 pagine è superata; il suo script resta come
+`../output/pdf/source/build_manual_v1_26pagine.py.bak`.
+
+## I tre file con cui si lavora
+
+- **`GiadaCreators_ManualeDiVolo.pdf`** — il documento, 18 pagine.
+- **`GiadaCreators_ManualeDiVolo_EDITABLE.md`** — il copy e le indicazioni di layout, pagina
+  per pagina: si modifica qui prima di rigenerare.
+- **`revisione/revisione-manuale.html`** — la console di revisione (Artifact): le 18 pagine
+  spezzate in **117 blocchi**, ognuno segnabile con *Accorcia · Riscrivi · Togli* più una
+  nota. Quello che Andrea segna lì Claude lo rilegge direttamente. Si rigenera con
+  `python3 revisione/build.py` dopo aver aggiornato `revisione/data.py`.
+
+Per rigenerare il PDF:
+
+```bash
+python3 ../output/pdf/source/build_manual.py
+```
+
+Lo script stampa il numero di pagine e le violazioni di layout, e riscrive `copy.txt` e
+`layout-checks.json`. Se cambi il numero di pagine, aggiorna `TOTAL` in cima e i numeri
+della mappa a pagina 02.
 
 ## I file, nell'ordine in cui servono
 
@@ -43,6 +64,8 @@ Il documento lo assembla un altro modello. Sette regole, e non sono di stile:
    frase del tipo «ti scriviamo» o «controlla la posta».
 7. **Italiano, prima persona, registro friendly.** Le tre prove di tono stanno in
    `08-LAYOUT-E-VOCE.md`.
+8. **Andrea non è fondatore di Vivarium.** Si occupa di marketing e contenuti; il team
+   esiste e si sente («la nostra assistente AI»), ma le idee le legge lui.
 
 L'ordine di assemblaggio è quello di `01-STRUTTURA.md`. Le immagini dei sei video di
 esempio si estraggono dai file in locale con il comando in

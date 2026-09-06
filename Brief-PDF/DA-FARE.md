@@ -4,13 +4,11 @@ Aggiornato al 6 settembre 2026. In ordine: le prime due bloccano, le altre no.
 
 ## Blocca
 
-**Niente. Il contenuto è completo.**
+**Niente. Il PDF esiste, ed è alla v2 (18 pagine).**
 
-Chiuse il 6 settembre: le **cinque personas** (`03-PERSONAS.md`, da `stats.giada.care` e
-dalle 33 inserzioni attive) e l'**apertura con la chiusura**
-(`10-APERTURA-E-CHIUSURA.md`, sintetiche, da correggere se Andrea vuole).
-
-Il PDF lo assembla **GPT 6 Astra**: le sette regole per chi scrive stanno nel `README.md`.
+`GiadaCreators_ManualeDiVolo.pdf` è impaginato, i controlli di layout sono a zero e le 22
+asserzioni di compliance passano. Resta solo la lettura di Andrea:
+**apri l'Artifact di revisione**, segna i blocchi da cambiare, e Claude li rilegge da lì.
 
 ## Non blocca la scrittura, blocca la pubblicazione
 

@@ -23,7 +23,7 @@ Questa richiesta supera le precedenti note di attesa in README, DA-FARE e 00-DEC
 
 Fonte principale: 00-DECISIONI.md, con gli altri file di Brief-PDF. Il vecchio brief da 80 euro è superato. Il minimo resta 50 euro; prima collaborazione un video; 30-90 secondi; 9:16; idea, approvazione, call, riprese; massimo una revisione; utilizzo sui canali e in campagne senza limite di tempo; nessuna esclusiva.
 
-La cartella Drive e il deploy non sono parte della creazione del PDF. Nessun link Drive viene inventato: gli esempi sono richiamati per nome nella cartella materiali. Il link del trial è quello esatto del brief. La durata effettiva in un account Telegram richiede verifica prima della distribuzione.
+La cartella Drive e il deploy non sono parte della creazione del PDF. Nessun link Drive viene inventato: gli esempi sono richiamati per nome nella cartella materiali. Il link del trial da riportare nel PDF è `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`. La durata effettiva in un account Telegram richiede verifica prima della distribuzione.
 
 Le regole su aspetto, vulnerabilità e trasparenza sono presentate come regole editoriali del programma, evitando di trasformare le sintesi normative del brief in affermazioni giuridiche assolute. Musica gratuita significa licenza valida anche per uso pubblicitario e per tutti i canali previsti; una libreria di piattaforma non implica automaticamente diritti multipiattaforma.
 

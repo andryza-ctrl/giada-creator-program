@@ -30,3 +30,8 @@ files/
 files.zip
 integrazione_handoff.md
 .claude/
+
+# Manuale di volo: la copia del PDF in Brief-PDF e' comodita' locale, il file
+# canonico e' output/pdf/GiadaCreators_ManualeDiVolo.pdf. E lavoro temporaneo.
+Brief-PDF/GiadaCreators_ManualeDiVolo.pdf
+tmp/

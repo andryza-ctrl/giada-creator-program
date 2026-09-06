@@ -35,3 +35,10 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 - The sticky navigation is light periwinkle and translucent; the finale/footer remain visually continuous across the section boundary without a hard rule or isolated teal halo.
 - As of 24 Aug 2026, use `#c6d0f6` as the only cool surface color across page backgrounds and the translucent sticky navigation; keep navy text and the teal CTA dominant.
 - As of 24 Aug 2026, keep the periwinkle surface lightly mixed with the paper tone (45%) so navy and soft text remain easy to read.
+
+## Creator PDF decisions - 6 September 2026
+
+- The PDF is a separate artifact from the landing: bold, playful, near-cartoon/pop art, with concise copy and Giada avatar scenes preserving the original identity and outfit.
+- Use `Brief-PDF/` as the PDF source of truth; the current request authorizes completing and producing it despite older planning holds. The old 80-euro model in the v2 brief is superseded for this document.
+- Read the updated `Brief-PDF/README.md` and `10-APERTURA-E-CHIUSURA.md`: no invented figures, no softened or removed compliance prohibitions, rewritten personas only, exact trial URL, no product price, no automatic-email promise, Italian first-person friendly voice. Keep recipient language gender-neutral.
+- Consult Knowledge Studio and giada.care as partial visual inspiration; do not reproduce third-party brand assets. Keep the PDF comfortable to read from a phone.
