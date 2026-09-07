@@ -4,9 +4,16 @@ Cartella di lavoro del brief in PDF per i creator del Giada Creator Program.
 **Contiene tutto quello che serve per scriverlo**: decisioni prese, struttura, contenuti
 di ogni sezione, materiale di ricerca, vincoli, layout e link.
 
-✅ Il PDF è alla **v2: 18 pagine**, impaginato in `../output/pdf/`. Aggiornato al
-**6 settembre 2026**. La v1 da 26 pagine è superata; il suo script resta come
-`../output/pdf/source/build_manual_v1_26pagine.py.bak`.
+✅ Il PDF è alla **v3: 18 pagine**, impaginato in `../output/pdf/`. Aggiornato al
+**7 settembre 2026**: esegue le 101 richieste segnate da Andrea nella console di revisione
+(tono più caldo su tutte le pagine, trial a 14 giorni, «Il video» spostata dopo gli esempi,
+Rosa 2 ed Elena 1 scambiate, passata di layout su tutte e 18). Gli script precedenti restano
+come `build_manual_v2_18pagine.py.bak` e `build_manual_v1_26pagine.py.bak`.
+
+⚠️ Due cose aperte: la copertina aspetta ancora `giada-selfie-scene.png` (Giada che si
+registra col telefono — prompt pronto in `../output/pdf/assets/giada-selfie-scene.PROMPT.txt`,
+lo script lo usa da solo appena il file c'è), e il link `?start=ad_creatorsb2b_t14d` va provato
+con un account Telegram nuovo prima di distribuire il PDF.
 
 ## I tre file con cui si lavora
 
@@ -14,9 +21,13 @@ di ogni sezione, materiale di ricerca, vincoli, layout e link.
 - **`GiadaCreators_ManualeDiVolo_EDITABLE.md`** — il copy e le indicazioni di layout, pagina
   per pagina: si modifica qui prima di rigenerare.
 - **`revisione/revisione-manuale.html`** — la console di revisione (Artifact): le 18 pagine
-  spezzate in **117 blocchi**, ognuno segnabile con *Accorcia · Riscrivi · Togli* più una
-  nota. Quello che Andrea segna lì Claude lo rilegge direttamente. Si rigenera con
-  `python3 revisione/build.py` dopo aver aggiornato `revisione/data.py`.
+  spezzate in **117 blocchi**, ognuno segnabile con *Accorcia · Riscrivi · Togli · Nota*, più
+  una nota per pagina e le richieste generali. Quello che Andrea segna lì Claude lo rilegge
+  dal database dell'artefatto (documento `revisione/manuale-v2`), non serve copiare niente.
+  Si rigenera con `python3 revisione/build.py` dopo aver aggiornato `revisione/data.py`.
+  **Attenzione:** la console pubblicata mostra ancora il copy della v2, quello su cui Andrea
+  ha segnato le 101 richieste. Per un secondo giro va rigenerata sul copy della v3 e puntata
+  a un documento nuovo (`revisione/manuale-v3`), così il primo giro resta leggibile.
 
 Per rigenerare il PDF:
 
@@ -57,7 +68,8 @@ Il documento lo assembla un altro modello. Sette regole, e non sono di stile:
 3. **I verbatim si riscrivono.** Le frasi delle personas sono già riscritte; non
    sostituirle con citazioni «più vere», perché le citazioni vere sono di utenti reali e
    non escono da qui.
-4. **Il link del trial si copia e incolla**, esatto, da `09-ASSET-LINK-DISTRIBUZIONE.md`.
+4. **Il link del trial si copia e incolla**, esatto: dal 7 settembre 2026 è
+   `https://t.me/giadacare_bot?start=ad_creatorsb2b_t14d` (14 giorni, non più 7).
    Non ricostruirlo, non abbreviarlo, non togliere parametri: ognuno fa qualcosa.
 5. **Il prezzo di Giada non entra.** Si parla al massimo di prova gratuita.
 6. **Non promettere mail al creator.** La consegna passa dalla cartella Drive: nessuna

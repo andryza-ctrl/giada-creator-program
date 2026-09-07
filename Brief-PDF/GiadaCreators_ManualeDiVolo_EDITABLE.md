@@ -4,37 +4,60 @@
 > layout e i riferimenti agli asset del PDF `GiadaCreators_ManualeDiVolo`. È il punto di
 > partenza da modificare prima di una nuova impaginazione.
 
-**Versione:** v2 — 6 settembre 2026 (18 pagine; la v1 ne aveva 26)
+**Versione:** v3 — 7 settembre 2026 (18 pagine)
 **Formato del PDF:** verticale 450×675 pt, pensato per lettura da telefono
 **PDF impaginato:** [GiadaCreators_ManualeDiVolo.pdf](GiadaCreators_ManualeDiVolo.pdf)
 **Script di impaginazione:** [`../output/pdf/source/build_manual.py`](../output/pdf/source/build_manual.py)
-**Versione precedente dello script:** `../output/pdf/source/build_manual_v1_26pagine.py.bak`
+**Versione precedente dello script:** `../output/pdf/source/build_manual_v2_18pagine.py.bak`
 
-## Cosa è cambiato dalla v1
+## Cosa è cambiato dalla v2
 
-- **Da 26 a 18 pagine**, copy da ~3.300 a ~2.370 parole.
-- **Presentazione di Andrea corretta:** ruolo reale (marketing e contenuti in Vivarium),
-  nessuna implicazione di fondazione dell'azienda.
-- **Pagine eliminate:** «Porta il tuo taglio» (varianti dopo il primo video), il riquadro
-  «E l'algoritmo?», il bottone verso `giada.care` (espone il prezzo del prodotto) e il link
-  a TikTok for Business.
-- **Pagine unite:** le due di personas in una · le tre di esempi in due · arco narrativo e
-  script in una · i due elenchi di hook in uno (da 10 a 8) · formato e montaggio in una ·
-  checklist e chiusura in una.
-- **Nulla di vincolante è stato tolto:** tutti i divieti di compliance restano, «Ispirazione,
-  mai copia» si è spostato sulla pagina degli esempi.
+La v3 esegue le **101 richieste** che Andrea ha segnato nella console di revisione
+(83 blocchi + 18 note di pagina), il 7 settembre 2026.
+
+- **Tono.** È la richiesta che torna in quaranta note: più caldo, più amichevole, meno
+  saccente e meno impositivo. Giada si tratta come una persona, non come un software:
+  l'etichetta «assistente AI» sparisce dal corpo del testo e resta dove è una regola per i
+  video (pagina 14).
+- **Trial da 7 a 14 giorni**, ovunque: copy, bottone, QR e link
+  (`…?start=ad_creatorsb2b_t14d`). Stessa modifica sulla landing B2B.
+- **Struttura.** «Il video» (ex pagina 06) si è spostata dopo gli esempi ed è entrata nella
+  sezione *Scrivi l'idea* (ora pagina 08). Gli esempi salgono a 06 e 07, e **Rosa 2 ed
+  Elena 1 si scambiano di posto**.
+- **Pagina 05 (personas).** Riscritta perché si capisca dall'esterno: ogni situazione ha una
+  frase che le somiglia e un suggerimento su come arrivarle. Niente più «Evita…»: sono
+  spunti, non recinti.
+- **Pagina 10 (hook).** Ogni forma ha ora una scena concreta e una riga che spiega perché
+  funziona: prima erano appunti interni.
+- **Pagina 09 (script).** Due esempi per ogni blocco, su due usi diversi di Giada, per
+  lasciare libertà: «due strade, non due modelli».
+- **Tolto:** il disclaimer medico dalla 03 (resta nei limiti, pagina 14), la nota «cartella
+  materiali» dalle pagine esempi, «prova in muto» dalla 12, l'avviso «non girare prima
+  dell'ok» dalla 16, il riquadro fattura/hook dalla 17 (spostato nel testo), la mail
+  duplicata sulla 18, il titolo e il footer della copertina.
+- **Pagina 17:** non si chiama più «I soldi».
+- **Layout:** passata su tutte e 18 le pagine — gerarchie, spaziature e posizionamenti.
+  Zero avvisi dal controllo di impaginazione (`layout-checks.json`).
 
 ## Regole bloccanti
 
 1. **Non inventare numeri.** Se manca un dato, togli la frase.
-2. **La compliance si può accorciare, non ammorbidire.** Nessun divieto si elimina.
+2. **La compliance si può accorciare, non ammorbidire.** Nessun divieto si elimina. La
+   trasparenza sull'AI **resta**, riscritta in modo caldo: «Si capisce che Giada è un'AI»
+   (pagina 14). È l'obbligo dell'art. 50 AI Act tradotto in una regola editoriale: il
+   creator lo dice con parole sue, ma deve essere chiaro.
 3. **I verbatim restano riscritti.** Le frasi delle personas non sono citazioni di utenti.
-4. **L'URL si copia e incolla esatto:** `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`.
-5. **Il prezzo di Giada non entra.** Si parla di prova gratuita, mai del prezzo dopo il trial.
+4. **L'URL si copia e incolla esatto:** `https://t.me/giadacare_bot?start=ad_creatorsb2b_t14d`.
+   Il token `_t14d` è quello che il bot legge per accorciare la prova
+   (`parseCampaignTrialDays`, cap a 30 giorni).
+5. **Il prezzo di Giada non entra.** Si parla di prova gratuita, mai del prezzo dopo.
 6. **Nessuna frase promette una mail al creator.** Il percorso passa dalla cartella Drive.
-7. **Italiano, prima persona, registro friendly**, senza rivolgersi a un genere specifico.
-8. **Andrea non è fondatore di Vivarium.** Si occupa di marketing e contenuti; il team esiste
-   e si sente («la nostra assistente AI»), ma le idee le legge lui.
+7. **Italiano, prima persona, registro amichevole**, senza rivolgersi a un genere specifico.
+8. **Andrea non è fondatore di Vivarium.** Si occupa di marketing e contenuti.
+
+Il controllo automatico di queste regole sta in
+[`../output/pdf/source/check_copy.py`](../output/pdf/source/check_copy.py): si lancia dopo
+la build e verifica la sostanza di ogni divieto, non la vecchia frase esatta.
 
 ## Sistema visivo
 
@@ -42,25 +65,28 @@
   blush `#ffb8c7`, giallo `#ffe074`.
 - **Tipografia:** Bricolage Grotesque display, Geist testo/UI, Arapey Italic accenti.
 - **Segni:** bordi navy, ombre nette, sticker, numeri grandi, vignette.
-- **Avatar:** Giada resta riconoscibile (volto, occhi, bob castano ramato, T-shirt navy,
-  tablet). Cambiano posa e scena, non l'identità.
-- **Asset in uso:** `giada-welcome-scene.png` (01), `giada-director.png` (18),
-  `elena-1-0.jpg`, `elena-2-0.jpg`, `maria-1-0.jpg`, `maria-2-1.jpg` (07),
-  `rosa-1-0.jpg`, `rosa-2-0.jpg` (08).
+- **Avatar:** Giada resta riconoscibile (volto, occhi, bob castano ramato, T-shirt navy).
+  Cambiano posa e scena, non l'identità.
+- **Asset in uso:** `giada-welcome-scene.png` (01), `giada-director-scene.png` (18),
+  `rosa-2-0.jpg`, `elena-2-0.jpg`, `maria-1-0.jpg`, `maria-2-1.jpg` (06),
+  `rosa-1-0.jpg`, `elena-1-0.jpg` (07).
+- **Asset da produrre:** `giada-selfie-scene.png` per la copertina — Giada che si registra
+  un video selfie col telefono. Il prompt pronto è in
+  `../output/pdf/assets/giada-selfie-scene.PROMPT.txt`; appena il file esiste nella cartella
+  `assets`, `build_manual.py` lo usa da solo al posto di `giada-welcome-scene.png`.
 
 ---
 
 <!-- PAGINA 01 -->
 ## 01 — Copertina
 
-<!-- LAYOUT: hero, titolo oversize, pannello periwinkle con avatar, sticker. -->
+<!-- LAYOUT: hero, titolo oversize, pannello periwinkle con avatar, sticker. Niente footer. -->
 
-**Eyebrow** `giada / CREATORS` · sticker `SI PARTE DA UN'IDEA`
-**Titolo** # Manuale di volo.
-**Promessa** La tua voce. Una chat. Un video da ricordare.
-**Fumetto** _Il tuo punto di vista conta._
-**Sticker** `CIAO!` · `PROVA. IMMAGINA. CREA.`
-**Footer** Il manuale per creare con Giada · VIVARIUM / SETTEMBRE 2026
+**Eyebrow** `giada / CREATORS` · sticker `TUTTO PARTE DA UN'IDEA TUA`
+**Titolo** # Facciamo un video insieme.
+**Promessa** La tua giornata, le tue parole, e Giada che risponde.
+**Fumetto** _Ciao! Sono Giada. Com'è andata oggi?_
+**Sticker** `CIAO!` · `PROVA. GIOCA. RACCONTA.`
 
 ---
 
@@ -69,22 +95,23 @@
 
 <!-- LAYOUT: saluto grande, tre paragrafi, mappa cliccabile a quattro voci. -->
 
-### Sono Andrea.
+### Ciao, sono Andrea.
 
-In Vivarium mi occupo di marketing e contenuti. **Giada** è la nostra assistente AI su
-Telegram: questo programma nasce da una cosa semplice, i video migliori li fa chi la usa e
-ha qualcosa da dire.
+In Vivarium mi occupo di marketing e contenuti. **Giada** la conosci fra due pagine: vive su
+Telegram e risponde davvero, a qualsiasi ora. Questo programma nasce da una cosa semplice: i
+video migliori li fa chi la usa e ha qualcosa da dire.
 
-**Non è un contest, né UGC a cottimo.** Un video alla volta, pagato. Io porto obiettivi,
-riferimenti e limiti: idea, parole e taglio sono tuoi.
+**Non è un contest e non è UGC a cottimo.** Un video alla volta, con calma. Io ti porto
+obiettivi, riferimenti e i pochi limiti che abbiamo; l'idea, le parole e il taglio restano
+tuoi.
 
-Le idee le leggo io, una per una. Qui c'è quello che darei a me stesso per cominciare.
+Le idee le leggo io, una per una. Qui dentro c'è quello che darei a me stesso per cominciare.
 
 ### La tua mappa
 
 - **03** — Conosci e prova Giada
 - **05** — Trova la tua storia
-- **07** — Esempi e mestiere
+- **06** — Esempi e come si gira
 - **13** — Regole e consegna
 
 Sticker: `18 PAGINE. DIECI MINUTI.`
@@ -94,18 +121,19 @@ Sticker: `18 PAGINE. DIECI MINUTI.`
 <!-- PAGINA 03 -->
 ## 03 — Conosci Giada
 
-# Un'amica in chat. Un'assistente AI.
+# Un'amica in chat. Sempre a un messaggio di distanza.
 
-Vive su **Telegram**. Le mandi testo, foto del piatto o vocali. Le puoi raccontare anche
-acqua, movimento, sonno e peso.
+Vive su **Telegram**. Le scrivi, le mandi la foto del piatto o un vocale mentre cammini. Le
+puoi raccontare anche acqua, movimento, sonno e peso: quello che le dici, se lo tiene.
 
-- **Capire il pasto** — Calorie e macro stimati, commento del piatto, coerenza con i tuoi obiettivi.
-- **Trovare cosa mangiare** — Ricette con quello che hai in casa. Consigli pratici sulla dispensa.
-- **Tenere il filo** — Feedback nel tempo e aiuto a riprendere dopo uno sgarro, senza sensi di colpa.
-- **Muoversi e uscire** — Calorie attive e coaching. Al ristorante legge il menù che le mandi.
-
-> **Le stime sono indicative.** Giada non è un medico né un nutrizionista: non fa diagnosi,
-> non cura, non scrive diete.
+- **Capire il pasto** — Le mandi la foto e ti dice cosa c'è dentro: calorie, macro e se va
+  d'accordo con i tuoi obiettivi.
+- **Decidere cosa mangiare** — «Ho questo in frigo, che faccio?» Lei tira fuori un'idea, non
+  una lezione di cucina.
+- **Ricordarsi di te** — Non riparte da zero ogni volta: sa com'è andata la settimana e ti
+  aiuta a riprendere dopo uno sgarro, senza prediche.
+- **Uscire senza pensieri** — Al ristorante le mandi il menù e sceglie con te. E se ti muovi,
+  tiene il conto anche di quello.
 
 ---
 
@@ -116,111 +144,119 @@ acqua, movimento, sonno e peso.
 
 # Prima la chat. Poi la scintilla.
 
-Nei tuoi **7 giorni di prova** usala davvero. Nessun compito da consegnare: tre spunti per
-scoprire quanto le puoi raccontare.
+Nei tuoi **14 giorni di prova** usala davvero: niente compiti da consegnare, scrivile come
+scriveresti a un'amica. La tua chat vera è il materiale del video.
 
-- «Cosa preparo con quello che ho in frigo?»
-- «Stasera mangio qui: mi dai un'idea dal menù?»
-- «Oggi è andata così. Come riprendo il filo?»
+### Quattro modi per rompere il ghiaccio
 
-**Foto, vocale, testo: prova tutti e tre.** La tua chat vera è il materiale del video.
+1. «Cosa preparo con quello che ho in frigo?»
+2. «Stasera mangio qui: mi dai un'idea dal menù?»
+3. «Oggi è andata così. Come riprendo il filo?»
+4. Una foto del piatto, senza scrivere niente.
 
-**Bottone** Inizia i tuoi 7 giorni → `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`
+**Bottone + QR** `Inizia i tuoi 14 giorni` → `https://t.me/giadacare_bot?start=ad_creatorsb2b_t14d`
+**Nota** Prenditi i primi due giorni per giocarci: le idee arrivano da lì.
 
 ---
 
 <!-- PAGINA 05 -->
 ## 05 — A chi parli
 
-# Una persona. Un momento vero.
+# A chi stai parlando? Scegline una sola.
 
-Cinque situazioni, non cinque recinti. Scegline una e riconoscila nella tua esperienza.
+Queste sono le persone che scrivono a Giada ogni giorno. Non sono caselle: servono a darti un
+volto preciso in testa mentre scrivi.
 
-| # | Situazione | Frase | Da evitare |
-| --- | --- | --- | --- |
-| 01 | La testa già piena | «Non ho voglia di pensarci anche a questo.» | «Basta organizzarsi» e le lezioni di meal prep |
-| 02 | Il piano c'è. La costanza? | «So cosa fare. È farlo ogni giorno.» | Spiegare le basi a chi le conosce già |
-| 03 | Una presenza, senza etichette | «Voglio una risposta, non una lezione.» | Mai «alla tua età», mai «sei sola» |
-| 04 | I passi sì. E il pranzo? | «Misuro tutto, tranne quello che mangio.» | Promesse di performance sportive |
-| 05 | Il solito «da lunedì» | «Non voglio ricominciare sempre da capo.» | Colpa, disciplina, chili |
+- **01 La testa già piena** — «Non ho voglia di pensarci anche a questo.»
+  _Le arrivi se le mostri che bastano dieci secondi e una foto._
+- **02 Il piano c'è, la costanza no** — «So cosa fare. Il difficile è farlo ogni giorno.»
+  _Le arrivi se fai vedere una giornata storta che si raddrizza._
+- **03 Vuole una risposta, non una lezione** — «Chiedo una cosa e mi ritrovo un trattato.»
+  _Le arrivi se mostri Giada che risponde corta e chiara._
+- **04 I passi sì, il pranzo no** — «Misuro tutto, tranne quello che mangio.»
+  _Le arrivi se colleghi il movimento a quello che c'è nel piatto._
+- **05 Il solito «da lunedì»** — «Non voglio ricominciare da capo un'altra volta.»
+  _Le arrivi se il tuo video non parte da una colpa._
 
-> Persona non è targeting: scegli una situazione e parla solo a quella.
+Nota: Sono spunti, non recinti: scegli quella che conosci meglio e parla solo a lei.
 
 ---
 
 <!-- PAGINA 06 -->
-## 06 — Il video
-
-# Fai pensare: «Voglio provarla».
-
-Il tuo video ha **due vite**: inserzione e reel o TikTok organico. Gira quello che
-pubblicheresti sul tuo profilo.
-
-1. **Ferma lo scroll** — Primi 3 secondi: una situazione precisa, un gesto, una domanda.
-2. **Mostra il meccanismo** — Giada in scena almeno un momento. Ingrandisci la chat: deve leggersi.
-3. **Lascia un invito** — Una CTA soft, una sola: «Provala gratuitamente dal link».
-
-### Perché uno resta fino alla fine
-
-`SI RICONOSCE` · `VUOLE SAPERE COME FINISCE` · `VUOLE TENERLO` · `RICONOSCE TE`
-
----
-
-<!-- PAGINE 07-08 -->
-## 07 — Esempi: Elena e Maria
-
-<!-- ASSET: elena-1-0.jpg, elena-2-0.jpg, maria-1-0.jpg, maria-2-1.jpg — griglia 2×2. -->
+## 06 — Esempi / quattro video
 
 # Cosa abbiamo già fatto.
 
-Sei video nostri, quattro qui e due dopo. Prendi un'idea di regia e portala altrove:
-**non cerco cloni.**
+Sei video girati con altre creator. Non devi rifarli: guardali per capire **cosa ha
+funzionato** e prendi l'idea che ti serve.
 
-- **ELENA 1 · 61,5 s — Una domanda in mano** — Da portare con te: fai coincidere le parole con un gesto visibile.
-- **ELENA 2 · 78,1 s — L'elenco tiene il filo** — Da portare con te: il ritmo può stare nella struttura.
-- **MARIA 1 · 55,1 s — Un dubbio concreto** — Da portare con te: mostra cosa succede dopo averle scritto.
-- **MARIA 2 · 55,9 s — Si vede la conversazione** — Da portare con te: nascondi le altre conversazioni.
+- **ROSA 2 · 35,4 s — Poche scene, tanta luce.** Ha funzionato perché in trenta secondi si
+  capisce tutto: colazione e chat grande.
+- **ELENA 2 · 78,1 s — Un elenco che tiene incollati.** Ha funzionato perché dice cosa farà e
+  poi lo fa: sai sempre cosa sta per succedere.
+- **MARIA 1 · 55,1 s — Un dubbio vero, detto a voce.** Ha funzionato perché la domanda se la
+  fanno tutti, e la risposta arriva in scena.
+- **MARIA 2 · 55,9 s — Si legge la conversazione.** Ha funzionato perché la chat riempie lo
+  schermo: Giada si capisce senza spiegarla.
 
-Nella cartella materiali: `elena 1 / elena 2 / maria 1 / maria 2 - 1080.mp4`
+Nota: Ispirazione, mai copia: prendi l'idea, non le stesse inquadrature.
 
-## 08 — Esempi: Rosa
+---
 
-<!-- ASSET: rosa-1-0.jpg, rosa-2-0.jpg — due card larghe. -->
+<!-- PAGINA 07 -->
+## 07 — Esempi / altri due
 
-# Altri due. Altra vita.
+# Altri due, girati in modo diverso.
 
-Rosa porta la giornata dentro il video. Guarda il taglio, non il contenuto.
+Rosa porta la giornata dentro il video.
 
-- **ROSA 1 · 65,2 s — Una giornata raccontata** — Allenamento, piatti, luoghi veri: Giada
-  entra nella quotidianità. Da portare con te: prendi la logica del vlog, scegli un momento
-  vicino a chi ti guarda.
-- **ROSA 2 · 35,4 s — Poche scene, ben scelte** — Colazione, luce, dettagli. Un racconto
-  breve con un'estetica riconoscibile. Da portare con te: la chat deve leggersi,
-  trentacinque secondi bastano.
+- **ROSA 1 · 65,2 s — Una giornata raccontata.** Allenamento, piatti, luoghi veri: Giada entra
+  nella quotidianità senza essere annunciata.
+  _Ha funzionato: la logica del vlog: scegli un momento vicino a chi ti guarda e falla entrare lì._
+- **ELENA 1 · 61,5 s — Una domanda in mano.** Tiene il telefono con la domanda in vista e la
+  legge ad alta voce, mentre cammina.
+  _Ha funzionato: il gesto e le parole dicono la stessa cosa: si capisce anche senza audio._
 
-> **Ispirazione, mai copia.** Alcuni di questi esempi mostrano chat di terzi, marchi o
-> schermi illeggibili: oggi si evitano.
-> Nella cartella materiali: `rosa 1 / rosa 2 - 1080.mp4`
+Nota: Anche qui: ispirazione, mai copia. Il taglio è tuo.
+
+---
+
+<!-- PAGINA 08 -->
+## 08 — Scrivi l'idea / cosa deve fare il video
+
+# Cosa deve fare il tuo video.
+
+Prima esce sul **tuo profilo**, come reel o TikTok. Se funziona, lo portiamo anche in
+campagna. Quindi gira quello che pubblicheresti comunque.
+
+1. **Ferma lo scroll** — Primi tre secondi: una situazione precisa, un gesto, una domanda.
+2. **Fai vedere Giada** — Falla entrare almeno una volta. Ingrandisci la chat: chi guarda deve
+   poterla leggere.
+3. **Lascia un invito** — Uno solo, detto con calma: «Provala gratis dal link».
+
+**Perché uno resta fino alla fine:** `SI RICONOSCE` · `VUOLE SAPERE COM'È FINITA` ·
+`SE LO SALVA` · `PIACE COME LO RACCONTI TU`
 
 ---
 
 <!-- PAGINA 09 -->
-## 09 — Scrivi l'idea
+## 09 — Scrivi l'idea / lo script
 
 # Uno script che respira.
 
-**Inizio, centro, fine.** In 30-90 secondi apri una tensione, fai arrivare la risposta e
-chiudi il cerchio. Scrivi in blocchi: per ogni frase decidi anche **cosa si vede**.
+**Inizio, centro, fine.** In 30-90 secondi apri una domanda, fai arrivare la risposta e chiudi
+il cerchio. Scrivi a blocchi: per ogni frase scegli anche **cosa si vede**.
 
-`01 Apri una tensione` · `02 Fai arrivare la risposta` · `03 Chiudi il cerchio`
+`01 Apri una domanda` · `02 Fai arrivare la risposta` · `03 Chiudi il cerchio`
 
-- **HOOK** — «Stasera ceno fuori. Il menù lo apro prima.» · *Si vede:* tavolo e menù.
-- **COSTRUZIONE** — «Lo mando a Giada, l'assistente AI su Telegram.» · *Si vede:* il messaggio nella tua chat.
-- **PAYOFF** — Mostra la risposta vera e cosa ti serve. · *Si vede:* la parte di chat che lo dimostra.
-- **CTA** — «Puoi provarla gratuitamente dal link.» · *Si vede:* un invito breve e leggibile.
+| blocco | esempio A | esempio B |
+| --- | --- | --- |
+| HOOK | «Stasera ceno fuori: il menù lo apro prima.» | «Frigo mezzo vuoto e zero idee.» |
+| COSTRUZIONE | «Mando il menù a Giada e le chiedo cosa prendo.» | «Le mando la foto di quello che c'è dentro.» |
+| PAYOFF | Leggi ad alta voce la sua risposta sul menù. | Fai la ricetta che ti ha tirato fuori. |
+| CTA | «La provi gratis dal link.» | «Se ti va, provala anche tu.» |
 
-> **Prima di girare:** l'esempio è inventato, riscrivilo con la tua esperienza. E controlla:
-> la risposta arriva troppo presto?
+Nota: **Due strade, non due modelli.** La terza, la tua, è la migliore.
 
 ---
 
@@ -229,17 +265,25 @@ chiudi il cerchio. Scrivi in blocchi: per ogni frase decidi anche **cosa si vede
 
 # Fermare lo scroll. Senza urlare.
 
-Forme da provare, non frasi da recitare. Una sola tensione per video: scrivine tre sulla
-carta e tieni quella che regge.
+Otto forme che funzionano. Una sola per video: scrivine tre su un foglio e tieni quella che
+regge.
 
-1. **Domanda sul piatto** — «Cosa manca a questo pranzo?» · Cibo dall'alto, domanda in alto.
-2. **Oggetto fuori posto** — Un menù fra gli attrezzi della palestra. · Una piccola incongruenza apre la storia.
-3. **Confronto di processo** — Passi registrati / pasti ancora da raccontare. · Confronta abitudini, mai corpi o chili.
-4. **Negazione** — «Oggi niente conti a memoria.» · Mostra subito il gesto alternativo.
-5. **Quiz** — «Secondo te, cosa le ho chiesto?» · Un dettaglio da scoprire nella chat.
-6. **Situazione riconoscibile** — Frigo aperto. «E adesso?» · Entra in scena senza presentazioni.
-7. **Parola gigante** — «CENA?» sopra un'immagine vera. · Una parola forte, poi la dimostrazione.
-8. **Metafora visiva** — La lista delle cose da fare si allunga. · Una scena semplice rende visibile il carico.
+1. **La domanda sul piatto** — Inquadri il pranzo dall'alto: «Secondo te cosa manca?»
+   _Chi guarda risponde nella testa, e resta._
+2. **L'oggetto fuori posto** — Il menù di un ristorante appoggiato tra i pesi in palestra.
+   _Una cosa che non c'entra incuriosisce e apre la storia._
+3. **Due cose a confronto** — Da una parte i passi contati, dall'altra i pasti mai raccontati.
+   _Il confronto è tra abitudini, mai tra corpi._
+4. **La negazione** — «Oggi non conto niente a mente.»
+   _Dire cosa non farai incuriosisce: poi mostri subito il gesto al posto suo._
+5. **Il quiz** — «Secondo te cosa le ho chiesto?», e si vede solo la risposta.
+   _Chi guarda vuole scoprire la domanda._
+6. **La scena che conosci** — Frigo aperto, sguardo dentro: «E adesso?»
+   _Nessuna presentazione: si riconosce da sola._
+7. **La parola gigante** — «CENA?» scritto grande sopra una scena vera.
+   _Una parola sola tiene lo sguardo, poi arriva la prova._
+8. **L'immagine che spiega** — La lista delle cose da fare che si allunga da sola.
+   _Rende visibile un peso che di solito si racconta a parole._
 
 ---
 
@@ -248,37 +292,42 @@ carta e tieni quella che regge.
 
 # Il tuo taglio. Tre passate.
 
-Volto e voce, voice-over, mani, cibo, registrazione dello schermo: **il formato lo scegli
-tu.** Poi monta in tre giri.
+Volto e voce, voice-over, mani, cibo, schermo registrato: **il formato lo scegli tu.**
 
-Chat protagonista · Problema → soluzione · Titolo da notizia · Risposta a un commento ·
-Esperienza personale · Giornata / backstage
+Tagli che funzionano: `Chat protagonista` · `Problema, poi soluzione` · `Titolo da notizia` ·
+`Risposta a un commento` · `Esperienza personale` · `Giornata / backstage`
 
-1. **Pulisci** — Taglia partenze sbagliate e silenzi. Parti dal materiale che si può usare.
-2. **Tieni il punto** — Se ti annoi guardandolo, accorcia proprio lì. Niente spazio morto.
-3. **Dai enfasi** — Un piccolo zoom, una chat in sovrimpressione. Gli effetti devono chiarire.
+1. **Niente vuoti** — Dove non parli, di solito non serve: lascia respirare la voce e taglia
+   il resto.
+2. **Fidati della noia** — Se ti annoi mentre lo riguardi, quel pezzo lo sente anche chi
+   guarda: accorcia lì.
+3. **Cambia ogni 3-5 secondi** — Uno zoom, un cambio di inquadratura, la chat che compare:
+   sono questi a tenere su lo sguardo.
 
-> Il ritmo è un motivo per restare. Nient'altro.
+Nota: Riguardalo una volta col telefono in mano, come lo guarderebbe lei.
 
 ---
 
 <!-- PAGINA 12 -->
 ## 12 — Audio e sottotitoli
 
-# Si deve sentire. Si deve leggere.
+# Prima si sente. Poi si legge.
 
-**L'audio conta più del video.** Registra vicino al microfono, in una stanza senza rimbombo.
-Riascolta: voce chiara, niente rumori sopra.
+**L'audio conta più dell'immagine.** Registra vicino al microfono, in una stanza che non
+rimbomba, e riascoltati prima di montare: se la voce è pulita, il resto si perdona.
 
-**Musica: solo free e usabile in ads.** Niente audio trending preso dai social. La licenza
-deve coprire pubblicità e tutti i canali. Nel dubbio, solo la tua voce.
+### La musica, libera davvero
 
-**Sottotitoli obbligatori. Stile libero.** Due modi che funzionano, lo stile è tuo:
-maiuscolo + box (più contrasto, più leggibilità) oppure parola accentata (leggero: controlla
-il contrasto).
+Meglio evitare gli audio di tendenza presi dai social: la licenza deve coprire anche la
+pubblicità e tutti i canali. Una libreria free va benissimo.
 
-**Prova in muto sul telefono.** Tieni le parole lontane dal fondo e dai pulsanti laterali
-dei social.
+### Sottotitoli sempre. Lo stile è tuo.
+
+L'unica cosa che ti chiediamo: **due o tre parole per volta**, anche una sola. Servono a dare
+ritmo, non a trascrivere. Font, colore e animazione li scegli tu.
+
+Demo: `LA TUA` · `CHAT` · `SI LEGGE` — tre battute, tre respiri.
+Nota: Se il tuo montaggio le fa apparire una parola per volta, ancora meglio.
 
 ---
 
@@ -287,51 +336,63 @@ dei social.
 
 # La scheda da tenere a vista.
 
-| Voce | Regola |
-| --- | --- |
-| Formato | **9:16 verticale** |
-| Durata | **30-90 secondi** |
-| Lingua | Italiano |
-| Strumenti | Qualsiasi, per ripresa e montaggio |
-| Audio | Perfetto. Prima di tutto, la voce |
-| Sottotitoli | Obbligatori, stile libero |
-| Giada | Almeno un momento, con chat leggibile |
-| File | Finito, senza watermark o loghi di editing |
-| Invio | Drive o WeTransfer. Niente girato grezzo |
-| Tempi | 7-10 giorni dalla call |
-| Revisione | Massimo una; se funziona, nessuna |
+`9:16 VERTICALE` · `30-90 SECONDI`
 
-> Prima collaborazione: un video. Eventuali extra si concordano in call.
+| voce | valore |
+| --- | --- |
+| Lingua | Italiano, il tuo. |
+| Strumenti | Quelli che usi già, per girare e montare. |
+| Audio | La voce prima di tutto. |
+| Sottotitoli | Sempre, con lo stile che preferisci. |
+| Giada | Almeno un momento, con la chat leggibile. |
+| File | Finito, senza watermark dell'app di montaggio. |
+| Invio | Drive o WeTransfer. Il grezzo tienilo tu. |
+| Tempi | 7-10 giorni dalla call, senza corse. |
+| Revisione | Al massimo una. Se funziona, nessuna. |
+
+Nota: La prima volta è un video solo. Il resto lo decidiamo insieme.
 
 ---
 
 <!-- PAGINA 14 -->
 ## 14 — Cosa non si può dire
 
-<!-- COMPLIANCE: accorciabile, non ammorbidibile. Nessuna riga si elimina. -->
+<!-- CHECK: nessun divieto si elimina. Si può accorciare, non ammorbidire. -->
 
 # Creatività sì. Promesse magiche no.
 
-- × **Niente promesse di chili, taglie o percentuali.** Nessun risultato sul corpo garantito. Puoi mostrare numeri di processo reali.
-- × **Niente primi piani su una parte del corpo.** Non pizzicare grasso, non usare il corpo come problema da correggere.
-- × **Niente frasi che attaccano l'aspetto.** Anche il tuo. «Ero uno schifo» non va: nessuno deve sentirsi inferiore.
-- × **Non dire «sei sola».** Non sfruttare solitudine o vulnerabilità. Mostra che Giada risponde.
-- × **Dichiara: «assistente AI su Telegram».** In ogni contenuto. La relazione è amichevole, la natura del prodotto chiara.
-- × **Non presentare Giada come nutrizionista.** Non è un medico, non fa diagnosi, non cura. Nessuna condizione clinica nel video.
+- **Niente chili, taglie o percentuali.** Non promettiamo risultati sul corpo. I numeri veri
+  del percorso, quelli sì: giorni, pasti raccontati, abitudini.
+- **Niente primi piani su una parte del corpo.** Non pizzicare il grasso, non usare il corpo
+  come il problema da correggere.
+- **Nessuno deve sentirsi sbagliato.** Vale anche per te: «ero uno schifo» non ci va, nemmeno
+  detto ridendo.
+- **Mai «sei sola».** La solitudine non si usa come leva. Fai vedere che Giada risponde: basta
+  quello.
+- **Si capisce che Giada è un'AI.** Dillo con le tue parole, dove ti viene meglio: chi guarda
+  deve capire che è un'AI su Telegram, non una persona in carne e ossa.
+- **Giada non è un medico né una nutrizionista.** Non fa diagnosi, non cura, non scrive diete,
+  e le sue stime sono indicative. Niente condizioni cliniche nel video.
 
-> Resta dentro ciò che hai provato e che puoi mostrare nella tua chat.
+Nota: Il resto è tuo: racconta quello che hai provato davvero.
 
 ---
 
 <!-- PAGINA 15 -->
 ## 15 — Cosa non si mostra
 
-- **01 Solo la chat con Giada** — Non mostrare la lista chat di Telegram, nomi, notifiche o dati di altre persone.
-- **02 Nessun altro marchio in campo** — Controlla vestiti, confezioni e sfondo. Niente watermark delle app di editing.
-- **03 Niente minori** — Se compare un altro adulto serve il suo consenso, e te ne assumi la responsabilità.
-- **04 Niente audio trending** — Prendilo da una libreria free con licenza valida per la pubblicità.
+# Un ultimo sguardo prima di esportare.
 
-> **E ricorda l'ordine:** prima l'idea, poi l'approvazione e la call. Solo dopo si gira.
+1. **Solo la chat con Giada** — Prima di registrare lo schermo dai un'occhiata: niente lista
+   chat, nomi o notifiche di altri.
+2. **Nessun altro marchio in campo** — Maglietta, confezioni, sfondo. E niente watermark delle
+   app di montaggio.
+3. **Niente minori** — Se nel video c'è un altro adulto serve il suo ok, e te ne prendi la
+   responsabilità.
+4. **Niente audio dei trend** — Prendi la musica da una libreria libera, con licenza valida
+   anche per la pubblicità.
+
+**E l'ordine, che aiuta tutti:** prima l'idea, poi ci sentiamo, poi si gira.
 
 ---
 
@@ -340,82 +401,55 @@ dei social.
 
 # La tua idea arriva qui.
 
-**andrea@vivariumai.co**
+**andrea@vivariumai.co** (in evidenza, bolla teal cliccabile)
 
-Mandami **script e indicazioni visive** in un documento, oppure un **video-selfie su Drive**.
-Dimmi persona, scena, apertura e cosa mostrerai di Giada. **Nessuna scadenza.**
+Mandami **lo script e due indicazioni visive** in un documento, oppure un **video-selfie**:
+dimmi a chi parli, che scena hai in testa, come apri e cosa si vede di Giada. Con calma, non
+c'è una scadenza.
 
-1. **Entro 72 ore dall'idea** — Ti rispondo con un riscontro, eventuali modifiche o una proposta di call breve.
-2. **Idea approvata? Facciamo una call.** — Allineiamo taglio, compenso e dettagli. Se passi questo step, estendo Giada di altri 14 giorni.
-3. **Ora si gira. Poi si consegna.** — Video finito entro 7-10 giorni dalla call, via Drive o WeTransfer. Massimo una revisione.
-
-> **Non girare prima dell'ok e della call.** Un video mai richiesto non entra nel compenso.
+1. **Ti rispondo entro 72 ore** — Un riscontro vero: cosa mi piace, cosa cambierei, e se serve
+   ci facciamo una call breve.
+2. **Se l'idea ci piace, ci parliamo** — Mezz'ora per allineare taglio, compenso e dettagli.
+   Poi hai mano libera.
+3. **Giri, e poi mi mandi il video** — Finito entro 7-10 giorni dalla call, via Drive o
+   WeTransfer. Al massimo una revisione.
 
 ---
 
 <!-- PAGINA 17 -->
-## 17 — I soldi
+## 17 — Il compenso
 
-# Partiamo da qui. Poi ne parliamo.
+# Facciamo i conti insieme.
 
-## da **50€** per ogni video selezionato
-**È UN PAVIMENTO, NON UN TETTO.**
+**da 50€** per ogni video selezionato — `È UN PAVIMENTO, NON UN TETTO.`
 
-**L'uso è incluso:** campagne Giada e nostri canali, **senza limite di tempo**. Nessuna
-esclusiva: puoi lavorare con chi vuoi.
+**Nessuna esclusiva:** continui a lavorare con chi vuoi, prima e dopo.
 
 ### Cosa può far salire la cifra
 
-Hook aggiuntivi, pacchetti di video, collaborazione mensile, inserzioni dal tuo profilo
-(whitelisting), oppure accordi sulla performance se hai risultati da mostrare.
+Un hook in più, un pacchetto di video, una collaborazione che va avanti nei mesi. E se hai
+numeri tuoi da mostrare, possiamo ragionare anche sui risultati.
 
-> **Si concorda in call, prima di girare.** Due hook = due video finiti, con visivi diversi.
-> Fattura o ritenuta d'acconto: ne parliamo lì.
+**Ne parliamo in call, prima che tu giri.** Due hook vogliono dire due video finiti, con
+visivi diversi. Fattura o ritenuta d'acconto: vediamo lì cosa è più comodo per te.
 
 ---
 
 <!-- PAGINA 18 -->
-## 18 — Ultimo check e chiusura
-
-<!-- ASSET: giada-director.png in basso a destra. -->
+## 18 — Ora tocca a te
 
 # Ultimo check. Poi tocca a te.
 
-- La scena parla a una persona precisa.
-- Apertura e finale si tengono insieme.
+- Parlo a una persona sola, e si sente.
+- L'apertura e il finale si tengono insieme.
 - Giada si vede e la chat si legge.
-- Dico «assistente AI su Telegram».
-- Audio chiaro, sottotitoli leggibili.
-- Nessun divieto saltato.
+- Si capisce che è un'AI.
+- Voce pulita, sottotitoli corti.
+- Nessuna promessa sul corpo.
 
-**Bottone** Apri la prova creator → `https://t.me/giadacare_bot?start=ad_creatorsb2b_t7d`
+**Bottone** `Apri la tua prova da 14 giorni` → `https://t.me/giadacare_bot?start=ad_creatorsb2b_t14d`
 
-## andrea@vivariumai.co
+Provala per due settimane. Quando ti viene in mente quella cosa che racconteresti a un'amica,
+scrivimi.
 
-Provala per una settimana. Quando ti viene in mente la cosa che racconteresti, scrivimi.
-
-_CI VEDIAMO NELLA TUA IDEA._
-
----
-
-## Checklist pre-esportazione
-
-- [x] Nessun prezzo di Giada dopo il trial.
-- [x] Nessuna promessa di mail al creator.
-- [x] URL Telegram copiato esattamente, parametri invariati.
-- [x] «Assistente AI su Telegram» compare nel contenuto.
-- [x] Sono rimasti tutti i divieti di compliance.
-- [x] Nessun verbatim reale o dato clinico personale.
-- [x] Nessun numero nuovo rispetto alle fonti approvate.
-- [x] Andrea non è presentato come fondatore.
-- [x] `layout-checks.json` vuoto (nessun testo fuori dai box, nessuna invasione del footer).
-
-## Come si rigenera il PDF
-
-```bash
-python3 /Users/andrea/giada-creator-program/output/pdf/source/build_manual.py
-```
-
-Lo script stampa il numero di pagine e le eventuali violazioni di layout, e riscrive
-`copy.txt` (tutto il testo, pagina per pagina) e `layout-checks.json`. Se aggiungi o togli
-una pagina, aggiorna `TOTAL` in cima allo script e i numeri della mappa a pagina 02.
+Sticker: `CI VEDIAMO NEL TUO VIDEO.`

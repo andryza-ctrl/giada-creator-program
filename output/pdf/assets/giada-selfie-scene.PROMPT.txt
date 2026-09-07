@@ -1,0 +1,13 @@
+Use the imagegen skill. Built-in image_gen tool path only — do not use the CLI fallback (no OPENAI_API_KEY required).
+
+The edit target image (also attached to this turn via --image):
+/Users/andrea/giada-creator-program/output/pdf/assets/giada-original.png
+
+If your built-in image generation tool accepts local image paths (referenced_image_paths), pass the absolute path above as the edit reference. Preserve unrelated parts unless the user request says otherwise.
+
+Save the result to /Users/andrea/giada-creator-program/output/pdf/assets/giada-selfie-scene.png and print exactly one line:
+SAVED: <absolute path>
+
+User edit request:
+
+Use case: identity-preserve. Asset type: opaque 2:3 portrait scene for the cover of a creator briefing PDF. Input image 1 is the EDIT TARGET and the identity source: keep this exact Giada character and her polished stylized 3D rendering. Change only pose and scene: waist-up, three-quarter to the reader, cheerful natural smile, she is FILMING HERSELF with a smartphone held up at arm's length in one hand, phone screen facing her, as if recording a short vertical selfie video for social media; the other hand open in a natural mid-gesture, as if she is talking to the camera. Identity invariants: exact same adult stylized 3D face and proportions, warm brown eyes, auburn chin-length side-part bob, eyebrows, skin tone, smile character, navy crew-neck short-sleeve T-shirt. The charcoal tablet is replaced by the smartphone; no other accessory. Anatomically coherent hands, five fingers each. Scene: perfectly flat uniform warm paper cream background, sRGB hex #fff9ef, reaching every edge; behind her one solid navy #203260 tall rounded-rectangle panel with broad rounded corners and no stroke, sitting behind her head and torso, with the phone and the gesturing hand extending beyond it. Soft original studio lighting, no floor, no cast shadow on the cream. OPAQUE image, 1024x1536 portrait. No transparency, no checkerboard, no grid, no halftone, no text, no letters, no logos, no watermark, no UI drawn on the phone screen, no tripod, no ring light, no extra props.
