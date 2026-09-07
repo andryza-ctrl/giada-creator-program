@@ -187,7 +187,7 @@ const creatorModes = [
 // Il numero di ogni passo usa una progressione dal teal al navy.
 const processSteps = [
   ["01", "Lasci i contatti", "Brief e video di esempio si aprono subito dopo l’invio.", "s1"],
-  ["02", "Provi Giada", "Hai sette giorni per usarla. Non devi creare nulla.", "s2"],
+  ["02", "Provi Giada", "Hai quattordici giorni per usarla. Non devi creare nulla.", "s2"],
   ["03", "Proponi la tua idea", "Ci racconti il video che faresti. Entro 72 ore decidiamo se partire insieme.", "s3"],
   ["04", "Giri il video", "Realizzi un video finito, che poi entra nelle campagne di Giada.", "s4"],
 ];
@@ -207,7 +207,7 @@ const faqs = [
   },
   {
     question: "Cosa ricevo dopo il form?",
-    answer: "Appena invii, si apre la cartella: dentro c’è il brief in PDF da scaricare, sei nostri video di esempio e il link per provare Giada gratis per sette giorni. Se perdi il link, ricompila il form con la stessa mail e te lo rimostriamo.",
+    answer: "Appena invii, si apre la cartella: dentro c’è il brief in PDF da scaricare, sei nostri video di esempio e il link per provare Giada gratis per quattordici giorni. Se perdi il link, ricompila il form con la stessa mail e te lo rimostriamo.",
   },
   {
     question: "Mi date uno script da recitare?",
@@ -582,7 +582,7 @@ export function App() {
                   Prima la usi.
                   <em>Poi la racconti 🎙️</em>
                 </h2>
-                <p className="lede">Hai sette giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
+                <p className="lede">Hai quattordici giorni gratis per usarla e scoprire cosa ti viene voglia di raccontare.</p>
                 <ul className="trial-days">
                   <li>
                     <b>SENZA COMPITI</b>
@@ -593,7 +593,7 @@ export function App() {
                     Quando pensi “questo lo racconterei”, hai trovato il punto di partenza.
                   </li>
                 </ul>
-                <a className="inline-cta" href="https://giada.care/nutrition7?flow=g3&utm_source=creators&utm_medium=b2b_landing&utm_campaign=creatorsb2b_t7d" target="_blank" rel="noreferrer noopener">
+                <a className="inline-cta" href="https://giada.care/nutrition14?flow=g3&utm_source=creators&utm_medium=b2b_landing&utm_campaign=creatorsb2b_t14d" target="_blank" rel="noreferrer noopener">
                   Conosci Giada da vicino
                   <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />
                 </a>
@@ -1024,7 +1024,7 @@ export function App() {
               </li>
               <li>
                 <b>02</b>
-                Prova Giada per sette giorni, senza compiti.
+                Prova Giada per quattordici giorni, senza compiti.
               </li>
               <li>
                 <b>03</b>
