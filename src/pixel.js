@@ -5,8 +5,12 @@
 // dell'Aggregated Event Measurement si configurano per dominio, quindi le due
 // macchine non si rubano gli slot.
 //
-// Lo script non viene mai iniettato prima del consenso: finché non c'è, qui
-// dentro non succede niente e la pagina non scrive cookie di terze parti.
+// Il pixel parte senza attendere il consenso, come sulla landing B2C di Giada
+// (`NEXT_PUBLIC_FORCE_MARKETING`): il banner resta in pagina e la scelta si
+// registra, ma la misurazione non dipende da un clic. È una scelta dichiarata,
+// non un default: portarla a `false` rimette il pixel dietro il sì esplicito e
+// il resto del codice non cambia.
+export const FORCE_MARKETING = true;
 
 export const PIXEL_ID = "1063455126601347";
 

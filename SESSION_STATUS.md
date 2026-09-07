@@ -1,6 +1,6 @@
 # Session status — Giada Creator Program
 
-Ultimo aggiornamento: **6 settembre 2026**. Questo file è il punto da cui ripartire.
+Ultimo aggiornamento: **7 settembre 2026**. Questo file è il punto da cui ripartire.
 
 ## Dove siamo
 
@@ -16,6 +16,64 @@ del finale, e in entrambi i casi il passaggio cade dentro il padding, dove non c
 **Palette bloccata a quattro colori**: navy `#203260`, teal `#10b8c0`, carta `#fff9ef`, lilla
 `#e9dcff`. Tutto il resto è una miscela dichiarata di questi quattro. Quota misurata sull'altezza
 reale: Giada (navy, teal, carta) al 67% a 1512px e al 66,6% a 390px, lilla al 33% e al 33,4%.
+
+## Cosa è cambiato il 7 settembre 2026
+
+Passata nata da uno studio del programma creator di Kiwi AI (`creators.kiwi.app`, 60 creator
+attivi, €300K dichiarati pagati, email gate a un campo verso un form Tally). Di quel confronto
+sono state prese tre cose e scartate le altre: il prezzo alto in pagina, gli esempi visibili prima
+del form, la misurazione che non dipende da un clic.
+
+### 1. Il compenso esce dalla FAQ e sale nella hero
+
+Nuova riga `.hero-terms` fra il sottotitolo e le due azioni: pastiglia teal **«Da 50€ per video»**
+più la leva che la fa salire, «Di più se hai già risultati da mostrare». È un **pavimento**, mai un
+tetto: il tetto interno resta €80 e la cifra si discute in call.
+
+Sta **sopra** le azioni e non sotto: misurata sotto, a 1440×900 finiva dentro la barra del consenso
+(riga 791-856, barra da 822) e a 390×844 ci finiva del tutto (686 contro 685). Sopra le azioni è
+visibile nel primo schermo a 1512×950 (800-834, barra a 872) e a 390×844 (551-611), e resta
+visibile anche il bottone primario.
+
+### 2. Sezione dei sei video già girati
+
+Nuova sezione `#video-esempio` fra profili e processo, con `zone-videos`: il fondo resta piatto sul
+`--tint-1` perché i profili chiudono su tint-1 e il processo riapre da tint-1, quindi la catena dei
+gradienti non si spezza e non nasce una banda nuova.
+
+Tre fatti (6 video finiti · 30-60 secondi · 1 telefono, nessun set) e una CTA. Il link alla
+sottocartella Drive in sola visione vive in `VIDEOS_URL`: **finché è vuoto** la CTA porta al form
+con l'etichetta unica della pagina e la nota dice che la cartella si apre dopo l'invio. Appena
+arriva il link, la stessa CTA diventa «Guarda i sei video» verso Drive.
+
+### 3. Pixel senza consenso, banner invariato
+
+`FORCE_MARKETING = true` in `src/pixel.js`: il pixel parte al primo render come sulla landing B2C di
+Giada, il banner resta in pagina e la scelta continua a essere registrata. Portare la costante a
+`false` rimette tutto dietro il sì esplicito senza altre modifiche.
+
+### 4. Doppio invio: un identificativo per candidatura
+
+`submissionRef` tiene `requestId` ed `eventId` fissi tra i tentativi: se il primo invio va in errore
+e il creator riprova, la riga e l'evento Meta restano gli stessi, e si azzerano solo a invio
+riuscito. Aggiunto anche il rientro anticipato su `formState === "sending"`, che copre l'invio da
+tastiera che il `disabled` non ferma. **Perché serva davvero, Apps Script deve scartare la riga se
+`requestId` è già presente nel foglio**: lato pagina è pronto, lato script no.
+
+### Verifiche
+
+- `npm run build` e `npm run test:sites` (4/4) passano.
+- Nessun overflow orizzontale alle 17 larghezze (1920 → 320). Il primo giro ne aveva uno: a 320px la
+  colonna della nuova sezione uscendo di 30px, perché `1.05fr` non ha minimo a zero e il pannello dei
+  tre fatti ha un min-content più largo della traccia. Corretto con `minmax(0, …)` sulla griglia e
+  `repeat(auto-fit, minmax(72px, 1fr))` sui fatti, che sotto i ~330px si impilano da soli.
+- Pixel: `typeof window.fbq === "function"` al primo render, senza aver toccato il banner.
+
+### Aperto
+
+- **`VIDEOS_URL` è vuoto**: appena Andrea crea la sottocartella Drive dei sei video va incollato in
+  `src/App.jsx`. Stessa cosa per `MATERIALS_URL`, ancora vuoto.
+- **Deduplica per `requestId` lato Apps Script**, da fare nello script del foglio (e ridistribuire).
 
 ## Cosa è cambiato il 23 agosto 2026
 

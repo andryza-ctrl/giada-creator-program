@@ -1,5 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { loadPixel, newEventId, readConsent, trackLead, writeConsent } from "./pixel.js";
+import {
+  FORCE_MARKETING,
+  loadPixel,
+  newEventId,
+  readConsent,
+  trackLead,
+  writeConsent,
+} from "./pixel.js";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -28,6 +35,12 @@ const FORM_ENDPOINT =
 // sola visione. È l'unica via di consegna — al creator non parte nessuna mail —
 // quindi finché è vuoto il bottone del pop-up resta disattivato.
 const MATERIALS_URL = "";
+
+// Sottocartella Drive, in sola visione, con i sei video già girati. Sta in
+// pagina prima del form: mostrarla non regala nulla (non si scarica) e alza il
+// livello di chi si candida, perché il metro è visibile prima di scrivere.
+// Finché è vuota, la CTA della sezione cade sul form invece di morire.
+const VIDEOS_URL = "";
 
 // Una sola etichetta per l'unica conversione della pagina.
 const CTA_LABEL = "Ricevi brief e accesso";
@@ -95,7 +108,8 @@ const deckSrcSet = (name) =>
 const DECK_SIZES = "(max-width: 700px) min(28vw, 190px), min(19.5vw, 218px)";
 
 // Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
-// consegna, dove finisce. Nessun termine economico: il compenso vive solo in FAQ.
+// consegna, dove finisce. Il compenso non sta qui: la cifra di partenza vive
+// nella hero (`.hero-terms`) e il dettaglio in FAQ.
 // `tone` decide la superficie della scheda: teal, neutra, periwinkle.
 const termCards = [
   {
@@ -263,6 +277,11 @@ export function App() {
   // idle | sending | done | error
   const [formState, setFormState] = useState("idle");
   const modalRef = useRef(null);
+  // Un identificativo per candidatura, non per tentativo: se il primo invio va
+  // in errore e il creator riprova, `requestId` ed `eventId` restano gli stessi.
+  // Così Apps Script può scartare il doppione confrontando `requestId`, e Meta
+  // non conta due Lead per la stessa persona. Si azzera solo a invio riuscito.
+  const submissionRef = useRef(null);
   // null = non ha ancora scelto, "granted" | "denied" = ha scelto.
   const [consent, setConsent] = useState(null);
   // La nav fissa non esiste sopra la hero: compare solo dalla sezione dopo, e
@@ -305,18 +324,19 @@ export function App() {
     [activeMode],
   );
 
-  // Il pixel Meta parte solo dopo un sì esplicito. La scelta si legge dopo il
-  // primo render: durante il render il localStorage non si tocca.
+  // Con `FORCE_MARKETING` acceso il pixel parte al primo render, come sulla
+  // landing B2C di Giada: il banner resta e la scelta si registra, ma la
+  // misurazione non dipende da un clic. Spento, torna a valere il sì esplicito.
   useEffect(() => {
     const saved = readConsent();
     setConsent(saved);
-    if (saved === "granted") loadPixel();
+    if (FORCE_MARKETING || saved === "granted") loadPixel();
   }, []);
 
   function decideConsent(value) {
     writeConsent(value);
     setConsent(value);
-    if (value === "granted") loadPixel();
+    if (FORCE_MARKETING || value === "granted") loadPixel();
   }
 
   // Il pop-up di conferma: Esc chiude, la pagina sotto non scorre, il focus
@@ -338,6 +358,9 @@ export function App() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    // Il bottone è già disabilitato durante l'invio: questo copre il doppio
+    // Invio da tastiera, che il disabled non ferma.
+    if (formState === "sending") return;
     const form = event.currentTarget;
     const values = Object.fromEntries(new FormData(form).entries());
 
@@ -352,7 +375,11 @@ export function App() {
       pageUrl: window.location.href,
     };
 
-    const eventId = newEventId();
+    if (!submissionRef.current) {
+      submissionRef.current = { requestId: newEventId(), eventId: newEventId() };
+    }
+    const { requestId, eventId } = submissionRef.current;
+    payload.requestId = requestId;
     payload.eventId = eventId;
 
     setFormState("sending");
@@ -368,6 +395,8 @@ export function App() {
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || String(response.status));
       form.reset();
+      // Candidatura chiusa: il prossimo invio è una candidatura nuova.
+      submissionRef.current = null;
       // L'evento parte solo a invio riuscito: una candidatura contata è una
       // candidatura arrivata davvero nel foglio.
       trackLead(eventId);
@@ -491,7 +520,18 @@ export function App() {
                 Giada è un’assistente di nutrizione su Telegram. Provala gratis e scopri come
                 potresti raccontarla con la tua voce.
               </p>
-              <div className="hero-actions" data-reveal style={{ "--d": "170ms" }}>
+              {/* Il compenso non vive più solo in FAQ: la cifra di partenza sta
+                  sopra la piega, con accanto la leva che la fa salire. Prima
+                  delle azioni, non dopo: sotto, la barra del consenso la copre
+                  sui viewport bassi. */}
+              <p className="hero-terms" data-reveal style={{ "--d": "150ms" }}>
+                <span className="hero-terms-fig">Da 50€ per video</span>
+                <span className="hero-terms-text">
+                  Di più se hai già risultati da mostrare.
+                </span>
+              </p>
+
+              <div className="hero-actions" data-reveal style={{ "--d": "210ms" }}>
                 <a className="button button--primary button--badge" href="#candidatura">
                   <span>{CTA_LABEL}</span>
                   <span className="button-badge" aria-hidden="true">
@@ -766,6 +806,75 @@ export function App() {
                 </div>
               </div>
             </article>
+          </div>
+        </section>
+
+        {/* I sei video già girati stanno qui, non solo dietro il form: il
+            creator ha appena scelto in quale delle tre voci si riconosce, e
+            questo è il momento in cui vuole vedere il metro. La cartella è in
+            sola visione: si guarda, non si scarica. */}
+        <section
+          className="section section--tight videos zone zone--light zone-videos"
+          id="video-esempio"
+          aria-labelledby="videos-title"
+        >
+          <div className="container videos-grid">
+            <div className="videos-copy" data-reveal>
+              <p className="eyebrow">Sei video già girati</p>
+              <h2 id="videos-title">
+                Guarda come raccontiamo
+                <em>Giada oggi 🎬</em>
+              </h2>
+              <p className="lede">
+                Non sono copioni da rifare: sono il livello a cui lavoriamo e la libertà che ti
+                resta. Guardali prima di candidarti, così sai già dove metteresti la tua voce.
+              </p>
+            </div>
+
+            <div className="videos-panel" data-reveal style={{ "--d": "90ms" }}>
+              <ul className="videos-facts">
+                <li>
+                  <b>6</b>
+                  video finiti
+                </li>
+                <li>
+                  <b>30-60</b>
+                  secondi ciascuno
+                </li>
+                <li>
+                  <b>1</b>
+                  telefono, nessun set
+                </li>
+              </ul>
+              {VIDEOS_URL ? (
+                <a
+                  className="button button--primary button--badge"
+                  href={VIDEOS_URL}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <span>Guarda i sei video</span>
+                  <span className="button-badge" aria-hidden="true">
+                    <ArrowUpRight size={16} strokeWidth={2.2} />
+                  </span>
+                </a>
+              ) : (
+                <a className="button button--primary button--badge" href="#candidatura">
+                  {/* Finché la cartella non c'è, la CTA porta all'unica
+                      conversione della pagina e usa la sua etichetta: una sola
+                      etichetta per una sola conversione. */}
+                  <span>{CTA_LABEL}</span>
+                  <span className="button-badge" aria-hidden="true">
+                    <ArrowUpRight size={16} strokeWidth={2.2} />
+                  </span>
+                </a>
+              )}
+              <p className="videos-note">
+                {VIDEOS_URL
+                  ? "Si aprono in sola visione, su Drive: niente download."
+                  : "La cartella si apre subito dopo l’invio, insieme al brief."}
+              </p>
+            </div>
           </div>
         </section>
 
