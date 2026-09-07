@@ -157,7 +157,7 @@ textarea::placeholder{color:var(--muted)}
     <div class="sub">__SUB__</div>
   </div>
   <div class="spacer"></div>
-  <div class="count" id="count">nessuna richiesta &middot; 117 blocchi</div>
+  <div class="count" id="count">nessuna richiesta</div>
   <button id="filter">Solo i segnati</button>
   <button id="tolast">Richieste generali</button>
   <button id="copy">Riepilogo</button>
@@ -200,6 +200,7 @@ const LSKEY   = "__LSKEY__";
 const LABELS  = {accorcia:"Accorcia", riscrivi:"Riscrivi", togli:"Togli", nota:"Nota"};
 const MARKS   = ["accorcia","riscrivi","togli","nota"];
 const NBLOCKS = PAGES.reduce((n,p)=>n+p.blocks.length,0);
+const NPAGES  = String(PAGES.length).padStart(2,'0');
 
 let state = {blocks:{}, pages:{}, general:""};
 let db = null, saveTimer = null, writing = false;
@@ -244,7 +245,7 @@ function render(){
           <img src="${p.thumb}" alt="Anteprima della pagina ${p.n}">
         </button>
         <div>
-          <div class="pnum mono">Pagina ${p.n} / 18 &nbsp;&middot;&nbsp; ${esc(p.sec)}</div>
+          <div class="pnum mono">Pagina ${p.n} / ${NPAGES} &nbsp;&middot;&nbsp; ${esc(p.sec)}</div>
           <h2>${esc(p.title)}</h2>
           <div class="hint">Clicca l'anteprima per vederla pi&ugrave; grande.</div>
         </div>

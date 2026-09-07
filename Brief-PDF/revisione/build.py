@@ -16,12 +16,13 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from data import P
 
 S = pathlib.Path(__file__).resolve().parent
-PDF = S.parent / 'GiadaCreators_ManualeDiVolo.pdf'
+PDF = S.parent.parent / 'output/pdf/GiadaCreators_ManualeDiVolo.pdf'  # il PDF canonico, quello che scrive build_manual.py
 THUMB_W = 260  # px; la console la mostra a 84pt e la ingrandisce a 520px
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--doc', default='revisione/manuale-v3', help='documento del database dell\'Artifact')
 ap.add_argument('--round', default='2', help='numero del giro di revisione')
+ap.add_argument('--version', default='v4', help='etichetta di versione del PDF')
 ap.add_argument('--no-thumbs', action='store_true', help='riusa thumbs.json senza rileggere il PDF')
 args = ap.parse_args()
 
@@ -58,10 +59,10 @@ for n, sec, title, blocks in P:
     pages.append({"n": n, "sec": sec, "title": title, "thumb": thumbs[n], "blocks": bs})
 
 nblocks = sum(len(p['blocks']) for p in pages)
-sub = (f"v3 &middot; {len(pages)} pagine &middot; {nblocks} blocchi &middot; "
+sub = (f"{args.version} &middot; {len(pages)} pagine &middot; {nblocks} blocchi &middot; "
        f"giro {args.round} &middot; 7 settembre 2026")
-round_note = ("Questo &egrave; il <b>giro " + args.round + "</b>: il PDF che vedi qui sotto ha gi&agrave; "
-              "dentro le 101 richieste del giro 1.")
+round_note = ("Questo &egrave; il <b>giro " + args.round + "</b>: il PDF qui sotto ha gi&agrave; dentro "
+              "le richieste dei giri precedenti.")
 
 tpl = (S / 'console-template.html').read_text()
 html_out = (tpl

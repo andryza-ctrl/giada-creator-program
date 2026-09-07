@@ -23,7 +23,7 @@ for name in ['BricolageBold','BricolageMedium','Geist','GeistBold','Arapey']:
 pdfmetrics.registerFontFamily('Geist',normal='Geist',bold='GeistBold',italic='Arapey',boldItalic='Arapey')
 C=canvas.Canvas(str(OUT/'GiadaCreators_ManualeDiVolo.pdf'),pagesize=(W,H),pageCompression=1)
 C.setTitle('Giada Creators - Manuale di volo'); C.setAuthor('Andrea | Vivarium'); C.setSubject('Idee, esempi e strumenti per creare video con Giada'); C.setCreator('Giada Creator Program')
-TOTAL=16
+TOTAL=18
 page=0; alltext=[]; checks=[]
 
 def color(v): return HexColor(v)
@@ -99,31 +99,18 @@ def bubble(s,x,y,w,h,fill=PAPER,size=17):
  p=C.beginPath();p.moveTo(x+28,H-y-h);p.lineTo(x+19,H-y-h-16);p.lineTo(x+53,H-y-h);C.setFillColor(color(fill));C.setStrokeColor(color(NAVY));C.setLineWidth(1.5);C.drawPath(p,fill=1,stroke=1)
 
 def icon(kind,x,y,s=38,fill=TEAL):
- """Riquadro colorato con dentro un pittogramma. Tutto scala con s: a 34 o a 40
- il segno resta centrato e dentro il bordo."""
- box(x,y,s,s,fill,r=s*.26,sw=1.4)
- k=s/38.0
- C.setStrokeColor(color(NAVY));C.setLineWidth(1.8*k)
- def P(a,b): return x+a*k, y+b*k
+ box(x,y,s,s,fill,r=10,sw=1.4)
+ C.setStrokeColor(color(NAVY));C.setLineWidth(1.8)
  if kind=='chat':
-  C.roundRect(x+8*k,H-y-25*k,22*k,16*k,5*k,stroke=1,fill=0)
-  line(*P(13,25),*P(10,30),width=1.8*k)
-  for z in [13,19,25]:C.circle(x+z*k,H-y-17*k,1*k,fill=1,stroke=0)
+  C.roundRect(x+8,H-y-25,22,16,5,stroke=1,fill=0);line(x+13,y+25,x+10,y+30,width=1.8)
+  for z in [13,19,25]:C.circle(x+z,H-y-17,1,fill=1,stroke=0)
  elif kind=='play':
-  p=C.beginPath();p.moveTo(x+15*k,H-y-10*k);p.lineTo(x+28*k,H-y-19*k);p.lineTo(x+15*k,H-y-28*k);p.close()
-  C.setFillColor(color(NAVY));C.drawPath(p,fill=1,stroke=0)
- elif kind=='check':
-  C.setLineCap(1)
-  line(*P(9,20),*P(16,27),width=2.5*k);line(*P(16,27),*P(29,11),width=2.5*k)
-  C.setLineCap(0)
+  p=C.beginPath();p.moveTo(x+15,H-y-10);p.lineTo(x+28,H-y-19);p.lineTo(x+15,H-y-28);p.close();C.setFillColor(color(NAVY));C.drawPath(p,fill=1,stroke=0)
+ elif kind=='check':line(x+9,y+20,x+16,y+27,width=2.5);line(x+16,y+27,x+29,y+11,width=2.5)
  elif kind=='mic':
-  C.roundRect(x+15*k,H-y-24*k,8*k,17*k,4*k,fill=0,stroke=1)
-  p=C.beginPath();p.moveTo(x+10*k,H-y-18*k);p.curveTo(x+10*k,H-y-34*k,x+28*k,H-y-34*k,x+28*k,H-y-18*k)
-  C.drawPath(p,stroke=1);line(*P(19,30),*P(19,34),width=1.8*k)
+  C.roundRect(x+15,H-y-24,8,17,4,fill=0,stroke=1);p=C.beginPath();p.moveTo(x+10,H-y-18);p.curveTo(x+10,H-y-34,x+28,H-y-34,x+28,H-y-18);C.drawPath(p,stroke=1);line(x+19,y+30,x+19,y+34,width=1.8)
  else:
-  sz=18*k
-  w=pdfmetrics.stringWidth(kind,'BricolageBold',sz)
-  text(kind,x+(s-w)/2,y+(s-sz*.95)/2,sz,'BricolageBold')
+  text(kind,x+8,y+10,18,'BricolageBold')
 
 def checkbox(x,y,s=22,fill=YELLOW):
  box(x,y,s,s,fill,r=6,sw=1.4)
@@ -169,87 +156,82 @@ text('giada',30,26,25,'BricolageBold');text('CREATORS',102,36,10,'GeistBold')
 tag('TUTTO PARTE DA UN’IDEA TUA',214,28,PERI,angle=-3,size=9.2)
 title('Facciamo un\nvideo insieme.',y=88,size=57)
 text('La tua giornata, le tue parole, e Giada che risponde.',32,222,14.1,'Geist')
-box(31,258,388,344,PERI,r=22,shadow=6)
-dots(46,438,104,152,step=8)
-image(COVER,214,268,196,r=0)
-bubble('Ciao! Sono Giada.\nCom’è andata oggi?',42,318,176,92,PAPER,16)
-tag('PROVA. GIOCA. RACCONTA.',48,566,TEAL,angle=4,size=10.4)
+box(31,258,388,342,PERI,r=22,shadow=6)
+image(COVER,158,268,232,322,cover=True,r=15)
+dots(42,432,100,158,step=8)
+bubble('Ciao! Sono Giada.\nCom’è andata oggi?',44,300,190,96,PAPER,17)
+star(103,489,47,YELLOW);text('CIAO!',70,477,23,'BricolageBold')
+tag('PROVA. GIOCA. RACCONTA.',52,556,TEAL,angle=4,size=10.4)
 C.linkRect('','indice',(30,0,420,655),relative=0,thickness=0)
 
 # ============================================================ 02 CIAO
 y=start('Ciao','Ciao, sono Andrea.',key='indice',size=40)
-y=lead('In Vivarium mi occupo di marketing e contenuti, e questo programma nasce da una cosa semplice: i video migliori li fa chi ha qualcosa da dire.',y+24,15.2)
-y=lead('<b>Non è un contest.</b> Un video alla volta, con calma. Io ti porto obiettivi, riferimenti e i pochi limiti che abbiamo; l’idea, le parole e il taglio restano tuoi.',y+18,15.2)
-y=lead('Le idee le leggo io, una per una. Qui dentro c’è quello che darei a me stesso per cominciare.',y+18,15.2)
-my=max(y+30,368)
+y=lead('In Vivarium mi occupo di marketing e contenuti. <b>Giada</b> la conosci fra due pagine: vive su Telegram e risponde davvero. Questo programma nasce da una cosa semplice: i video migliori li fa chi la usa e ha qualcosa da dire.',y+22,15.2)
+y=lead('<b>Non è un contest e non è UGC a cottimo.</b> Un video alla volta, con calma. Io ti porto obiettivi, riferimenti e i pochi limiti che abbiamo; l’idea, le parole e il taglio restano tuoi.',y+16,15.2)
+y=lead('Le idee le leggo io, una per una. Qui dentro c’è quello che darei a me stesso per cominciare.',y+16,15.2)
+my=max(y+28,364)
 text('La tua mappa',M,my,25,'BricolageBold');text('TOCCA UNA TAPPA',294,my+11,9,'GeistBold')
 for i,(lab,pg,dest) in enumerate([('Conosci e prova Giada','03','giada'),('Trova la tua storia','05','personas'),('Esempi e come si gira','06','esempi'),('Regole e consegna','13','regole')]):
- yy=my+42+i*39
- if i<3: line(M,yy+31,W-M,yy+31,width=.7)
- text(lab,M,yy+5,14,'GeistBold');text(pg,W-M-40,yy+4,15,'BricolageBold');arrow(W-M-15,yy+13,W-M,yy+13,width=1.6)
+ yy=my+40+i*39
+ if i<3: line(M,yy+31,W-M,yy+31,width=.7);text(lab,M,yy+5,14,'GeistBold');text(pg,W-M-40,yy+4,15,'BricolageBold');arrow(W-M-15,yy+13,W-M,yy+13,width=1.6)
  C.linkRect('',dest,(M,H-yy-33,W-M,H-yy),relative=0,thickness=0)
-tag('16 PAGINE. DIECI MINUTI.',M,608,YELLOW,angle=-2,size=10)
+tag('18 PAGINE. DIECI MINUTI.',M,606,YELLOW,angle=-2,size=10)
 
 # ============================================================ 03 CONOSCI GIADA
 y=start('Conosci Giada','Un’amica in chat.\nSempre a un messaggio\ndi distanza.',key='giada',size=31)
 lead('Vive su <b>Telegram</b>. Le scrivi, le mandi la foto del piatto o un vocale mentre cammini. Le puoi raccontare anche acqua, movimento, sonno e peso: quello che le dici, se lo tiene.',y+26,14.5)
-features=[('chat','Capire il pasto','Le mandi la foto e ti dice cosa c’è dentro: calorie, macro e se va d’accordo con i tuoi obiettivi.',PERI),
-('?','Decidere cosa mangiare','«Ho questo in frigo, che faccio?» Lei tira fuori un’idea, non una lezione di cucina.',PINK),
-('check','Ricordarsi di te','Non riparte da zero ogni volta: sa com’è andata la settimana e ti aiuta a riprendere dopo uno sgarro, senza prediche.',YELLOW),
-('play','Uscire senza pensieri','Al ristorante le mandi il menù e sceglie con te. E se ti muovi, tiene il conto anche di quello.',TEAL)]
-y=268
-for kind,h,b,col in features:
- icon(kind,M,y+2,36,col);text(h,80,y,18,'BricolageBold');para(b,80,y+26,340,size=13.3,leading=17.2,maxh=58);y+=86
+features=[('Capire il pasto','Le mandi la foto e ti dice cosa c’è dentro: calorie, macro e se va d’accordo con i tuoi obiettivi.'),
+('Decidere cosa mangiare','«Ho questo in frigo, che faccio?» Lei tira fuori un’idea, non una lezione di cucina.'),
+('Ricordarsi di te','Non riparte da zero ogni volta: sa com’è andata la settimana e ti aiuta a riprendere dopo uno sgarro, senza prediche.'),
+('Uscire senza pensieri','Al ristorante le mandi il menù e sceglie con te. E se ti muovi, tiene il conto anche di quello.')]
+y=266
+for i,(h,b) in enumerate(features):
+ icon(['chat','?','check','play'][i],M,y+4,34,[PERI,PINK,YELLOW,TEAL][i]);text(h,78,y,18,'BricolageBold');para(b,78,y+26,342,size=13.3,leading=17.2,maxh=58);y+=88
 
 # ============================================================ 04 PROVA GIADA
 y=start('Prova Giada','Prima la chat.\nPoi la scintilla.',bg=PERI,key='trial',size=41)
 lead('Nei tuoi <b>14 giorni di prova</b> usala davvero: niente compiti da consegnare, scrivile come scriveresti a un’amica. La tua chat vera è il materiale del video.',y+20,14.3)
-text('Quattro modi per rompere il ghiaccio',M,244,19,'BricolageBold')
-spunti=[('«Cosa preparo con quello che ho in frigo?»',YELLOW),
-('«Stasera mangio qui: mi dai un’idea dal menù?»',TEAL),
-('«Oggi è andata così. Come riprendo il filo?»',PINK),
-('La foto del piatto, o un vocale per raccontarglielo.',PERI)]
-for i,(s,col) in enumerate(spunti):
- yy=276+i*56;box(M,yy,CW,46,PAPER,13,shadow=3)
- box(M+11,yy+11,24,24,col,6,sw=1.2);text(f'{i+1:02d}',M+15,yy+16,11,'BricolageBold')
- para(s,M+46,yy+13,CW-66,size=13.2,leading=16,maxh=24)
-button('Inizia i tuoi 14 giorni',M,512,266,TRIAL)
+text('Quattro modi per rompere il ghiaccio',M,242,19,'BricolageBold')
+for i,(s,col) in enumerate([('«Cosa preparo con quello che ho in frigo?»',PAPER),('«Stasera mangio qui: mi dai un’idea dal menù?»',YELLOW),('«Oggi è andata così. Come riprendo il filo?»',PAPER),('Una foto del piatto, senza scrivere niente.',TEAL)]):
+ yy=274+i*56;box(M,yy,CW,46,col,13,shadow=3);para(s,M+15,yy+12,CW-34,size=13.6,leading=16,maxh=26)
+button('Inizia i tuoi 14 giorni',M,510,266,TRIAL)
 q=qr.QrCodeWidget(TRIAL);b=q.getBounds();d=Drawing(84,84,transform=[84/(b[2]-b[0]),0,0,84/(b[3]-b[1]),0,0]);d.add(q)
-box(320,498,96,87,PAPER,7,stroke=None);renderPDF.draw(d,C,326,H-498-84);linkrect(320,498,96,87,TRIAL)
-text('Tocca il bottone o inquadra il QR.',M,568,10.8,'Geist')
-text(TRIAL,M,590,7.1,'Geist',DARKTEAL)
-smallnote('Prenditi i primi due giorni per giocarci: le idee arrivano da lì.',602,PAPER)
+box(320,496,96,87,PAPER,7,stroke=None);renderPDF.draw(d,C,326,H-496-84);linkrect(320,496,96,87,TRIAL)
+text('Tocca il bottone o inquadra il QR.',M,566,10.8,'Geist')
+text(TRIAL,M,588,7.1,'Geist',DARKTEAL)
+smallnote('Prenditi i primi due giorni per giocarci: le idee arrivano da lì.',596,PAPER)
 
 # ============================================================ 05 A CHI PARLI
 y=start('A chi parli','A chi stai parlando?\nScegline una sola.',key='personas',size=38)
-lead('Sono le persone che scrivono a Giada ogni giorno: servono a darti un volto in testa mentre scrivi.',y+20,13.8)
-personas=[('01','La testa già piena','«Non ho voglia di pensarci anche a questo.»','Falle vedere che bastano dieci secondi e una foto.',PINK),
-('02','Il piano c’è, la costanza no','«So cosa fare. Il difficile è farlo ogni giorno.»','Raccontale una giornata storta che si raddrizza.',PERI),
-('03','Vuole una risposta, non una lezione','«Chiedo una cosa e mi arriva un trattato.»','Mostrale Giada che risponde corta e chiara.',YELLOW),
-('04','I passi sì, il pranzo no','«Misuro tutto, tranne quello che mangio.»','Collega il movimento a quello che c’è nel piatto.',TEAL),
-('05','Il solito «da lunedì»','«Non voglio ricominciare un’altra volta.»','Parti da qualcosa che funziona, non da una colpa.',PERI)]
+lead('Queste sono le persone che scrivono a Giada ogni giorno. Non sono caselle: servono a darti un volto preciso in testa mentre scrivi.',y+18,13.8)
+personas=[('01','La testa già piena','«Non ho voglia di pensarci anche a questo.»','Le arrivi se le mostri che bastano dieci secondi e una foto.',PINK),
+('02','Il piano c’è, la costanza no','«So cosa fare. Il difficile è farlo ogni giorno.»','Le arrivi se fai vedere una giornata storta che si raddrizza.',PERI),
+('03','Vuole una risposta, non una lezione','«Chiedo una cosa e mi ritrovo un trattato.»','Le arrivi se mostri Giada che risponde corta e chiara.',YELLOW),
+('04','I passi sì, il pranzo no','«Misuro tutto, tranne quello che mangio.»','Le arrivi se colleghi il movimento a quello che c’è nel piatto.',TEAL),
+('05','Il solito «da lunedì»','«Non voglio ricominciare da capo un’altra volta.»','Le arrivi se il tuo video non parte da una colpa.',PERI)]
 for i,(n,h,quote,hint,col) in enumerate(personas):
- yy=208+i*78
+ yy=212+i*76
  box(M,yy,CW,72,col,12,shadow=3)
  text(n,M+13,yy+9,25,'BricolageBold');para(h,M+52,yy+8,CW-70,size=16.2,leading=18,font='BricolageBold',maxh=20)
- para(quote,M+52,yy+31,CW-70,size=13,leading=16,font='GeistBold',maxh=17)
- para(hint,M+52,yy+50,CW-70,size=10.8,leading=13.5,maxh=15)
-smallnote('Sono spunti, non recinti: scegli quella che conosci meglio e parla solo a lei.',602,YELLOW)
+ para(quote,M+52,yy+32,CW-70,size=13.2,leading=16,font='GeistBold',maxh=18)
+ para(hint,M+52,yy+51,CW-70,size=10.8,leading=13.5,maxh=15)
+smallnote('Sono spunti, non recinti: scegli quella che conosci meglio e parla solo a lei.',594,YELLOW)
 
 # ============================================================ 06 ESEMPI 1
 y=start('Esempi','Cosa abbiamo\ngià fatto.',key='esempi',size=39)
 lead('Sei video girati con altre creator. Non devi rifarli: guardali per capire <b>cosa ha funzionato</b> e prendi l’idea che ti serve.',y+18,13.8)
-cards=[('rosa-2-0.jpg','ROSA 2  ·  35,4 S','Poche scene, tanta luce','in trenta secondi si capisce tutto.'),
-('elena-2-0.jpg','ELENA 2  ·  78,1 S','Un elenco che tiene incollati','dice cosa farà, e poi lo fa.'),
+cards=[('rosa-2-0.jpg','ROSA 2  ·  35,4 S','Poche scene, tanta luce','in trenta secondi si capisce tutto: colazione e chat grande.'),
+('elena-2-0.jpg','ELENA 2  ·  78,1 S','Un elenco che tiene incollati','dice cosa farà e poi lo fa: sai sempre cosa sta per succedere.'),
 ('maria-1-0.jpg','MARIA 1  ·  55,1 S','Un dubbio vero, detto a voce','la domanda se la fanno tutti, e la risposta arriva in scena.'),
 ('maria-2-1.jpg','MARIA 2  ·  55,9 S','Si legge la conversazione','la chat riempie lo schermo: Giada si capisce senza spiegarla.')]
 for i,(im,lab,hd,take) in enumerate(cards):
- x=M+(i%2)*201; y=206+(i//2)*200
- box(x,y,189,192,PAPER,13,shadow=3)
+ x=M+(i%2)*201; y=200+(i//2)*200
+ box(x,y,189,194,PAPER,13,shadow=3)
  image(im,x+8,y+8,173,90,cover=True,r=8)
  text(lab,x+10,y+104,8.8,'GeistBold')
  para(hd,x+10,y+117,169,size=14.6,leading=16.4,font='BricolageBold',maxh=34)
- para('<b>Ha funzionato perché</b> '+take,x+10,y+152,169,size=9.6,leading=12,maxh=36)
+ para('<b>Ha funzionato perché</b> '+take,x+10,y+154,169,size=9.6,leading=12,maxh=38)
+smallnote('Ispirazione, mai copia: prendi l’idea, non le stesse inquadrature.',602,YELLOW)
 
 # ============================================================ 07 ESEMPI 2
 y=start('Esempi','Altri due,\ngirati in modo\ndiverso.',size=33)
@@ -264,138 +246,148 @@ for j,(im,lab,hd,desc,take) in enumerate([
  para(hd,M+117,y+30,256,size=19,leading=20,font='BricolageBold',maxh=43)
  para(desc,M+117,y+78,255,size=12.4,leading=16,maxh=50)
  para('<b>Ha funzionato:</b> '+take,M+117,y+130,255,size=11.2,leading=14.4,maxh=40)
-smallnote('Ispirazione, mai copia: prendi l’idea, non le stesse inquadrature.',600,YELLOW)
+smallnote('Anche qui: ispirazione, mai copia. Il taglio è tuo.',600,YELLOW)
 
 # ============================================================ 08 COSA DEVE FARE IL VIDEO
 y=start('Scrivi l’idea','Cosa deve fare\nil tuo video.',size=41)
-lead('Il video esce sul <b>profilo di Giada</b> e nelle sue campagne. Se ti va, lo pubblichiamo in collaborazione con te: in quel caso esce anche sul tuo profilo.',y+20,14.3)
+lead('Prima esce sul <b>tuo profilo</b>, come reel o TikTok. Se funziona, lo portiamo anche in campagna. Quindi gira quello che pubblicheresti comunque.',y+20,14.3)
 for n,h,b,yy,col in [('1','Ferma lo scroll','Primi tre secondi: una situazione precisa, un gesto, una domanda.',240,YELLOW),('2','Fai vedere Giada','Falla entrare almeno una volta. Ingrandisci la chat: chi guarda deve poterla leggere.',330,PERI),('3','Lascia un invito','Uno solo, detto con calma: «Provala gratis dal link».',420,PINK)]:
  row(n,h,b,yy,col,84)
 box(M,514,CW,112,NAVY,14,stroke=None)
 text('Perché uno resta fino alla fine',M+15,528,19,'BricolageBold',PAPER)
-rows=[[('SI RICONOSCE',PERI),('VUOLE SAPERE COM’È FINITA',YELLOW)],[('SE LO SALVA',PINK),('PIACE COME LO RACCONTI TU',TEAL)]]
-for r,items in enumerate(rows):
- ws=[pdfmetrics.stringWidth(s,'GeistBold',9.6)+23 for s,_ in items]
- xx=M+(CW-(sum(ws)+10))/2
- for (s,col),wd in zip(items,ws):
-  tag(s,xx,582+r*30,col,size=9.6,w=wd);xx+=wd+10
+tw=tag('SI RICONOSCE',M+15,582,PERI,size=9.6)
+tag('VUOLE SAPERE COM’È FINITA',M+23+tw,582,YELLOW,size=9.6)
+tw2=tag('SE LO SALVA',M+15,612,PINK,size=9.6)
+tag('PIACE COME LO RACCONTI TU',M+23+tw2,612,TEAL,size=9.6)
 
 # ============================================================ 09 SCRIVI L'IDEA
-y=start('Scrivi l’idea','Uno script\nche ti somiglia.',key='mestiere',size=42)
-lead('<b>Inizio, centro, fine.</b> In 30-90 secondi prendi l’attenzione, la tieni alta e chiudi il cerchio. Scrivi a blocchi: per ogni frase scegli anche <b>cosa si vede</b>.',y+18,14)
-for i,(n,lab,col) in enumerate([('01','Prendi l’attenzione',YELLOW),('02','Tienila alta',PERI),('03','Chiudi il cerchio',PINK)]):
+y=start('Scrivi l’idea','Uno script\nche respira.',key='mestiere',size=42)
+lead('<b>Inizio, centro, fine.</b> In 30-90 secondi apri una domanda, fai arrivare la risposta e chiudi il cerchio. Scrivi a blocchi: per ogni frase scegli anche <b>cosa si vede</b>.',y+18,14)
+for i,(n,lab,col) in enumerate([('01','Apri una domanda',YELLOW),('02','Fai arrivare la risposta',PERI),('03','Chiudi il cerchio',PINK)]):
  x=M+i*133;box(x,238,124,52,col,10,shadow=2)
  text(n,x+10,244,15,'BricolageBold');para(lab,x+10,261,104,size=10.6,leading=12.4,font='GeistBold',maxh=26)
 script=[('HOOK','«Stasera ceno fuori: il menù lo apro prima.»','«Frigo mezzo vuoto e zero idee.»',YELLOW),
 ('COSTRUZIONE','«Mando il menù a Giada e le chiedo cosa prendo.»','«Le mando la foto di quello che c’è dentro.»',PERI),
 ('PAYOFF','Leggi ad alta voce la sua risposta sul menù.','Fai la ricetta che ti ha tirato fuori.',PINK),
 ('CTA','«La provi gratis dal link.»','«Se ti va, provala anche tu.»',TEAL)]
-for i,(lab,a,b,col) in enumerate(script):
+for i,(lab,a,b) in enumerate([(s[0],s[1],s[2]) for s in script]):
+ col=script[i][3]
  yy=302+i*74;box(M,yy,CW,66,col,11,shadow=2)
  text(lab,M+12,yy+9,9.6,'GeistBold')
  text('A',M+12,yy+27,11,'BricolageBold');text('B',M+12,yy+45,11,'BricolageBold')
  para(a,M+34,yy+25,336,size=12.4,leading=15,maxh=17)
  para(b,M+34,yy+43,336,size=12.4,leading=15,maxh=17)
-box(M,596,CW,30,PAPER,10,sw=1.2)
-para('<b>Esempi, non modelli:</b> servono a farti venire la tua idea.',M+11,604,CW-22,size=11.4,leading=14,maxh=16)
+box(M,596,CW,28,PAPER,10,sw=1.2)
+para('<b>Due strade, non due modelli.</b> La terza, la tua, è la migliore.',M+11,603,CW-22,size=11.4,leading=14,maxh=16)
 
 # ============================================================ 10 IL PRIMO FOTOGRAMMA
 y=start('Il primo fotogramma','Fermare lo scroll.\nSenza urlare.',size=39)
-lead('Otto forme che funzionano, da cui prendere ispirazione. Una sola per video: tieni quella che regge.',y+16,13.6)
+lead('Otto forme che funzionano. Una sola per video: scrivine tre su un foglio e tieni quella che regge.',y+16,13.6)
 hooks=[('La domanda sul piatto','Inquadri il pranzo dall’alto: «Secondo te cosa manca?»','Chi guarda risponde nella testa, e resta.'),
 ('L’oggetto fuori posto','Il menù di un ristorante appoggiato tra i pesi in palestra.','Una cosa che non c’entra incuriosisce e apre la storia.'),
 ('Due cose a confronto','Da una parte i passi contati, dall’altra i pasti mai raccontati.','Il confronto è tra abitudini, mai tra corpi.'),
-('La negazione','«Oggi non conto niente a mente.»','Dire cosa non farai incuriosisce: poi mostri il gesto al posto suo.'),
+('La negazione','«Oggi non conto niente a mente.»','Dire cosa non farai incuriosisce: poi mostri subito il gesto al posto suo.'),
 ('Il quiz','«Secondo te cosa le ho chiesto?», e si vede solo la risposta.','Chi guarda vuole scoprire la domanda.'),
 ('La scena che conosci','Frigo aperto, sguardo dentro: «E adesso?»','Nessuna presentazione: si riconosce da sola.'),
 ('La parola gigante','«CENA?» scritto grande sopra una scena vera.','Una parola sola tiene lo sguardo, poi arriva la prova.'),
 ('L’immagine che spiega','La lista delle cose da fare che si allunga da sola.','Rende visibile un peso che di solito si racconta a parole.')]
 for i,(h,ex,why) in enumerate(hooks):
- yy=214+i*48
- text(f'{i+1:02d}',M,yy,19,'BricolageBold');text(h,M+38,yy-1,15,'BricolageBold')
- para(ex,M+38,yy+17,352,size=11.4,leading=13.6,maxh=15);para(why,M+38,yy+30,352,size=9.6,leading=11.6,c=SOFT,maxh=13)
- if i<7: line(M,yy+43,W-M,yy+43,width=.6)
-smallnote('Sono spunti di ispirazione: la scena della tua vita vale più di tutte e otto.',602,PERI)
+ yy=216+i*50
+ text(f'{i+1:02d}',M,yy,20,'BricolageBold');text(h,M+38,yy-1,15.4,'BricolageBold')
+ para(ex,M+38,yy+18,352,size=11.6,leading=14,maxh=16);para(why,M+38,yy+32,352,size=9.7,leading=12,c=SOFT,maxh=13);line(M,yy+45,W-M,yy+45,width=.6)
 
 # ============================================================ 11 FORMATO E MONTAGGIO
-y=start('Formato e montaggio','Il taglio è tuo.\nNoi montiamo così.',size=38)
-lead('Volto e voce, voice-over, mani, cibo, schermo registrato: <b>il formato lo scegli tu.</b>',y+20,14)
+y=start('Formato e montaggio','Il tuo taglio.\nTre passate.',size=40)
+lead('Volto e voce, voice-over, mani, cibo, schermo registrato: <b>il formato lo scegli tu.</b>',y+18,14)
 formats=[('Chat protagonista',PERI),('Problema, poi soluzione',YELLOW),('Titolo da notizia',PINK),('Risposta a un commento',TEAL),('Esperienza personale',PINK),('Giornata / backstage',PERI)]
 for i,(h,col) in enumerate(formats):
- x=M+(i%2)*198; yy=226+(i//2)*38
+ x=M+(i%2)*198; yy=220+(i//2)*38
  box(x,yy,13,13,col,3);text(h,x+22,yy-1,12.6,'GeistBold')
-line(M,324,W-M,324,width=.7)
+line(M,318,W-M,318,width=.7)
 for i,(n,h,b,col) in enumerate([('01','Niente vuoti','Dove non parli, di solito non serve: lascia respirare la voce e taglia il resto.',PAPER),
 ('02','Fidati della noia','Se ti annoi mentre lo riguardi, quel pezzo lo sente anche chi guarda: accorcia lì.',YELLOW),
 ('03','Cambia ogni 3-5 secondi','Uno zoom, un cambio di inquadratura, la chat che compare: sono questi a tenere su lo sguardo.',PERI)]):
- row(n,h,b,338+i*90,col,86)
-smallnote('Riguardalo una volta col telefono in mano, come lo guarderebbe lei.',608,TEAL)
+ row(n,h,b,332+i*90,col,86)
+smallnote('Riguardalo una volta col telefono in mano, come lo guarderebbe lei.',604,TEAL)
 
 # ============================================================ 12 AUDIO E SOTTOTITOLI
 y=start('Audio e sottotitoli','Prima si sente.\nPoi si legge.',size=39)
-icon('mic',M,y+24,40,TEAL)
-para('<b>L’audio conta più dell’immagine.</b><br/>Registra vicino al microfono, in una stanza che non rimbomba, e riascoltati prima di montare: se la voce è pulita, il resto si perdona.',86,y+20,334,size=13.8,leading=18,maxh=95)
-box(M,300,CW,110,YELLOW,12,shadow=3)
-text('La musica, libera davvero',M+13,316,17,'BricolageBold')
-para('Meglio evitare gli audio di tendenza presi dai social: la licenza deve coprire anche la pubblicità e tutti i canali. Una libreria free va benissimo.',M+13,344,CW-26,size=12.7,leading=16.5,maxh=56)
-box(M,436,CW,110,PERI,12,shadow=3)
-text('Sottotitoli sempre, nel tuo stile',M+13,452,17,'BricolageBold')
-para('L’unica cosa che ti chiediamo: <b>due o tre parole per volta</b>, anche una sola. Servono a dare ritmo, non a trascrivere. Font, colore e animazione li scegli tu.',M+13,480,CW-26,size=12.7,leading=16.5,maxh=56)
-smallnote('Provalo in cuffia e senza: se si capisce in tutti e due i modi, è pronto.',576,PAPER)
+icon('mic',M,y+22,40,TEAL)
+para('<b>L’audio conta più dell’immagine.</b><br/>Registra vicino al microfono, in una stanza che non rimbomba, e riascoltati prima di montare: se la voce è pulita, il resto si perdona.',86,y+18,334,size=13.8,leading=18,maxh=95)
+box(M,272,CW,102,YELLOW,12,shadow=3)
+text('La musica, libera davvero',M+13,286,17,'BricolageBold')
+para('Meglio evitare gli audio di tendenza presi dai social: la licenza deve coprire anche la pubblicità e tutti i canali. Una libreria free va benissimo.',M+13,314,CW-26,size=12.7,leading=16.5,maxh=54)
+text('Sottotitoli sempre. Lo stile è tuo.',M,392,21,'BricolageBold')
+para('L’unica cosa che ti chiediamo: <b>due o tre parole per volta</b>, anche una sola. Servono a dare ritmo, non a trascrivere. Font, colore e animazione li scegli tu.',M,424,CW,size=12.8,leading=16.5,maxh=52)
+for i,(s,col,c) in enumerate([('LA TUA',NAVY,PAPER),('CHAT',TEAL,NAVY),('SI LEGGE',NAVY,PAPER)]):
+ x=M+i*132;box(x,486,120,50,col,9,stroke=None)
+ sz=min(23,104/pdfmetrics.stringWidth(s,'BricolageBold',1))
+ text(s,x+12,504,sz,'BricolageBold',c)
+text('TRE BATTUTE, TRE RESPIRI: È QUELLO CHE TIENE IL RITMO.',M,552,9,'GeistBold',SOFT)
+smallnote('Se il tuo montaggio le fa apparire una parola per volta, ancora meglio.',596,PERI)
 
 # ============================================================ 13 LE REGOLE TECNICHE
 y=start('Le regole tecniche','La scheda\nda tenere a vista.',key='regole',size=40)
-box(M,180,188,92,TEAL,12,shadow=4);text('9:16',M+17,194,42,'BricolageBold');text('VERTICALE',M+18,246,10,'GeistBold')
-box(232,180,188,92,YELLOW,12,shadow=4);text('30-90',249,196,36,'BricolageBold');text('SECONDI',250,246,10,'GeistBold')
+box(M,178,188,88,TEAL,12,shadow=4);text('9:16',M+17,190,42,'BricolageBold');text('VERTICALE',M+18,240,10,'GeistBold')
+box(232,178,188,88,YELLOW,12,shadow=4);text('30-90',249,192,36,'BricolageBold');text('SECONDI',250,240,10,'GeistBold')
 items=[('Lingua','Italiano, il tuo.'),('Strumenti','Quelli che usi già, per girare e montare.'),('Audio','La voce prima di tutto.'),('Sottotitoli','Sempre, con lo stile che preferisci.'),('Giada','Almeno un momento, con la chat leggibile.'),('File','Finito, senza watermark dell’app di montaggio.'),('Invio','Drive o WeTransfer. Il grezzo tienilo tu.'),('Tempi','7-10 giorni dalla call, senza corse.'),('Revisione','Al massimo una. Se funziona, nessuna.')]
 for i,(h,b) in enumerate(items):
- yy=306+i*35;line(M,yy+30,W-M,yy+30,width=.6);text(h,M,yy+5,13.2,'GeistBold');text(b,M+108,yy+5,12.3,'Geist')
+ yy=292+i*33;line(M,yy+28,W-M,yy+28,width=.6);text(h,M,yy+4,13.2,'GeistBold');text(b,M+108,yy+4,12.3,'Geist')
+smallnote('La prima volta è un video solo. Il resto lo decidiamo insieme.',598,PERI)
 
 # ============================================================ 14 COSA NON SI PUÒ DIRE
 y=start('Cosa non si può dire','Creatività sì.\nPromesse magiche no.',size=37)
-rules=[('Niente chili, taglie o percentuali.','Non promettiamo risultati sul corpo. I numeri veri del percorso, quelli sì.'),
+rules=[('Niente chili, taglie o percentuali.','Non promettiamo risultati sul corpo. I numeri veri del percorso, quelli sì: giorni, pasti raccontati, abitudini.'),
 ('Niente primi piani su una parte del corpo.','Non pizzicare il grasso, non usare il corpo come il problema da correggere.'),
-('Il corpo di nessuno è un difetto.','Vale anche per il tuo: meglio lasciare fuori le frasi che se la prendono con l’aspetto.'),
+('Nessuno deve sentirsi sbagliato.','Vale anche per te: «ero uno schifo» non ci va, nemmeno detto ridendo.'),
 ('Mai «sei sola».','La solitudine non si usa come leva. Fai vedere che Giada risponde: basta quello.'),
-('Si capisce che Giada è un’AI.','Dillo con le tue parole: chi guarda deve capire che è un’AI su Telegram.'),
-('Giada non è un medico né una nutrizionista.','Non fa diagnosi, non cura, non scrive diete, e le sue stime sono indicative.')]
+('Si capisce che Giada è un’AI.','Dillo con le tue parole, dove ti viene meglio: chi guarda deve capire che è un’AI su Telegram, non una persona in carne e ossa.'),
+('Giada non è un medico né una nutrizionista.','Non fa diagnosi, non cura, non scrive diete, e le sue stime sono indicative. Niente condizioni cliniche nel video.')]
 for i,(h,b) in enumerate(rules):
- yy=166+i*60
- text('×',M,yy+1,21,'BricolageBold');para(h,M+26,yy,364,size=13.4,leading=16,font='GeistBold',maxh=18)
- para(b,M+26,yy+20,364,size=11.2,leading=13.6,maxh=29);line(M,yy+55,W-M,yy+55,width=.6)
-box(M,532,CW,94,PERI,12,shadow=3)
-text('E queste non si mostrano',M+14,542,15,'BricolageBold')
-hide=['<b>Solo la chat con Giada:</b> niente lista chat, nomi o notifiche di altri.',
-'<b>Nessun altro marchio in campo:</b> vestiti, confezioni, watermark.',
-'<b>Niente minori.</b> Per un altro adulto serve il suo ok.',
-'<b>Niente audio dei trend:</b> libreria libera, licenza anche per la pubblicità.']
-for i,s in enumerate(hide):
- para(s,M+14+(i%2)*186,566+(i//2)*28,172,size=9.4,leading=11.4,maxh=24)
+ yy=168+i*72
+ text('×',M,yy+1,23,'BricolageBold');para(h,M+28,yy,362,size=14,leading=17.5,font='GeistBold',maxh=36);para(b,M+28,yy+34,362,size=11.5,leading=14.2,maxh=32);line(M,yy+67,W-M,yy+67,width=.6)
+smallnote('Il resto è tuo: racconta quello che hai provato davvero.',600,YELLOW)
 
-# ============================================================ 15 COME SI VA AVANTI
+# ============================================================ 15 COSA NON SI MOSTRA
+y=start('Cosa non si mostra','Un ultimo sguardo\nprima di esportare.',size=38)
+y=170
+for n,h,b,col in [('01','Solo la chat con Giada','Prima di registrare lo schermo dai un’occhiata: niente lista chat, nomi o notifiche di altri.',PERI),
+('02','Nessun altro marchio in campo','Maglietta, confezioni, sfondo. E niente watermark delle app di montaggio.',PINK),
+('03','Niente minori','Se nel video c’è un altro adulto serve il suo ok, e te ne prendi la responsabilità.',YELLOW),
+('04','Niente audio dei trend','Prendi la musica da una libreria libera, con licenza valida anche per la pubblicità.',PERI)]:
+ row(n,h,b,y,col,98);y+=105
+para('<b>E l’ordine, che aiuta tutti:</b> prima l’idea, poi ci sentiamo, poi si gira.',M,594,size=11.8,leading=15,maxh=31)
+
+# ============================================================ 16 COME SI VA AVANTI
 y=start('Come si va avanti','La tua idea\narriva qui.',key='percorso',size=42)
 box(M,168,CW,52,TEAL,13,shadow=4)
 msz=min(30,354/pdfmetrics.stringWidth(MAIL,'BricolageBold',1))
 text(MAIL,M+16,182,msz,'BricolageBold');linkrect(M,168,CW,52,'mailto:'+MAIL)
-lead('Scrivimi quando ti va: mandami <b>lo script e due indicazioni visive</b> in un documento, oppure un <b>video-selfie</b>. Dimmi a chi parli, che scena hai in testa e cosa si vede di Giada. Nessuna scadenza.',238,14.3)
-steps=[('01','Ti rispondo entro 72 ore','Ti dico cosa mi piace e cosa proverei diversamente. Se ci va, ci facciamo due chiacchiere in call.'),
+lead('Mandami <b>lo script e due indicazioni visive</b> in un documento, oppure un <b>video-selfie</b>: dimmi a chi parli, che scena hai in testa, come apri e cosa si vede di Giada. Con calma, non c’è una scadenza.',238,14.3)
+steps=[('01','Ti rispondo entro 72 ore','Un riscontro vero: cosa mi piace, cosa cambierei, e se serve ci facciamo una call breve.'),
 ('02','Se l’idea ci piace, ci parliamo','Mezz’ora per allineare taglio, compenso e dettagli. Poi hai mano libera.'),
 ('03','Giri, e poi mi mandi il video','Finito entro 7-10 giorni dalla call, via Drive o WeTransfer. Al massimo una revisione.')]
 for i,(n,h,b) in enumerate(steps):
- yy=330+i*96;text(n,M,yy,24,'BricolageBold');para(h,M+44,yy,346,size=16.7,leading=20,font='BricolageBold',maxh=40);para(b,M+44,yy+29,346,size=12.5,leading=16.5,maxh=52)
+ yy=328+i*98;text(n,M,yy,24,'BricolageBold');para(h,M+44,yy,346,size=16.7,leading=20,font='BricolageBold',maxh=40);para(b,M+44,yy+29,346,size=12.5,leading=16.5,maxh=52)
 
-# ============================================================ 16 IL COMPENSO + CHIUSURA
+# ============================================================ 17 IL COMPENSO
 y=start('Il compenso','Facciamo i conti\ninsieme.',key='compenso',size=41)
-box(M,172,CW,108,TEAL,17,shadow=5);text('da',M+20,190,20,'GeistBold');text('50€',M+63,178,74,'BricolageBold');para('per ogni video\nselezionato',271,199,126,size=17.5,leading=22,font='BricolageBold');text('È UN PAVIMENTO, NON UN TETTO.',M+20,258,10.6,'GeistBold')
-lead('<b>Nessuna esclusiva:</b> continui a lavorare con chi vuoi, prima e dopo.',300,14)
-text('Cosa può far salire la cifra',M,354,22,'BricolageBold')
-lead('Un hook in più, un pacchetto di video, una collaborazione che va avanti nei mesi. E se hai numeri tuoi da mostrare, possiamo ragionare anche sui risultati.',386,13.6)
-smallnote('Approfondiamo in call, prima che tu giri.',446,PERI)
-button('Apri la tua prova da 14 giorni',M,488,266,TRIAL)
-text(TRIAL,M,538,7.1,'Geist',DARKTEAL)
-image('giada-director-scene.png',318,470,102,r=10)
-para('Quando ti viene in mente quella cosa\nche racconteresti a un’amica, scrivimi.',M,562,270,size=13.4,leading=17.5)
-tag('CI VEDIAMO NEL TUO VIDEO.',M,614,YELLOW,angle=-2,size=10)
+box(M,178,CW,118,TEAL,17,shadow=5);text('da',M+20,198,20,'GeistBold');text('50€',M+63,186,74,'BricolageBold');para('per ogni video\nselezionato',271,207,126,size=17.5,leading=22,font='BricolageBold');text('È UN PAVIMENTO, NON UN TETTO.',M+20,272,10.6,'GeistBold')
+lead('<b>Nessuna esclusiva:</b> continui a lavorare con chi vuoi, prima e dopo.',320,14.5)
+text('Cosa può far salire la cifra',M,392,24,'BricolageBold')
+lead('Un hook in più, un pacchetto di video, una collaborazione che va avanti nei mesi. E se hai numeri tuoi da mostrare, possiamo ragionare anche sui risultati.',428,14.1)
+box(M,506,CW,88,PERI,13,shadow=3)
+para('<b>Ne parliamo in call, prima che tu giri.</b><br/>Due hook vogliono dire due video finiti, con visivi diversi. Fattura o ritenuta d’acconto: vediamo lì cosa è più comodo per te.',M+14,518,CW-28,size=13,leading=17,maxh=70)
+
+# ============================================================ 18 ULTIMO CHECK + CHIUSURA
+y=start('Ora tocca a te','Ultimo check.\nPoi tocca a te.',key='fine',size=40)
+checks2=['Parlo a una persona sola, e si sente.','L’apertura e il finale si tengono insieme.','Giada si vede e la chat si legge.','Si capisce che è un’AI.','Voce pulita, sottotitoli corti.','Nessuna promessa sul corpo.']
+for i,s in enumerate(checks2):
+ yy=170+i*33;checkbox(M,yy,24,[YELLOW,PERI,PINK,TEAL,PERI,PINK][i]);para(s,M+38,yy+4,352,size=13.4,leading=17,maxh=24)
+button('Apri la tua prova da 14 giorni',M,382,262,TRIAL)
+image('giada-director-scene.png',232,444,188,r=12)
+para('Provala per due settimane.\nQuando ti viene in mente\nquella cosa che racconteresti\na un’amica, scrivimi.',M,452,192,size=14.6,leading=20)
+tag('CI VEDIAMO NEL TUO VIDEO.',M,604,YELLOW,angle=-2,size=10)
 
 C.save()
 (OUT/'source/layout-checks.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2))

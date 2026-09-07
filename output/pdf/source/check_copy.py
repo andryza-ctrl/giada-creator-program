@@ -26,7 +26,7 @@ TESTS = [
      not re.search(r'9,90|19,90|€\s?\d+[,.]\d\d|al mese|abbonamento', t)),
     ('divieto chili/taglie', 'niente chili, taglie o percentuali' in low),
     ('divieto primi piani sul corpo', 'niente primi piani su una parte del corpo' in low),
-    ('divieto frasi sull’aspetto', 'nessuno deve sentirsi sbagliato' in low),
+    ('divieto frasi sull’aspetto', 'il corpo di nessuno è un difetto' in low),
     ('divieto "sei sola"', 'sei sola' in low and 'solitudine non si usa' in low),
     ('trasparenza AI dichiarata al creator',
      'si capisce che giada è un’ai' in low and 'un’ai su telegram' in low),

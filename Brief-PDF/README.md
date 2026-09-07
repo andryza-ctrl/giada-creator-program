@@ -4,16 +4,18 @@ Cartella di lavoro del brief in PDF per i creator del Giada Creator Program.
 **Contiene tutto quello che serve per scriverlo**: decisioni prese, struttura, contenuti
 di ogni sezione, materiale di ricerca, vincoli, layout e link.
 
-✅ Il PDF è alla **v3: 18 pagine**, impaginato in `../output/pdf/`. Aggiornato al
-**7 settembre 2026**: esegue le 101 richieste segnate da Andrea nella console di revisione
-(tono più caldo su tutte le pagine, trial a 14 giorni, «Il video» spostata dopo gli esempi,
-Rosa 2 ed Elena 1 scambiate, passata di layout su tutte e 18). Gli script precedenti restano
-come `build_manual_v2_18pagine.py.bak` e `build_manual_v1_26pagine.py.bak`.
+✅ Il PDF è alla **v4: 16 pagine**, impaginato in `../output/pdf/`. Aggiornato al
+**7 settembre 2026**: due giri di revisione eseguiti, 101 richieste il primo e 45 il secondo.
+Nel secondo giro sono sparite due pagine («Cosa non si mostra», i cui quattro punti sono
+scesi in fondo a pagina 14, e «Ultimo check», la cui CTA è passata sulla pagina del
+compenso), è entrata la copertina nuova con Giada che si registra col telefono, ed è stato
+corretto un fatto: il video esce sul profilo di Giada, sul profilo del creator solo in
+collaborazione. Gli script precedenti restano come `build_manual_v3_18pagine.py.bak`,
+`build_manual_v2_18pagine.py.bak` e `build_manual_v1_26pagine.py.bak`.
 
-⚠️ Due cose aperte: la copertina aspetta ancora `giada-selfie-scene.png` (Giada che si
-registra col telefono — prompt pronto in `../output/pdf/assets/giada-selfie-scene.PROMPT.txt`,
-lo script lo usa da solo appena il file c'è), e il link `?start=ad_creatorsb2b_t14d` va provato
-con un account Telegram nuovo prima di distribuire il PDF.
+⚠️ Resta da provare il link `?start=ad_creatorsb2b_t14d` con un account Telegram nuovo prima
+di distribuire il PDF: il parser del bot accetta `_t14d`, ma quella strada non è mai stata
+esercitata in produzione.
 
 ## I tre file con cui si lavora
 
@@ -24,10 +26,11 @@ con un account Telegram nuovo prima di distribuire il PDF.
   spezzate in **117 blocchi**, ognuno segnabile con *Accorcia · Riscrivi · Togli · Nota*, più
   una nota per pagina e le richieste generali. Quello che Andrea segna lì Claude lo rilegge
   dal database dell'artefatto (documento `revisione/manuale-v2`), non serve copiare niente.
-  Si rigenera con `python3 revisione/build.py` dopo aver aggiornato `revisione/data.py`.
-  **Attenzione:** la console pubblicata mostra ancora il copy della v2, quello su cui Andrea
-  ha segnato le 101 richieste. Per un secondo giro va rigenerata sul copy della v3 e puntata
-  a un documento nuovo (`revisione/manuale-v3`), così il primo giro resta leggibile.
+  Si rigenera con `python3 revisione/build.py --doc revisione/manuale-vN --round N --version vN`:
+  ritaglia le anteprime dal PDF con PyMuPDF, prende i blocchi da `revisione/data.py` e li
+  inietta in `revisione/console-template.html`. **Ogni giro va su un documento nuovo**, così
+  i verbali dei giri precedenti restano leggibili: `manuale-v2` (101 richieste del giro 1),
+  `manuale-v3` (45 richieste del giro 2), `manuale-v4` (giro 3, aperto).
 
 Per rigenerare il PDF:
 

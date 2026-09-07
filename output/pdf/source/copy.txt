@@ -13,8 +13,6 @@
 [01] Ciao! Sono Giada.
 Com’è andata oggi?
 
-[01] CIAO!
-
 [01] PROVA. GIOCA. RACCONTA.
 
 [02] giada
@@ -27,13 +25,13 @@ Com’è andata oggi?
 
 [02] INDICE
 
-[02] 02 / 18
+[02] 02 / 16
 
 [02] Ciao, sono Andrea.
 
-[02] In Vivarium mi occupo di marketing e contenuti. Giada la conosci fra due pagine: vive su Telegram e risponde davvero. Questo programma nasce da una cosa semplice: i video migliori li fa chi la usa e ha qualcosa da dire.
+[02] In Vivarium mi occupo di marketing e contenuti, e questo programma nasce da una cosa semplice: i video migliori li fa chi ha qualcosa da dire.
 
-[02] Non è un contest e non è UGC a cottimo. Un video alla volta, con calma. Io ti porto obiettivi, riferimenti e i pochi limiti che abbiamo; l’idea, le parole e il taglio restano tuoi.
+[02] Non è un contest. Un video alla volta, con calma. Io ti porto obiettivi, riferimenti e i pochi limiti che abbiamo; l’idea, le parole e il taglio restano tuoi.
 
 [02] Le idee le leggo io, una per una. Qui dentro c’è quello che darei a me stesso per cominciare.
 
@@ -53,7 +51,11 @@ Com’è andata oggi?
 
 [02] 06
 
-[02] 18 PAGINE. DIECI MINUTI.
+[02] Regole e consegna
+
+[02] 13
+
+[02] 16 PAGINE. DIECI MINUTI.
 
 [03] giada
 
@@ -65,7 +67,7 @@ Com’è andata oggi?
 
 [03] INDICE
 
-[03] 03 / 18
+[03] 03 / 16
 
 [03] Un’amica in chat.
 
@@ -103,7 +105,7 @@ Com’è andata oggi?
 
 [04] INDICE
 
-[04] 04 / 18
+[04] 04 / 16
 
 [04] Prima la chat.
 
@@ -113,13 +115,21 @@ Com’è andata oggi?
 
 [04] Quattro modi per rompere il ghiaccio
 
+[04] 01
+
 [04] «Cosa preparo con quello che ho in frigo?»
+
+[04] 02
 
 [04] «Stasera mangio qui: mi dai un’idea dal menù?»
 
+[04] 03
+
 [04] «Oggi è andata così. Come riprendo il filo?»
 
-[04] Una foto del piatto, senza scrivere niente.
+[04] 04
+
+[04] La foto del piatto, o un vocale per raccontarglielo.
 
 [04] Inizia i tuoi 14 giorni
 
@@ -139,13 +149,13 @@ Com’è andata oggi?
 
 [05] INDICE
 
-[05] 05 / 18
+[05] 05 / 16
 
 [05] A chi stai parlando?
 
 [05] Scegline una sola.
 
-[05] Queste sono le persone che scrivono a Giada ogni giorno. Non sono caselle: servono a darti un volto preciso in testa mentre scrivi.
+[05] Sono le persone che scrivono a Giada ogni giorno: servono a darti un volto in testa mentre scrivi.
 
 [05] 01
 
@@ -153,7 +163,7 @@ Com’è andata oggi?
 
 [05] «Non ho voglia di pensarci anche a questo.»
 
-[05] Le arrivi se le mostri che bastano dieci secondi e una foto.
+[05] Falle vedere che bastano dieci secondi e una foto.
 
 [05] 02
 
@@ -161,15 +171,15 @@ Com’è andata oggi?
 
 [05] «So cosa fare. Il difficile è farlo ogni giorno.»
 
-[05] Le arrivi se fai vedere una giornata storta che si raddrizza.
+[05] Raccontale una giornata storta che si raddrizza.
 
 [05] 03
 
 [05] Vuole una risposta, non una lezione
 
-[05] «Chiedo una cosa e mi ritrovo un trattato.»
+[05] «Chiedo una cosa e mi arriva un trattato.»
 
-[05] Le arrivi se mostri Giada che risponde corta e chiara.
+[05] Mostrale Giada che risponde corta e chiara.
 
 [05] 04
 
@@ -177,15 +187,15 @@ Com’è andata oggi?
 
 [05] «Misuro tutto, tranne quello che mangio.»
 
-[05] Le arrivi se colleghi il movimento a quello che c’è nel piatto.
+[05] Collega il movimento a quello che c’è nel piatto.
 
 [05] 05
 
 [05] Il solito «da lunedì»
 
-[05] «Non voglio ricominciare da capo un’altra volta.»
+[05] «Non voglio ricominciare un’altra volta.»
 
-[05] Le arrivi se il tuo video non parte da una colpa.
+[05] Parti da qualcosa che funziona, non da una colpa.
 
 [05] Sono spunti, non recinti: scegli quella che conosci meglio e parla solo a lei.
 
@@ -199,7 +209,7 @@ Com’è andata oggi?
 
 [06] INDICE
 
-[06] 06 / 18
+[06] 06 / 16
 
 [06] Cosa abbiamo
 
@@ -211,13 +221,13 @@ Com’è andata oggi?
 
 [06] Poche scene, tanta luce
 
-[06] Ha funzionato perché in trenta secondi si capisce tutto: colazione e chat grande.
+[06] Ha funzionato perché in trenta secondi si capisce tutto.
 
 [06] ELENA 2  ·  78,1 S
 
 [06] Un elenco che tiene incollati
 
-[06] Ha funzionato perché dice cosa farà e poi lo fa: sai sempre cosa sta per succedere.
+[06] Ha funzionato perché dice cosa farà, e poi lo fa.
 
 [06] MARIA 1  ·  55,1 S
 
@@ -231,8 +241,6 @@ Com’è andata oggi?
 
 [06] Ha funzionato perché la chat riempie lo schermo: Giada si capisce senza spiegarla.
 
-[06] Ispirazione, mai copia: prendi l’idea, non le stesse inquadrature.
-
 [07] giada
 
 [07] CREATORS
@@ -243,7 +251,7 @@ Com’è andata oggi?
 
 [07] INDICE
 
-[07] 07 / 18
+[07] 07 / 16
 
 [07] Altri due,
 
@@ -269,7 +277,7 @@ Com’è andata oggi?
 
 [07] Ha funzionato: il gesto e le parole dicono la stessa cosa: si capisce anche senza audio.
 
-[07] Anche qui: ispirazione, mai copia. Il taglio è tuo.
+[07] Ispirazione, mai copia: prendi l’idea, non le stesse inquadrature.
 
 [08] giada
 
@@ -281,13 +289,13 @@ Com’è andata oggi?
 
 [08] INDICE
 
-[08] 08 / 18
+[08] 08 / 16
 
 [08] Cosa deve fare
 
 [08] il tuo video.
 
-[08] Prima esce sul tuo profilo, come reel o TikTok. Se funziona, lo portiamo anche in campagna. Quindi gira quello che pubblicheresti comunque.
+[08] Il video esce sul profilo di Giada e nelle sue campagne. Se ti va, lo pubblichiamo in collaborazione con te: in quel caso esce anche sul tuo profilo.
 
 [08] 1
 
@@ -327,21 +335,21 @@ Com’è andata oggi?
 
 [09] INDICE
 
-[09] 09 / 18
+[09] 09 / 16
 
 [09] Uno script
 
-[09] che respira.
+[09] che ti somiglia.
 
-[09] Inizio, centro, fine. In 30-90 secondi apri una domanda, fai arrivare la risposta e chiudi il cerchio. Scrivi a blocchi: per ogni frase scegli anche cosa si vede.
+[09] Inizio, centro, fine. In 30-90 secondi prendi l’attenzione, la tieni alta e chiudi il cerchio. Scrivi a blocchi: per ogni frase scegli anche cosa si vede.
 
 [09] 01
 
-[09] Apri una domanda
+[09] Prendi l’attenzione
 
 [09] 02
 
-[09] Fai arrivare la risposta
+[09] Tienila alta
 
 [09] 03
 
@@ -387,7 +395,7 @@ Com’è andata oggi?
 
 [09] «Se ti va, provala anche tu.»
 
-[09] Due strade, non due modelli. La terza, la tua, è la migliore.
+[09] Esempi, non modelli: servono a farti venire la tua idea.
 
 [10] giada
 
@@ -399,13 +407,13 @@ Com’è andata oggi?
 
 [10] INDICE
 
-[10] 10 / 18
+[10] 10 / 16
 
 [10] Fermare lo scroll.
 
 [10] Senza urlare.
 
-[10] Otto forme che funzionano. Una sola per video: scrivine tre su un foglio e tieni quella che regge.
+[10] Otto forme che funzionano, da cui prendere ispirazione. Una sola per video: tieni quella che regge.
 
 [10] 01
 
@@ -437,7 +445,7 @@ Com’è andata oggi?
 
 [10] «Oggi non conto niente a mente.»
 
-[10] Dire cosa non farai incuriosisce: poi mostri subito il gesto al posto suo.
+[10] Dire cosa non farai incuriosisce: poi mostri il gesto al posto suo.
 
 [10] 05
 
@@ -471,6 +479,8 @@ Com’è andata oggi?
 
 [10] Rende visibile un peso che di solito si racconta a parole.
 
+[10] Sono spunti di ispirazione: la scena della tua vita vale più di tutte e otto.
+
 [11] giada
 
 [11] CREATORS
@@ -481,11 +491,11 @@ Com’è andata oggi?
 
 [11] INDICE
 
-[11] 11 / 18
+[11] 11 / 16
 
-[11] Il tuo taglio.
+[11] Il taglio è tuo.
 
-[11] Tre passate.
+[11] Noi montiamo così.
 
 [11] Volto e voce, voice-over, mani, cibo, schermo registrato: il formato lo scegli tu.
 
@@ -531,7 +541,7 @@ Com’è andata oggi?
 
 [12] INDICE
 
-[12] 12 / 18
+[12] 12 / 16
 
 [12] Prima si sente.
 
@@ -543,19 +553,11 @@ Com’è andata oggi?
 
 [12] Meglio evitare gli audio di tendenza presi dai social: la licenza deve coprire anche la pubblicità e tutti i canali. Una libreria free va benissimo.
 
-[12] Sottotitoli sempre. Lo stile è tuo.
+[12] Sottotitoli sempre, nel tuo stile
 
 [12] L’unica cosa che ti chiediamo: due o tre parole per volta, anche una sola. Servono a dare ritmo, non a trascrivere. Font, colore e animazione li scegli tu.
 
-[12] LA TUA
-
-[12] CHAT
-
-[12] SI LEGGE
-
-[12] TRE BATTUTE, TRE RESPIRI: È QUELLO CHE TIENE IL RITMO.
-
-[12] Se il tuo montaggio le fa apparire una parola per volta, ancora meglio.
+[12] Provalo in cuffia e senza: se si capisce in tutti e due i modi, è pronto.
 
 [13] giada
 
@@ -567,7 +569,7 @@ Com’è andata oggi?
 
 [13] INDICE
 
-[13] 13 / 18
+[13] 13 / 16
 
 [13] La scheda
 
@@ -617,8 +619,6 @@ Com’è andata oggi?
 
 [13] Al massimo una. Se funziona, nessuna.
 
-[13] La prima volta è un video solo. Il resto lo decidiamo insieme.
-
 [14] giada
 
 [14] CREATORS
@@ -629,7 +629,7 @@ Com’è andata oggi?
 
 [14] INDICE
 
-[14] 14 / 18
+[14] 14 / 16
 
 [14] Creatività sì.
 
@@ -639,7 +639,7 @@ Com’è andata oggi?
 
 [14] Niente chili, taglie o percentuali.
 
-[14] Non promettiamo risultati sul corpo. I numeri veri del percorso, quelli sì: giorni, pasti raccontati, abitudini.
+[14] Non promettiamo risultati sul corpo. I numeri veri del percorso, quelli sì.
 
 [14] ×
 
@@ -649,9 +649,9 @@ Com’è andata oggi?
 
 [14] ×
 
-[14] Nessuno deve sentirsi sbagliato.
+[14] Il corpo di nessuno è un difetto.
 
-[14] Vale anche per te: «ero uno schifo» non ci va, nemmeno detto ridendo.
+[14] Vale anche per il tuo: meglio lasciare fuori le frasi che se la prendono con l’aspetto.
 
 [14] ×
 
@@ -663,162 +663,100 @@ Com’è andata oggi?
 
 [14] Si capisce che Giada è un’AI.
 
-[14] Dillo con le tue parole, dove ti viene meglio: chi guarda deve capire che è un’AI su Telegram, non una persona in carne e ossa.
+[14] Dillo con le tue parole: chi guarda deve capire che è un’AI su Telegram.
 
 [14] ×
 
 [14] Giada non è un medico né una nutrizionista.
 
-[14] Non fa diagnosi, non cura, non scrive diete, e le sue stime sono indicative. Niente condizioni cliniche nel video.
+[14] Non fa diagnosi, non cura, non scrive diete, e le sue stime sono indicative.
 
-[14] Il resto è tuo: racconta quello che hai provato davvero.
+[14] E queste non si mostrano
+
+[14] Solo la chat con Giada: niente lista chat, nomi o notifiche di altri.
+
+[14] Nessun altro marchio in campo: vestiti, confezioni, watermark.
+
+[14] Niente minori. Per un altro adulto serve il suo ok.
+
+[14] Niente audio dei trend: libreria libera, licenza anche per la pubblicità.
 
 [15] giada
 
 [15] CREATORS
 
-[15] COSA NON SI MOSTRA
+[15] COME SI VA AVANTI
 
 [15] MANUALE DI VOLO
 
 [15] INDICE
 
-[15] 15 / 18
+[15] 15 / 16
 
-[15] Un ultimo sguardo
+[15] La tua idea
 
-[15] prima di esportare.
+[15] arriva qui.
+
+[15] andrea@vivariumai.co
+
+[15] Scrivimi quando ti va: mandami lo script e due indicazioni visive in un documento, oppure un video-selfie. Dimmi a chi parli, che scena hai in testa e cosa si vede di Giada. Nessuna scadenza.
 
 [15] 01
 
-[15] Solo la chat con Giada
+[15] Ti rispondo entro 72 ore
 
-[15] Prima di registrare lo schermo dai un’occhiata: niente lista chat, nomi o notifiche di altri.
+[15] Ti dico cosa mi piace e cosa proverei diversamente. Se ci va, ci facciamo due chiacchiere in call.
 
 [15] 02
 
-[15] Nessun altro marchio in campo
+[15] Se l’idea ci piace, ci parliamo
 
-[15] Maglietta, confezioni, sfondo. E niente watermark delle app di montaggio.
+[15] Mezz’ora per allineare taglio, compenso e dettagli. Poi hai mano libera.
 
 [15] 03
 
-[15] Niente minori
+[15] Giri, e poi mi mandi il video
 
-[15] Se nel video c’è un altro adulto serve il suo ok, e te ne prendi la responsabilità.
-
-[15] 04
-
-[15] Niente audio dei trend
-
-[15] Prendi la musica da una libreria libera, con licenza valida anche per la pubblicità.
-
-[15] E l’ordine, che aiuta tutti: prima l’idea, poi ci sentiamo, poi si gira.
+[15] Finito entro 7-10 giorni dalla call, via Drive o WeTransfer. Al massimo una revisione.
 
 [16] giada
 
 [16] CREATORS
 
-[16] COME SI VA AVANTI
+[16] IL COMPENSO
 
 [16] MANUALE DI VOLO
 
 [16] INDICE
 
-[16] 16 / 18
+[16] 16 / 16
 
-[16] La tua idea
+[16] Facciamo i conti
 
-[16] arriva qui.
+[16] insieme.
 
-[16] andrea@vivariumai.co
+[16] da
 
-[16] Mandami lo script e due indicazioni visive in un documento, oppure un video-selfie: dimmi a chi parli, che scena hai in testa, come apri e cosa si vede di Giada. Con calma, non c’è una scadenza.
+[16] 50€
 
-[16] 01
-
-[16] Ti rispondo entro 72 ore
-
-[16] Un riscontro vero: cosa mi piace, cosa cambierei, e se serve ci facciamo una call breve.
-
-[16] 02
-
-[16] Se l’idea ci piace, ci parliamo
-
-[16] Mezz’ora per allineare taglio, compenso e dettagli. Poi hai mano libera.
-
-[16] 03
-
-[16] Giri, e poi mi mandi il video
-
-[16] Finito entro 7-10 giorni dalla call, via Drive o WeTransfer. Al massimo una revisione.
-
-[17] giada
-
-[17] CREATORS
-
-[17] IL COMPENSO
-
-[17] MANUALE DI VOLO
-
-[17] INDICE
-
-[17] 17 / 18
-
-[17] Facciamo i conti
-
-[17] insieme.
-
-[17] da
-
-[17] 50€
-
-[17] per ogni video
+[16] per ogni video
 selezionato
 
-[17] È UN PAVIMENTO, NON UN TETTO.
+[16] È UN PAVIMENTO, NON UN TETTO.
 
-[17] Nessuna esclusiva: continui a lavorare con chi vuoi, prima e dopo.
+[16] Nessuna esclusiva: continui a lavorare con chi vuoi, prima e dopo.
 
-[17] Cosa può far salire la cifra
+[16] Cosa può far salire la cifra
 
-[17] Un hook in più, un pacchetto di video, una collaborazione che va avanti nei mesi. E se hai numeri tuoi da mostrare, possiamo ragionare anche sui risultati.
+[16] Un hook in più, un pacchetto di video, una collaborazione che va avanti nei mesi. E se hai numeri tuoi da mostrare, possiamo ragionare anche sui risultati.
 
-[17] Ne parliamo in call, prima che tu giri.Due hook vogliono dire due video finiti, con visivi diversi. Fattura o ritenuta d’acconto: vediamo lì cosa è più comodo per te.
+[16] Approfondiamo in call, prima che tu giri.
 
-[18] giada
+[16] Apri la tua prova da 14 giorni
 
-[18] CREATORS
+[16] https://t.me/giadacare_bot?start=ad_creatorsb2b_t14d
 
-[18] ORA TOCCA A TE
+[16] Quando ti viene in mente quella cosa
+che racconteresti a un’amica, scrivimi.
 
-[18] MANUALE DI VOLO
-
-[18] INDICE
-
-[18] 18 / 18
-
-[18] Ultimo check.
-
-[18] Poi tocca a te.
-
-[18] Parlo a una persona sola, e si sente.
-
-[18] L’apertura e il finale si tengono insieme.
-
-[18] Giada si vede e la chat si legge.
-
-[18] Si capisce che è un’AI.
-
-[18] Voce pulita, sottotitoli corti.
-
-[18] Nessuna promessa sul corpo.
-
-[18] Apri la tua prova da 14 giorni
-
-[18] Provala per due settimane.
-Quando ti viene in mente
-quella cosa che racconteresti
-a un’amica, scrivimi.
-
-[18] CI VEDIAMO NEL TUO VIDEO.
+[16] CI VEDIAMO NEL TUO VIDEO.
