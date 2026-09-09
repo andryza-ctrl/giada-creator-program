@@ -1166,7 +1166,7 @@ export function App() {
               </li>
               <li>
                 <b>02</b>
-                Prova Giada per quattordici giorni, senza compiti.
+                Prova Giada, senza compiti.
               </li>
               <li>
                 <b>03</b>
