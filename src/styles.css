@@ -399,6 +399,17 @@ h2 em.is-inline { display: inline; color: inherit; }
   transform: translateX(-120%);
   transition: transform 520ms var(--ease-out);
 }
+/* Un solo bottone della pagina porta fuori dal sito: prende il navy pieno
+   invece del teal, così non si confonde con l'unica conversione. */
+.button--outbound {
+  background: var(--navy);
+  color: var(--paper);
+  box-shadow: var(--shadow-lift);
+}
+.button--outbound .button-badge {
+  background: var(--teal);
+  color: var(--navy);
+}
 .button--ghost {
   background: transparent;
   border: 1px solid var(--hair-strong);
@@ -618,35 +629,6 @@ h2 em.is-inline { display: inline; color: inherit; }
   gap: 12px 16px;
 }
 
-/* La riga del compenso: pastiglia teal con la cifra, testo accanto. Sta sotto
-   le azioni perché è la ragione per cui si continua a leggere, non un dettaglio
-   contrattuale: il dettaglio resta in FAQ. */
-.hero-terms {
-  margin-top: clamp(14px, 1.6vw, 20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 64ch;
-  color: var(--on-soft);
-  font-size: clamp(12.5px, 1vw, 14px);
-  font-weight: 600;
-  line-height: 1.45;
-  text-align: center;
-}
-.hero-terms-fig {
-  padding: 6px 13px 7px;
-  border-radius: var(--r-pill);
-  background: var(--accent-grad);
-  color: var(--on-accent);
-  font-size: clamp(13px, 1.05vw, 15px);
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  white-space: nowrap;
-  box-shadow: var(--shadow-lift);
-}
-
 /* ---- Ventaglio di carte (reference "Pallet Ross") ---- */
 /* Cinque carte verticali sovrapposte in arco, tre sotto i 700px. Tutta la
    geometria passa da cinque token su `.hero-deck`. */
@@ -724,7 +706,9 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .deck-card:last-child .deck-slot-label { transform: none; }
 
-/* Le due etichette a fumetto ai lati del ventaglio: una teal, una carta. */
+/* Le due etichette a fumetto ai lati del ventaglio: a sinistra la promessa
+   creativa su carta, a destra il compenso in teal. Il compenso è l'unica cifra
+   sopra la piega, quindi prende l'accento e il peso maggiore. */
 .deck-tag {
   position: absolute;
   z-index: 12;
@@ -747,19 +731,24 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 .deck-tag--left {
   left: calc(50% - var(--fan-w) / 2 - clamp(0px, 0.8vw, 14px));
-  background: var(--teal);
+  background: var(--paper);
   color: var(--navy);
+  box-shadow: inset 0 0 0 1px rgba(32, 50, 96, 0.12), var(--shadow-lift);
   transform: rotate(-4deg);
 }
 .deck-tag--left::after {
   left: 16px;
-  background: var(--teal-light);
+  background: var(--paper);
   clip-path: polygon(0 0, 100% 0, 8% 100%);
 }
 .deck-tag--right {
   right: calc(50% - var(--fan-w) / 2 - clamp(0px, 0.8vw, 14px));
+  padding-inline: 19px;
   background: var(--teal);
   color: var(--navy);
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
   transform: rotate(4deg);
 }
 .deck-tag--right::after {
@@ -1042,15 +1031,130 @@ h2 em.is-inline { display: inline; color: inherit; }
   aspect-ratio: 1.05;
   transform: rotate(-2.5deg);
 }
-.stage-screen--log {
+.stage-screen--chat {
   z-index: 2;
-  top: 132px;
+  top: 116px;
   right: 26px;
-  width: 39%;
-  height: 430px;
+  width: 41%;
+  min-width: 232px;
+  height: 470px;
   transform: rotate(2deg);
 }
-.stage-screen--log img { object-position: top center; }
+
+/* ---- La chat con Giada ----
+   Costruita in markup e non ritagliata da uno screenshot: resta nitida a ogni
+   larghezza, non porta il nome di nessuno e non mostra altro che questa
+   conversazione. Telegram è riconoscibile dalla forma, non da colori suoi: la
+   barra è navy, il messaggio in entrata è carta, quello in uscita è teal
+   diluito nella carta. */
+
+.chat {
+  --chat-in: color-mix(in srgb, var(--paper) 88%, var(--periwinkle));
+  --chat-out: color-mix(in srgb, var(--teal) 24%, var(--paper));
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--tint-1);
+  font-family: var(--font-body);
+  text-align: left;
+}
+.chat-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  background: var(--navy);
+  color: var(--paper);
+}
+.chat-back { flex: 0 0 auto; opacity: 0.7; }
+.stage-screen .chat-avatar {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  /* L'avatar arriva col suo fondo periwinkle: il filo teal lo stacca dal navy
+     della barra come fa Telegram con la foto profilo. */
+  box-shadow: 0 0 0 1.5px rgba(16, 184, 192, 0.55);
+}
+.chat-who {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+.chat-who b {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.chat-who i {
+  color: var(--teal);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.chat-thread {
+  margin: 0;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  /* Il filo si appoggia in basso: se una battuta non entra, si taglia in cima
+     come in una chat vera, non spinge la barra di scrittura fuori. */
+  justify-content: flex-end;
+  gap: 7px;
+  list-style: none;
+  overflow: hidden;
+  /* Quello che non entra si dissolve sotto la barra: tagliato di netto, il
+     primo messaggio sembrava un errore di render, non una chat che continua. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 34px);
+}
+.chat-msg {
+  position: relative;
+  max-width: 86%;
+  padding: 7px 10px 6px;
+  color: var(--navy);
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.36;
+  text-wrap: pretty;
+}
+.chat-msg--in {
+  align-self: flex-start;
+  border-radius: 12px 12px 12px 3px;
+  background: var(--chat-in);
+  box-shadow: 0 1px 2px rgba(32, 50, 96, 0.1);
+}
+.chat-msg--out {
+  align-self: flex-end;
+  border-radius: 12px 12px 3px 12px;
+  background: var(--chat-out);
+  box-shadow: 0 1px 2px rgba(32, 50, 96, 0.1);
+}
+.chat-meta {
+  float: right;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 5px 0 0 8px;
+  color: rgba(32, 50, 96, 0.5);
+  font-size: 8.5px;
+  font-weight: 600;
+}
+.chat-msg--out .chat-meta { color: var(--teal-ink); }
+.chat-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  background: var(--paper);
+  box-shadow: inset 0 1px 0 rgba(32, 50, 96, 0.1);
+  color: rgba(32, 50, 96, 0.42);
+  font-size: 11px;
+  font-weight: 500;
+}
+.chat-input span { flex: 1 1 auto; }
 
 /* Una sola nota sul palco: la domanda che il creator deve portarsi via. */
 .stage-question {
@@ -1393,63 +1497,22 @@ h2 em.is-inline { display: inline; color: inherit; }
 }
 
 /* ============ SEI VIDEO GIA GIRATI ============ */
-/* Due colonne: il testo a sinistra, il pannello con i tre fatti e la CTA a
-   destra. Sotto i 900px si impila e il pannello resta pieno. */
+/* Due colonne: il testo a sinistra, il solo bottone a destra. La colonna
+   dell'azione si stringe su di lui (`auto`) invece di prendere metà sezione:
+   con un elemento solo, una traccia larga sarebbe vuoto dichiarato. */
 
 .videos-grid {
   display: grid;
-  /* `minmax(0, …)` e non `1.05fr`: il pannello dei tre fatti ha un min-content
-     più larga della colonna e senza il minimo a zero la traccia si allarga
-     oltre il container. A 320px erano 30px fuori dal bordo. */
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: clamp(28px, 4vw, 72px);
+  gap: clamp(28px, 4vw, 64px);
 }
 .videos-copy h2 em {
   font-size: clamp(1.85rem, 3.4vw, 2.75rem);
   font-weight: 500;
 }
-.videos-copy .lede { max-width: 42ch; margin-top: 20px; }
-.videos-panel {
-  padding: clamp(22px, 2.4vw, 32px);
-  border: 1px solid var(--hair);
-  border-radius: var(--r-lg);
-  background: var(--object);
-  box-shadow: var(--shadow-object);
-}
-.videos-facts {
-  margin: 0 0 clamp(20px, 2.2vw, 26px);
-  padding: 0;
-  display: grid;
-  /* Tre colonne finché ci stanno: sotto, si impilano da sole invece di
-     spingere il pannello fuori dal container. */
-  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
-  gap: 14px;
-  list-style: none;
-}
-.videos-facts li {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  color: var(--on-soft);
-  font-size: 11.5px;
-  font-weight: 650;
-  line-height: 1.3;
-}
-.videos-facts b {
-  color: var(--navy);
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-.videos-panel .button { width: 100%; }
-.videos-note {
-  margin: 14px 0 0;
-  color: var(--on-soft);
-  font-size: 12px;
-  font-weight: 600;
-  text-align: center;
-}
+.videos-copy .lede { max-width: 54ch; margin-top: 20px; }
+.videos-panel { display: flex; justify-content: flex-start; }
 
 /* ============ COME FUNZIONA ============ */
 /* Le quattro righe salgono dal teal al navy: l'impegno che cresce è misurato
@@ -1940,7 +2003,7 @@ footer { padding-block: 34px; }
   .faq-item > button:hover { color: var(--accent-text); }
   .footer-grid > a:hover { color: var(--on); }
   .trial-stage:hover .stage-screen--summary { transform: rotate(-2.5deg) translateY(-5px); }
-  .trial-stage:hover .stage-screen--log { transform: rotate(2deg) translateY(-5px); }
+  .trial-stage:hover .stage-screen--chat { transform: rotate(2deg) translateY(-5px); }
 }
 
 /* ============ RESPONSIVE ============ */
@@ -1956,6 +2019,7 @@ footer { padding-block: 34px; }
 
 @media (max-width: 900px) {
   .videos-grid { grid-template-columns: minmax(0, 1fr); }
+  .videos-panel .button { width: 100%; }
   .hero-deck { --overlap: 0.2; }
   .terms-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -1978,7 +2042,9 @@ footer { padding-block: 34px; }
   .faq-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
   .faq-rail { position: static; }
   .faq-aside { max-width: 460px; }
-  .trial-stage { min-height: 560px; }
+  /* 620 e non 560: la chat e' alta 470 e parte a 116, e piu' in basso l'ultima
+     riga finiva sotto il bordo del palco. */
+  .trial-stage { min-height: 620px; }
   .proof-rail { gap: 22px 26px; }
   .profiles-tabs { grid-template-columns: 1fr; gap: 8px; }
   .profile-tab {
@@ -2035,15 +2101,22 @@ footer { padding-block: 34px; }
   .deck-card:first-child,
   .deck-card:last-child { display: none; }
   .deck-fan { order: 1; max-width: 100%; }
+  /* Sotto i 700px resta un fumetto solo, e resta quello del compenso: è la
+     cifra sopra la piega, e senza di lui la hero mobile non la avrebbe più.
+     Da statico si mette in riga sotto le carte invece di coprire il titolo. */
   .deck-tags {
-    display: none;
+    order: 2;
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
   }
+  .deck-tag--left { display: none; }
   .deck-tag {
     position: static;
+    inset: auto;
     transform: none;
-    box-shadow: none;
-    font-size: 12.5px;
-    padding: 8px 14px 9px;
+    font-size: 13.5px;
+    padding: 9px 17px 10px;
   }
   .deck-tag::after { display: none; }
   /* Il sigillo circolare vale su schermo largo: in colonna costa 150px e
@@ -2065,8 +2138,12 @@ footer { padding-block: 34px; }
      schermate restano sovrapposte, ma senza lasciare una coda navy vuota. */
   .trial-stage { min-height: 470px; }
   .stage-screen { border-width: 5px; border-radius: var(--r-sm); }
-  .stage-screen--summary { top: 22px; left: 10px; width: 67%; }
-  .stage-screen--log { top: 110px; right: 10px; width: 48%; height: 250px; }
+  .stage-screen--summary { top: 22px; left: 10px; width: 62%; }
+  .stage-screen--chat { top: 104px; right: 10px; width: 52%; min-width: 0; height: 300px; }
+  .chat-thread { padding: 10px 8px; gap: 6px; }
+  .chat-msg { font-size: 10.5px; padding: 6px 9px 5px; }
+  .chat-bar { padding: 8px; }
+  .chat-input { padding: 8px 9px; font-size: 10px; }
   .stage-question { left: 14px; bottom: 14px; width: min(220px, 64%); padding: 12px 14px; }
   .stage-question p { font-size: 14px; line-height: 1.26; }
   .field-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
@@ -2077,7 +2154,7 @@ footer { padding-block: 34px; }
 
 @media (max-width: 480px) {
   /* Sotto i 480px il display scende di un gradino: a 2,7rem il titolo prendeva
-     quattro righe e spingeva la riga del compenso sotto la piega. */
+     quattro righe e spingeva il fumetto del compenso sotto la piega. */
   :root { --fs-display: clamp(2.4rem, 10.4vw, 2.7rem); }
   .proof-item dd { font-size: 1.5rem; }
   .proof-item dt { font-size: 1.02rem; }

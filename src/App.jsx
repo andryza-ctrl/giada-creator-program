@@ -11,10 +11,14 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
+  CheckCheck,
   ChevronDown,
+  ChevronLeft,
   Lightbulb,
   Megaphone,
+  Mic,
   Minus,
+  Paperclip,
   Video,
 } from "lucide-react";
 
@@ -30,17 +34,18 @@ const PRIVACY_URL = `${import.meta.env.BASE_URL}privacy-creator.html`;
 const FORM_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbzPKz6bAb9YfU5qaIZgPmstuQxci1Zt8uNMPj0I0wrt37PX_XaCHAag81Wcqwm32TQT/exec";
 
-// TODO: link alla cartella Drive dei materiali. Dentro: il brief in PDF, che il
-// creator deve poter scaricare, e una sottocartella con i sei video di esempio in
-// sola visione. È l'unica via di consegna — al creator non parte nessuna mail —
-// quindi finché è vuoto il bottone del pop-up resta disattivato.
-const MATERIALS_URL = "";
+// Cartella Drive dei materiali, condivisa in lettura con chiunque abbia il link.
+// Dentro: il brief in PDF, che il creator deve poter scaricare, e la sottocartella
+// dei video. È l'unica via di consegna, al creator non parte nessuna mail, quindi
+// se questo link si svuota il bottone del pop-up torna disattivato.
+const MATERIALS_URL =
+  "https://drive.google.com/drive/folders/1_bDZ3HLFleIIKdsn4M7oqdlmoucv29vd";
 
-// Sottocartella Drive, in sola visione, con i sei video già girati. Sta in
-// pagina prima del form: mostrarla non regala nulla (non si scarica) e alza il
-// livello di chi si candida, perché il metro è visibile prima di scrivere.
-// Finché è vuota, la CTA della sezione cade sul form invece di morire.
-const VIDEOS_URL = "";
+// Sottocartella Drive dei sei video già girati. Sta in pagina prima del form:
+// mostrarla alza il livello di chi si candida, perché il metro è visibile prima
+// di scrivere. Se si svuota, la CTA della sezione cade sul form invece di morire.
+const VIDEOS_URL =
+  "https://drive.google.com/drive/folders/1k4H3WNJ0G2Q9w2ueO4aoYSmwJu8EOyYN";
 
 // Una sola etichetta per l'unica conversione della pagina.
 const CTA_LABEL = "Ricevi brief e accesso";
@@ -50,7 +55,7 @@ const CTA_LABEL = "Ricevi brief e accesso";
 const heroAngles = {
   default: {
     lead: "Diventa una voce di Giada.",
-    accent: "Il tuo punto di vista conta.",
+    accent: "Il tuo punto di vista conta 🤗",
     profile: "rassicurante",
   },
 };
@@ -109,7 +114,7 @@ const DECK_SIZES = "(max-width: 700px) min(28vw, 190px), min(19.5vw, 218px)";
 
 // Le tre cose da sapere prima di ogni domanda: come nasce il contenuto, cosa si
 // consegna, dove finisce. Il compenso non sta qui: la cifra di partenza vive
-// nella hero (`.hero-terms`) e il dettaglio in FAQ.
+// nel fumetto destro del ventaglio della hero e il dettaglio in FAQ.
 // `tone` decide la superficie della scheda: teal, neutra, periwinkle.
 const termCards = [
   {
@@ -132,7 +137,7 @@ const termCards = [
     sublabel: "COSA PRODUCI",
     metric: "1",
     suffix: "video finito",
-    subtext: "30–60 secondi, pronti per Reel o TikTok.",
+    subtext: "30-60 secondi, pronti per Reel o TikTok.",
     copy: "Lo giri tu, col telefono, nel tuo ambiente. Niente set: basta una buona idea fatta bene 🚀",
     foot: "Un solo video finito",
   },
@@ -145,7 +150,7 @@ const termCards = [
     metric: "2",
     suffix: "milioni di visualizzazioni",
     subtext: "Ogni mese, in tutta Italia.",
-    copy: "Il tuo video entra nelle campagne di Giada. Se ti va, può vivere anche sul tuo profilo in collaborazione 📊",
+    copy: "Potresti anche finire nelle campagne di Giada. Se ti va, può vivere anche sul tuo profilo in collaborazione 📊",
     foot: "Advertising e organico",
   },
 ];
@@ -198,6 +203,33 @@ const creatorModes = [
   },
 ];
 
+// La chat del palco: costruita in markup, non una schermata ritagliata, così
+// resta leggibile a ogni larghezza e non porta dati di nessuno.
+// Vincoli rispettati: si vede solo la conversazione con Giada, si capisce che
+// è un'AI, le stime sono dichiarate indicative, nessuna dieta né diagnosi.
+const chatThread = [
+  { from: "in", time: "9:12", text: "Buongiorno! Com’è andata la colazione? ☀️" },
+  { from: "out", time: "9:14", text: "Yogurt greco, due fette di pane e marmellata" },
+  {
+    from: "in",
+    time: "9:14",
+    text: "Segnato 👌 Circa 340 kcal: 24 g di proteine, 46 g di carboidrati, 6 g di grassi. Sono stime indicative.",
+  },
+  {
+    // Il commento al pasto: è così che risponde davvero, non solo con i numeri.
+    // Resta un'osservazione sulle abitudini, non una prescrizione.
+    from: "in",
+    time: "9:14",
+    text: "Colazione equilibrata: le proteine dello yogurt ti tengono sazia fino a pranzo e sei in linea col tuo obiettivo. Un frutto e ci aggiungi anche le fibre 🍎",
+  },
+  { from: "out", time: "9:15", text: "Oggi pranzo fuori, in centro" },
+  {
+    from: "in",
+    time: "9:15",
+    text: "Mandami il link del menù e ti dico due piatti in linea 🙂",
+  },
+];
+
 // Il numero di ogni passo usa una progressione dal teal al navy.
 const processSteps = [
   ["01", "Lasci i contatti", "Brief e video di esempio si aprono subito dopo l’invio.", "s1"],
@@ -233,7 +265,7 @@ const faqs = [
   },
   {
     question: "Come usate il video?",
-    answer: "Lo usiamo nelle campagne pubblicitarie di Giada e sui nostri canali, senza limite di tempo. È importante saperlo prima: è il motivo per cui nasce il programma.",
+    answer: "Lo usiamo in organico (se vuoi anche nel tuo profilo) e se è un contenuto promettente, può finire anche nelle campagne di Giada!",
   },
   {
     question: "Devo pubblicarlo sul mio profilo?",
@@ -489,7 +521,7 @@ export function App() {
                     La tua idea, la tua voce
                   </span>
                   <span className="deck-tag deck-tag--right" data-reveal style={{ "--d": "480ms" }}>
-                    Amplificato in tutta Italia
+                    Da 50€ per video
                   </span>
                 </div>
 
@@ -520,17 +552,6 @@ export function App() {
                 Giada è un’assistente di nutrizione su Telegram. Provala gratis e scopri come
                 potresti raccontarla con la tua voce.
               </p>
-              {/* Il compenso non vive più solo in FAQ: la cifra di partenza sta
-                  sopra la piega, con accanto la leva che la fa salire. Prima
-                  delle azioni, non dopo: sotto, la barra del consenso la copre
-                  sui viewport bassi. */}
-              <p className="hero-terms" data-reveal style={{ "--d": "150ms" }}>
-                <span className="hero-terms-fig">Da 50€ per video</span>
-                <span className="hero-terms-text">
-                  Di più se hai già risultati da mostrare.
-                </span>
-              </p>
-
               <div className="hero-actions" data-reveal style={{ "--d": "210ms" }}>
                 <a className="button button--primary button--badge" href="#candidatura">
                   <span>{CTA_LABEL}</span>
@@ -560,8 +581,7 @@ export function App() {
           <div className="container">
             <div className="section-head section-head--center terms-head" data-reveal>
               <h2 id="terms-title">
-                Come lavoriamo
-                <em>insieme.</em>
+                Come lavoriamo <em className="is-inline">insieme.</em>
               </h2>
               <p className="lede">
                 Tre cose da sapere subito. Poche regole, zero sorprese.
@@ -651,12 +671,42 @@ export function App() {
                     loading="lazy"
                   />
                 </div>
-                <div className="stage-screen stage-screen--log">
-                  <img
-                    src={`${import.meta.env.BASE_URL}assets/product-food-log-v3.jpg`}
-                    alt="Food log di Giada con i pasti della giornata"
-                    loading="lazy"
-                  />
+                <div className="stage-screen stage-screen--chat">
+                  <div className="chat" role="group" aria-label="Una conversazione su Telegram con Giada">
+                    <div className="chat-bar">
+                      <ChevronLeft className="chat-back" aria-hidden="true" size={17} strokeWidth={2.2} />
+                      <img
+                        className="chat-avatar"
+                        src={`${import.meta.env.BASE_URL}assets/giada-avatar-128.webp`}
+                        alt=""
+                        width="128"
+                        height="128"
+                        loading="lazy"
+                      />
+                      <span className="chat-who">
+                        <b>Giada</b>
+                        <i>Online</i>
+                      </span>
+                    </div>
+                    <ol className="chat-thread">
+                      {chatThread.map((line) => (
+                        <li className={`chat-msg chat-msg--${line.from}`} key={line.text}>
+                          <span className="chat-text">{line.text}</span>
+                          <span className="chat-meta">
+                            <time>{line.time}</time>
+                            {line.from === "out" ? (
+                              <CheckCheck aria-hidden="true" size={12} strokeWidth={2.6} />
+                            ) : null}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                    <div className="chat-input" aria-hidden="true">
+                      <Paperclip size={13} strokeWidth={2} />
+                      <span>Messaggio</span>
+                      <Mic size={13} strokeWidth={2} />
+                    </div>
+                  </div>
                 </div>
                 <div className="stage-question">
                   <span>LA DOMANDA</span>
@@ -831,24 +881,13 @@ export function App() {
               </p>
             </div>
 
+            {/* Un solo bottone, e non è la conversione: porta fuori dal sito,
+                quindi prende la sua superficie chiara invece del teal della CTA.
+                Nessun dato accanto: la cartella si guarda, non si spiega. */}
             <div className="videos-panel" data-reveal style={{ "--d": "90ms" }}>
-              <ul className="videos-facts">
-                <li>
-                  <b>6</b>
-                  video finiti
-                </li>
-                <li>
-                  <b>30-60</b>
-                  secondi ciascuno
-                </li>
-                <li>
-                  <b>1</b>
-                  telefono, nessun set
-                </li>
-              </ul>
               {VIDEOS_URL ? (
                 <a
-                  className="button button--primary button--badge"
+                  className="button button--outbound button--badge"
                   href={VIDEOS_URL}
                   target="_blank"
                   rel="noreferrer noopener"
@@ -859,21 +898,15 @@ export function App() {
                   </span>
                 </a>
               ) : (
-                <a className="button button--primary button--badge" href="#candidatura">
-                  {/* Finché la cartella non c'è, la CTA porta all'unica
-                      conversione della pagina e usa la sua etichetta: una sola
-                      etichetta per una sola conversione. */}
+                /* Finché la cartella non c'è, il bottone non muore: porta
+                   all'unica conversione della pagina e usa la sua etichetta. */
+                <a className="button button--outbound button--badge" href="#candidatura">
                   <span>{CTA_LABEL}</span>
                   <span className="button-badge" aria-hidden="true">
                     <ArrowUpRight size={16} strokeWidth={2.2} />
                   </span>
                 </a>
               )}
-              <p className="videos-note">
-                {VIDEOS_URL
-                  ? "Si aprono in sola visione, su Drive: niente download."
-                  : "La cartella si apre subito dopo l’invio, insieme al brief."}
-              </p>
             </div>
           </div>
         </section>

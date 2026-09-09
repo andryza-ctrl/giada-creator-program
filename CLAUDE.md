@@ -23,12 +23,12 @@ Do not remove `vercel.json`, `.openai/hosting.json`, `worker/index.js` or `scrip
 - Giada is an AI assistant on Telegram; do not position it as a diet, medical service or guaranteed weight-loss solution.
 - Avoid medical, diagnostic, disease, weight-loss guarantee or before/after claims.
 - Commercial terms: **EUR 50 is the published floor** ("da 50EUR per video selezionato", never "fino a EUR 50"), **EUR 80 stays the internal absolute cap** per selected video. 1 video + 3 hooks, paid and organic use with no expiry, **14-day trial**, reply within 48 hours. The floor framing supersedes the flat "EUR 80" of `BRIEF-GIADA-CREATOR-PROGRAM-v2.md` (23 Aug): see `Brief-PDF/00-DECISIONI.md` and the Manuale, which declare the floor and leave the figure to the call.
-- The published fee lives in the **hero fee pill** (`.hero-terms`, right above the actions) and in the FAQ. Below the actions it falls behind the consent bar on low viewports.
+- The published fee lives in the **right speech bubble of the hero deck** (`.deck-tag--right`) and in the FAQ. Under 700px that bubble is the only one left, static under the cards, because the hero would otherwise lose the figure above the fold.
 - Never publish reach percentages, follower promises or invented performance data.
 - The current form is a demo and must not transmit creator data. Remove `.form-demo` and wire a real endpoint before sending traffic.
 - The page has one conversion. Keep the four-step process (Provi Giada, Ricevi il brief, Proponi l'idea, Produciamo) as the only journey model.
 - The three-hook delivery must appear in the terms section right below the hero and in step 04, never only after the contract.
-- The terms section carries three cards (trial, delivery, usage). The fee is not a card: it stays in the hero fee pill, in the note under the cards, in the mobile sticky bar and in the FAQ.
+- The terms section carries three cards (trial, delivery, usage). The fee is not a card: it stays in the hero deck bubble and in the FAQ.
 - Keep creator-facing copy concise and avoid repeating the same benefit across sections.
 
 ## Visual guardrails
@@ -70,8 +70,8 @@ the hairlines and the focus ring all take the accent of whatever zone they sit o
 - Banned: gradient text (`background-clip: text`), coloured side stripes thicker than 1px, bounce
   or elastic easing, hero-metric bands (big number plus small label plus gradient), animating
   layout properties.
-- The fee lives in the hero fee pill, in the note under the terms cards, in the mobile sticky bar
-  and in the FAQ. The hero seal does not carry it: its ring links to the process section.
+- The fee lives in the right bubble of the hero deck and in the FAQ. The hero seal does not
+  carry it: its ring links to the process section.
 - The hero carries no bar of any kind. Brand, section links and the service CTA live only in the
   fixed nav, which does not exist above the hero: it appears once the hero has left the screen and
   hides again when the reader scrolls back up into it.
